@@ -4,7 +4,7 @@ from django.template import RequestContext, loader
 
 # Create your views here.
 
-def index(request):
-    template = loader.get_template('shifts/index.html')
+def home(request):
+    template = loader.get_template('home.html')
     context = RequestContext(request, {})
     return HttpResponse(template.render(context))
