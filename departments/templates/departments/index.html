@@ -4,6 +4,14 @@
 
 {% block content %}
     <!-- Add your site or application content here -->
-    <p>Departments...</p>
+    <h1><span>Departmental Structure</span></h1>
+    <section>
+    	<h2><span>Departments</span></h2>
+{% for dept in department_list %}
+    <div><span class="headleft">{{ dept.name }}</span><span class="standard">{{ dept.description }}</span></div>
+{% endfor %}
+
+		<hr class="close" />
+	</section>
 {% endblock %}
 

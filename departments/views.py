@@ -1,15 +1,15 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, render, redirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext, loader
+from departments.models import Department
 # Create your views here.
-	
-@login_required
-def index(request):
-    template = loader.get_template('departments/index.html')
-    context = RequestContext(request, {})
-    return HttpResponse(template.render(context))
 
+
+def index(request):
+	department_list = Department.objects.all()	
+	return render(request, 'departments/index.html', {'department_list': department_list})
+
+@login_required
 def detail(request, department_id):
-    return HttpResponse("You're looking at department %s." % department_id)    
+	return HttpResponse("You're looking at department %s." % department_id)    

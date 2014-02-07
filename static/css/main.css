@@ -104,6 +104,9 @@ body {
 
     border-left: 1px solid #b33411;
     border-right: 1px solid #b33411;
+    border-bottom: 1px solid #b33411;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     padding: 4px;
     margin: 0px 10px;
     font-size: 0.8em;
@@ -134,28 +137,25 @@ h1 {
     margin: 4px 8px;    
 }
 h2 {
-    text-align: center;
     font-size: 1em;
-    padding: 2px;
-    margin: 2px 0px;
-    background: #c39f25;
-    color: #93290f;
-    border-radius: 6px;
-    text-shadow: 1px 0px 1px #fdc;
-    font-family: 'Abel','NeuropolXFree';
-}
-h2.different {
-    padding: 0px 10%;
+    padding: 0px 5%;
     margin: 4px 0px;
-    text-align: left;
+    background: #c39f25;
+    color: #000;
+    border-radius: 6px;
+    border-bottom-left-radius: 0px;    
+    font-family: 'Abel','NeuropolXFree';
+    text-align: right;
 }
-h2.different span{
+
+h2 span{
     background: #000;
-    font-size: 1.1em;
     margin: 0px;
     padding: 2px;
+    font-size: 1.2em;
     color: #979bfd;
-    text-shadow: 0px 0px 4px #000;
+    letter-spacing: -1px;
+    font-weight: normal;
 }
 
 #accntnav {
@@ -167,11 +167,10 @@ body section {
     border: 1px solid #b33411;
     border-radius: 6px;
     background: #000;    
-    margin: 4px -10px;
 }
 body nav{
     padding: 2px;
-    margin-bottom: 20px;
+    margin: 0px -10px 4px -10px;
 }
 body section {
     padding: 4px;
@@ -179,9 +178,7 @@ body section {
 }
 
 
-#primarynav {
-}
-
+#primarynav {}
 #primarynav a {
     display: inline-block;
     padding: 0px 4px;
@@ -196,10 +193,36 @@ body section {
     background: #d9d1bb;
 }
 
-#shiftgrid {
+#shiftgrid {}
+
+
+.headleft {
+    background: #c39f25;
+    padding: 2px 1%;
+    color: #000;
+    text-align: right;
+    width: 20%;
+    display: inline-block;
+    margin: 1px 0 1px 0;
 }
-
-
+.standard {
+    background: #333;        
+    padding: 2px 0 2px 1%;
+    display: inline-block;
+    width: 75%;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    margin: 1px 0 1px 0;
+}
+hr.close {
+    border: 0px; 
+    width: 100%;
+    height: 10px;
+    background: #c39f25;
+    border-radius: 6px;
+    border-top-left-radius: 0px;   
+    margin: 1px 0px 10px 0px;
+}
 
 
 
@@ -208,6 +231,9 @@ body section {
     body {
         border-left: 2px solid #b33411;
         border-right: 2px solid #b33411;
+        border-bottom: 2px solid #b33411;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
         margin: 0px 20px;
         font-size: 0.9em;
     }
@@ -216,9 +242,10 @@ body section {
     }
     h2 {
         font-size: 1.1em;
-        padding: 3px;
+        padding: 0px 10%;
         margin: 4px 0px;
         border-radius: 8px;
+        border-bottom-left-radius: 0px;
     }    
     body nav,
     body section {
@@ -227,7 +254,7 @@ body section {
         background: #000;    
         margin-left: -20px;
         margin-right: -20px;
-        padding : 4px;
+        padding : 8px;
     }    
     #primarynav a {
         margin: 0px 3px;
@@ -243,6 +270,9 @@ body section {
     body {
         border-left: 3px solid #b33411;
         border-right: 3px solid #b33411;
+        border-bottom: 3px solid #b33411;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
         font-size: 1em;
 
     }
@@ -251,15 +281,15 @@ body section {
     }
     h2 {
         font-size: 1.2em;
-        padding: 4px;
-        border-radius: 10px;
         margin: 4px 0px;
+        border-radius: 10px;
+        border-bottom-left-radius: 0px;
     }        
     body nav,
     body section {
         border: 3px solid #b33411;
         border-radius: 15px;
-        padding : 8px;
+        padding : 12px;
     }    
     #primarynav a {
         margin: 0px 4px;
