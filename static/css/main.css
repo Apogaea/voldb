@@ -99,21 +99,179 @@ body {
     background-image: url('images/apo_background_top.jpg');
     background-position: center top, center bottom, center top;
     background-repeat: no-repeat, no-repeat, repeat-y;
-    margin: 0 auto 20px auto;
+    
     color: #aa8;
-    width: 918px;
+
+    border-left: 1px solid #b33411;
+    border-right: 1px solid #b33411;
+    padding: 4px;
+    margin: 0px 10px;
+    font-size: 0.8em;
+
+}
+
+
+@font-face {
+    font-family: 'NeuropolXFree';
+    src: url('neuropol_x_free-webfont.eot');
+    src: url('neuropol_x_free-webfont.eot?#iefix') format('embedded-opentype'),
+         url('neuropol_x_free-webfont.woff') format('woff'),
+         url('neuropol_x_free-webfont.ttf') format('truetype'),
+         url('neuropol_x_free-webfont.svg#NeuropolXFree') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    color: #cfa728;
+    font-size: 1.2em;
+    font-family: 'NeuropolXFree';
+    margin: 4px 8px;    
+}
+h2 {
+    text-align: center;
+    font-size: 1em;
+    padding: 2px;
+    margin: 2px 0px;
+    background: #c39f25;
+    color: #93290f;
+    border-radius: 6px;
+    text-shadow: 0px 0px 2px #fff;
+}
+
+#accntnav {
+    float: right;
+}
+
+body nav,
+body section {
+    border: 1px solid #b33411;
+    border-radius: 6px;
+    background: #000;    
+    margin: 4px -10px;
+}
+body nav{
+    padding: 2px;
+    margin-bottom: 20px;
+}
+body section {
+    padding: 4px;
+    margin: 4px -10px 4px -10px;
+}
+
+
+#primarynav {
+}
+
+#primarynav a {
+    display: inline-block;
+    padding: 2px 4px;
+    margin: 2px;
+    background: #d9d1bb;
+    border-radius: 4px;
+    color: #000;  
+    font-size: 0.9em;
+    box-shadow: 0px 0px 2px #fff;
+}
+#primarynav a:hover {
+    background:#333;
+    color: #fff;
+    box-shadow: 0px 0px 2px #444;
+}
+
+#shiftgrid {
 }
 
 
 
 
 
+@media only screen and (min-width: 550px) {
+    /* Style adjustments for viewports that meet the condition */
+    body {
+        border-left: 2px solid #b33411;
+        border-right: 2px solid #b33411;
+        margin: 0px 20px;
+        font-size: 0.9em;
+    }
+    h1 {
+        font-size: 1.4em;
+    }
+    h2 {
+        font-size: 1.1em;
+        padding: 3px;
+        margin: 4px 0px;
+        border-radius: 8px;
+    }    
+    body nav,
+    body section {
+        border: 2px solid #b33411;
+        border-radius: 10px;
+        background: #000;    
+        margin-left: -20px;
+        margin-right: -20px;
+        padding : 4px;
+    }    
+    #primarynav a {
+        margin: 3px;
+        padding: 2px 6px;
+        border-radius: 8px;
+        font-size: 1em;
+        font-weight: bold;
+    }    
+}
 
+@media only screen and (min-width: 800px) {
+    /* Style adjustments for viewports that meet the condition */
+    body {
+        border-left: 3px solid #b33411;
+        border-right: 3px solid #b33411;
+        font-size: 1em;
 
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+    h2 {
+        font-size: 1.2em;
+        padding: 4px;
+        border-radius: 10px;
+        margin: 4px 0px;
+    }        
+    body nav,
+    body section {
+        border: 3px solid #b33411;
+        border-radius: 15px;
+        padding : 8px;
+    }    
+    #primarynav a {
+        margin: 4px;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-size: 1.1em;
+        border: 1px solid #fff;
+    }       
+}
 
-
-
-
+@media only screen and (min-width: 1000px) {
+    /* Style adjustments for viewports that meet the condition */
+    body {
+        max-width: 940px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h1 {
+        font-size: 1.6em;
+    }
+    body nav,
+    body section {
+    }    
+}
 
 
 
