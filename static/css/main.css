@@ -94,7 +94,7 @@ textarea {
    ========================================================================== */
 
 body {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: 'Abel',"Helvetica Neue",Helvetica,Arial,sans-serif;
     background: #000;
     background-image: url('images/apo_background_top.jpg');
     background-position: center top, center bottom, center top;
@@ -130,7 +130,7 @@ a {
 h1 {
     color: #cfa728;
     font-size: 1.2em;
-    font-family: 'NeuropolXFree';
+    font-family: 'Abel','NeuropolXFree';
     margin: 4px 8px;    
 }
 h2 {
@@ -141,7 +141,21 @@ h2 {
     background: #c39f25;
     color: #93290f;
     border-radius: 6px;
-    text-shadow: 0px 0px 2px #fff;
+    text-shadow: 1px 0px 1px #fdc;
+    font-family: 'Abel','NeuropolXFree';
+}
+h2.different {
+    padding: 0px 10%;
+    margin: 4px 0px;
+    text-align: left;
+}
+h2.different span{
+    background: #000;
+    font-size: 1.1em;
+    margin: 0px;
+    padding: 2px;
+    color: #979bfd;
+    text-shadow: 0px 0px 4px #000;
 }
 
 #accntnav {
@@ -170,18 +184,16 @@ body section {
 
 #primarynav a {
     display: inline-block;
-    padding: 2px 4px;
+    padding: 0px 4px;
     margin: 2px;
-    background: #d9d1bb;
+    background: #c07228;
     border-radius: 4px;
     color: #000;  
     font-size: 0.9em;
-    box-shadow: 0px 0px 2px #fff;
 }
 #primarynav a:hover {
-    background:#333;
-    color: #fff;
-    box-shadow: 0px 0px 2px #444;
+    color: #000;
+    background: #d9d1bb;
 }
 
 #shiftgrid {
@@ -218,8 +230,8 @@ body section {
         padding : 4px;
     }    
     #primarynav a {
-        margin: 3px;
-        padding: 2px 6px;
+        margin: 0px 3px;
+        padding: 2px 6px 1px 6px;
         border-radius: 8px;
         font-size: 1em;
         font-weight: bold;
@@ -250,11 +262,10 @@ body section {
         padding : 8px;
     }    
     #primarynav a {
-        margin: 4px;
-        padding: 2px 8px;
+        margin: 0px 4px;
+        padding: 2px 8px 1px 8px;
         border-radius: 10px;
         font-size: 1.1em;
-        border: 1px solid #fff;
     }       
 }
 
