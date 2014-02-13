@@ -8,7 +8,7 @@ class Shift(models.Model):
 	description = models.TextField()
 	department = models.ForeignKey(Department, blank=True, null=True)
 	start_time = models.DateTimeField('shift begins')
-	end_time = models.DateTimeField('shift ends')
+	shift_length = models.PositiveSmallIntegerField(default=3)
 	owner = models.ForeignKey(User, blank=True, null=True, related_name='owner')
 	def __str__(self):
 		return self.name

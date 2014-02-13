@@ -96,10 +96,10 @@ textarea {
 body {
     font-family: 'Abel',"Helvetica Neue",Helvetica,Arial,sans-serif;
     background: #000;
-    background-image: url('images/apo_background_top.jpg');
+    background-image: url('../img/Apogaea_web_header_2014.png');
     background-position: center top, center bottom, center top;
     background-repeat: no-repeat, no-repeat, repeat-y;
-    
+     background-attachment: fixed;  
     color: #aa8;
 
     border-left: 1px solid #b33411;
@@ -107,8 +107,9 @@ body {
     border-bottom: 1px solid #b33411;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    padding: 4px;
-    margin: 0px 10px;
+    padding: 0px 4px 10px 4px;
+    margin: 75px 10px 10px 10px;
+    background-size: 600px;
     font-size: 0.8em;
 
 }
@@ -133,8 +134,11 @@ a {
 h1 {
     color: #cfa728;
     font-size: 1.2em;
-    font-family: 'Abel','NeuropolXFree';
-    margin: 4px 8px;    
+    font-family: 'NeuropolXFree','Abel','NeuropolXFree';
+    margin: -4px; 
+    padding: 4px;
+    background: #000;  
+    background-color: rgba(0,0,0,0.8);
 }
 h2 {
     font-size: 1em;
@@ -150,6 +154,7 @@ h2 {
 
 h2 span{
     background: #000;
+    background-color: rgba(0,0,0,0.8);
     margin: 0px;
     padding: 2px;
     font-size: 1.2em;
@@ -166,7 +171,7 @@ body nav,
 body section {
     border: 1px solid #b33411;
     border-radius: 6px;
-    background: #000;    
+    background: #000;  
 }
 body nav{
     padding: 2px;
@@ -234,8 +239,9 @@ hr.close {
         border-bottom: 2px solid #b33411;
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
-        margin: 0px 20px;
+        margin: 108px 20px 10px 20px;
         font-size: 0.9em;
+        background-size: 800px;
     }
     h1 {
         font-size: 1.4em;
@@ -251,7 +257,6 @@ hr.close {
     body section {
         border: 2px solid #b33411;
         border-radius: 10px;
-        background: #000;    
         margin-left: -20px;
         margin-right: -20px;
         padding : 8px;
@@ -274,6 +279,8 @@ hr.close {
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
         font-size: 1em;
+        margin: 161px 30px 10px 30px;
+        background-size: 1200px;
 
     }
     h1 {
@@ -303,8 +310,8 @@ hr.close {
     /* Style adjustments for viewports that meet the condition */
     body {
         max-width: 940px;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 242px auto 10px auto;
+        background-size: 1800px;
     }
     h1 {
         font-size: 1.6em;

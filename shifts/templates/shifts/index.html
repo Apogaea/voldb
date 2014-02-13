@@ -9,6 +9,14 @@
 
 <section id="shiftgrid">
     <h2><span>Tuesday, June 3rd</span></h2>
+    <table width="100%">
+
+
+{% for shift in shift_list %}
+    <tr><th>{{ shift.name }}</th><td>{{ shift.department }}</td><td>{{ shift.start_time }}</td><td>{{ shift.shift_length }} hours</td></tr>
+{% endfor %}
+
+    </table>
     <h2><span>Wednesday, June 4th</span></h2>
     <h2><span>Thursday, June 5th</span></h2>
 
