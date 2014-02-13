@@ -7,9 +7,9 @@ from departments.models import Department
 
 
 def index(request):
-	department_list = Department.objects.all()	
-	return render(request, 'departments/index.html', {'department_list': department_list})
+    department_list = Department.objects.all()	
+    return render(request, 'departments/index.html', {'department_list': department_list})
 
 @login_required
 def detail(request, department_id):
-	return HttpResponse("You're looking at department %s." % department_id)    
+    return HttpResponse("You're looking at department %s." % department_id)    
