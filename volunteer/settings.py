@@ -36,9 +36,15 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #third party
+    'authtools',
+    'backupdb',
+    #local project
+    'volunteer',
+    #local apps
     'departments',
     'shifts',
-    'volunteer',
+    'accounts',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,7 +88,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
+#I made static files work
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+#Adding Auth Tools
+#http://django-authtools.readthedocs.org/en/latest/intro.html#quick-setup
+AUTH_USER_MODEL = 'accounts.User'

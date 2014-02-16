@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 	url(r'^shifts/', include('shifts.urls')),
 	url(r'^departments/', include('departments.urls')),
+	url(r'^accounts/', include('accounts.urls')),
 
 
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

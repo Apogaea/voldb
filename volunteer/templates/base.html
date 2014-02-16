@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% load i18n %}
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -27,8 +26,12 @@
         <![endif]-->
         <nav id="primarynav">
             <span id="accntnav">
+                {% if user.is_authenticated %}
                 <a href="/admin">Admin</a>
-                <a href="/admin/logout">logout</a>
+                <a href="{% url 'logout' %}">logout {{ user.get_full_name }} </a>
+                {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                {% endif %}
             </span>
             <a href="/">Home</a> 
             <a href="/shifts">Shifts</a> 
