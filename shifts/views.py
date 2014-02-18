@@ -9,8 +9,5 @@ from departments.models import Department
 
 def index(request):
     department_list = Department.objects.order_by('name').values('name','id')
-    depts = ""
-    for dept in department_list:
-        dname = dept["name"]
-        shift_list += {dept["name"],  Shift.objects.order_by('department', 'start_time').filter(department=dept["id"])}
-    return render(request, 'shifts/index.html', {'shift_list': shift_list, 'department_list' : department_list})    
+    shift_list = Shift.objects.order_by('department', 'start_time')
+    return render(request, 'shifts/shifts.html', {'shift_list': shift_list, 'department_list' : department_list})    
