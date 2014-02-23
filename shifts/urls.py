@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
-from shifts import views
+from shifts.views import GridView
 
 urlpatterns = patterns('',
-    url(r'^$', views.index, name='index') 
+    url(r'^$', GridView.as_view(), name='grid')
 )

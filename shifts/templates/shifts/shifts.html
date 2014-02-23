@@ -8,16 +8,22 @@
 
 <section id="shiftgrid">
     <h2><span>Tuesday, June 3rd</span></h2>
+
+
+{% for list in shift_lists %}
+    <h2><span>{{ list.department }}</span></h2>
+
     <table width="100%">
-
-
-{% for shift in shift_list %}
-    <tr><th>{{ shift.name }}</th><td>{{ shift.department }}</td><td>{{ shift.start_time }}</td><td>{{ shift.shift_length }} hours</td></tr>
+{% for shift in list.shifts %}
+    <tr>
+        <th>Name: {{ shift.name }}</th>
+        <td>Department: {{ shift.department }}</td>
+        <td>Start: {{ shift.start_time }}</td>
+        <td>End: {{ shift.shift_length }} hrs</td>
+    </tr>
 {% endfor %}
-
     </table>
-    <h2><span>Wednesday, June 4th</span></h2>
-    <h2><span>Thursday, June 5th</span></h2>
+{% endfor %}
 
 
     <p>Shifts...</p>
@@ -25,7 +31,7 @@
 
 <section>{{ department_list }}</section>
 
-<section>{{ shift_list }}</section>
+<section>{{ shift_lists }}</section>
 
 </section>    
 {% endblock %}
