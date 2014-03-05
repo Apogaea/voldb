@@ -13,15 +13,12 @@
 {% for list in shift_lists %}
     <h2><span>{{ list.department }}</span></h2>
 
-    <table width="100%">
-{% for shift in list.shifts %}
+    <table width="100%" style="border: 1px solid #000">
     <tr>
-        <th>Name: {{ shift.name }}</th>
-        <td>Department: {{ shift.department }}</td>
-        <td>Start: {{ shift.start_time }}</td>
-        <td>End: {{ shift.shift_length }} hrs</td>
-    </tr>
+{% for shift in list.shifts %}
+        <td colspan="{{ shift.shift_length }}">{{ shift.start_time }}</td>
 {% endfor %}
+    </tr>
     </table>
 {% endfor %}
 
@@ -32,6 +29,8 @@
 <section>{{ department_list }}</section>
 
 <section>{{ shift_lists }}</section>
+
+<section>{{ shift_days }}</section>
 
 </section>    
 {% endblock %}
