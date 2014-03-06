@@ -111,17 +111,8 @@ body {
 
 }
 
-
-@font-face {
-    font-family: 'NeuropolXFree';
-    src: url('neuropol_x_free-webfont.eot');
-    src: url('neuropol_x_free-webfont.eot?#iefix') format('embedded-opentype'),
-         url('neuropol_x_free-webfont.woff') format('woff'),
-         url('neuropol_x_free-webfont.ttf') format('truetype'),
-         url('neuropol_x_free-webfont.svg#NeuropolXFree') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
+table {
+    border-collapse:collapse;
 }
 
 a {
@@ -131,7 +122,6 @@ a {
 h1 {
     color: #7C330A;
     font-size: 1.2em;
-    font-family: 'NeuropolXFree','Abel','NeuropolXFree';
     margin: -4px; 
     padding: 4px 8px;
     background: #000;  
@@ -140,12 +130,11 @@ h1 {
 h2 {
     font-size: 1em;
     padding: 0px 5%;
-    margin: 4px 0px;
+    margin: 4px 0px 0px 0px;
     background-color: rgba(28,28,28,0.8);
     color: #000;
     border-radius: 6px;
     border-bottom-left-radius: 0px;    
-    font-family: 'Abel','NeuropolXFree';
     text-align: right;
 }
 
@@ -226,14 +215,66 @@ body section {
 hr.close {
     border: 0px; 
     width: 100%;
-    height: 10px;
+    height: 20px;
     background: #c39f25;
     border-radius: 6px;
     border-top-left-radius: 0px;   
-    margin: 1px 0px 10px 0px;
+    margin: 0px 0px 10px 0px;
+    background-color: rgba(64,64,64,0.8); 
 }
 
 
+/*** shifts page layout ***/
+
+#shiftgrid table, #shiftgrid td, #shiftgrid th, #shiftgrid tr {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+#shiftgrid td.empty {
+    background-color: rgba(128,128,128,0.8); 
+}
+#shiftgrid td.shift {
+    background-color: rgba(128,128,128,0.8); 
+}
+#shiftgrid td.shift a {
+    color: #000;
+    font-size: 0.8em;
+    display: block;
+    text-align: center;
+    background-color: rgba(128,128,128,0.8); 
+    border-radius: 16px;
+    background: #c39f25;
+    padding: 4px 0px;
+}
+
+#shiftgrid td.shift a:hover {
+    color: #fff;
+    background: #7f2008;
+}
+
+#shiftgrid th {
+    font-weight: normal;
+    font-size: 0.9em;
+    background-color: rgba(64,64,64,0.8); 
+}
+
+
+tr.hours th {
+    background: #e8d758;  
+    background-color: rgba(232,215,88,0.8); 
+}
+
+
+tr.hours th:last-child {
+    border-top-right-radius: 6px;    
+    border-bottom-right-radius: 6px;  
+
+}
+
+td {
+
+}
 
 @media only screen and (min-width: 550px) {
     /* Style adjustments for viewports that meet the condition */
@@ -250,7 +291,6 @@ hr.close {
     h2 {
         font-size: 1.1em;
         padding: 0px 10%;
-        margin: 4px 0px;
         border-radius: 8px;
         border-bottom-left-radius: 0px;
     }    
@@ -285,7 +325,6 @@ hr.close {
     }
     h2 {
         font-size: 1.2em;
-        margin: 4px 0px;
         border-radius: 10px;
         border-bottom-left-radius: 0px;
     }        

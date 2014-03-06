@@ -7,31 +7,47 @@
 <h1>Volunteer Shifts</h1>
 
 <section id="shiftgrid">
-    <h2><span>Tuesday, June 3rd</span></h2>
-
-
-{% for list in shift_lists %}
-    <h2><span>{{ list.department }}</span></h2>
-
-    <table width="100%" style="border: 1px solid #000">
-    <tr>
-{% for shift in list.shifts %}
-        <td colspan="{{ shift.shift_length }}">{{ shift.start_time }}</td>
-{% endfor %}
-    </tr>
+{% for day, by_department_lists in shifts_lists.items %}
+    <h2><span>{{ day|date:"l, M jS, Y" }}</span></h2>
+    <table width="100%">
+    {% for department, by_length_lists in by_department_lists.items %}
+        <tr>
+            <th width="8%" class="department">{{ department }}</td>
+            <td width="92%">
+                <table width="98%">
+                    <tr class="hours">
+                        <th>12a</th><th>1a</th><th>2a</th>
+                        <th>3a</th><th>4a</th><th>5a</th>
+                        <th>6a</th><th>7a</th><th>8a</th>
+                        <th>9a</th><th>10a</th><th>11a</th>
+                        <th>12p</th><th>1p</th><th>2p</th>
+                        <th>3p</th><th>4p</th><th>5p</th>
+                        <th>6p</th><th>7p</th><th>8p</th>
+                        <th>9p</th><th>10p</th><th>11p</th>
+                    </tr>
+                    <tr>
+                    {% for shift_length, by_hour_lists in by_length_lists.items %}
+                        {% for hour, shifts in by_hour_lists.items %}
+                            {% if shifts %}
+                            <td class="shift" colspan="{{ shift_length }}">
+                            {% for shift in shifts %}
+                                    <a href="/shifts/request/{{ shift.id }}">Shift-{{ shift.id }}</a>
+                            {% endfor %}
+                            </td>
+                            {% else %}
+                            <td class="empty"></td>
+                            {% endif %}
+                        {% endfor %}
+                        </td>
+                    {% endfor %}
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    {% endfor %}
     </table>
+    <hr class="close" />
 {% endfor %}
-
-
-    <p>Shifts...</p>
-
-
-<section>{{ department_list }}</section>
-
-<section>{{ shift_lists }}</section>
-
-<section>{{ shift_days }}</section>
-
 </section>    
 {% endblock %}
 
