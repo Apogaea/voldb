@@ -69,12 +69,14 @@ class GridView(TemplateView):
                         else:
                             shifts_lists[t_date][department['name']][shift_length['shift_length']][t_hour] = {}
 
-                        t_shifts = Shift.objects.filter(department=department['id'], 
-                                                        shift_length=shift_length['shift_length'], 
-                                                        start_time__year=t_year, 
-                                                        start_time__month=t_month, 
-                                                        start_time__day=t_day, 
-                                                        start_time__hour=t_hour).order_by('start_time').select_related('owner','id')
+                        t_shifts = Shift.objects.filter(
+                            department=department['id'], 
+                            shift_length=shift_length['shift_length'], 
+                            start_time__year=t_year, 
+                            start_time__month=t_month, 
+                            start_time__day=t_day, 
+                            start_time__hour=t_hour
+                        ).order_by('start_time').select_related('owner','id')
                         if t_shifts.__len__() > 0:
                             shifts_lists[t_date][department['name']][shift_length['shift_length']][t_hour] = t_shifts
                             shifts_found_in_department = True
