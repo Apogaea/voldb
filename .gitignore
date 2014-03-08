@@ -3,3 +3,7 @@
 db.sqlite3
 env/
 backups/
+venv
+.DS_Store
+.idea
+voldb.iml
