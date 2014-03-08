@@ -5,3 +5,5 @@ env/
 backups/
 venv
 .DS_Store
+.idea
+voldb.iml
