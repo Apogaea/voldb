@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from departments.models import Department
 
-# Create your models here.
+
 class Shift(models.Model):
     #name = models.CharField(max_length=200)
     #description = models.TextField(blank=True, null=True)
