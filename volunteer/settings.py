@@ -97,3 +97,11 @@ STATICFILES_DIRS = (
 #Adding Auth Tools
 #http://django-authtools.readthedocs.org/en/latest/intro.html#quick-setup
 AUTH_USER_MODEL = 'accounts.User'
+
+
+TEST_PEP8_DIRS = ['.']
+
+TEST_PEP8_EXCLUDE = [
+    'migrations',
+]
+TEST_PEP8_IGNORE = ['E501']
