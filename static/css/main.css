@@ -242,11 +242,17 @@ hr.close {
     font-size: 0.8em;
     display: block;
     text-align: center;
-    background-color: rgba(128,128,128,0.8); 
-    border-radius: 16px;
-    background: #c39f25;
     padding: 4px 0px;
 }
+#shiftgrid td.shift a.open {
+    background: #c39f25;
+    border-radius: 16px;
+}
+
+#shiftgrid td.shift a.claimed {
+    background-color: rgba(128,128,128,0.8); 
+}
+
 
 #shiftgrid td.shift a:hover {
     color: #fff;

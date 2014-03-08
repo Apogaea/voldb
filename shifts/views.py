@@ -1,21 +1,47 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 from shifts.models import Shift
 from departments.models import Department
 from datetime import date,datetime
 import pprint
 
 # Create your views here.
+class ClaimView(DetailView):
+    queryset = Shift.objects.all()
+    template_name = "shifts/shift.html"    
+    def get_object(self):
+        # Call the superclass
+        shift = super(ClaimView, self).get_object()
+        # Update the user
+        shift.owner = self.request.user
+        shift.save()
+        return shift
+
+class ReleaseView(DetailView):
+    queryset = Shift.objects.all()
+    template_name = "shifts/shift.html"    
+    def get_object(self):
+        # Call the superclass
+        shift = super(ReleaseView, self).get_object()
+        # Record the last accessed date
+        shift.owner = None
+        shift.save()
+        # Return the object
+        return object
+
+#should this have been a list view? should I be using group by?
 class GridView(TemplateView):
     department_list = Department.objects.order_by('name').values('name','id')
     template_name = "shifts/shifts.html"    
 
-    def get_context_data(self, **kwargs):   
+    def get_context_data(self, **kwargs):
         context = super(GridView, self).get_context_data(**kwargs)
 
         #we want to group by department, thenday, day, then shift length
         days = Shift.objects.order_by('start_time').values('start_time').distinct().datetimes("start_time", "day", tzinfo=None)
         shift_lengths = Shift.objects.values('shift_length').distinct()
         departments = Department.objects.order_by('name').values('name','id')
+
+        #for each day, we build a dictionary of departments
         shifts_lists = {}
         for day in days:
             t_month = day.date().strftime('%m')
@@ -23,10 +49,13 @@ class GridView(TemplateView):
             t_year = day.date().strftime('%Y')
             t_date = day.date()
             shifts_lists[t_date] = {}
+            #for each department, we build a dictionary indexed by shift lengths
             for department in departments:
                 shifts_lists[t_date][department['name']] = {}
                 shifts_found_in_department = False
+                #for each set of shifts lengths, we build a per-hour list of shifts
                 for shift_length in shift_lengths:
+                    #for easier render, we fill in blank hours
                     shifts_lists[t_date][department['name']][shift_length['shift_length']] = {}
                     skip_blanks = 0
                     for t_hour in range(24):
@@ -42,18 +71,9 @@ class GridView(TemplateView):
                 #while we want empty hours to loop through for rendering, we don't want to show empty departments
                 if not shifts_found_in_department:
                     del shifts_lists[t_date][department['name']]
-
                         
 #        pprint.pprint()
 
-#        context['department'] = departments
-#        context['shift_days'] = days
-#        shift_lists = []
-#        for department in departments:
-#            shifts = {}
-#            shifts['department'] = department['name']
-#            shifts['shifts'] = Shift.objects.filter(department = department['id'], start_time__year='2014', start_time__month='6', start_time__day='3').order_by('shift_length', 'department', 'start_time')
-#            shift_lists.append(shifts);
         context['shifts_lists'] = shifts_lists;        
         return context
 

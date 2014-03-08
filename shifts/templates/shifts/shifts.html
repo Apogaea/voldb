@@ -31,7 +31,11 @@
                             {% if shifts %}
                             <td class="shift" colspan="{{ shift_length }}">
                             {% for shift in shifts %}
-                                    <a href="/shifts/request/{{ shift.id }}">Shift-{{ shift.id }}</a>
+                                {% if shift.owner %}
+                                    <a class="claimed" href="/shifts/release/{{ shift.id }}">Shift-{{ shift.id }}</a>
+                                {% else %}
+                                    <a class="open" href="/shifts/claim/{{ shift.id }}">Shift-{{ shift.id }}</a>
+                                {% endif %}
                             {% endfor %}
                             </td>
                             {% else %}

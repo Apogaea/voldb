@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, url
-from shifts.views import GridView
+from shifts.views import GridView, ClaimView, ReleaseView
 
 urlpatterns = patterns('',
-    url(r'^$', GridView.as_view(), name='grid')
+    url(r'^$', GridView.as_view(), name='grid'),
+    url(r'^claim/(?P<pk>\w+)/$', ClaimView.as_view(), name='claim-shift'),
+    url(r'^release/(?P<pk>\w+)/$', ReleaseView.as_view(), name='release-shift')
 )
