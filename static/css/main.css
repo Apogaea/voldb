@@ -227,18 +227,17 @@ hr.close {
 /*** shifts page layout ***/
 
 #shiftgrid table, #shiftgrid td, #shiftgrid th, #shiftgrid tr {
-    margin: 0;
-    border: 0;
-    padding: 0;
 }
+
+
 #shiftgrid td.empty {
-    background-color: rgba(128,128,128,0.8); 
+    background-color: rgba(64,32,0,0.3); 
 }
 #shiftgrid td.shift {
     letter-spacing:-1px;
     font-family: sans-serif;
     font-size: 0.7em;
-    background-color: rgba(128,128,128,0.8); 
+    background-color: rgba(64,32,0,0.3); 
 }
 #shiftgrid td.shift a {
     color: #000;
@@ -248,27 +247,27 @@ hr.close {
     border-radius: 16px;
     border: 1px solid #db3;
 }
-#shiftgrid td.shift a.open-shift {
-    transition: background-color 4s ease-in-out;
-    background-color: rgba(195,159,37,0.6); 
-    border: 1px solid #db3;
-}
 
 #shiftgrid td.shift a.busy,
 #shiftgrid td.shift a.busy:hover  {
-    background-color: rgba(195,64,64,0.6); 
+    transition: background-color 1s ease-in-out;
+    background-color: rgba(195,64,64,0.8); 
     border: 1px solid #f88;
     color;#000;
     display: block;
 }
-
-#shiftgrid td.shift a.claimed-shift {
-    color: #444;
-    transition: background-color 4s ease-in-out;
-    background-color: rgba(128,128,128,0.6); 
-    border: 1px solid #777;
+#shiftgrid td.shift a.open-shift {
+    transition: background-color 3s ease-in-out;
+    background-color: rgba(195,159,37,0.4); 
+    border: 1px solid #db3;
 }
 
+#shiftgrid td.shift a.claimed-shift {
+    transition: background-color 3s ease-in-out;
+    background-color: rgba(128,128,192,0.4); 
+    border: 1px solid #777;
+    color: #444;
+}
 
 #shiftgrid td.shift a.open-shift:hover {
     transition: border-color 1s ease-in;
