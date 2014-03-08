@@ -1,1 +1,5 @@
-test
+    {% if shift.owner %}
+        <a class="claimed-shift" href="/shifts/release/{{ shift.id }}" alt="{{ shift.owner }}" title="{{ shift.owner }}">{{ shift.owner|stringformat:"s"|slice:":6" }}..</a>
+    {% else %}
+        <a class="open-shift" href="/shifts/claim/{{ shift.id }}">o p e n</a>
+    {% endif %}

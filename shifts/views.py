@@ -3,12 +3,15 @@ from shifts.models import Shift
 from departments.models import Department
 from datetime import date,datetime
 import pprint
+import time
 
 # Create your views here.
 class ClaimView(DetailView):
     queryset = Shift.objects.all()
     template_name = "shifts/shift.html"    
     def get_object(self):
+        #to fake some server latency
+        #time.sleep(2)
         # Call the superclass
         shift = super(ClaimView, self).get_object()
         # Update the user
@@ -23,12 +26,14 @@ class ReleaseView(DetailView):
         # Call the superclass
         shift = super(ReleaseView, self).get_object()
         # Record the last accessed date
-        shift.owner = None
-        shift.save()
+        if shift.owner == self.request.user:
+            shift.owner = None
+            shift.save()
         # Return the object
-        return object
+        return shift
 
-#should this have been a list view? should I be using group by?
+
+#shift this have been a list view? should I be using group by?
 class GridView(TemplateView):
     department_list = Department.objects.order_by('name').values('name','id')
     template_name = "shifts/shifts.html"    

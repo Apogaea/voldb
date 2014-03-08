@@ -32,9 +32,9 @@
                             <td class="shift" colspan="{{ shift_length }}">
                             {% for shift in shifts %}
                                 {% if shift.owner %}
-                                    <a class="claimed" href="/shifts/release/{{ shift.id }}">Shift-{{ shift.id }}</a>
+                                    <a class="claimed-shift" href="/shifts/release/{{ shift.id }}" alt="{{ shift.owner }}" title="{{ shift.owner }}">{{ shift.owner|stringformat:"s"|slice:":6" }}..</a>
                                 {% else %}
-                                    <a class="open" href="/shifts/claim/{{ shift.id }}">Shift-{{ shift.id }}</a>
+                                    <a class="open-shift" href="/shifts/claim/{{ shift.id }}">o p e n</a>
                                 {% endif %}
                             {% endfor %}
                             </td>

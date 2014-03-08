@@ -235,28 +235,53 @@ hr.close {
     background-color: rgba(128,128,128,0.8); 
 }
 #shiftgrid td.shift {
+    letter-spacing:-1px;
+    font-family: sans-serif;
+    font-size: 0.7em;
     background-color: rgba(128,128,128,0.8); 
 }
 #shiftgrid td.shift a {
     color: #000;
-    font-size: 0.8em;
     display: block;
     text-align: center;
     padding: 4px 0px;
-}
-#shiftgrid td.shift a.open {
-    background: #c39f25;
     border-radius: 16px;
+    border: 1px solid #db3;
+}
+#shiftgrid td.shift a.open-shift {
+    transition: background-color 4s ease-in-out;
+    background-color: rgba(195,159,37,0.6); 
+    border: 1px solid #db3;
 }
 
-#shiftgrid td.shift a.claimed {
-    background-color: rgba(128,128,128,0.8); 
+#shiftgrid td.shift a.busy,
+#shiftgrid td.shift a.busy:hover  {
+    background-color: rgba(195,64,64,0.6); 
+    border: 1px solid #f88;
+    color;#000;
+    display: block;
+}
+
+#shiftgrid td.shift a.claimed-shift {
+    color: #444;
+    transition: background-color 4s ease-in-out;
+    background-color: rgba(128,128,128,0.6); 
+    border: 1px solid #777;
 }
 
 
-#shiftgrid td.shift a:hover {
-    color: #fff;
-    background: #7f2008;
+#shiftgrid td.shift a.open-shift:hover {
+    transition: border-color 1s ease-in;
+    transition: border-color 3s ease-out;
+    background-color: rgba(195,159,37,1); 
+    border: 1px solid #fff;
+}
+
+#shiftgrid td.shift a.claimed-shift:hover {
+    transition: border-color 1s ease-in;
+    transition: border-color 3s ease-out;
+    background-color: rgba(128,128,128,1); 
+    border: 1px solid #aaa;
 }
 
 #shiftgrid th {
@@ -297,7 +322,7 @@ td {
     h2 {
         font-size: 1.1em;
         padding: 0px 10%;
-        border-radius: 8px;
+        border-radius: 10px;
         border-bottom-left-radius: 0px;
     }    
     body nav,
@@ -314,6 +339,10 @@ td {
         font-size: 1em;
         font-weight: bold;
     }    
+    hr.close {
+        border-radius: 10px;
+        border-top-left-radius: 0px;   
+    }
 }
 
 @media only screen and (min-width: 800px) {
@@ -331,7 +360,7 @@ td {
     }
     h2 {
         font-size: 1.2em;
-        border-radius: 10px;
+        border-radius: 16px;
         border-bottom-left-radius: 0px;
     }        
     body nav,
@@ -344,7 +373,11 @@ td {
         padding: 8px 8px 2px 8px;
         border-radius: 10px;
         font-size: 1.1em;
-    }       
+    }    
+    hr.close {
+        border-radius: 16px;
+        border-top-left-radius: 0px;   
+    }   
 }
 
 @media only screen and (min-width: 1000px) {
