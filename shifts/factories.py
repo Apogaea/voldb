@@ -4,11 +4,15 @@ import factory
 from shifts.models import Shift
 
 
+def today_at_hour(hour):
+    return timezone.now().replace(hour=hour)
+
+
 class ShiftFactory(factory.DjangoModelFactory):
-	FACTORY_FOR = shifts
-    department = 
+    FACTORY_FOR = Shift
+    department = factory.SubFactory('departments.factories.DeparmentFactory')
     start_time = factory.LazyAttribute(
-    	lambda x: datetime.datetime.combine(timezone.now(), datetime.time(hour=9))
+        lambda x: today_at_hour(9)
     )
     shift_length = 3
     owner = None
