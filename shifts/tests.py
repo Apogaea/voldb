@@ -1,37 +1,17 @@
+import datetime
+
 from django.test import TestCase
+from django.utils import timezone
 
 from shifts.models import Shift
 from departments.factories import DepartmentFactory
 from shifts.factories import ShiftFactory, today_at_hour, yesterday_at_hour
 from shifts.utils import (
-    shifts_to_tabular_data, 
-    EMPTY_COLUMN, 
+    shifts_to_tabular_data,
+    EMPTY_COLUMN,
     get_num_columns,
     group_shifts
 )
-class ShiftsGroupingTest(TestCase):
-    def test_grouping(self):
-        greeters = DepartmentFactory(name='Greeters')
-        
-        # shift yesterday dpw
-        ShiftFactory(start_time=yesterday_at_hour(12), shift_length=3)
-        ShiftFactory(start_time=yesterday_at_hour(15), shift_length=3)
-        # shift today dpw
-        ShiftFactory(start_time=today_at_hour(9), shift_length=3)
-        ShiftFactory(start_time=today_at_hour(15), shift_length=3)
-        # shift today dpw
-        ShiftFactory(start_time=today_at_hour(9), shift_length=6)
-        ShiftFactory(start_time=today_at_hour(15), shift_length=6)
-        #shifts today greeters
-        ShiftFactory(start_time=today_at_hour(6), department=greeters, shift_length=3)
-        ShiftFactory(start_time=today_at_hour(12), department=greeters , shift_length=3)
-
-        data = list(group_shifts(Shift.objects.all()))
-        import ipdb; ipdb.set_trace()
-        x = 3
-
-
-
 
 
 # Create your tests here.
@@ -64,3 +44,34 @@ class ShiftsToTabularDataTest(TestCase):
         self.assertTrue(all(d['columns'] == 3 for d in non_empties))
 
 
+class ShiftsGroupingTest(TestCase):
+    def test_grouping(self):
+        dpw = DepartmentFactory()
+        greeters = DepartmentFactory(name='Greeters')
+
+        today = timezone.now().date()
+        yesterday = today - datetime.timedelta(1)
+
+        # shift yesterday dpw
+        ShiftFactory(start_time=yesterday_at_hour(12), shift_length=3)
+        ShiftFactory(start_time=yesterday_at_hour(15), shift_length=3)
+        # shift today dpw
+        ShiftFactory(start_time=today_at_hour(9), shift_length=3)
+        ShiftFactory(start_time=today_at_hour(15), shift_length=3)
+        # shift today dpw
+        ShiftFactory(start_time=today_at_hour(9), shift_length=6)
+        ShiftFactory(start_time=today_at_hour(15), shift_length=6)
+        #shifts today greeters
+        ShiftFactory(start_time=today_at_hour(6), department=greeters, shift_length=3)
+        ShiftFactory(start_time=today_at_hour(12), department=greeters , shift_length=3)
+
+        data = list(group_shifts(Shift.objects.all()))
+
+        self.assertEqual(len(data), 4)
+
+        data_0 = data[0]
+
+        self.assertEqual(data_0[0], yesterday)
+        self.assertEqual(data_0[1], dpw)
+        self.assertEqual(data_0[2], 3)
+        self.assertEqual(len(data_0[3]), 20)  # this is the tabular data, dunno what to assert.
