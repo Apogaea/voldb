@@ -4,9 +4,7 @@ from departments.models import Department
 
 
 class Shift(models.Model):
-    #name = models.CharField(max_length=200)
-    #description = models.TextField(blank=True, null=True)
-    department = models.ForeignKey(Department, blank=True, null=True)
+    department = models.ForeignKey(Department)
     start_time = models.DateTimeField('shift begins')
     shift_length = models.PositiveSmallIntegerField(default=3)
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='owner')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='shifts')
