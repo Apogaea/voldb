@@ -1,7 +1,37 @@
 from django.test import TestCase
 
-from shifts.factories import ShiftFactory, today_at_hour
-from shifts.utils import shifts_to_tabular_data, EMPTY_COLUMN, get_num_columns
+from shifts.models import Shift
+from departments.factories import DepartmentFactory
+from shifts.factories import ShiftFactory, today_at_hour, yesterday_at_hour
+from shifts.utils import (
+    shifts_to_tabular_data, 
+    EMPTY_COLUMN, 
+    get_num_columns,
+    group_shifts
+)
+class ShiftsGroupingTest(TestCase):
+    def test_grouping(self):
+        greeters = DepartmentFactory(name='Greeters')
+        
+        # shift yesterday dpw
+        ShiftFactory(start_time=yesterday_at_hour(12), shift_length=3)
+        ShiftFactory(start_time=yesterday_at_hour(15), shift_length=3)
+        # shift today dpw
+        ShiftFactory(start_time=today_at_hour(9), shift_length=3)
+        ShiftFactory(start_time=today_at_hour(15), shift_length=3)
+        # shift today dpw
+        ShiftFactory(start_time=today_at_hour(9), shift_length=6)
+        ShiftFactory(start_time=today_at_hour(15), shift_length=6)
+        #shifts today greeters
+        ShiftFactory(start_time=today_at_hour(6), department=greeters, shift_length=3)
+        ShiftFactory(start_time=today_at_hour(12), department=greeters , shift_length=3)
+
+        data = list(group_shifts(Shift.objects.all()))
+        import ipdb; ipdb.set_trace()
+        x = 3
+
+
+
 
 
 # Create your tests here.
@@ -32,3 +62,5 @@ class ShiftsToTabularDataTest(TestCase):
         non_empties = data[9], data[10], data[14]
 
         self.assertTrue(all(d['columns'] == 3 for d in non_empties))
+
+

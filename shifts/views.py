@@ -43,51 +43,23 @@ class GridView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(GridView, self).get_context_data(**kwargs)
 
+        shifts = Shift.object.order_by(
+            'start_time__year',
+            'start_time__month',
+            'start_time__day',
+            'department',
+            'shift_length',
+            'start_time__hour',
+            'start_time__minute',
+            'start_time__second'
+        )
+
         #we want to group by department, thenday, day, then shift length
         days = Shift.objects.order_by('start_time').values('start_time').distinct().datetimes("start_time", "day", tzinfo=None)
         shift_lengths = Shift.objects.values('shift_length').distinct()
         departments = Department.objects.order_by('name').values('name', 'id')
 
         #for each day, we build a dictionary of departments
-        shifts_lists = {}
-        for day in days:
-            t_month = day.date().strftime('%m')
-            t_day = day.date().strftime('%d')
-            t_year = day.date().strftime('%Y')
-            t_date = day.date()
-            shifts_lists[t_date] = {}
-            #for each department, we build a dictionary indexed by shift lengths
-            for department in departments:
-                shifts_lists[t_date][department['name']] = {}
-                shifts_found_in_department = False
-                #for each set of shifts lengths, we build a per-hour list of shifts
-                for shift_length in shift_lengths:
-                    #for easier render, we fill in blank hours
-                    shifts_lists[t_date][department['name']][shift_length['shift_length']] = {}
-                    skip_blanks = 0
-                    for t_hour in range(24):
-                        if skip_blanks > 0:
-                            skip_blanks -= 1
-                        else:
-                            shifts_lists[t_date][department['name']][shift_length['shift_length']][t_hour] = {}
-
-                        t_shifts = Shift.objects.filter(
-                            department=department['id'],
-                            shift_length=shift_length['shift_length'],
-                            start_time__year=t_year,
-                            start_time__month=t_month,
-                            start_time__day=t_day,
-                            start_time__hour=t_hour,
-                        ).order_by('start_time').select_related('owner', 'id')
-                        if t_shifts.__len__() > 0:
-                            shifts_lists[t_date][department['name']][shift_length['shift_length']][t_hour] = t_shifts
-                            shifts_found_in_department = True
-                            skip_blanks = shift_length['shift_length'] - 1
-                #while we want empty hours to loop through for rendering, we don't want to show empty departments
-                if not shifts_found_in_department:
-                    del shifts_lists[t_date][department['name']]
-
-        pprint.pprint(shifts_lists)
 
         context['shifts_lists'] = shifts_lists
         return context

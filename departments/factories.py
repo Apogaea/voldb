@@ -2,7 +2,7 @@ import factory
 from departments.models import Department
 
 
-class DeparmentFactory(factory.DjangoModelFactory):
+class DepartmentFactory(factory.DjangoModelFactory):
     FACTORY_FOR = Department
     FACTORY_DJANGO_GET_OR_CREATE = ('name',)
 
