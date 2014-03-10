@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block body_class %}{{ block.super }} home{% endblock %}
+
+{% block content %}
+    <!-- Add your site or application content here -->
+    <h1><span>Register</span></h1>
+    <section>
+    {% if bad_signature %}
+      <p>The link you are using appears to be invalid.  If you think you have
+        reached this page in error, please contact 
+        <a href="TODO@apogaea.com" target="_top"> for further assistance.</p>
+    {% elif signature_expired %}
+      <p>The link you are using has expired.  Please 
+      <a href="{% url 'register' %}">register</a> again to recieve a new registration
+      link</p>
+    {% elif email_already_registered %}
+    <p>The email address <b>{{ email }}</b> is already registered. Go <a href="{% url 'login' %}">Login</a></p>
+    {% else %}
+          <p>To complete your registration for <b>{{ email }}</b> please complete
+          the form below</p>
+
+          <form action="{% url 'register-confirm' token=token %}" method="post">{% csrf_token %}
+              {% include 'partials/form_as_fieldsets.html' %}
+              <input type="submit" />
+          </form>
+    {% endif %}
+
+	</section>
+{% endblock %}

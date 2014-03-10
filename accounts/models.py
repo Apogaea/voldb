@@ -3,4 +3,6 @@ from authtools.models import AbstractEmailUser
 
 
 class User(AbstractEmailUser):
-    pass
+    @property
+    def is_admin(self):
+        return self.is_staff or self.is_superuser

@@ -36,9 +36,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     #third party
     'authtools',
     'backupdb',
+    'betterforms',
+    'emailtools',
     #local project
     'volunteer',
     #local apps
@@ -105,3 +108,14 @@ TEST_PEP8_EXCLUDE = [
     'migrations',
 ]
 TEST_PEP8_IGNORE = ['E501']
+
+
+# Email Settings
+EMAIL_LAYOUT = 'mail/base.html'
+EMAIL_BACKEND = os.environ.get(
+    'DJANGO_EMAIL_BACKEND',
+    'django.core.mail.backends.smtp.EmailBackend',
+)
+
+# `django.contrib.sites` settings
+SITE_ID = 1
