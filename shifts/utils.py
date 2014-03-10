@@ -3,12 +3,19 @@ import itertools
 
 EMPTY_COLUMN = {
     'columns': 1,
+    'class': 'empty',
+    'id': 0,
+    'owner': None
 }
 
 
 def build_column_from_shift(shift):
     return {
         'columns': shift.shift_length,
+        'class': 'shift',
+        'id': shift.id,
+        'owner': shift.owner,
+        'start_at': shift.start_time,
     }
 
 
@@ -58,4 +65,4 @@ def group_shifts(shifts):
         for department, shifts_by_department in department_groups:
             length_groups = itertools.groupby(shifts_by_department, length_getter)
             for length, shifts_by_length in length_groups:
-                yield date, department, length, shifts_to_tabular_data(shifts_by_length)
+                yield {'date': date, 'department': department, 'length': length, 'tabular': shifts_to_tabular_data(shifts_by_length)}

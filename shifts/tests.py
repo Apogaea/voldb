@@ -14,7 +14,6 @@ from shifts.utils import (
 )
 
 
-# Create your tests here.
 class ShiftsToTabularDataTest(TestCase):
     def test_with_no_shifts(self):
         data = shifts_to_tabular_data([])
@@ -42,6 +41,16 @@ class ShiftsToTabularDataTest(TestCase):
         non_empties = data[9], data[10], data[14]
 
         self.assertTrue(all(d['columns'] == 3 for d in non_empties))
+
+    def test_with_simultaneous_shifts(self):
+        shifts = []
+        # shift from 6pm to 9pm
+        shifts.append(ShiftFactory(start_time=today_at_hour(18), shift_length=3))
+        shifts.append(ShiftFactory(start_time=today_at_hour(18), shift_length=3))
+
+        data = shifts_to_tabular_data(shifts)
+        self.assertEqual(get_num_columns(data), 24)
+
 
 
 class ShiftsGroupingTest(TestCase):
@@ -71,7 +80,7 @@ class ShiftsGroupingTest(TestCase):
 
         data_0 = data[0]
 
-        self.assertEqual(data_0[0], yesterday)
-        self.assertEqual(data_0[1], dpw)
-        self.assertEqual(data_0[2], 3)
-        self.assertEqual(len(data_0[3]), 20)  # this is the tabular data, dunno what to assert.
+        self.assertEqual(data_0['department'], dpw)
+        self.assertEqual(data_0['date'], yesterday)
+        self.assertEqual(data_0['length'], 3)
+        self.assertEqual(len(data_0['tabular']), 20)  # this is the tabular data, dunno what to assert.
