@@ -2,3 +2,4 @@
 django-authtools==0.2.1
 django-backupdb==0.5.5
 django-test-pep8==0.1
+factory-boy==2.3.1
