@@ -35,7 +35,10 @@
                             {% for row in length.list %}
                                 {% for cell in row.tabular %}
                                 <td class="{{ cell.class }}" colspan="{{ cell.columns }}">
-                                    {% if cell.id > 0 %} 
+                                    {% if cell.has_many %}
+                                        <p>This cell has many cells, deal with it</p>
+                                        {# TODO: many cells in one cell #}
+                                    {% elif cell.id %} 
                                         {% if cell.owner %}
                                             <a class="claimed-shift" href="/shifts/release/{{ cell.id }}" alt="{{ cell.owner }} @ {{ cell.start_at }}" title="{{ cell.owner }} @ {{ cell.start_at }}">{{ shift.owner|stringformat:"s"|slice:":6" }}..</a>
                                         {% else %}
