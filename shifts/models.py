@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from departments.models import Department
 
+
 class Shift(models.Model):
     department = models.ForeignKey(Department)
     start_time = models.DateTimeField('shift begins')

@@ -52,7 +52,6 @@ class ShiftsToTabularDataTest(TestCase):
         self.assertEqual(get_num_columns(data), 24)
 
 
-
 class ShiftsGroupingTest(TestCase):
     def test_grouping(self):
         dpw = DepartmentFactory()
@@ -72,7 +71,7 @@ class ShiftsGroupingTest(TestCase):
         ShiftFactory(start_time=today_at_hour(15), shift_length=6)
         #shifts today greeters
         ShiftFactory(start_time=today_at_hour(6), department=greeters, shift_length=3)
-        ShiftFactory(start_time=today_at_hour(12), department=greeters , shift_length=3)
+        ShiftFactory(start_time=today_at_hour(12), department=greeters, shift_length=3)
 
         data = list(group_shifts(Shift.objects.all()))
 
