@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, ListView
 from departments.models import Department
 from shifts.models import Shift
 from shifts.utils import group_shifts, shifts_to_tabular_data
@@ -34,20 +34,18 @@ class ReleaseView(DetailView):
         return shift
 
 
-#shift this have been a list view? should I be using group by?
-class GridView(TemplateView):
+class GridView(ListView):
     template_name = "shifts/shifts.html"
+    model = Shift
+
+    def get_queryset(self):
+        qs = super(GridView, self).get_queryset()
+        return qs.select_related()
 
     def get_context_data(self, **kwargs):
         context = super(GridView, self).get_context_data(**kwargs)
 
-        #it may not even matter that we're sorting here
-        shifts = Shift.objects.order_by(
-            'start_time',
-            'department',
-            'shift_length'
-        )
-        context['grouped_shifts'] = group_shifts(shifts)
+        context['grouped_shifts'] = list(group_shifts(self.object_list))
         return context
 
     def extract_date(entity):
