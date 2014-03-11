@@ -162,8 +162,8 @@ class ShiftsGroupingTest(TestCase):
         dpw = DepartmentFactory()
         greeters = DepartmentFactory(name='Greeters')
 
-        today = timezone.now().date()
-        yesterday = today - datetime.timedelta(1)
+        today = today_at_hour(0).date()
+        yesterday = yesterday_at_hour(0).date()
 
         # shift yesterday dpw
         ShiftFactory(start_time=yesterday_at_hour(12), shift_length=3)
@@ -182,9 +182,24 @@ class ShiftsGroupingTest(TestCase):
 
         self.assertEqual(len(data), 4)
 
-        data_0 = data[0]
+        data_0, data_1, data_2, data_3 = data
 
         self.assertEqual(data_0['department'], dpw)
         self.assertEqual(data_0['date'], yesterday)
         self.assertEqual(data_0['length'], 3)
         self.assertEqual(len(data_0['tabular']), 20)  # this is the tabular data, dunno what to assert.
+
+        self.assertEqual(data_1['department'], dpw)
+        self.assertEqual(data_1['date'], today)
+        self.assertEqual(data_1['length'], 3)
+        self.assertEqual(len(data_1['tabular']), 20)  # this is the tabular data, dunno what to assert.
+
+        self.assertEqual(data_2['department'], dpw)
+        self.assertEqual(data_2['date'], today)
+        self.assertEqual(data_2['length'], 6)
+        self.assertEqual(len(data_2['tabular']), 14)  # this is the tabular data, dunno what to assert.
+
+        self.assertEqual(data_3['department'], greeters)
+        self.assertEqual(data_3['date'], today)
+        self.assertEqual(data_3['length'], 3)
+        self.assertEqual(len(data_3['tabular']), 20)  # this is the tabular data, dunno what to assert.

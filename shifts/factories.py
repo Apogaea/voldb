@@ -1,16 +1,20 @@
 import datetime
 from django.utils import timezone
 import factory
+
 from shifts.models import Shift
+from shifts.utils import DENVER_TIMEZONE
 
 
 def today_at_hour(hour):
-    return timezone.now().replace(hour=hour)
+    return datetime.datetime.combine(
+        datetime.date.today(),
+        datetime.time(hour=hour, tzinfo=DENVER_TIMEZONE),
+    )
 
 
 def yesterday_at_hour(hour):
-    when = timezone.now().replace(hour=hour)
-    return when - datetime.timedelta(1)
+    return today_at_hour(hour) - datetime.timedelta(1)
 
 
 class ShiftFactory(factory.DjangoModelFactory):
