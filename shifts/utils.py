@@ -2,11 +2,15 @@ import operator
 import itertools
 import functools
 
+from django.utils import timezone
+
 EMPTY_COLUMN = {
     'columns': 1,
     'class': 'empty',
     'is_empty': True,
 }
+
+DENVER_TIMEZONE = timezone.get_default_timezone()
 
 
 def build_multi_shift_column(shifts):
@@ -14,8 +18,8 @@ def build_multi_shift_column(shifts):
     This function takes a list of shifts which would overlap and returns a data
     structure suitable for rendering them as an inner table in the shifts grid.
     """
-    start_hour = shifts[0].start_time.hour
-    end_hour = shifts[-1].end_time.hour
+    start_hour = shifts[0].start_time.astimezone(DENVER_TIMEZONE).hour
+    end_hour = shifts[-1].end_time.astimezone(DENVER_TIMEZONE).hour
 
     inner_column_builder = functools.partial(
         build_inner_shift_column,
@@ -40,7 +44,7 @@ def build_single_shift_column(shift):
         'class': 'shift',
         'id': shift.id,
         'owner': shift.owner,
-        'start_at': shift.start_time,
+        'start_at': shift.start_time.astimezone(DENVER_TIMEZONE),
     }
 
 
@@ -51,12 +55,12 @@ def build_inner_shift_column(shift, start_hour, end_hour):
     """
     data = []
 
-    for i in range(start_hour, shift.start_time.hour):
+    for i in range(start_hour, shift.start_time.astimezone(DENVER_TIMEZONE).hour):
         data.append(EMPTY_COLUMN)
 
     data.append(build_single_shift_column(shift))
 
-    for i in range(shift.end_time.hour, end_hour):
+    for i in range(shift.end_time.astimezone(DENVER_TIMEZONE).hour, end_hour):
         data.append(EMPTY_COLUMN)
 
     return data
@@ -102,7 +106,7 @@ def shifts_to_tabular_data(shifts):
 
     for shift_group in shift_groups:
         current_hour = get_num_columns(data)
-        for i in range(current_hour, shift_group[0].start_time.hour):
+        for i in range(current_hour, shift_group[0].start_time.astimezone(DENVER_TIMEZONE).hour):
             data.append(EMPTY_COLUMN)
         if len(shift_group) == 1:
             data.append(build_single_shift_column(shift_group[0]))
@@ -121,11 +125,11 @@ def group_shifts(shifts):
 
     date -> department -> length -> start time
     """
-    date_getter = lambda shift: shift.start_time.date()
+    date_getter = lambda shift: shift.start_time.astimezone(DENVER_TIMEZONE).date()
     department_getter = lambda shift: shift.department
     length_getter = lambda shift: shift.shift_length
 
-    overall_sort_key = lambda s: (s.start_time.date(), s.department_id, s.shift_length, s.start_time.time())
+    overall_sort_key = lambda s: (s.start_time.astimezone(DENVER_TIMEZONE).date(), s.department_id, s.shift_length, s.start_time.astimezone(DENVER_TIMEZONE).time())
 
     shifts = sorted(
         shifts,
