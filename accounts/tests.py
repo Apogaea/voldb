@@ -111,7 +111,7 @@ class RegistrationTest(TestCase):
         self.assertTrue(post_response.context['signature_expired'])
 
     def test_registration_confirmation_page_with_bad_token(self):
-        url = reverse('register-confirm', kwargs={'token': 'BADTOKEN'})
+        url = reverse('register_confirm', kwargs={'token': 'BADTOKEN'})
         get_response = self.client.get(url)
         self.assertContains(get_response, '', status_code=status.HTTP_200_OK)
         self.assertTrue(get_response.context['bad_signature'])

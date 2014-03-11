@@ -19,7 +19,7 @@
           <p>To complete your registration for <b>{{ email }}</b> please complete
           the form below</p>
 
-          <form action="{% url 'register-confirm' token=token %}" method="post">{% csrf_token %}
+          <form action="{% url 'register_confirm' token=token %}" method="post">{% csrf_token %}
               {% include 'partials/form_as_fieldsets.html' %}
               <input type="submit" />
           </form>

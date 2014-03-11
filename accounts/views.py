@@ -1,10 +1,14 @@
 from django.core import signing
-from django.views.generic import FormView, CreateView, TemplateView
+from django.views.generic import (
+    FormView, CreateView, TemplateView, DetailView,
+)
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib.auth import get_user_model, login as auth_login, authenticate
 
 User = get_user_model()
+
+from authtools.views import LoginRequiredMixin
 
 from accounts.forms import (
     UserRegistrationForm, UserRegistrationConfirmForm,
@@ -16,7 +20,7 @@ from accounts.utils import unsign_registration_token
 class RegisterView(FormView):
     template_name = 'registration/register.html'
     form_class = UserRegistrationForm
-    success_url = reverse_lazy('register-success')
+    success_url = reverse_lazy('register_success')
 
     def form_valid(self, form):
         send_registration_verification_email(form.data['email'])
@@ -69,3 +73,10 @@ class RegisterConfirmView(CreateView):
         )
         auth_login(self.request, user)
         return redirect(self.success_url)
+
+
+class ProfileView(LoginRequiredMixin, DetailView):
+    template_name = 'accounts/profile.html'
+
+    def get_object(self):
+        return self.request.user
