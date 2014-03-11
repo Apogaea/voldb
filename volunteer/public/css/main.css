@@ -130,8 +130,8 @@ h1 {
 h2 {
     font-size: 1em;
     padding: 0px 5%;
-    margin: 4px 0px 0px 0px;
-    background-color: rgba(28,28,28,0.8);
+    margin: 4px 0px 1px 0px;
+    background-color: rgba(48,56,64,0.8);
     color: #000;
     border-radius: 6px;
     border-bottom-left-radius: 0px;    
@@ -216,28 +216,45 @@ hr.close {
     border: 0px; 
     width: 100%;
     height: 20px;
-    background: #c39f25;
     border-radius: 6px;
     border-top-left-radius: 0px;   
-    margin: 0px 0px 10px 0px;
-    background-color: rgba(64,64,64,0.8); 
+    margin: 1px 0px 9px 0px;
+    background-color: rgba(48,56,64,0.9);
 }
 
 
 /*** shifts page layout ***/
 
-#shiftgrid table, #shiftgrid td, #shiftgrid th, #shiftgrid tr {
+#shiftgrid table, #shiftgrid td, #shiftgrid th, #shiftgrid tr, #shiftgrid tbody {
+    vertical-align:text-top;
+    margin: 0px;
+    padding: 0px;
+}
+
+#shiftgrid table table {
+    margin-bottom: 1px;
+}
+#shiftgrid td  {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+    padding-left: 1px;
 }
 
 
+#shiftgrid th.department {
+    text-align: right;
+    padding-right: 8px;
+}
+
 #shiftgrid td.empty {
-    background-color: rgba(64,32,0,0.3); 
+    background-color: rgba(48,56,64,0.2); 
 }
 #shiftgrid td.shift {
     letter-spacing:-1px;
     font-family: sans-serif;
     font-size: 0.7em;
-    background-color: rgba(64,32,0,0.3); 
+    background-color: rgba(48,56,64,0.2); 
 }
 #shiftgrid td.shift a {
     color: #000;
@@ -246,65 +263,70 @@ hr.close {
     padding: 4px 0px;
     border-radius: 16px;
     border: 1px solid #db3;
+    margin: 0px 0px 1px 0px;
 }
 
 #shiftgrid td.shift a.busy,
 #shiftgrid td.shift a.busy:hover  {
-    transition: background-color 1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
     background-color: rgba(195,64,64,0.8); 
     border: 1px solid #f88;
     color;#000;
     display: block;
 }
 #shiftgrid td.shift a.open-shift {
-    transition: background-color 3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
     background-color: rgba(195,159,37,0.4); 
     border: 1px solid #db3;
 }
 
 #shiftgrid td.shift a.claimed-shift {
-    transition: background-color 3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
     background-color: rgba(128,128,192,0.4); 
     border: 1px solid #777;
     color: #444;
 }
 
 #shiftgrid td.shift a.open-shift:hover {
-    transition: border-color 1s ease-in;
-    transition: border-color 3s ease-out;
+    transition: border-color 3.1s ease-in;
+    transition: border-color 0.3s ease-out;
     background-color: rgba(195,159,37,1); 
     border: 1px solid #fff;
 }
 
 #shiftgrid td.shift a.claimed-shift:hover {
-    transition: border-color 1s ease-in;
-    transition: border-color 3s ease-out;
+    transition: border-color 3.1s ease-in;
+    transition: border-color 0.3s ease-out;
     background-color: rgba(128,128,128,1); 
     border: 1px solid #aaa;
 }
 
 #shiftgrid th {
     font-weight: normal;
-    font-size: 0.9em;
-    background-color: rgba(64,64,64,0.8); 
+    font-size: 0.8em;
+    background-color: rgba(48,56,64,0.7); 
+    color: #222;
 }
 
 
-tr.hours th {
-    background: #e8d758;  
-    background-color: rgba(232,215,88,0.8); 
+#shiftgrid tr.hours th {
+    padding-top: 0.4em;
+    font-size: 0.6em;
+    color: #444;
+    background-color: rgba(48,56,64,0.6); 
 }
 
 
-tr.hours th:last-child {
-    border-top-right-radius: 6px;    
-    border-bottom-right-radius: 6px;  
-
+#shiftgrid tr.hours th:last-child {
+    border-top-right-radius: 6px;     
+}
+#shiftgrid tr.bottom th {
+    border-bottom-right-radius: 6px;     
+    height: 8px;
 }
 
-td {
 
-}
+
 
 @media only screen and (min-width: 550px) {
     /* Style adjustments for viewports that meet the condition */

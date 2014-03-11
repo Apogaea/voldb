@@ -28,12 +28,14 @@ def build_multi_shift_column(shifts):
 
     return {
         'columns': end_hour - start_hour,
-        'class': 'shifts',
-        'has_many': True,
-        'shifts': map(inner_column_builder, shifts),
+        'class': 'shift',
+        'has_shifts': True,
+        #'shifts': map(inner_column_builder, shifts),
+        'shifts': shifts,
     }
 
 
+#I don't think I need this so I commented it out for now (below)
 def build_single_shift_column(shift):
     """
     Takes a single `shift` instance and builds a data structure suitable for
@@ -108,10 +110,10 @@ def shifts_to_tabular_data(shifts):
         current_hour = get_num_columns(data)
         for i in range(current_hour, shift_group[0].start_time.astimezone(DENVER_TIMEZONE).hour):
             data.append(EMPTY_COLUMN)
-        if len(shift_group) == 1:
-            data.append(build_single_shift_column(shift_group[0]))
-        else:
-            data.append(build_multi_shift_column(shift_group))
+        #if len(shift_group) == 1:
+        #    data.append(build_single_shift_column(shift_group[0]))
+        #else:
+        data.append(build_multi_shift_column(shift_group))
 
     while get_num_columns(data) < 24:
         data.append(EMPTY_COLUMN)
