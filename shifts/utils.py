@@ -21,51 +21,12 @@ def build_multi_shift_column(shifts):
     start_hour = shifts[0].start_time.astimezone(DENVER_TIMEZONE).hour
     end_hour = shifts[-1].end_time.astimezone(DENVER_TIMEZONE).hour
 
-    inner_column_builder = functools.partial(
-        build_inner_shift_column,
-        start_hour=start_hour, end_hour=end_hour,
-    )
-
     return {
         'columns': end_hour - start_hour,
         'class': 'shift',
         'has_shifts': True,
-        #'shifts': map(inner_column_builder, shifts),
         'shifts': shifts,
     }
-
-
-#I don't think I need this so I commented it out for now (below)
-def build_single_shift_column(shift):
-    """
-    Takes a single `shift` instance and builds a data structure suitable for
-    outputing it in a tabular data structure.
-    """
-    return {
-        'columns': shift.shift_length,
-        'class': 'shift',
-        'id': shift.id,
-        'owner': shift.owner,
-        'start_at': shift.start_time.astimezone(DENVER_TIMEZONE),
-    }
-
-
-def build_inner_shift_column(shift, start_hour, end_hour):
-    """
-    This builds the inner column data for displaying shifts in an inner table
-    in the shifts grid.
-    """
-    data = []
-
-    for i in range(start_hour, shift.start_time.astimezone(DENVER_TIMEZONE).hour):
-        data.append(EMPTY_COLUMN)
-
-    data.append(build_single_shift_column(shift))
-
-    for i in range(shift.end_time.astimezone(DENVER_TIMEZONE).hour, end_hour):
-        data.append(EMPTY_COLUMN)
-
-    return data
 
 
 def get_num_columns(data):

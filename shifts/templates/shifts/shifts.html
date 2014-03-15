@@ -38,9 +38,9 @@
                                     {% if cell.has_shifts %}
                                         {% for shift in cell.shifts %}
                                             {% if shift.owner %}
-                                                <a class="claimed-shift" href="/shifts/release/{{ shift.id }}" alt="{{ shift.owner }} @ {{ shift.start_at }}" title="{{ shift.owner }} @ {{ shift.start_at }}">{{ shift.owner|stringformat:"s"|slice:":6" }}..</a>
+                                                <span><a class="claimed-shift" href="/shifts/release/{{ shift.id }}" alt="{{ shift.owner }} @ {{ shift.start_at }}" title="{{ shift.owner }} @ {{ shift.start_at }}">{{ shift.owner|stringformat:"s"|slice:":6" }}..</a></span>
                                             {% else %}
-                                                <a class="open-shift" href="/shifts/claim/{{ shift.id }}" alt="{{ shift.start_at }}" title="{{ shift.start_at }}">o p e n</a>
+                                                <span><a class="open-shift" href="/shifts/claim/{{ shift.id }}" alt="{{ shift.start_at }}" title="{{ shift.start_at }}">o p e n</a></span>
                                             {% endif %}                                        
                                         {% endfor %}                                    
                                     {% endif %}
