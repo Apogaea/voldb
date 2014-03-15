@@ -30,7 +30,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin.apps.AdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -48,6 +47,8 @@ INSTALLED_APPS = (
     'departments',
     'shifts',
     'accounts',
+    # django admin
+    'django.contrib.admin.apps.AdminConfig',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -62,6 +63,8 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'volunteer.urls'
 
 WSGI_APPLICATION = 'volunteer.wsgi.application'
+
+LOGIN_REDIRECT_URL = 'profile'
 
 
 # Database
