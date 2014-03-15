@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's&vgm$yb$ap8&^!rpn^rq1o086658b0hfkxkccq%(%_%u$euhr'
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -30,21 +30,25 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin.apps.AdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     #third party
     'authtools',
     'backupdb',
+    'betterforms',
+    'emailtools',
     #local project
     'volunteer',
     #local apps
     'departments',
     'shifts',
     'accounts',
+    # django admin
+    'django.contrib.admin.apps.AdminConfig',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,6 +63,8 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'volunteer.urls'
 
 WSGI_APPLICATION = 'volunteer.wsgi.application'
+
+LOGIN_REDIRECT_URL = 'profile'
 
 
 # Database
@@ -89,9 +95,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 #I made static files work
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'volunteer', 'public'),
 )
 
 #Adding Auth Tools
@@ -105,3 +113,14 @@ TEST_PEP8_EXCLUDE = [
     'migrations',
 ]
 TEST_PEP8_IGNORE = ['E501']
+
+
+# Email Settings
+EMAIL_LAYOUT = 'mail/base.html'
+EMAIL_BACKEND = os.environ.get(
+    'DJANGO_EMAIL_BACKEND',
+    'django.core.mail.backends.smtp.EmailBackend',
+)
+
+# `django.contrib.sites` settings
+SITE_ID = 1

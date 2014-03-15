@@ -51,4 +51,8 @@ This will use virtualenv to manage a Django v1.7 project.
   ```
   This will allow you to develop and reload your changes live in the browser.
   
+  Or to load the development webserver such that other devices on the local network (e.g. tablets) can access it:
   
+  ```
+  python manage.py runserver '[::]:8000'
+  ```
