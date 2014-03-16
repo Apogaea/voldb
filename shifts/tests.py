@@ -1,17 +1,15 @@
-import datetime
-
 from django.test import TestCase
-from django.utils import timezone
 
 from shifts.models import Shift
 from departments.factories import DepartmentFactory
 from shifts.factories import ShiftFactory, today_at_hour, yesterday_at_hour
 from shifts.utils import (
+    pairwise,
     shifts_to_tabular_data,
     EMPTY_COLUMN,
     get_num_columns,
     group_shifts,
-    group_overlapping_shifts,
+    shifts_to_non_overlapping_rows,
 )
 
 
@@ -45,68 +43,105 @@ class OverlapsMethodTest(TestCase):
         self.assertTrue(shift_b.overlaps_with(shift_a))
 
 
-class GroupOverlappingShiftsTest(TestCase):
-    def test_non_overlapping(self):
-        ShiftFactory(start_time=today_at_hour(0), shift_length=3)
-        ShiftFactory(start_time=today_at_hour(3), shift_length=3)
-        ShiftFactory(start_time=today_at_hour(6), shift_length=3)
-        ShiftFactory(start_time=today_at_hour(9), shift_length=3)
-        ShiftFactory(start_time=today_at_hour(12), shift_length=3)
-        ShiftFactory(start_time=today_at_hour(15), shift_length=3)
-        ShiftFactory(start_time=today_at_hour(18), shift_length=3)
-        ShiftFactory(start_time=today_at_hour(21), shift_length=3)
+def has_overlaps(shifts):
+    return any(l.overlaps_with(r) for l, r in pairwise(shifts))
 
-        groups = list(group_overlapping_shifts(Shift.objects.all()))
 
-        self.assertEqual(len(groups), 8)
-        self.assertTrue(all(len(g) == 1 for g in groups))
+class ShiftsToNonOverlappingRowsTest(TestCase):
+    def test_has_overlaps_util(self):
+        self.assertFalse(has_overlaps((
+            ShiftFactory(start_time=today_at_hour(0), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(3), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(6), shift_length=3),
+        )))
+        self.assertTrue(has_overlaps((
+            ShiftFactory(start_time=today_at_hour(0), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(2), shift_length=3),
+        )))
 
-    def test_with_perfectly_overlapping(self):
-        # Group 1
-        ShiftFactory(start_time=today_at_hour(0), shift_length=6)
-        ShiftFactory(start_time=today_at_hour(0), shift_length=6)
-        # Group 2
-        ShiftFactory(start_time=today_at_hour(6), shift_length=6)
-        ShiftFactory(start_time=today_at_hour(6), shift_length=6)
-        # Group 3
-        ShiftFactory(start_time=today_at_hour(12), shift_length=6)
-        ShiftFactory(start_time=today_at_hour(12), shift_length=6)
-        # Group 4
-        ShiftFactory(start_time=today_at_hour(18), shift_length=6)
-        ShiftFactory(start_time=today_at_hour(18), shift_length=6)
+    def test_with_no_overlaps(self):
+        shifts = (
+            ShiftFactory(start_time=today_at_hour(0), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(3), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(6), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(9), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(12), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(15), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(18), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(21), shift_length=3),
+        )
+        rows = list(shifts_to_non_overlapping_rows(shifts))
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(len(rows[0]), 8)
+        self.assertFalse(all(
+            has_overlaps(row) for row in rows
+        ))
 
-        groups = list(group_overlapping_shifts(Shift.objects.all()))
+    def test_single_set_of_overlaps(self):
+        shifts = (
+            # modulo 0
+            ShiftFactory(start_time=today_at_hour(0), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(3), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(6), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(9), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(12), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(15), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(18), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(21), shift_length=3),
+            # modulo 1
+            ShiftFactory(start_time=today_at_hour(1), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(4), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(7), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(10), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(13), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(16), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(19), shift_length=3),
+        )
 
-        self.assertEqual(len(groups), 4)
-        self.assertTrue(all(len(g) == 2 for g in groups))
+        rows = list(shifts_to_non_overlapping_rows(shifts))
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(len(rows[0]), 8)
+        self.assertEqual(len(rows[1]), 7)
+        self.assertFalse(all(
+            has_overlaps(row) for row in rows
+        ))
 
-    def test_with_partially_overlapping(self):
-        # Group 1
-        ShiftFactory(start_time=today_at_hour(0), shift_length=6)
-        ShiftFactory(start_time=today_at_hour(3), shift_length=6)
-        # Group 2
-        ShiftFactory(start_time=today_at_hour(12), shift_length=6)
-        ShiftFactory(start_time=today_at_hour(15), shift_length=6)
-        # Group 3
-        ShiftFactory(start_time=today_at_hour(21), shift_length=3)
-
-        groups = list(group_overlapping_shifts(Shift.objects.all()))
-
-        self.assertEqual(len(groups), 3)
-        self.assertEqual(len(groups[0]), 2)
-        self.assertEqual(len(groups[1]), 2)
-        self.assertEqual(len(groups[2]), 1)
-
-    def test_with_staggered_overlaps(self):
-        ShiftFactory(start_time=today_at_hour(0), shift_length=3)
-        ShiftFactory(start_time=today_at_hour(2), shift_length=3)
-        ShiftFactory(start_time=today_at_hour(4), shift_length=3)
-        ShiftFactory(start_time=today_at_hour(6), shift_length=3)
-
-        groups = list(group_overlapping_shifts(Shift.objects.all()))
-
-        self.assertEqual(len(groups), 1)
-        self.assertEqual(len(groups[0]), 4)
+    def test_two_sets_of_overlap(self):
+        shifts = (
+            # modulo 0
+            ShiftFactory(start_time=today_at_hour(0), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(3), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(6), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(9), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(12), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(15), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(18), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(21), shift_length=3),
+            # modulo 1
+            ShiftFactory(start_time=today_at_hour(1), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(4), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(7), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(10), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(13), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(16), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(19), shift_length=3),
+            # modulo 2
+            ShiftFactory(start_time=today_at_hour(2), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(5), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(8), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(11), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(14), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(17), shift_length=3),
+            ShiftFactory(start_time=today_at_hour(20), shift_length=3),
+        )
+        rows = list(shifts_to_non_overlapping_rows(shifts))
+        self.assertEqual(len(rows), 3)
+        self.assertEqual(len(rows[0]), 8)
+        self.assertEqual(len(rows[1]), 7)
+        self.assertEqual(len(rows[2]), 7)
+        self.assertFalse(all(
+            has_overlaps(row) for row in rows
+        ))
 
 
 class ShiftsToTabularDataTest(TestCase):
