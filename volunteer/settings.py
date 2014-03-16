@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'departments',
     'shifts',
     'accounts',
+    'profiles',
     # django admin
     'django.contrib.admin.apps.AdminConfig',
 )

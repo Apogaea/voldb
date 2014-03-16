@@ -49,10 +49,10 @@
                 <a href="{% url 'login' %}">Login</a>
                 {% endif %}
             </span>
-            <a href="/">Home</a> 
-            <a href="/shifts">Shifts</a> 
-            <a href="/departments">Depts</a> 
-            <a href="/profile">Profile</a>             
+            <a href="{% url 'home' %}">Home</a> 
+            <a href="{% url 'shifts' %}">Shifts</a> 
+            <a href="{% url 'departments' %}">Depts</a> 
+            <a href="{% url 'profiles' %}">Profiles</a>             
         </nav>        
         {% block content %}
         {% endblock content %}

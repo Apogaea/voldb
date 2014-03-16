@@ -13,6 +13,7 @@ urlpatterns = patterns('',  # NOQA
     url(r'^shifts/', include('shifts.urls')),
     url(r'^departments/', include('departments.urls')),
     url(r'^accounts/', include('accounts.urls')),
+    url(r'^profiles/', include('profiles.urls')),
 
     # API
     url(r'^api/', include('shifts.api.urls')),
