@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'departments',
     'shifts',
     'accounts',
+    'profiles',
     # django admin
     'django.contrib.admin.apps.AdminConfig',
 )
@@ -124,3 +125,5 @@ EMAIL_BACKEND = os.environ.get(
 
 # `django.contrib.sites` settings
 SITE_ID = 1
+
+AUTH_PROFILE_MODULE = 'profiles.Profile'
