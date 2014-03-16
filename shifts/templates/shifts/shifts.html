@@ -16,8 +16,8 @@
     {% for shifts_in_department in shifts_by_departments %}
         <table width="100%">
             <tr>
-                <th width="8%" class="department">{{ shifts_in_department.grouper }}</td>
-                <td width="92%">
+                <th width="11%" class="department">{{ shifts_in_department.grouper }}</th>
+                <td width="89%">
                 {% regroup shifts_in_department.list by length as shifts_by_lengths %}
                 {% for length in shifts_by_lengths %}
                     <table width="98%">
@@ -35,27 +35,28 @@
                             {% for row in length.list %}
                                 {% for cell in row.tabular %}
                                 <td class="{{ cell.class }}" colspan="{{ cell.columns }}">
-                                    {% if cell.has_many %}
-                                        <p>This cell has many cells, deal with it</p>
-                                        {# TODO: many cells in one cell #}
-                                    {% elif cell.id %} 
-                                        {% if cell.owner %}
-                                            <a class="claimed-shift" href="/shifts/release/{{ cell.id }}" alt="{{ cell.owner }} @ {{ cell.start_at }}" title="{{ cell.owner }} @ {{ cell.start_at }}">{{ shift.owner|stringformat:"s"|slice:":6" }}..</a>
-                                        {% else %}
-                                            <a class="open-shift" href="/shifts/claim/{{ cell.id }}" alt="{{ cell.start_at }}" title="{{ cell.start_at }}">o p e n</a>
-                                        {% endif %}
+                                    {% if cell.has_shifts %}
+                                        {% for shift in cell.shifts %}
+                                            {% if shift.owner %}
+                                                <span><a class="claimed-shift" href="/shifts/release/{{ shift.id }}" alt="{{ shift.owner }} @ {{ shift.start_at }}" title="{{ shift.owner }} @ {{ shift.start_at }}">{{ shift.owner|stringformat:"s"|slice:":6" }}..</a></span>
+                                            {% else %}
+                                                <span><a class="open-shift" href="/shifts/claim/{{ shift.id }}" alt="{{ shift.start_at }}" title="{{ shift.start_at }}">o p e n</a></span>
+                                            {% endif %}                                        
+                                        {% endfor %}                                    
                                     {% endif %}
                                 </td>
                                 {% endfor %}
                             {% endfor %}
 
                         </tr>
+                        <tr class="bottom"><th colspan="24"></th></tr>
                     </table>
                 {% endfor %}
                 </td>
             </tr>
         </table>
     {% endfor %}
+    <hr class="close" />
 {% endfor %}
 
 
