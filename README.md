@@ -8,51 +8,67 @@ This is assuming a MacOS X or Linux development environment, with Python 2.7 ins
 This will use virtualenv to manage a Django v1.7 project.
 
 
+1. **Install postgres**  
+
+  We need to install `postgresql`.
+
+  ```bash
+  $ brew install postgresql  # Mac
+  $ sudo apt-get install postgresql  # Ubuntu/Linux
+  ```
+
 1. **Install virtualenv**  
   
   First ensure python is installed (it likely is already): 
  
-  ``` 
-  brew install python --with-brewed-openssl # Mac
-  sudo apt-get install python # Ubuntu Linux (I think this will get latest 2.x)
+  ```bash
+  $ brew install python --with-brewed-openssl # Mac
+  $ sudo apt-get install python # Ubuntu Linux (I think this will get latest 2.x)
   
   ```   
-  ```
-  pip install virtualenv           # MacOS
-  sudo apt-get isntall virtualenv  # Ubuntu Linux
+  ```bash
+  $ pip install virtualenv           # MacOS
+  $ sudo apt-get isntall virtualenv  # Ubuntu Linux
   ```
   
 1. **Clone the Apogaea VolDB Git repository**
 
-  ```
-  git clone git@github.com:Apogaea/voldb.git
+  ```bash
+  $ git clone git@github.com:Apogaea/voldb.git
   ```
 
 3. **Create a virtual environment and activate it**
   
-  ```
-  cd voldb
-  virtualenv env
-  source env/bin/activate
+  ```bash
+  $ cd voldb
+  $ virtualenv env
+  $ source env/bin/activate
   ```
 
 4. **Install application dependencies**
   
-  ```
-  pip install -r requirements.txt
+  ```bash
+  $ pip install -r requirements.txt
   ```
 
-5. **Start the Django web application**
+5. **Setup your database**
+
+  ```bash
+  $ ./manage.py syncdb
+  ```
+
+6. **Start the Django web application**
 
   This will start a local webserver running on http://localhost:8000
 
-  ```
-  ./manage.py runserver
+  ```bash
+  $ ./manage.py runserver
   ```
   This will allow you to develop and reload your changes live in the browser.
   
-  Or to load the development webserver such that other devices on the local network (e.g. tablets) can access it:
+  Or to load the development webserver such that other devices on the local
+  network (e.g. tablets) can access it:
   
-  ```
-  python manage.py runserver '[::]:8000'
+  ```bash
+  $ python manage.py runserver '[::]:8000'
   ```
