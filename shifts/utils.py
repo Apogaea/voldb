@@ -1,31 +1,33 @@
 import operator
 import itertools
-import functools
 
 from django.utils import timezone
 
 EMPTY_COLUMN = {
     'columns': 1,
     'class': 'empty',
-    'is_empty': True,
 }
 
 DENVER_TIMEZONE = timezone.get_default_timezone()
 
 
-def build_multi_shift_column(shifts):
+def pairwise(iterable):
     """
-    This function takes a list of shifts which would overlap and returns a data
-    structure suitable for rendering them as an inner table in the shifts grid.
-    """
-    start_hour = shifts[0].start_time.astimezone(DENVER_TIMEZONE).hour
-    end_hour = shifts[-1].end_time.astimezone(DENVER_TIMEZONE).hour
+    from python itertools examples: http://docs.python.org/2/library/itertools.html
 
+    iterate through an iterable as pairs
+    s -> (s0,s1), (s1,s2), (s2, s3), ...
+    """
+    a, b = itertools.tee(iterable)
+    next(b, None)
+    return itertools.izip(a, b)
+
+
+def build_shift_column(shift):
     return {
-        'columns': end_hour - start_hour,
+        'columns': shift.shift_length,
         'class': 'shift',
-        'has_shifts': True,
-        'shifts': shifts,
+        'shift': shift,
     }
 
 
@@ -33,29 +35,26 @@ def get_num_columns(data):
     return sum(item['columns'] for item in data)
 
 
-def group_overlapping_shifts(shifts):
+def shifts_to_non_overlapping_rows(shifts):
     """
     Given a list of shifts, return them in groups, where each group is a list
     of shifts.  When a shift doesn't overlap with any other one, this list will
     be a single shift.
     """
-    shifts = sorted(shifts, key=operator.attrgetter('start_time'), reverse=True)
-
-    def yield_while_overlapping(shifts):
-        prev = None
-        while shifts:
-            shift = shifts.pop()
-            if prev is None:
-                yield shift
-            elif shift.overlaps_with(prev):
-                yield shift
-            else:
-                shifts.append(shift)
-                break
-            prev = shift
-
     while shifts:
-        yield list(yield_while_overlapping(shifts))
+        overlappers = []
+        shifts = sorted(shifts, key=operator.attrgetter('start_time'), reverse=True)
+
+        def extract_non_overlappers(shifts):
+            while shifts:
+                anchor = shifts.pop()
+                while shifts and shifts[-1].overlaps_with(anchor):
+                    overlappers.append(shifts.pop())
+                yield anchor
+
+        yield list(extract_non_overlappers(shifts))
+
+        shifts = overlappers
 
 
 def shifts_to_tabular_data(shifts):
@@ -65,16 +64,12 @@ def shifts_to_tabular_data(shifts):
     """
     data = []
 
-    shift_groups = group_overlapping_shifts(shifts)
-
-    for shift_group in shift_groups:
+    for shift in shifts:
         current_hour = get_num_columns(data)
-        for i in range(current_hour, shift_group[0].start_time.astimezone(DENVER_TIMEZONE).hour):
+        for i in range(current_hour, shift.start_time.astimezone(DENVER_TIMEZONE).hour):
             data.append(EMPTY_COLUMN)
-        #if len(shift_group) == 1:
-        #    data.append(build_single_shift_column(shift_group[0]))
-        #else:
-        data.append(build_multi_shift_column(shift_group))
+
+        data.append(build_shift_column(shift))
 
     while get_num_columns(data) < 24:
         data.append(EMPTY_COLUMN)
@@ -106,9 +101,10 @@ def group_shifts(shifts):
         for department, shifts_by_department in department_groups:
             length_groups = itertools.groupby(shifts_by_department, length_getter)
             for length, shifts_by_length in length_groups:
-                yield {
-                    'date': date,
-                    'department': department,
-                    'length': length,
-                    'tabular': shifts_to_tabular_data(shifts_by_length),
-                }
+                for shift_row in shifts_to_non_overlapping_rows(shifts_by_length):
+                    yield {
+                        'date': date,
+                        'department': department,
+                        'length': length,
+                        'tabular': shifts_to_tabular_data(shift_row),
+                    }
