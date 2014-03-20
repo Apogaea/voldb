@@ -41,7 +41,12 @@ INSTALLED_APPS = (
     'backupdb',
     'betterforms',
     'emailtools',
+<<<<<<< HEAD
     # local project
+=======
+    'rest_framework',
+    #local project
+>>>>>>> Shifts that require a code to claim.
     'volunteer',
     # local apps
     'departments',
@@ -130,3 +135,14 @@ EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL') == 'True'
 
 # `django.contrib.sites` settings
 SITE_ID = 1
+
+# django-rest-framework
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}

@@ -25,3 +25,4 @@ class ShiftFactory(factory.DjangoModelFactory):
     )
     shift_length = 3
     owner = None
+    code = ''
