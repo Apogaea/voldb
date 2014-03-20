@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 
 User = get_user_model()
 
-from volunteer import status
+from rest_framework import status
 
 from accounts.factories import UserFactory
 from accounts.utils import (

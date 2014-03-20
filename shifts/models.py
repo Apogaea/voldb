@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 import datetime
 
 from django.db import models
@@ -12,6 +13,17 @@ class Shift(models.Model):
     shift_length = models.PositiveSmallIntegerField(default=3)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='shifts')
 
+    code = models.CharField(max_length=20, blank=True)
+
+    def __str__(self):
+        if self.owner:
+            return '{0} @ {1}'.format(
+                self.owner,
+                self.start_time.strftime('%H:%M'),
+            )
+        else:
+            return self.start_time.strftime('%H:%M')
+
     @property
     def end_time(self):
         return self.start_time + datetime.timedelta(hours=self.shift_length)
@@ -22,3 +34,6 @@ class Shift(models.Model):
         elif self.start_time >= other.end_time:
             return False
         return True
+
+    def requires_code(self):
+        return bool(self.code)

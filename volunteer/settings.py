@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'backupdb',
     'betterforms',
     'emailtools',
+    'rest_framework',
     #local project
     'volunteer',
     #local apps
@@ -124,3 +125,14 @@ EMAIL_BACKEND = os.environ.get(
 
 # `django.contrib.sites` settings
 SITE_ID = 1
+
+# django-rest-framework
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
