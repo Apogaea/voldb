@@ -41,12 +41,8 @@ INSTALLED_APPS = (
     'backupdb',
     'betterforms',
     'emailtools',
-<<<<<<< HEAD
-    # local project
-=======
     'rest_framework',
-    #local project
->>>>>>> Shifts that require a code to claim.
+    # local project
     'volunteer',
     # local apps
     'departments',
