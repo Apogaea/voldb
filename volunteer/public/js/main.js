@@ -66,39 +66,63 @@ $(document).ready( function () {
         $("body").css("background-position", "center "+(0-(scrolled*0.45))+"px");
     }
 
-    function bindToClaimShiftForms() {
-        $("form.claim-shift").submit(function(e) {
+    /*
+     *  Shift grid view claiming and releasing.
+     */
+    function bindToClaimShift() {
+        $("a.claim-shift").click(function(e) {
             e.preventDefault();
-            var _this = this;
-            var postData = $(this).serializeArray();
-            var formURL = $(this).attr("action");
-            var ownerInput = $(this).children("input[name='owner']");
-            var submitInput = $(this).children("input[type='submit']");
-            var tableCell = $(this).parent('td');
-            $.ajax(
-            {
-                url : formURL,
-                type: "PUT",
-                data : postData,
-                success: function(data, textStatus, jqXHR)
-                {
-                    if ( _.isNull(data.owner) ){
-                        ownerInput.attr("value", window.user);
-                    } else {
-                        ownerInput.attr("value", "");
-                    }
-
-                    submitInput.attr("value", data.display_text);
-                    tableCell.toggleClass("claimed");
-                },
-                error: function(jqXHR, textStatus, errorThrown)
-                {
-                    //if fails what should we do?
-                }
+            var link = this;
+            // Render the modal window
+            var template = Handlebars.compile($("#claim-modal").html());
+            // The owner id to submit.
+            var ownerId = _.isNull($(this).data("owner")) ? window.user : null;
+            // Whether a verification code is required.
+            var requiresCode = ($(this).data("restricted") && !_.isNull(ownerId));
+            // The shift id.
+            var shiftId = $(this).data("shift");
+            var modal = $(template({
+                restricted: requiresCode,
+                owner: ownerId,
+                shift: shiftId
+            }));
+            modal.submit( function(e) {
+                e.preventDefault();
+                doShiftAPIRequest($(this), $(link));
             });
+            modal.find("button.cancel").click( function() {
+                $.modal.close();
+            });
+            modal.modal();
+        });
+    }
+
+    function doShiftAPIRequest(form, link) {
+        $.ajax(
+        {
+            url : form.attr("action"),
+            type: "PUT",
+            data : form.serializeArray(),
+            success: function(data, textStatus, jqXHR)
+            {
+                link.data("shift", data.id);
+                link.data("restricted", data.requires_code);
+                link.data("owner", data.owner);
+                link.text(data.display_text);
+                $.modal.close();
+            },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+                var errors = form.find("ul.errors");
+                errors.text("");
+                _.each(_.pairs(jqXHR.responseJSON), function(error) {
+                    var message = error[1];
+                    errors.append($("<li>" + message + "</li>"));
+                });
+            }
         });
     }
 
     parallaxScroll();
-    bindToClaimShiftForms();
+    bindToClaimShift();
 });

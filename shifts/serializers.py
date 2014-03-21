@@ -12,10 +12,14 @@ class ShiftSerializer(serializers.ModelSerializer):
     }
     display_text = serializers.CharField(source='__str__', read_only=True)
     verification_code = serializers.CharField(required=False, write_only=True)
+    requires_code = serializers.BooleanField(source='requires_code', read_only=True)
 
     class Meta:
         model = Shift
-        fields = ('owner', 'display_text', 'verification_code')
+        fields = (
+            'id', 'owner', 'display_text', 'verification_code',
+            'requires_code',
+        )
 
     def validate(self, attrs):
         if self.object.requires_code() and self.object.owner is None:
