@@ -27,6 +27,9 @@ def build_shift_column(shift):
     classes = ['shift']
     if shift.owner:
         classes.append('claimed')
+    if shift.requires_code() and not shift.owner:
+        classes.append('restricted')
+
     return {
         'columns': shift.shift_length,
         'classes': ' '.join(classes),

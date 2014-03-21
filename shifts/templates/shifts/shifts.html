@@ -8,6 +8,30 @@
 
 <section id="shiftgrid">
 
+{% verbatim %}
+<script id="claim-modal" type="text/x-handlebars-template">
+  <form class="claim-shift-modal" action="/api/shifts/{{shift}}/" method="post">
+      <p>
+        {{#if owner}}
+            Claim shift?
+        {{else}}
+            Release shift?
+        {{/if}}
+      </p>
+      <p>
+      <ul class="errors">
+      </ul>
+      {{#if restricted}}
+          <label for="verification_code">Code</label>
+          <input type="text" name="verification_code">
+      {{/if}}
+      <input type="hidden" name="owner" value="{{owner}}">
+      <button type="button" class="cancel">Cancel</button>
+      <button type="submit">{{#if owner}}Cliam{{else}}Release{{/if}}</button>
+  </form>
+</script>
+{% endverbatim %}
+
 {% regroup grouped_shifts by date as shifts_by_dates %}
 {% for shifts_on_date in shifts_by_dates %}
     {% ifchanged %}<h2><span>{{ shifts_on_date.grouper|date:"l, M jS, Y" }}</span></h2>{% endifchanged %}
@@ -36,19 +60,13 @@
                                 {% for cell in row.tabular %}
                                     <td class="{{ cell.classes }}" colspan="{{ cell.columns }}">
                                         {% if cell.shift %}
-                                            <form class="claim-shift" action="{% url 'shift-detail' pk=cell.shift.pk %}" method="post">
-                                                {% if cell.shift.requires_code %}
-                                                    <input type="hidden" name="verification_code" value="">
-                                                {% endif %}
+                                        <a class="claim-shift" href="#" data-shift="{{ cell.shift.pk }}" data-restricted="{{ cell.shift.requires_code|yesno:'true,false' }}" data-owner="{{ cell.shift.owner|default:'null' }}">
                                                 {% if cell.shift.owner %}
-                                                    <input type="hidden" name="owner" value="">
                                                     {{ cell.shift.owner|truncatechars:8 }}
                                                 {% else %}
-                                                    <input type="hidden" name="owner" value="{{ user.pk }}">
                                                     o p e n
                                                 {% endif %}
-                                                <input type="submit" value="{{ cell.shift }}">
-                                            </form>
+                                            </a>
                                         {% endif %}
                                     </td>
                                 {% endfor %}
