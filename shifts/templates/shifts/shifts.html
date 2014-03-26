@@ -13,21 +13,26 @@
   <form class="claim-shift-modal" action="/api/shifts/{{shift}}/" method="post">
       <p>
         {{#if owner}}
-            Claim shift?
+            Would you like to <b>claim</b> the following shift?
         {{else}}
-            Release shift?
+            Would you like to <b>release</b> this shift for others?
         {{/if}}
       </p>
       <p>
+        - {{department}}
+        - {{time}}
+        - {{shift_length}}
+        - {{display_text}}
+      </p>
       <ul class="errors">
       </ul>
       {{#if restricted}}
-          <label for="verification_code">Code</label>
+          <label for="verification_code">Secret Code</label>
           <input type="text" name="verification_code">
       {{/if}}
       <input type="hidden" name="owner" value="{{owner}}">
+      <button type="submit">{{#if owner}}Cliam{{else}}Release{{/if}} Shift</button>
       <button type="button" class="cancel">Cancel</button>
-      <button type="submit">{{#if owner}}Cliam{{else}}Release{{/if}}</button>
   </form>
 </script>
 {% endverbatim %}
@@ -60,7 +65,7 @@
                                 {% for cell in row.tabular %}
                                     <td class="{{ cell.classes }}" colspan="{{ cell.columns }}">
                                         {% if cell.shift %}
-                                        <a class="claim-shift" href="#" data-shift="{{ cell.shift.pk }}" data-restricted="{{ cell.shift.requires_code|yesno:'true,false' }}" data-owner="{{ cell.shift.owner|default:'null' }}">
+                                        <a id="shift-button-{{ cell.shift.pk }}" class="shift-toggle {% if cell.shift.owner %} claimed-shift {% else %} open-shift {% endif %} " href="#" data-shift="{{ cell.shift.pk }}" data-restricted="{{ cell.shift.requires_code|yesno:'true,false' }}" data-owner="{{ cell.shift.owner|default:'null' }}">
                                                 {% if cell.shift.owner %}
                                                     {{ cell.shift.owner|truncatechars:8 }}
                                                 {% else %}

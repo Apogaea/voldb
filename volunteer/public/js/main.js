@@ -70,7 +70,7 @@ $(document).ready( function () {
      *  Shift grid view claiming and releasing.
      */
     function bindToClaimShift() {
-        $("a.claim-shift").click(function(e) {
+        $("a.shift-toggle").click(function(e) {
             e.preventDefault();
             var link = this;
             // Render the modal window
@@ -81,10 +81,19 @@ $(document).ready( function () {
             var requiresCode = ($(this).data("restricted") && !_.isNull(ownerId));
             // The shift id.
             var shiftId = $(this).data("shift");
+            // The depeartment id.
+            var departmentId = $(this).data("department");
+            // The time that the shift starts
+            var time = $(this).data("start_time");
+            // The duration of the shift
+            var shift_length = $(this).data("shift_length");
             var modal = $(template({
                 restricted: requiresCode,
                 owner: ownerId,
-                shift: shiftId
+                shift: shiftId,
+                department: departmentId,
+                time: time,
+                shift_length: shift_length,
             }));
             modal.submit( function(e) {
                 e.preventDefault();
@@ -108,6 +117,9 @@ $(document).ready( function () {
                 link.data("shift", data.id);
                 link.data("restricted", data.requires_code);
                 link.data("owner", data.owner);
+                link.data("department", data.department);
+                link.data("time", data.start_time);
+                link.data("shift_length", data.shift_length);
                 link.text(data.display_text);
                 $.modal.close();
             },
