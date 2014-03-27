@@ -3,13 +3,14 @@ from accounts.models import User
 from profiles.models import Profile
 import pprint
 
+
 class ProfileView(DetailView):
     queryset = Profile.objects.all()
     template_name = "profiles/profile.html"
 
     def get_object(self):
         # Call the superclass
-        profile= super(ProfileView, self).get_object()
+        profile = super(ProfileView, self).get_object()
         # Update the user
         return profile
 

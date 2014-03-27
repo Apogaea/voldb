@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from accounts.models import User
 
+
 class Profile(models.Model):
     full_name = models.CharField(max_length=100, unique=True)
     display_name = models.CharField(max_length=64, unique=True)
@@ -10,11 +11,9 @@ class Profile(models.Model):
     phone = models.CharField(max_length=16)    
     user = models.OneToOneField(User, related_name='profile')
 
-def user_post_save(sender, instance, created, **kwargs):
-    """Create a user profile when a new user account is created"""
+def create_volunteer_profile(sender, instance, created, **kwargs):
+    #Create a user profile when a new user account is created
     if created == True:
-        p = Profile()
-        p.account = instance
-        p.save()
+        Profile.objects.get_or_create(user=instance)
 
-post_save.connect(user_post_save, sender=User)
+post_save.connect(create_volunteer_profile, sender=User)
