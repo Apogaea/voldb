@@ -8,7 +8,7 @@ from departments.models import Department
 
 
 class Shift(models.Model):
-    department = models.ForeignKey(Department, related_name='shifts')
+    department = models.ForeignKey(Department)
     start_time = models.DateTimeField('shift begins')
     shift_length = models.PositiveSmallIntegerField(default=3)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='shifts')
@@ -17,9 +17,9 @@ class Shift(models.Model):
 
     def __str__(self):
         if self.owner:
+            # this should probably try for a nickname
+            # first if one exists
             return '{0}'.format(
-                #this should probably try for a nickname
-                #first if one exists
                 self.owner,
             )[:7]
         else:
