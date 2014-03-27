@@ -99,7 +99,7 @@ body {
     background-image: url('../img/Apogaea_web_header_2014.png');
     background-position: center top, center bottom, center top;
     background-repeat: no-repeat, no-repeat, repeat-y;
-     background-attachment: fixed;  
+    background-attachment: fixed;  
     color: #000;
 
     border-bottom-left-radius: 8px;
@@ -180,10 +180,10 @@ body section {
     color: #000;  
     font-size: 0.9em;
 
-   background: #7f2008;
+    background: #7f2008;
     background-color: rgba(127,32,8,0.8);
 
-   color: #e8d758;
+    color: #e8d758;
 
 }
 #primarynav a:hover {
@@ -241,7 +241,9 @@ hr.close {
     padding-left: 1px;
 }
 
-
+#shiftgrid tr.hours th {
+    width: 4%;
+}
 #shiftgrid th.department {
     text-align: right;
     padding-right: 8px;
@@ -264,6 +266,8 @@ hr.close {
     border-radius: 16px;
     border: 1px solid #db3;
     margin: 0px 0px 1px 0px;
+    overflow: hidden;
+    max-height: 1.5em;
 }
 
 #shiftgrid td.shift a.busy,
@@ -280,25 +284,42 @@ hr.close {
     border: 1px solid #db3;
 }
 
+#shiftgrid td.shift a.open-shift:hover {
+    transition: border-color 3.1s ease-in;
+    transition: border-color 0.3s ease-out;
+    background-color: rgba(195,159,37,1); 
+    border: 1px solid #fff;
+    cursor: cell;
+}
+
 #shiftgrid td.shift a.claimed-shift {
+    transition: background-color 0.3s ease-in-out;
+    background-color: rgba(192,192,192,0.6); 
+    border: 1px solid #eee;
+    color: #222;
+}
+
+#shiftgrid td.shift a.claimed-shift:hover {
+    transition: border-color 3.1s ease-in;
+    transition: border-color 0.3s ease-out;
+    background-color: rgba(192,192,192,0.9); 
+    border: 1px solid #666;
+}
+
+#shiftgrid td.shift a.locked {
     transition: background-color 0.3s ease-in-out;
     background-color: rgba(128,128,192,0.4); 
     border: 1px solid #777;
     color: #444;
 }
 
-#shiftgrid td.shift a.open-shift:hover {
+#shiftgrid td.shift a.locked:hover {
     transition: border-color 3.1s ease-in;
     transition: border-color 0.3s ease-out;
-    background-color: rgba(195,159,37,1); 
-    border: 1px solid #fff;
-}
-
-#shiftgrid td.shift a.claimed-shift:hover {
-    transition: border-color 3.1s ease-in;
-    transition: border-color 0.3s ease-out;
-    background-color: rgba(128,128,128,1); 
-    border: 1px solid #aaa;
+    background-color: rgba(128,128,192,0.4); 
+    border: 1px solid #777;
+    color: #000;
+    cursor: default;
 }
 
 #shiftgrid th {
@@ -329,9 +350,83 @@ hr.close {
 /*
  * Modal window stylin
  */
+
+div#simplemodal-overlay {
+    background-color: rgba(64,32,0,1); 
+
+}
 form.claim-shift-modal {
-    background-color: #ffffff;
-    border: 5 5;
+    background-color: #ccc;
+    background-color: rgba(235,235,235,0.9); 
+    border: 1px solid #fff;
+    padding: 10%;
+    border-radius: 10px; 
+
+    max-width: 340px;
+    min-width: 150px;
+
+    text-align: center;
+}
+form.claim-shift-modal p {
+    font-size: 1em;
+}
+
+form.claim-shift-modal label {
+    font-size: 0.85em;
+    color: #fff;
+    padding: 4px 4px 4px 20px;
+    font-weight: bold;
+    background-color: #444444;
+    background-color: rgba(48,56,64,0.7); 
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    margin: 0px 1px;
+}
+
+form.claim-shift-modal input {
+    color: #fff;
+    font-size: 0.8em;
+    background-color: #000;
+    background-color: rgba(48,56,64,0.9);
+    border: 0px;
+    margin: 0px;
+    padding: 6px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+}
+
+form.claim-shift-modal button {
+    transition: background-color 0.1s ease-in-out;
+    background-color: rgba(128,255,128,0.7); 
+    border-radius: 14px; 
+    display: block;
+    width: 100%;
+    padding: 6px 2px;
+    margin: 10px 0px 2px 0px;
+    border: 1px solid #484;
+    font-size: 0.8em;
+    background-color: rgba(195,159,37,0.8); 
+    border: 1px solid #db3;
+    
+}
+form.claim-shift-modal button:hover {
+    transition: border-color 3.1s ease-in;
+    transition: border-color 0.3s ease-out;
+    background-color: rgba(195,159,37,1); 
+    border: 1px solid #fff;
+}
+
+form.claim-shift-modal button.cancel {
+    background-color: rgba(128,128,128,0.7); 
+    border: 1px solid #666;
+}
+
+form.claim-shift-modal button.cancel:hover {
+    transition: border-color 3.1s ease-in;
+    transition: border-color 0.3s ease-out;
+    background-color: rgba(128,128,128,1); 
+    border: 1px solid #aaa;
 }
 
 
