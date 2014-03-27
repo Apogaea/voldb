@@ -1,8 +1,12 @@
+import datetime
+
 from django.test import TestCase
 
 from shifts.models import Shift
 from departments.factories import DepartmentFactory
-from shifts.factories import ShiftFactory, today_at_hour, yesterday_at_hour
+from shifts.factories import (
+    ShiftFactory, today_at_hour, yesterday_at_hour, tomorrow_at_hour,
+)
 from shifts.utils import (
     pairwise,
     shifts_to_tabular_data,
@@ -10,6 +14,7 @@ from shifts.utils import (
     get_num_columns,
     group_shifts,
     shifts_to_non_overlapping_rows,
+    build_shift_column,
 )
 
 
@@ -41,6 +46,37 @@ class OverlapsMethodTest(TestCase):
 
         self.assertTrue(shift_a.overlaps_with(shift_b))
         self.assertTrue(shift_b.overlaps_with(shift_a))
+
+
+class BuildShiftColumnTest(TestCase):
+    def test_non_midnight_spanning_shift(self):
+        shift = ShiftFactory(start_time=today_at_hour(6), shift_length=3)
+        column_data = build_shift_column(shift, datetime.date.today())
+        self.assertEqual(column_data.get('columns'), shift.shift_length)
+
+    def test_span_previous_midnight(self):
+        shift = ShiftFactory(start_time=yesterday_at_hour(23), shift_length=9)
+        column_data = build_shift_column(shift, datetime.date.today())
+        self.assertEqual(column_data.get('columns'), 8)
+
+    def test_span_next_midnight(self):
+        shift = ShiftFactory(start_time=today_at_hour(23), shift_length=9)
+        column_data = build_shift_column(shift, datetime.date.today())
+        self.assertEqual(column_data.get('columns'), 1)
+
+
+class SpansMidnightPropertyTest(TestCase):
+    def test_doesnt_span_midnight(self):
+        shift = ShiftFactory(start_time=today_at_hour(6), shift_length=3)
+        self.assertFalse(shift.is_midnight_spanning)
+
+    def test_does_span_midnight(self):
+        shift = ShiftFactory(start_time=today_at_hour(23), shift_length=3)
+        self.assertTrue(shift.is_midnight_spanning)
+
+    def test_really_long_shift(self):
+        shift = ShiftFactory(start_time=today_at_hour(23), shift_length=26)
+        self.assertTrue(shift.is_midnight_spanning)
 
 
 def has_overlaps(shifts):
@@ -146,7 +182,7 @@ class ShiftsToNonOverlappingRowsTest(TestCase):
 
 class ShiftsToTabularDataTest(TestCase):
     def test_with_no_shifts(self):
-        data = shifts_to_tabular_data([])
+        data = shifts_to_tabular_data([], datetime.date.today())
         self.assertEqual(len(data), 24)
 
         self.assertTrue(all(d == EMPTY_COLUMN for d in data))
@@ -161,7 +197,7 @@ class ShiftsToTabularDataTest(TestCase):
         # shift from 6pm to 9pm
         shifts.append(ShiftFactory(start_time=today_at_hour(18), shift_length=3))
 
-        data = shifts_to_tabular_data(shifts)
+        data = shifts_to_tabular_data(shifts, datetime.date.today())
         self.assertEqual(get_num_columns(data), 24)
 
         empties = data[0:9] + data[11:14] + data[15:]
@@ -178,7 +214,7 @@ class ShiftsToTabularDataTest(TestCase):
         shifts.append(ShiftFactory(start_time=today_at_hour(18), shift_length=3))
         shifts.append(ShiftFactory(start_time=today_at_hour(18), shift_length=3))
 
-        data = shifts_to_tabular_data(shifts)
+        data = shifts_to_tabular_data(shifts, datetime.date.today())
         self.assertEqual(get_num_columns(data), 24)
 
     def test_with_overlapping_shifts(self):
@@ -188,8 +224,38 @@ class ShiftsToTabularDataTest(TestCase):
         shifts.append(ShiftFactory(start_time=today_at_hour(8), shift_length=3))
         shifts.append(ShiftFactory(start_time=today_at_hour(10), shift_length=3))
 
-        data = shifts_to_tabular_data(shifts)
+        data = shifts_to_tabular_data(shifts, datetime.date.today())
         self.assertEqual(get_num_columns(data), 24)
+
+    def test_with_shift_that_spans_previous_midnight(self):
+        shifts = []
+        # 3 hour shifts, staggered 2 hours apart.
+        shifts.append(ShiftFactory(start_time=yesterday_at_hour(23), shift_length=5))
+        shifts.append(ShiftFactory(start_time=today_at_hour(4), shift_length=5))
+        shifts.append(ShiftFactory(start_time=today_at_hour(9), shift_length=5))
+        shifts.append(ShiftFactory(start_time=today_at_hour(14), shift_length=5))
+
+        data = shifts_to_tabular_data(shifts, datetime.date.today())
+        self.assertEqual(get_num_columns(data), 24)
+        self.assertEqual(len(data), 9)
+        self.assertEqual(data[0]['columns'], 4)
+        self.assertTrue(all(c['columns'] == 5 for c in data[1:4]))
+        self.assertTrue(all(c['columns'] == 1 for c in data[4:]))
+
+    def test_with_shift_that_spans_upcoming_midnight(self):
+        shifts = []
+        # 3 hour shifts, staggered 2 hours apart.
+        shifts.append(ShiftFactory(start_time=today_at_hour(5), shift_length=5))
+        shifts.append(ShiftFactory(start_time=today_at_hour(10), shift_length=5))
+        shifts.append(ShiftFactory(start_time=today_at_hour(15), shift_length=5))
+        shifts.append(ShiftFactory(start_time=today_at_hour(20), shift_length=5))
+
+        data = shifts_to_tabular_data(shifts, datetime.date.today())
+        self.assertEqual(get_num_columns(data), 24)
+        self.assertEqual(len(data), 9)
+        self.assertTrue(all(c['columns'] == 1 for c in data[:5]))
+        self.assertTrue(all(c['columns'] == 5 for c in data[5:8]))
+        self.assertEqual(data[8]['columns'], 4)
 
 
 class ShiftsGroupingTest(TestCase):
@@ -238,3 +304,35 @@ class ShiftsGroupingTest(TestCase):
         self.assertEqual(data_3['date'], today)
         self.assertEqual(data_3['length'], 3)
         self.assertEqual(len(data_3['tabular']), 20)  # this is the tabular data, dunno what to assert.
+
+    def test_complex_grouping_with_shifts_spanning_midnight(self):
+        dpw = DepartmentFactory()
+        greeters = DepartmentFactory(name='Greeters')
+
+        today = today_at_hour(0).date()
+        yesterday = yesterday_at_hour(0).date()
+        tomorrow = tomorrow_at_hour(0).date()
+
+        # shift yesterday dpw
+        s1 = ShiftFactory(start_time=yesterday_at_hour(11), shift_length=12)
+        ShiftFactory(start_time=yesterday_at_hour(23), shift_length=12)
+        # shift today dpw
+        ShiftFactory(start_time=today_at_hour(11), shift_length=12)
+        ShiftFactory(start_time=today_at_hour(23), shift_length=12)
+        # shift today dpw
+        ShiftFactory(start_time=tomorrow_at_hour(11), shift_length=12)
+
+        data = list(group_shifts(Shift.objects.all()))
+
+        self.assertEqual(len(data), 3)
+
+        data_0, data_1, data_2 = data
+
+        self.assertEqual(data_0['date'], yesterday)
+        self.assertEqual(len(data_0['tabular']), 13)  # this is the tabular data, dunno what to assert.
+
+        self.assertEqual(data_1['date'], today)
+        self.assertEqual(len(data_1['tabular']), 3)  # this is the tabular data, dunno what to assert.
+
+        self.assertEqual(data_2['date'], tomorrow)
+        self.assertEqual(len(data_2['tabular']), 3)  # this is the tabular data, dunno what to assert.

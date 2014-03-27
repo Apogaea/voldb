@@ -6,6 +6,8 @@ from django.conf import settings
 
 from departments.models import Department
 
+from shifts.utils import DENVER_TIMEZONE
+
 
 class Shift(models.Model):
     department = models.ForeignKey(Department)
@@ -38,3 +40,11 @@ class Shift(models.Model):
 
     def requires_code(self):
         return bool(self.code)
+
+    @property
+    def is_midnight_spanning(self):
+        if self.shift_length > 24:
+            return True
+        start_hour = self.start_time.astimezone(DENVER_TIMEZONE).hour
+        end_hour = self.end_time.astimezone(DENVER_TIMEZONE).hour
+        return start_hour > end_hour

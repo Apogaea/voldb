@@ -1,5 +1,6 @@
 import operator
 import itertools
+import functools
 
 from django.utils import timezone
 
@@ -23,15 +24,28 @@ def pairwise(iterable):
     return itertools.izip(a, b)
 
 
-def build_shift_column(shift):
+def build_shift_column(shift, date):
     classes = ['shift']
     if shift.owner:
         classes.append('claimed')
     if shift.requires_code() and not shift.owner:
         classes.append('restricted')
 
+    if shift.is_midnight_spanning:
+        if shift.start_time.astimezone(DENVER_TIMEZONE).date() == date:
+            classes.append('cutoff-right')
+            columns = 24 - shift.start_time.astimezone(DENVER_TIMEZONE).hour
+        elif shift.end_time.astimezone(DENVER_TIMEZONE).date() == date:
+            classes.append('cutoff-left')
+            columns = shift.end_time.astimezone(DENVER_TIMEZONE).hour
+        else:
+            raise ValueError('Shift does not appear to start or end on the '
+                             'provided date')
+    else:
+        columns = shift.shift_length
+
     return {
-        'columns': shift.shift_length,
+        'columns': columns,
         'classes': ' '.join(classes),
         'shift': shift,
     }
@@ -63,7 +77,7 @@ def shifts_to_non_overlapping_rows(shifts):
         shifts = overlappers
 
 
-def shifts_to_tabular_data(shifts):
+def shifts_to_tabular_data(shifts, date):
     """
     Given a row of equal length shifts for a single department and day, returns
     a data structure suitable for outputting them in a tabular data structure.
@@ -71,11 +85,12 @@ def shifts_to_tabular_data(shifts):
     data = []
 
     for shift in shifts:
-        current_hour = get_num_columns(data)
-        for i in range(current_hour, shift.start_time.astimezone(DENVER_TIMEZONE).hour):
-            data.append(EMPTY_COLUMN)
+        if shift.start_time.astimezone(DENVER_TIMEZONE).date() == date:
+            current_hour = get_num_columns(data)
+            for i in range(current_hour, shift.start_time.astimezone(DENVER_TIMEZONE).hour):
+                data.append(EMPTY_COLUMN)
 
-        data.append(build_shift_column(shift))
+        data.append(build_shift_column(shift, date))
 
     while get_num_columns(data) < 24:
         data.append(EMPTY_COLUMN)
@@ -89,20 +104,35 @@ def group_shifts(shifts):
 
     date -> department -> length -> start time
     """
-    date_getter = lambda shift: shift.start_time.astimezone(DENVER_TIMEZONE).date()
     department_getter = lambda shift: shift.department
     length_getter = lambda shift: shift.shift_length
 
-    overall_sort_key = lambda s: (s.start_time.astimezone(DENVER_TIMEZONE).date(), s.department_id, s.shift_length, s.start_time.astimezone(DENVER_TIMEZONE).time())
-
-    shifts = sorted(
-        shifts,
-        key=overall_sort_key,
+    overall_sort_key = lambda s: (
+        s.department_id,
+        s.shift_length,
+        s.start_time.astimezone(DENVER_TIMEZONE),
     )
 
-    date_groups = itertools.groupby(shifts, date_getter)
+    dates = sorted(
+        set(
+            shift.start_time.astimezone(DENVER_TIMEZONE).date() for shift in shifts
+        ) | set(
+            shift.end_time.astimezone(DENVER_TIMEZONE).date() for shift in shifts
+        )
+    )
 
-    for date, shifts_by_date in date_groups:
+    def shift_intersects_date(date, shift):
+        if shift.start_time.astimezone(DENVER_TIMEZONE).date() == date:
+            return True
+        if shift.end_time.astimezone(DENVER_TIMEZONE).date() == date:
+            return True
+        return False
+
+    for date in dates:
+        shifts_by_date = sorted(filter(
+            functools.partial(shift_intersects_date, date),
+            shifts,
+        ), key=overall_sort_key)
         department_groups = itertools.groupby(shifts_by_date, department_getter)
         for department, shifts_by_department in department_groups:
             length_groups = itertools.groupby(shifts_by_department, length_getter)
@@ -112,5 +142,5 @@ def group_shifts(shifts):
                         'date': date,
                         'department': department,
                         'length': length,
-                        'tabular': shifts_to_tabular_data(shift_row),
+                        'tabular': shifts_to_tabular_data(shift_row, date),
                     }
