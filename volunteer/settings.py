@@ -36,15 +36,15 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    #third party
+    # third party
     'authtools',
     'backupdb',
     'betterforms',
     'emailtools',
     'rest_framework',
-    #local project
+    # local project
     'volunteer',
-    #local apps
+    # local apps
     'departments',
     'shifts',
     'accounts',
@@ -95,7 +95,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
-#I made static files work
+# I made static files work
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
@@ -103,8 +103,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'volunteer', 'public'),
 )
 
-#Adding Auth Tools
-#http://django-authtools.readthedocs.org/en/latest/intro.html#quick-setup
+# Adding Auth Tools
+# http://django-authtools.readthedocs.org/en/latest/intro.html#quick-setup
 AUTH_USER_MODEL = 'accounts.User'
 
 
@@ -122,6 +122,12 @@ EMAIL_BACKEND = os.environ.get(
     'DJANGO_EMAIL_BACKEND',
     'django.core.mail.backends.smtp.EmailBackend',
 )
+EMAIL_HOST = os.environ.get('EMAIL_HOST', 'localhost')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+EMAIL_PORT = os.environ.get('EMAIL_PORT', '25')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS') == 'True'
+EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL') == 'True'
 
 # `django.contrib.sites` settings
 SITE_ID = 1
