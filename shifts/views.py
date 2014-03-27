@@ -17,7 +17,7 @@ class GridView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(GridView, self).get_context_data(**kwargs)
 
-        context['grouped_shifts'] = list(group_shifts(self.object_list))
+        context['grouped_shifts'] = list(group_shifts(self.object_list))        
         return context
 
     def extract_date(entity):

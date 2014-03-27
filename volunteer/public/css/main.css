@@ -241,7 +241,9 @@ hr.close {
     padding-left: 1px;
 }
 
-
+#shiftgrid tr.hours th {
+    width: 4%;
+}
 #shiftgrid th.department {
     text-align: right;
     padding-right: 8px;
@@ -264,6 +266,8 @@ hr.close {
     border-radius: 16px;
     border: 1px solid #db3;
     margin: 0px 0px 1px 0px;
+    overflow: hidden;
+    max-height: 1.5em;
 }
 
 #shiftgrid td.shift a.busy,
@@ -280,25 +284,42 @@ hr.close {
     border: 1px solid #db3;
 }
 
+#shiftgrid td.shift a.open-shift:hover {
+    transition: border-color 3.1s ease-in;
+    transition: border-color 0.3s ease-out;
+    background-color: rgba(195,159,37,1); 
+    border: 1px solid #fff;
+    cursor: cell;
+}
+
 #shiftgrid td.shift a.claimed-shift {
+    transition: background-color 0.3s ease-in-out;
+    background-color: rgba(192,192,192,0.6); 
+    border: 1px solid #eee;
+    color: #222;
+}
+
+#shiftgrid td.shift a.claimed-shift:hover {
+    transition: border-color 3.1s ease-in;
+    transition: border-color 0.3s ease-out;
+    background-color: rgba(192,192,192,0.9); 
+    border: 1px solid #666;
+}
+
+#shiftgrid td.shift a.locked {
     transition: background-color 0.3s ease-in-out;
     background-color: rgba(128,128,192,0.4); 
     border: 1px solid #777;
     color: #444;
 }
 
-#shiftgrid td.shift a.open-shift:hover {
+#shiftgrid td.shift a.locked:hover {
     transition: border-color 3.1s ease-in;
     transition: border-color 0.3s ease-out;
-    background-color: rgba(195,159,37,1); 
-    border: 1px solid #fff;
-}
-
-#shiftgrid td.shift a.claimed-shift:hover {
-    transition: border-color 3.1s ease-in;
-    transition: border-color 0.3s ease-out;
-    background-color: rgba(128,128,128,1); 
-    border: 1px solid #aaa;
+    background-color: rgba(128,128,192,0.4); 
+    border: 1px solid #777;
+    color: #000;
+    cursor: default;
 }
 
 #shiftgrid th {

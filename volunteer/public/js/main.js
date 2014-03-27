@@ -70,7 +70,11 @@ $(document).ready( function () {
      *  Shift grid view claiming and releasing.
      */
     function bindToClaimShift() {
-        $("a.shift-toggle").click(function(e) {
+        $("a.locked").click(function(e) {
+            e.preventDefault();
+            $(this).effect( "shake", {}, "fast" );
+        });
+        $("a.shift-toggle:not('locked')").click(function(e) {
             e.preventDefault();
             var link = this;
             // Render the modal window
@@ -82,17 +86,17 @@ $(document).ready( function () {
             // The shift id.
             var shiftId = $(this).data("shift");
             // The depeartment id.
-            var departmentId = $(this).data("department");
+            var department = $(this).data("department");
             // The time that the shift starts
-            var time = $(this).data("start_time");
+            var start = $(this).data("start");
             // The duration of the shift
-            var shift_length = $(this).data("shift_length");
+            var shift_length = $(this).data("shift-length");
             var modal = $(template({
                 restricted: requiresCode,
                 owner: ownerId,
                 shift: shiftId,
-                department: departmentId,
-                time: time,
+                department: department,
+                start: start,
                 shift_length: shift_length,
             }));
             modal.submit( function(e) {
@@ -105,6 +109,9 @@ $(document).ready( function () {
             modal.modal();
         });
     }
+    function disableLockedShifts() {
+
+    }
 
     function doShiftAPIRequest(form, link) {
         $.ajax(
@@ -114,13 +121,20 @@ $(document).ready( function () {
             data : form.serializeArray(),
             success: function(data, textStatus, jqXHR)
             {
-                link.data("shift", data.id);
-                link.data("restricted", data.requires_code);
+//              link.data("shift", data.id);
+//                link.data("restricted", data.requires_code);
                 link.data("owner", data.owner);
-                link.data("department", data.department);
-                link.data("time", data.start_time);
-                link.data("shift_length", data.shift_length);
+//                link.data("department", data.department);
+//                link.data("start", data.start);
+//                link.data("shift_length", data.shift_length);
                 link.text(data.display_text);
+                link.removeClass().addClass("shift-toggle");
+                if (data.owner) {
+                    link.removeClass().addClass("claimed-shift");                    
+                } else {
+                    link.removeClass().addClass("open-shift");
+                    link.text("o p e n");
+                }
                 $.modal.close();
             },
             error: function(jqXHR, textStatus, errorThrown)

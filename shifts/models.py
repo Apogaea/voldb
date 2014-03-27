@@ -17,10 +17,11 @@ class Shift(models.Model):
 
     def __str__(self):
         if self.owner:
-            return '{0} @ {1}'.format(
+            return '{0}'.format(
+                #this should probably try for a nickname
+                #first if one exists
                 self.owner,
-                self.start_time.strftime('%H:%M'),
-            )
+            )[:7]
         else:
             return self.start_time.strftime('%H:%M')
 

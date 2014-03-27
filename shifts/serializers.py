@@ -18,7 +18,7 @@ class ShiftSerializer(serializers.ModelSerializer):
         model = Shift
         fields = (
             'id', 'owner', 'display_text', 'verification_code',
-            'requires_code','department', 'start_time', 'shift_length',
+            'requires_code',
         )
 
     def validate(self, attrs):
