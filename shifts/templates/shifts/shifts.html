@@ -8,6 +8,30 @@
 
 <section id="shiftgrid">
 
+{% verbatim %}
+<script id="claim-modal" type="text/x-handlebars-template">
+  <form class="claim-shift-modal" action="/api/shifts/{{shift}}/" method="post">
+      <p>
+        {{#if owner}}
+            Claim shift?
+        {{else}}
+            Release shift?
+        {{/if}}
+      </p>
+      <p>
+      <ul class="errors">
+      </ul>
+      {{#if restricted}}
+          <label for="verification_code">Code</label>
+          <input type="text" name="verification_code">
+      {{/if}}
+      <input type="hidden" name="owner" value="{{owner}}">
+      <button type="button" class="cancel">Cancel</button>
+      <button type="submit">{{#if owner}}Cliam{{else}}Release{{/if}}</button>
+  </form>
+</script>
+{% endverbatim %}
+
 {% regroup grouped_shifts by date as shifts_by_dates %}
 {% for shifts_on_date in shifts_by_dates %}
     {% ifchanged %}<h2><span>{{ shifts_on_date.grouper|date:"l, M jS, Y" }}</span></h2>{% endifchanged %}
@@ -34,15 +58,18 @@
                         {% for row in length.list %}
                             <tr>
                                 {% for cell in row.tabular %}
-                                    <td class="{{ cell.class }}" colspan="{{ cell.columns }}">
-                                        {% if cell.shift.owner %}
-                                            <span><a class="claimed-shift" href="/shifts/release/{{ shift.id }}" alt="{{ shift.owner }} @ {{ shift.start_at }}" title="{{ shift.owner }} @ {{ shift.start_at }}">{{ shift.owner|stringformat:"s"|slice:":6" }}..</a></span>
-                                        {% elif cell.shift %}
-                                            <span><a class="open-shift" href="/shifts/claim/{{ shift.id }}" alt="{{ shift.start_at }}" title="{{ shift.start_at }}">o p e n</a></span>
-                                        {% endif %}                                        
+                                    <td class="{{ cell.classes }}" colspan="{{ cell.columns }}">
+                                        {% if cell.shift %}
+                                        <a class="claim-shift" href="#" data-shift="{{ cell.shift.pk }}" data-restricted="{{ cell.shift.requires_code|yesno:'true,false' }}" data-owner="{{ cell.shift.owner|default:'null' }}">
+                                                {% if cell.shift.owner %}
+                                                    {{ cell.shift.owner|truncatechars:8 }}
+                                                {% else %}
+                                                    o p e n
+                                                {% endif %}
+                                            </a>
+                                        {% endif %}
                                     </td>
                                 {% endfor %}
-
                             </tr>
                         {% endfor %}
                         <tr class="bottom"><th colspan="24"></th></tr>

@@ -5,7 +5,7 @@ from django.utils import timezone
 
 EMPTY_COLUMN = {
     'columns': 1,
-    'class': 'empty',
+    'classes': 'empty',
 }
 
 DENVER_TIMEZONE = timezone.get_default_timezone()
@@ -24,9 +24,15 @@ def pairwise(iterable):
 
 
 def build_shift_column(shift):
+    classes = ['shift']
+    if shift.owner:
+        classes.append('claimed')
+    if shift.requires_code() and not shift.owner:
+        classes.append('restricted')
+
     return {
         'columns': shift.shift_length,
-        'class': 'shift',
+        'classes': ' '.join(classes),
         'shift': shift,
     }
 
