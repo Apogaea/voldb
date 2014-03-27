@@ -76,7 +76,6 @@ $(document).ready( function () {
         });
         $("a.shift-toggle:not('locked')").click(function(e) {
             e.preventDefault();
-            var link = this;
             // Render the modal window
             var template = Handlebars.compile($("#claim-modal").html());
             // The owner id to submit.
@@ -101,7 +100,7 @@ $(document).ready( function () {
             }));
             modal.submit( function(e) {
                 e.preventDefault();
-                doShiftAPIRequest($(this), $(link));
+                doShiftAPIRequest($(this));
             });
             modal.find("button.cancel").click( function() {
                 $.modal.close();
@@ -121,8 +120,9 @@ $(document).ready( function () {
             data : form.serializeArray(),
             success: function(data, textStatus, jqXHR)
             {
-//              link.data("shift", data.id);
-//                link.data("restricted", data.requires_code);
+                var link = $("a.shift-" + data.id);
+                link.data("shift", data.id);
+                link.data("restricted", data.requires_code);
                 link.data("owner", data.owner);
 //                link.data("department", data.department);
 //                link.data("start", data.start);

@@ -17,6 +17,10 @@ def yesterday_at_hour(hour):
     return today_at_hour(hour) - datetime.timedelta(1)
 
 
+def tomorrow_at_hour(hour):
+    return today_at_hour(hour) + datetime.timedelta(1)
+
+
 class ShiftFactory(factory.DjangoModelFactory):
     FACTORY_FOR = Shift
     department = factory.SubFactory('departments.factories.DepartmentFactory')
