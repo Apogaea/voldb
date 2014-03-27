@@ -209,7 +209,7 @@ class ShiftsGroupingTest(TestCase):
         # shift today dpw
         ShiftFactory(start_time=today_at_hour(9), shift_length=6)
         ShiftFactory(start_time=today_at_hour(15), shift_length=6)
-        #shifts today greeters
+        # shifts today greeters
         ShiftFactory(start_time=today_at_hour(6), department=greeters, shift_length=3)
         ShiftFactory(start_time=today_at_hour(12), department=greeters, shift_length=3)
 

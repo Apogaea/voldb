@@ -9,8 +9,8 @@ class ClaimView(DetailView):
     template_name = "shifts/shift.html"
 
     def get_object(self):
-        #to fake some server latency
-        #time.sleep(2)
+        # to fake some server latency
+        # time.sleep(2)
         # Call the superclass
         shift = super(ClaimView, self).get_object()
         # Update the user
