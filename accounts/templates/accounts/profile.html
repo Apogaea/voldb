@@ -5,7 +5,6 @@
     <!-- Add your site or application content here -->
     <h1>Volugean Profile {{ user.profile.display_name }}</h1>
     <section>
-      <a href="{% url 'profile_edit' %}">Edit Profile</a>
       <dl>
         <dt>Email:</dt>
             <dd>{{ user.email }}</dd>
@@ -15,5 +14,7 @@
             <dd>{{ user.profile.display_name }}</dd>
         <dt>Phone:</dt>
             <dd>{{ user.profile.phone }}</dd>
+      </dl>
+      <a href="{% url 'profile_edit' %}" class="buttonize">Edit Profile</a>
     </section>
 {% endblock %}

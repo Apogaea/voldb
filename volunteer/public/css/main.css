@@ -105,7 +105,6 @@ body {
     background-image: url('../img/Apogaea_web_header_2014.png');
     background-position: center top, center bottom, center top;
     background-repeat: no-repeat, no-repeat, repeat-y;
-    background-attachment: fixed;  
     color: #000;
 
     border-bottom-left-radius: 8px;
