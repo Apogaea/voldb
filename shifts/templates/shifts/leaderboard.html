@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block body_class %}{{ block.super }} home{% endblock %}
+
+{% block content %}
+<section id="leaderboard">
+  <table>
+    <thead>
+      <tr>
+        <td>Rank</td>
+        <td>Name</td>
+        <td>Hours</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for leader in page_obj %}
+        <tr>
+          <td>{{ forloop.counter0|add:page_obj.start_index }}</td>
+          <td>{{ leader }}</td>
+          <td>{{ leader.shift_length_sum }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>    
+{% endblock %}
