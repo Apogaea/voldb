@@ -1,0 +1,7280 @@
+- model: departments.department
+  pk: 1
+  fields:
+    name: ASS Lead
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 2
+  fields:
+    name: ASS Regular
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 3
+  fields:
+    name: BAMF Fire
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 4
+  fields:
+    name: BAMF Primary
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 5
+  fields:
+    name: BAMF Shift lead
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 6
+  fields:
+    name: BAMF Support
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 7
+  fields:
+    name: BAMF XXXO
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 8
+  fields:
+    name: Center Camp Cafe Lead
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 9
+  fields:
+    name: Center Camp Cafe Volunteer
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 10
+  fields:
+    name: Center Camp Commissary Lead
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 11
+  fields:
+    name: Center Camp Daily Lead
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 12
+  fields:
+    name: Center Camp Ice Lead
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 13
+  fields:
+    name: Center Camp Infrastructure Lead
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 14
+  fields:
+    name: Center Camp Lead
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 15
+  fields:
+    name: Center Camp Performance Lead
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 16
+  fields:
+    name: Center Camp Performance Volunteer
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 17
+  fields:
+    name: Center Camp Regular
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 18
+  fields:
+    name: DMV On-Call special
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 19
+  fields:
+    name: DMV On-Duty special
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 20
+  fields:
+    name: DMV Special requirements
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 21
+  fields:
+    name: DPW Regular
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 22
+  fields:
+    name: Fire Convergence Daily Lead
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 23
+  fields:
+    name: Fire Convergence Special training
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 24
+  fields:
+    name: Gate Daily Lead
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 25
+  fields:
+    name: Gate regular
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 26
+  fields:
+    name: greener regular
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 27
+  fields:
+    name: Parking Lead
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 28
+  fields:
+    name: Parking Regular
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 29
+  fields:
+    name: Parking Shuttle Pilot
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 30
+  fields:
+    name: Parking Traffic Tower
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 31
+  fields:
+    name: Placement peak capacity survey
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 32
+  fields:
+    name: Placement Regular
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 33
+  fields:
+    name: Quartermaster Regular
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 34
+  fields:
+    name: Rangers Incident Command
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 35
+  fields:
+    name: Rangers Khaki
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 36
+  fields:
+    name: Rangers Ranger
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 37
+  fields:
+    name: Volunteer Daily Lead
+    description: 
+    active_lead: 
+    active_liaison: 
+- model: departments.department
+  pk: 38
+  fields:
+    name: Volunteer Regular
+    description: 
+    active_lead: 
+    active_liaison:
+- model: shifts.shift
+  pk: 1  
+  fields:
+    department: 21
+    start_time: 2014-06-04 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 2  
+  fields:
+    department: 21
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 3  
+  fields:
+    department: 21
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 4  
+  fields:
+    department: 21
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 5  
+  fields:
+    department: 21
+    start_time: 2014-06-05 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 6  
+  fields:
+    department: 21
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 7  
+  fields:
+    department: 21
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 8  
+  fields:
+    department: 21
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 9  
+  fields:
+    department: 21
+    start_time: 2014-06-06 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 10  
+  fields:
+    department: 21
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 11  
+  fields:
+    department: 21
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 12  
+  fields:
+    department: 21
+    start_time: 2014-06-06 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 13  
+  fields:
+    department: 21
+    start_time: 2014-06-07 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 14  
+  fields:
+    department: 21
+    start_time: 2014-06-07 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 15  
+  fields:
+    department: 21
+    start_time: 2014-06-07 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 16  
+  fields:
+    department: 21
+    start_time: 2014-06-07 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 17  
+  fields:
+    department: 38
+    start_time: 2014-06-04 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 18  
+  fields:
+    department: 38
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 19  
+  fields:
+    department: 38
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 20  
+  fields:
+    department: 38
+    start_time: 2014-06-04 18:00:00
+    shift_length: 2
+    code: None
+- model: shifts.shift
+  pk: 21  
+  fields:
+    department: 38
+    start_time: 2014-06-05 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 22  
+  fields:
+    department: 38
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 23  
+  fields:
+    department: 38
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 24  
+  fields:
+    department: 38
+    start_time: 2014-06-05 18:00:00
+    shift_length: 2
+    code: None
+- model: shifts.shift
+  pk: 25  
+  fields:
+    department: 38
+    start_time: 2014-06-06 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 26  
+  fields:
+    department: 38
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 27  
+  fields:
+    department: 38
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 28  
+  fields:
+    department: 38
+    start_time: 2014-06-06 18:00:00
+    shift_length: 2
+    code: None
+- model: shifts.shift
+  pk: 29  
+  fields:
+    department: 37
+    start_time: 2014-06-04 9:00:00
+    shift_length: 1
+    code: None
+- model: shifts.shift
+  pk: 30  
+  fields:
+    department: 37
+    start_time: 2014-06-05 9:00:00
+    shift_length: 1
+    code: None
+- model: shifts.shift
+  pk: 31  
+  fields:
+    department: 37
+    start_time: 2014-06-06 9:00:00
+    shift_length: 1
+    code: None
+- model: shifts.shift
+  pk: 32  
+  fields:
+    department: 37
+    start_time: 2014-06-07 9:00:00
+    shift_length: 1
+    code: None
+- model: shifts.shift
+  pk: 33  
+  fields:
+    department: 2
+    start_time: 2014-06-03 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 34  
+  fields:
+    department: 2
+    start_time: 2014-06-03 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 35  
+  fields:
+    department: 2
+    start_time: 2014-06-03 21:00:00
+    shift_length: 9
+    code: None
+- model: shifts.shift
+  pk: 36  
+  fields:
+    department: 2
+    start_time: 2014-06-04 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 37  
+  fields:
+    department: 2
+    start_time: 2014-06-04 3:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 38  
+  fields:
+    department: 2
+    start_time: 2014-06-04 6:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 39  
+  fields:
+    department: 2
+    start_time: 2014-06-04 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 40  
+  fields:
+    department: 2
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 41  
+  fields:
+    department: 2
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 42  
+  fields:
+    department: 2
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 43  
+  fields:
+    department: 2
+    start_time: 2014-06-04 21:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 44  
+  fields:
+    department: 2
+    start_time: 2014-06-05 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 45  
+  fields:
+    department: 2
+    start_time: 2014-06-05 3:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 46  
+  fields:
+    department: 2
+    start_time: 2014-06-05 6:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 47  
+  fields:
+    department: 2
+    start_time: 2014-06-05 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 48  
+  fields:
+    department: 2
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 49  
+  fields:
+    department: 2
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 50  
+  fields:
+    department: 2
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 51  
+  fields:
+    department: 2
+    start_time: 2014-06-05 21:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 52  
+  fields:
+    department: 2
+    start_time: 2014-06-06 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 53  
+  fields:
+    department: 2
+    start_time: 2014-06-06 3:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 54  
+  fields:
+    department: 2
+    start_time: 2014-06-06 6:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 55  
+  fields:
+    department: 2
+    start_time: 2014-06-06 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 56  
+  fields:
+    department: 2
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 57  
+  fields:
+    department: 2
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 58  
+  fields:
+    department: 2
+    start_time: 2014-06-06 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 59  
+  fields:
+    department: 2
+    start_time: 2014-06-06 21:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 60  
+  fields:
+    department: 2
+    start_time: 2014-06-07 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 61  
+  fields:
+    department: 2
+    start_time: 2014-06-07 3:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 62  
+  fields:
+    department: 2
+    start_time: 2014-06-07 6:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 63  
+  fields:
+    department: 2
+    start_time: 2014-06-07 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 64  
+  fields:
+    department: 2
+    start_time: 2014-06-07 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 65  
+  fields:
+    department: 2
+    start_time: 2014-06-07 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 66  
+  fields:
+    department: 2
+    start_time: 2014-06-07 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 67  
+  fields:
+    department: 2
+    start_time: 2014-06-07 21:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 68  
+  fields:
+    department: 2
+    start_time: 2014-06-08 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 69  
+  fields:
+    department: 33
+    start_time: 2014-06-08 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 70  
+  fields:
+    department: 33
+    start_time: 2014-06-08 13:00:00
+    shift_length: 5
+    code: None
+- model: shifts.shift
+  pk: 71  
+  fields:
+    department: 33
+    start_time: 2014-06-09 13:00:00
+    shift_length: 5
+    code: None
+- model: shifts.shift
+  pk: 72  
+  fields:
+    department: 33
+    start_time: 2014-06-09 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 73  
+  fields:
+    department: 38
+    start_time: 2014-05-31 12:00:00
+    shift_length: 2
+    code: None
+- model: shifts.shift
+  pk: 74  
+  fields:
+    department: 38
+    start_time: 2014-05-31 14:00:00
+    shift_length: 2
+    code: None
+- model: shifts.shift
+  pk: 75  
+  fields:
+    department: 32
+    start_time: 2014-05-31 9:00:00
+    shift_length: 3
+    code: WorkWeekend2
+- model: shifts.shift
+  pk: 76  
+  fields:
+    department: 32
+    start_time: 2014-05-31 12:00:00
+    shift_length: 3
+    code: WorkWeekend2
+- model: shifts.shift
+  pk: 77  
+  fields:
+    department: 32
+    start_time: 2014-05-31 15:00:00
+    shift_length: 3
+    code: WorkWeekend2
+- model: shifts.shift
+  pk: 78  
+  fields:
+    department: 32
+    start_time: 2014-06-01 9:00:00
+    shift_length: 3
+    code: WorkWeekend2
+- model: shifts.shift
+  pk: 79  
+  fields:
+    department: 32
+    start_time: 2014-06-03 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 80  
+  fields:
+    department: 32
+    start_time: 2014-06-03 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 81  
+  fields:
+    department: 32
+    start_time: 2014-06-03 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 82  
+  fields:
+    department: 32
+    start_time: 2014-06-06 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 83  
+  fields:
+    department: 32
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 84  
+  fields:
+    department: 32
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 85  
+  fields:
+    department: 31
+    start_time: 2014-06-07 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 86  
+  fields:
+    department: 26
+    start_time: 2014-06-04 10:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 87  
+  fields:
+    department: 26
+    start_time: 2014-06-04 14:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 88  
+  fields:
+    department: 26
+    start_time: 2014-06-05 10:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 89  
+  fields:
+    department: 26
+    start_time: 2014-06-05 14:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 90  
+  fields:
+    department: 26
+    start_time: 2014-06-06 10:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 91  
+  fields:
+    department: 26
+    start_time: 2014-06-06 14:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 92  
+  fields:
+    department: 26
+    start_time: 2014-06-07 10:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 93  
+  fields:
+    department: 26
+    start_time: 2014-06-07 14:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 94  
+  fields:
+    department: 26
+    start_time: 2014-06-08 10:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 95  
+  fields:
+    department: 26
+    start_time: 2014-06-08 14:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 96  
+  fields:
+    department: 26
+    start_time: 2014-06-02 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 97  
+  fields:
+    department: 25
+    start_time: 2014-06-03 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 98  
+  fields:
+    department: 25
+    start_time: 2014-06-03 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 99  
+  fields:
+    department: 25
+    start_time: 2014-06-04 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 100  
+  fields:
+    department: 25
+    start_time: 2014-06-04 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 101  
+  fields:
+    department: 25
+    start_time: 2014-06-04 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 102  
+  fields:
+    department: 25
+    start_time: 2014-06-05 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 103  
+  fields:
+    department: 25
+    start_time: 2014-06-05 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 104  
+  fields:
+    department: 25
+    start_time: 2014-06-05 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 105  
+  fields:
+    department: 25
+    start_time: 2014-06-06 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 106  
+  fields:
+    department: 25
+    start_time: 2014-06-06 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 107  
+  fields:
+    department: 25
+    start_time: 2014-06-06 17:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 108  
+  fields:
+    department: 25
+    start_time: 2014-06-07 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 109  
+  fields:
+    department: 25
+    start_time: 2014-06-07 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 110  
+  fields:
+    department: 25
+    start_time: 2014-06-07 17:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 111  
+  fields:
+    department: 16
+    start_time: 2014-06-04 8:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 112  
+  fields:
+    department: 9
+    start_time: 2014-06-04 8:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 113  
+  fields:
+    department: 16
+    start_time: 2014-06-04 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 114  
+  fields:
+    department: 9
+    start_time: 2014-06-04 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 115  
+  fields:
+    department: 16
+    start_time: 2014-06-04 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 116  
+  fields:
+    department: 9
+    start_time: 2014-06-04 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 117  
+  fields:
+    department: 16
+    start_time: 2014-06-05 8:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 118  
+  fields:
+    department: 9
+    start_time: 2014-06-05 8:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 119  
+  fields:
+    department: 16
+    start_time: 2014-06-05 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 120  
+  fields:
+    department: 9
+    start_time: 2014-06-05 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 121  
+  fields:
+    department: 16
+    start_time: 2014-06-05 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 122  
+  fields:
+    department: 9
+    start_time: 2014-06-05 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 123  
+  fields:
+    department: 16
+    start_time: 2014-06-06 8:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 124  
+  fields:
+    department: 9
+    start_time: 2014-06-06 8:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 125  
+  fields:
+    department: 16
+    start_time: 2014-06-06 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 126  
+  fields:
+    department: 9
+    start_time: 2014-06-06 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 127  
+  fields:
+    department: 16
+    start_time: 2014-06-06 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 128  
+  fields:
+    department: 9
+    start_time: 2014-06-06 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 129  
+  fields:
+    department: 16
+    start_time: 2014-06-07 8:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 130  
+  fields:
+    department: 9
+    start_time: 2014-06-07 8:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 131  
+  fields:
+    department: 16
+    start_time: 2014-06-07 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 132  
+  fields:
+    department: 9
+    start_time: 2014-06-07 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 133  
+  fields:
+    department: 16
+    start_time: 2014-06-07 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 134  
+  fields:
+    department: 9
+    start_time: 2014-06-07 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 135  
+  fields:
+    department: 28
+    start_time: 2014-06-03 11:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 136  
+  fields:
+    department: 28
+    start_time: 2014-06-03 2:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 137  
+  fields:
+    department: 28
+    start_time: 2014-06-03 4:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 138  
+  fields:
+    department: 28
+    start_time: 2014-06-03 7:00:00
+    shift_length: 2
+    code: None
+- model: shifts.shift
+  pk: 139  
+  fields:
+    department: 28
+    start_time: 2014-06-04 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 140  
+  fields:
+    department: 28
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 141  
+  fields:
+    department: 28
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 142  
+  fields:
+    department: 28
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 143  
+  fields:
+    department: 28
+    start_time: 2014-06-05 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 144  
+  fields:
+    department: 28
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 145  
+  fields:
+    department: 28
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 146  
+  fields:
+    department: 28
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 147  
+  fields:
+    department: 28
+    start_time: 2014-06-06 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 148  
+  fields:
+    department: 28
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 149  
+  fields:
+    department: 28
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 150  
+  fields:
+    department: 28
+    start_time: 2014-06-06 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 151  
+  fields:
+    department: 28
+    start_time: 2014-06-07 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 152  
+  fields:
+    department: 28
+    start_time: 2014-06-07 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 153  
+  fields:
+    department: 28
+    start_time: 2014-06-07 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 154  
+  fields:
+    department: 28
+    start_time: 2014-06-07 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 155  
+  fields:
+    department: 28
+    start_time: 2014-06-08 9:00:00
+    shift_length: 1
+    code: None
+- model: shifts.shift
+  pk: 156  
+  fields:
+    department: 28
+    start_time: 2014-06-09 9:00:00
+    shift_length: 6
+    code: None
+- model: shifts.shift
+  pk: 157  
+  fields:
+    department: 38
+    start_time: 2014-06-04 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 158  
+  fields:
+    department: 38
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 159  
+  fields:
+    department: 38
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 160  
+  fields:
+    department: 38
+    start_time: 2014-06-04 18:00:00
+    shift_length: 2
+    code: None
+- model: shifts.shift
+  pk: 161  
+  fields:
+    department: 38
+    start_time: 2014-06-05 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 162  
+  fields:
+    department: 38
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 163  
+  fields:
+    department: 38
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 164  
+  fields:
+    department: 38
+    start_time: 2014-06-05 18:00:00
+    shift_length: 2
+    code: None
+- model: shifts.shift
+  pk: 165  
+  fields:
+    department: 38
+    start_time: 2014-06-06 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 166  
+  fields:
+    department: 38
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 167  
+  fields:
+    department: 38
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 168  
+  fields:
+    department: 38
+    start_time: 2014-06-06 18:00:00
+    shift_length: 2
+    code: None
+- model: shifts.shift
+  pk: 169  
+  fields:
+    department: 2
+    start_time: 2014-06-03 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 170  
+  fields:
+    department: 2
+    start_time: 2014-06-03 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 171  
+  fields:
+    department: 2
+    start_time: 2014-06-03 21:00:00
+    shift_length: 9
+    code: None
+- model: shifts.shift
+  pk: 172  
+  fields:
+    department: 2
+    start_time: 2014-06-04 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 173  
+  fields:
+    department: 2
+    start_time: 2014-06-04 3:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 174  
+  fields:
+    department: 2
+    start_time: 2014-06-04 6:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 175  
+  fields:
+    department: 2
+    start_time: 2014-06-04 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 176  
+  fields:
+    department: 2
+    start_time: 2014-06-04 21:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 177  
+  fields:
+    department: 2
+    start_time: 2014-06-05 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 178  
+  fields:
+    department: 2
+    start_time: 2014-06-05 3:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 179  
+  fields:
+    department: 2
+    start_time: 2014-06-05 6:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 180  
+  fields:
+    department: 2
+    start_time: 2014-06-05 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 181  
+  fields:
+    department: 2
+    start_time: 2014-06-06 3:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 182  
+  fields:
+    department: 2
+    start_time: 2014-06-06 6:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 183  
+  fields:
+    department: 2
+    start_time: 2014-06-07 3:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 184  
+  fields:
+    department: 2
+    start_time: 2014-06-07 6:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 185  
+  fields:
+    department: 33
+    start_time: 2014-06-08 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 186  
+  fields:
+    department: 33
+    start_time: 2014-06-08 13:00:00
+    shift_length: 5
+    code: None
+- model: shifts.shift
+  pk: 187  
+  fields:
+    department: 33
+    start_time: 2014-06-09 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 188  
+  fields:
+    department: 38
+    start_time: 2014-05-31 12:00:00
+    shift_length: 2
+    code: WorkWeekend2
+- model: shifts.shift
+  pk: 189  
+  fields:
+    department: 38
+    start_time: 2014-05-31 14:00:00
+    shift_length: 2
+    code: WorkWeekend2
+- model: shifts.shift
+  pk: 190  
+  fields:
+    department: 32
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 191  
+  fields:
+    department: 32
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 192  
+  fields:
+    department: 31
+    start_time: 2014-06-07 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 193  
+  fields:
+    department: 26
+    start_time: 2014-06-04 10:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 194  
+  fields:
+    department: 26
+    start_time: 2014-06-04 14:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 195  
+  fields:
+    department: 26
+    start_time: 2014-06-05 10:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 196  
+  fields:
+    department: 26
+    start_time: 2014-06-05 14:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 197  
+  fields:
+    department: 26
+    start_time: 2014-06-06 10:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 198  
+  fields:
+    department: 26
+    start_time: 2014-06-06 14:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 199  
+  fields:
+    department: 26
+    start_time: 2014-06-07 10:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 200  
+  fields:
+    department: 26
+    start_time: 2014-06-07 14:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 201  
+  fields:
+    department: 26
+    start_time: 2014-06-08 10:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 202  
+  fields:
+    department: 26
+    start_time: 2014-06-08 14:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 203  
+  fields:
+    department: 9
+    start_time: 2014-06-04 8:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 204  
+  fields:
+    department: 9
+    start_time: 2014-06-04 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 205  
+  fields:
+    department: 9
+    start_time: 2014-06-04 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 206  
+  fields:
+    department: 9
+    start_time: 2014-06-05 8:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 207  
+  fields:
+    department: 9
+    start_time: 2014-06-05 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 208  
+  fields:
+    department: 9
+    start_time: 2014-06-05 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 209  
+  fields:
+    department: 9
+    start_time: 2014-06-06 8:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 210  
+  fields:
+    department: 9
+    start_time: 2014-06-06 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 211  
+  fields:
+    department: 9
+    start_time: 2014-06-06 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 212  
+  fields:
+    department: 9
+    start_time: 2014-06-07 8:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 213  
+  fields:
+    department: 9
+    start_time: 2014-06-07 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 214  
+  fields:
+    department: 9
+    start_time: 2014-06-07 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 215  
+  fields:
+    department: 2
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 216  
+  fields:
+    department: 2
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 217  
+  fields:
+    department: 2
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 218  
+  fields:
+    department: 2
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 219  
+  fields:
+    department: 2
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 220  
+  fields:
+    department: 2
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 221  
+  fields:
+    department: 2
+    start_time: 2014-06-05 21:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 222  
+  fields:
+    department: 2
+    start_time: 2014-06-06 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 223  
+  fields:
+    department: 2
+    start_time: 2014-06-06 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 224  
+  fields:
+    department: 2
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 225  
+  fields:
+    department: 2
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 226  
+  fields:
+    department: 2
+    start_time: 2014-06-06 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 227  
+  fields:
+    department: 2
+    start_time: 2014-06-06 21:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 228  
+  fields:
+    department: 2
+    start_time: 2014-06-07 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 229  
+  fields:
+    department: 2
+    start_time: 2014-06-07 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 230  
+  fields:
+    department: 2
+    start_time: 2014-06-07 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 231  
+  fields:
+    department: 2
+    start_time: 2014-06-07 21:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 232  
+  fields:
+    department: 2
+    start_time: 2014-06-08 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 233  
+  fields:
+    department: 25
+    start_time: 2014-06-07 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 234  
+  fields:
+    department: 25
+    start_time: 2014-06-07 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 235  
+  fields:
+    department: 25
+    start_time: 2014-06-07 17:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 236  
+  fields:
+    department: 28
+    start_time: 2014-06-08 9:00:00
+    shift_length: 1
+    code: None
+- model: shifts.shift
+  pk: 237  
+  fields:
+    department: 28
+    start_time: 2014-06-09 9:00:00
+    shift_length: 6
+    code: None
+- model: shifts.shift
+  pk: 238  
+  fields:
+    department: 2
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 239  
+  fields:
+    department: 2
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 240  
+  fields:
+    department: 2
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 241  
+  fields:
+    department: 2
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 242  
+  fields:
+    department: 2
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 243  
+  fields:
+    department: 2
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 244  
+  fields:
+    department: 2
+    start_time: 2014-06-05 21:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 245  
+  fields:
+    department: 2
+    start_time: 2014-06-06 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 246  
+  fields:
+    department: 2
+    start_time: 2014-06-06 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 247  
+  fields:
+    department: 2
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 248  
+  fields:
+    department: 2
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 249  
+  fields:
+    department: 2
+    start_time: 2014-06-06 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 250  
+  fields:
+    department: 2
+    start_time: 2014-06-06 21:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 251  
+  fields:
+    department: 2
+    start_time: 2014-06-07 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 252  
+  fields:
+    department: 2
+    start_time: 2014-06-07 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 253  
+  fields:
+    department: 2
+    start_time: 2014-06-07 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 254  
+  fields:
+    department: 2
+    start_time: 2014-06-07 21:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 255  
+  fields:
+    department: 2
+    start_time: 2014-06-08 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 256  
+  fields:
+    department: 25
+    start_time: 2014-06-07 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 257  
+  fields:
+    department: 25
+    start_time: 2014-06-07 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 258  
+  fields:
+    department: 25
+    start_time: 2014-06-07 17:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 259  
+  fields:
+    department: 28
+    start_time: 2014-06-08 9:00:00
+    shift_length: 1
+    code: None
+- model: shifts.shift
+  pk: 260  
+  fields:
+    department: 28
+    start_time: 2014-06-09 9:00:00
+    shift_length: 6
+    code: None
+- model: shifts.shift
+  pk: 261  
+  fields:
+    department: 2
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 262  
+  fields:
+    department: 2
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 263  
+  fields:
+    department: 2
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 264  
+  fields:
+    department: 2
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 265  
+  fields:
+    department: 2
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 266  
+  fields:
+    department: 2
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 267  
+  fields:
+    department: 2
+    start_time: 2014-06-05 21:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 268  
+  fields:
+    department: 2
+    start_time: 2014-06-06 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 269  
+  fields:
+    department: 2
+    start_time: 2014-06-06 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 270  
+  fields:
+    department: 2
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 271  
+  fields:
+    department: 2
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 272  
+  fields:
+    department: 2
+    start_time: 2014-06-06 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 273  
+  fields:
+    department: 2
+    start_time: 2014-06-06 21:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 274  
+  fields:
+    department: 2
+    start_time: 2014-06-07 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 275  
+  fields:
+    department: 2
+    start_time: 2014-06-07 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 276  
+  fields:
+    department: 2
+    start_time: 2014-06-07 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 277  
+  fields:
+    department: 2
+    start_time: 2014-06-07 21:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 278  
+  fields:
+    department: 2
+    start_time: 2014-06-08 0:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 279  
+  fields:
+    department: 25
+    start_time: 2014-06-07 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 280  
+  fields:
+    department: 25
+    start_time: 2014-06-07 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 281  
+  fields:
+    department: 25
+    start_time: 2014-06-07 17:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 282  
+  fields:
+    department: 28
+    start_time: 2014-06-08 9:00:00
+    shift_length: 1
+    code: None
+- model: shifts.shift
+  pk: 283  
+  fields:
+    department: 28
+    start_time: 2014-06-09 9:00:00
+    shift_length: 6
+    code: None
+- model: shifts.shift
+  pk: 284  
+  fields:
+    department: 28
+    start_time: 2014-06-08 9:00:00
+    shift_length: 1
+    code: None
+- model: shifts.shift
+  pk: 285  
+  fields:
+    department: 28
+    start_time: 2014-06-09 9:00:00
+    shift_length: 6
+    code: None
+- model: shifts.shift
+  pk: 286  
+  fields:
+    department: 28
+    start_time: 2014-06-08 9:00:00
+    shift_length: 1
+    code: None
+- model: shifts.shift
+  pk: 287  
+  fields:
+    department: 28
+    start_time: 2014-06-09 9:00:00
+    shift_length: 6
+    code: None
+- model: shifts.shift
+  pk: 288  
+  fields:
+    department: 28
+    start_time: 2014-06-08 9:00:00
+    shift_length: 1
+    code: None
+- model: shifts.shift
+  pk: 289  
+  fields:
+    department: 28
+    start_time: 2014-06-09 9:00:00
+    shift_length: 6
+    code: None
+- model: shifts.shift
+  pk: 290  
+  fields:
+    department: 28
+    start_time: 2014-06-08 9:00:00
+    shift_length: 1
+    code: None
+- model: shifts.shift
+  pk: 291  
+  fields:
+    department: 28
+    start_time: 2014-06-09 9:00:00
+    shift_length: 6
+    code: None
+- model: shifts.shift
+  pk: 292  
+  fields:
+    department: 2
+    start_time: 2014-06-07 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 293  
+  fields:
+    department: 2
+    start_time: 2014-06-07 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 294  
+  fields:
+    department: 2
+    start_time: 2014-06-07 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 295  
+  fields:
+    department: 2
+    start_time: 2014-06-07 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 296  
+  fields:
+    department: 2
+    start_time: 2014-06-07 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 297  
+  fields:
+    department: 2
+    start_time: 2014-06-07 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 298  
+  fields:
+    department: 2
+    start_time: 2014-06-07 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 299  
+  fields:
+    department: 2
+    start_time: 2014-06-07 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 300  
+  fields:
+    department: 28
+    start_time: 2014-06-03 11:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 301  
+  fields:
+    department: 28
+    start_time: 2014-06-03 2:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 302  
+  fields:
+    department: 28
+    start_time: 2014-06-03 4:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 303  
+  fields:
+    department: 28
+    start_time: 2014-06-03 7:00:00
+    shift_length: 2
+    code: None
+- model: shifts.shift
+  pk: 304  
+  fields:
+    department: 28
+    start_time: 2014-06-04 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 305  
+  fields:
+    department: 28
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 306  
+  fields:
+    department: 28
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 307  
+  fields:
+    department: 28
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 308  
+  fields:
+    department: 28
+    start_time: 2014-06-05 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 309  
+  fields:
+    department: 28
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 310  
+  fields:
+    department: 28
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 311  
+  fields:
+    department: 28
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 312  
+  fields:
+    department: 28
+    start_time: 2014-06-06 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 313  
+  fields:
+    department: 28
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 314  
+  fields:
+    department: 28
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 315  
+  fields:
+    department: 28
+    start_time: 2014-06-06 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 316  
+  fields:
+    department: 28
+    start_time: 2014-06-07 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 317  
+  fields:
+    department: 28
+    start_time: 2014-06-07 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 318  
+  fields:
+    department: 28
+    start_time: 2014-06-07 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 319  
+  fields:
+    department: 28
+    start_time: 2014-06-07 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 320  
+  fields:
+    department: 28
+    start_time: 2014-06-03 11:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 321  
+  fields:
+    department: 28
+    start_time: 2014-06-03 2:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 322  
+  fields:
+    department: 28
+    start_time: 2014-06-03 4:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 323  
+  fields:
+    department: 28
+    start_time: 2014-06-03 7:00:00
+    shift_length: 2
+    code: None
+- model: shifts.shift
+  pk: 324  
+  fields:
+    department: 28
+    start_time: 2014-06-04 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 325  
+  fields:
+    department: 28
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 326  
+  fields:
+    department: 28
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 327  
+  fields:
+    department: 28
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 328  
+  fields:
+    department: 28
+    start_time: 2014-06-05 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 329  
+  fields:
+    department: 28
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 330  
+  fields:
+    department: 28
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 331  
+  fields:
+    department: 28
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 332  
+  fields:
+    department: 28
+    start_time: 2014-06-06 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 333  
+  fields:
+    department: 28
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 334  
+  fields:
+    department: 28
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 335  
+  fields:
+    department: 28
+    start_time: 2014-06-06 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 336  
+  fields:
+    department: 28
+    start_time: 2014-06-07 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 337  
+  fields:
+    department: 28
+    start_time: 2014-06-07 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 338  
+  fields:
+    department: 28
+    start_time: 2014-06-07 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 339  
+  fields:
+    department: 28
+    start_time: 2014-06-07 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 340  
+  fields:
+    department: 28
+    start_time: 2014-06-03 11:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 341  
+  fields:
+    department: 28
+    start_time: 2014-06-03 2:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 342  
+  fields:
+    department: 28
+    start_time: 2014-06-03 4:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 343  
+  fields:
+    department: 28
+    start_time: 2014-06-03 7:00:00
+    shift_length: 2
+    code: None
+- model: shifts.shift
+  pk: 344  
+  fields:
+    department: 28
+    start_time: 2014-06-04 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 345  
+  fields:
+    department: 28
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 346  
+  fields:
+    department: 28
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 347  
+  fields:
+    department: 28
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 348  
+  fields:
+    department: 28
+    start_time: 2014-06-05 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 349  
+  fields:
+    department: 28
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 350  
+  fields:
+    department: 28
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 351  
+  fields:
+    department: 28
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 352  
+  fields:
+    department: 28
+    start_time: 2014-06-06 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 353  
+  fields:
+    department: 28
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 354  
+  fields:
+    department: 28
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 355  
+  fields:
+    department: 28
+    start_time: 2014-06-06 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 356  
+  fields:
+    department: 28
+    start_time: 2014-06-07 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 357  
+  fields:
+    department: 28
+    start_time: 2014-06-07 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 358  
+  fields:
+    department: 28
+    start_time: 2014-06-07 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 359  
+  fields:
+    department: 28
+    start_time: 2014-06-07 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 360  
+  fields:
+    department: 28
+    start_time: 2014-06-03 11:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 361  
+  fields:
+    department: 28
+    start_time: 2014-06-03 2:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 362  
+  fields:
+    department: 28
+    start_time: 2014-06-03 4:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 363  
+  fields:
+    department: 28
+    start_time: 2014-06-03 7:00:00
+    shift_length: 2
+    code: None
+- model: shifts.shift
+  pk: 364  
+  fields:
+    department: 28
+    start_time: 2014-06-04 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 365  
+  fields:
+    department: 28
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 366  
+  fields:
+    department: 28
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 367  
+  fields:
+    department: 28
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 368  
+  fields:
+    department: 28
+    start_time: 2014-06-05 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 369  
+  fields:
+    department: 28
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 370  
+  fields:
+    department: 28
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 371  
+  fields:
+    department: 28
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 372  
+  fields:
+    department: 28
+    start_time: 2014-06-06 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 373  
+  fields:
+    department: 28
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 374  
+  fields:
+    department: 28
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 375  
+  fields:
+    department: 28
+    start_time: 2014-06-06 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 376  
+  fields:
+    department: 28
+    start_time: 2014-06-07 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 377  
+  fields:
+    department: 28
+    start_time: 2014-06-07 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 378  
+  fields:
+    department: 28
+    start_time: 2014-06-07 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 379  
+  fields:
+    department: 28
+    start_time: 2014-06-07 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 380  
+  fields:
+    department: 28
+    start_time: 2014-06-03 11:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 381  
+  fields:
+    department: 28
+    start_time: 2014-06-03 2:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 382  
+  fields:
+    department: 28
+    start_time: 2014-06-03 4:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 383  
+  fields:
+    department: 28
+    start_time: 2014-06-03 7:00:00
+    shift_length: 2
+    code: None
+- model: shifts.shift
+  pk: 384  
+  fields:
+    department: 28
+    start_time: 2014-06-04 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 385  
+  fields:
+    department: 28
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 386  
+  fields:
+    department: 28
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 387  
+  fields:
+    department: 28
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 388  
+  fields:
+    department: 28
+    start_time: 2014-06-05 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 389  
+  fields:
+    department: 28
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 390  
+  fields:
+    department: 28
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 391  
+  fields:
+    department: 28
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 392  
+  fields:
+    department: 28
+    start_time: 2014-06-06 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 393  
+  fields:
+    department: 28
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 394  
+  fields:
+    department: 28
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 395  
+  fields:
+    department: 28
+    start_time: 2014-06-06 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 396  
+  fields:
+    department: 28
+    start_time: 2014-06-07 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 397  
+  fields:
+    department: 28
+    start_time: 2014-06-07 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 398  
+  fields:
+    department: 28
+    start_time: 2014-06-07 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 399  
+  fields:
+    department: 28
+    start_time: 2014-06-07 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 400  
+  fields:
+    department: 28
+    start_time: 2014-06-03 11:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 401  
+  fields:
+    department: 28
+    start_time: 2014-06-03 2:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 402  
+  fields:
+    department: 28
+    start_time: 2014-06-03 4:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 403  
+  fields:
+    department: 28
+    start_time: 2014-06-03 7:00:00
+    shift_length: 2
+    code: None
+- model: shifts.shift
+  pk: 404  
+  fields:
+    department: 28
+    start_time: 2014-06-04 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 405  
+  fields:
+    department: 28
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 406  
+  fields:
+    department: 28
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 407  
+  fields:
+    department: 28
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 408  
+  fields:
+    department: 28
+    start_time: 2014-06-05 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 409  
+  fields:
+    department: 28
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 410  
+  fields:
+    department: 28
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 411  
+  fields:
+    department: 28
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 412  
+  fields:
+    department: 28
+    start_time: 2014-06-06 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 413  
+  fields:
+    department: 28
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 414  
+  fields:
+    department: 28
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 415  
+  fields:
+    department: 28
+    start_time: 2014-06-06 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 416  
+  fields:
+    department: 28
+    start_time: 2014-06-07 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 417  
+  fields:
+    department: 28
+    start_time: 2014-06-07 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 418  
+  fields:
+    department: 28
+    start_time: 2014-06-07 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 419  
+  fields:
+    department: 28
+    start_time: 2014-06-07 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 420  
+  fields:
+    department: 26
+    start_time: 2014-06-02 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 421  
+  fields:
+    department: 25
+    start_time: 2014-06-03 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 422  
+  fields:
+    department: 25
+    start_time: 2014-06-03 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 423  
+  fields:
+    department: 25
+    start_time: 2014-06-04 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 424  
+  fields:
+    department: 25
+    start_time: 2014-06-04 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 425  
+  fields:
+    department: 25
+    start_time: 2014-06-04 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 426  
+  fields:
+    department: 25
+    start_time: 2014-06-05 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 427  
+  fields:
+    department: 25
+    start_time: 2014-06-06 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 428  
+  fields:
+    department: 26
+    start_time: 2014-06-02 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 429  
+  fields:
+    department: 25
+    start_time: 2014-06-03 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 430  
+  fields:
+    department: 25
+    start_time: 2014-06-03 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 431  
+  fields:
+    department: 25
+    start_time: 2014-06-04 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 432  
+  fields:
+    department: 25
+    start_time: 2014-06-04 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 433  
+  fields:
+    department: 25
+    start_time: 2014-06-04 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 434  
+  fields:
+    department: 25
+    start_time: 2014-06-05 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 435  
+  fields:
+    department: 25
+    start_time: 2014-06-06 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 436  
+  fields:
+    department: 26
+    start_time: 2014-06-02 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 437  
+  fields:
+    department: 25
+    start_time: 2014-06-03 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 438  
+  fields:
+    department: 25
+    start_time: 2014-06-03 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 439  
+  fields:
+    department: 25
+    start_time: 2014-06-04 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 440  
+  fields:
+    department: 25
+    start_time: 2014-06-04 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 441  
+  fields:
+    department: 25
+    start_time: 2014-06-04 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 442  
+  fields:
+    department: 25
+    start_time: 2014-06-05 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 443  
+  fields:
+    department: 25
+    start_time: 2014-06-06 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 444  
+  fields:
+    department: 26
+    start_time: 2014-06-02 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 445  
+  fields:
+    department: 25
+    start_time: 2014-06-03 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 446  
+  fields:
+    department: 25
+    start_time: 2014-06-03 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 447  
+  fields:
+    department: 25
+    start_time: 2014-06-04 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 448  
+  fields:
+    department: 25
+    start_time: 2014-06-04 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 449  
+  fields:
+    department: 25
+    start_time: 2014-06-04 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 450  
+  fields:
+    department: 25
+    start_time: 2014-06-05 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 451  
+  fields:
+    department: 25
+    start_time: 2014-06-06 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 452  
+  fields:
+    department: 26
+    start_time: 2014-06-02 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 453  
+  fields:
+    department: 25
+    start_time: 2014-06-03 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 454  
+  fields:
+    department: 25
+    start_time: 2014-06-03 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 455  
+  fields:
+    department: 25
+    start_time: 2014-06-04 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 456  
+  fields:
+    department: 25
+    start_time: 2014-06-04 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 457  
+  fields:
+    department: 25
+    start_time: 2014-06-04 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 458  
+  fields:
+    department: 25
+    start_time: 2014-06-05 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 459  
+  fields:
+    department: 25
+    start_time: 2014-06-06 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 460  
+  fields:
+    department: 26
+    start_time: 2014-06-02 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 461  
+  fields:
+    department: 25
+    start_time: 2014-06-03 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 462  
+  fields:
+    department: 25
+    start_time: 2014-06-03 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 463  
+  fields:
+    department: 25
+    start_time: 2014-06-04 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 464  
+  fields:
+    department: 25
+    start_time: 2014-06-04 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 465  
+  fields:
+    department: 25
+    start_time: 2014-06-04 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 466  
+  fields:
+    department: 25
+    start_time: 2014-06-05 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 467  
+  fields:
+    department: 25
+    start_time: 2014-06-06 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 468  
+  fields:
+    department: 26
+    start_time: 2014-06-02 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 469  
+  fields:
+    department: 25
+    start_time: 2014-06-03 12:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 470  
+  fields:
+    department: 25
+    start_time: 2014-06-03 16:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 471  
+  fields:
+    department: 25
+    start_time: 2014-06-04 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 472  
+  fields:
+    department: 25
+    start_time: 2014-06-04 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 473  
+  fields:
+    department: 25
+    start_time: 2014-06-05 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 474  
+  fields:
+    department: 25
+    start_time: 2014-06-06 9:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 475  
+  fields:
+    department: 25
+    start_time: 2014-06-05 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 476  
+  fields:
+    department: 25
+    start_time: 2014-06-05 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 477  
+  fields:
+    department: 25
+    start_time: 2014-06-06 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 478  
+  fields:
+    department: 25
+    start_time: 2014-06-06 17:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 479  
+  fields:
+    department: 25
+    start_time: 2014-06-05 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 480  
+  fields:
+    department: 25
+    start_time: 2014-06-05 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 481  
+  fields:
+    department: 25
+    start_time: 2014-06-06 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 482  
+  fields:
+    department: 25
+    start_time: 2014-06-06 17:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 483  
+  fields:
+    department: 25
+    start_time: 2014-06-05 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 484  
+  fields:
+    department: 25
+    start_time: 2014-06-05 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 485  
+  fields:
+    department: 25
+    start_time: 2014-06-06 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 486  
+  fields:
+    department: 25
+    start_time: 2014-06-06 17:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 487  
+  fields:
+    department: 25
+    start_time: 2014-06-05 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 488  
+  fields:
+    department: 25
+    start_time: 2014-06-05 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 489  
+  fields:
+    department: 25
+    start_time: 2014-06-06 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 490  
+  fields:
+    department: 25
+    start_time: 2014-06-06 17:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 491  
+  fields:
+    department: 25
+    start_time: 2014-06-05 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 492  
+  fields:
+    department: 25
+    start_time: 2014-06-05 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 493  
+  fields:
+    department: 25
+    start_time: 2014-06-06 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 494  
+  fields:
+    department: 25
+    start_time: 2014-06-06 17:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 495  
+  fields:
+    department: 25
+    start_time: 2014-06-05 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 496  
+  fields:
+    department: 25
+    start_time: 2014-06-05 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 497  
+  fields:
+    department: 25
+    start_time: 2014-06-06 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 498  
+  fields:
+    department: 25
+    start_time: 2014-06-06 17:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 499  
+  fields:
+    department: 25
+    start_time: 2014-06-05 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 500  
+  fields:
+    department: 25
+    start_time: 2014-06-05 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 501  
+  fields:
+    department: 25
+    start_time: 2014-06-06 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 502  
+  fields:
+    department: 25
+    start_time: 2014-06-06 17:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 503  
+  fields:
+    department: 25
+    start_time: 2014-06-05 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 504  
+  fields:
+    department: 25
+    start_time: 2014-06-05 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 505  
+  fields:
+    department: 25
+    start_time: 2014-06-06 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 506  
+  fields:
+    department: 25
+    start_time: 2014-06-05 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 507  
+  fields:
+    department: 25
+    start_time: 2014-06-05 17:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 508  
+  fields:
+    department: 35
+    start_time: 2014-06-03 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 509  
+  fields:
+    department: 36
+    start_time: 2014-06-03 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 510  
+  fields:
+    department: 35
+    start_time: 2014-06-03 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 511  
+  fields:
+    department: 36
+    start_time: 2014-06-03 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 512  
+  fields:
+    department: 35
+    start_time: 2014-06-04 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 513  
+  fields:
+    department: 36
+    start_time: 2014-06-04 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 514  
+  fields:
+    department: 35
+    start_time: 2014-06-04 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 515  
+  fields:
+    department: 36
+    start_time: 2014-06-04 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 516  
+  fields:
+    department: 35
+    start_time: 2014-06-04 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 517  
+  fields:
+    department: 36
+    start_time: 2014-06-04 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 518  
+  fields:
+    department: 35
+    start_time: 2014-06-04 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 519  
+  fields:
+    department: 36
+    start_time: 2014-06-04 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 520  
+  fields:
+    department: 35
+    start_time: 2014-06-05 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 521  
+  fields:
+    department: 36
+    start_time: 2014-06-05 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 522  
+  fields:
+    department: 35
+    start_time: 2014-06-05 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 523  
+  fields:
+    department: 36
+    start_time: 2014-06-05 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 524  
+  fields:
+    department: 35
+    start_time: 2014-06-05 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 525  
+  fields:
+    department: 36
+    start_time: 2014-06-05 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 526  
+  fields:
+    department: 35
+    start_time: 2014-06-05 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 527  
+  fields:
+    department: 36
+    start_time: 2014-06-05 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 528  
+  fields:
+    department: 35
+    start_time: 2014-06-06 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 529  
+  fields:
+    department: 36
+    start_time: 2014-06-06 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 530  
+  fields:
+    department: 35
+    start_time: 2014-06-06 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 531  
+  fields:
+    department: 36
+    start_time: 2014-06-06 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 532  
+  fields:
+    department: 35
+    start_time: 2014-06-06 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 533  
+  fields:
+    department: 36
+    start_time: 2014-06-06 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 534  
+  fields:
+    department: 35
+    start_time: 2014-06-06 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 535  
+  fields:
+    department: 36
+    start_time: 2014-06-06 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 536  
+  fields:
+    department: 34
+    start_time: 2014-06-06 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 537  
+  fields:
+    department: 35
+    start_time: 2014-06-07 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 538  
+  fields:
+    department: 36
+    start_time: 2014-06-07 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 539  
+  fields:
+    department: 35
+    start_time: 2014-06-07 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 540  
+  fields:
+    department: 36
+    start_time: 2014-06-07 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 541  
+  fields:
+    department: 35
+    start_time: 2014-06-07 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 542  
+  fields:
+    department: 36
+    start_time: 2014-06-07 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 543  
+  fields:
+    department: 35
+    start_time: 2014-06-07 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 544  
+  fields:
+    department: 36
+    start_time: 2014-06-07 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 545  
+  fields:
+    department: 34
+    start_time: 2014-06-07 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 546  
+  fields:
+    department: 35
+    start_time: 2014-06-08 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 547  
+  fields:
+    department: 36
+    start_time: 2014-06-08 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 548  
+  fields:
+    department: 35
+    start_time: 2014-06-08 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 549  
+  fields:
+    department: 36
+    start_time: 2014-06-08 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 550  
+  fields:
+    department: 35
+    start_time: 2014-06-08 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 551  
+  fields:
+    department: 36
+    start_time: 2014-06-08 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 552  
+  fields:
+    department: 35
+    start_time: 2014-06-08 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 553  
+  fields:
+    department: 36
+    start_time: 2014-06-08 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 554  
+  fields:
+    department: 35
+    start_time: 2014-06-09 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 555  
+  fields:
+    department: 36
+    start_time: 2014-06-09 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 556  
+  fields:
+    department: 35
+    start_time: 2014-06-09 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 557  
+  fields:
+    department: 36
+    start_time: 2014-06-09 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 558  
+  fields:
+    department: 35
+    start_time: 2014-06-09 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 559  
+  fields:
+    department: 36
+    start_time: 2014-06-09 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 560  
+  fields:
+    department: 35
+    start_time: 2014-06-09 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 561  
+  fields:
+    department: 23
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 562  
+  fields:
+    department: 23
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 563  
+  fields:
+    department: 23
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 564  
+  fields:
+    department: 23
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 565  
+  fields:
+    department: 23
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 566  
+  fields:
+    department: 23
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 567  
+  fields:
+    department: 23
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 568  
+  fields:
+    department: 23
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 569  
+  fields:
+    department: 23
+    start_time: 2014-06-06 18:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 570  
+  fields:
+    department: 22
+    start_time: 2014-06-04 9:00:00
+    shift_length: 1
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 571  
+  fields:
+    department: 22
+    start_time: 2014-06-05 9:00:00
+    shift_length: 1
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 572  
+  fields:
+    department: 22
+    start_time: 2014-06-06 9:00:00
+    shift_length: 1
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 573  
+  fields:
+    department: 22
+    start_time: 2014-06-07 9:00:00
+    shift_length: 1
+    code: MotorRunning6
+- model: shifts.shift
+  pk: 574  
+  fields:
+    department: 20
+    start_time: 2014-06-04 9:00:00
+    shift_length: 6
+    code: MotorRunning6
+- model: shifts.shift
+  pk: 575  
+  fields:
+    department: 20
+    start_time: 2014-06-04 15:00:00
+    shift_length: 6
+    code: MotorRunning6
+- model: shifts.shift
+  pk: 576  
+  fields:
+    department: 20
+    start_time: 2014-06-05 9:00:00
+    shift_length: 6
+    code: MotorRunning6
+- model: shifts.shift
+  pk: 577  
+  fields:
+    department: 20
+    start_time: 2014-06-05 15:00:00
+    shift_length: 6
+    code: MotorRunning6
+- model: shifts.shift
+  pk: 578  
+  fields:
+    department: 20
+    start_time: 2014-06-06 9:00:00
+    shift_length: 6
+    code: MotorRunning6
+- model: shifts.shift
+  pk: 579  
+  fields:
+    department: 20
+    start_time: 2014-06-06 15:00:00
+    shift_length: 6
+    code: MotorRunning6
+- model: shifts.shift
+  pk: 580  
+  fields:
+    department: 19
+    start_time: 2014-06-07 9:00:00
+    shift_length: 8
+    code: MotorRunning6
+- model: shifts.shift
+  pk: 581  
+  fields:
+    department: 18
+    start_time: 2014-06-07 9:00:00
+    shift_length: 8
+    code: honeyKing1
+- model: shifts.shift
+  pk: 582  
+  fields:
+    department: 7
+    start_time: 2014-06-02 0:00:00
+    shift_length: 1
+    code: honeyKing1
+- model: shifts.shift
+  pk: 583  
+  fields:
+    department: 7
+    start_time: 2014-06-02 11:00:00
+    shift_length: 1
+    code: honeyKing1
+- model: shifts.shift
+  pk: 584  
+  fields:
+    department: 7
+    start_time: 2014-06-02 23:00:00
+    shift_length: 1
+    code: honeyKing1
+- model: shifts.shift
+  pk: 585  
+  fields:
+    department: 7
+    start_time: 2014-06-03 11:00:00
+    shift_length: 1
+    code: honeyKing1
+- model: shifts.shift
+  pk: 586  
+  fields:
+    department: 7
+    start_time: 2014-06-03 23:00:00
+    shift_length: 1
+    code: honeyKing1
+- model: shifts.shift
+  pk: 587  
+  fields:
+    department: 7
+    start_time: 2014-06-04 11:00:00
+    shift_length: 1
+    code: honeyKing1
+- model: shifts.shift
+  pk: 588  
+  fields:
+    department: 7
+    start_time: 2014-06-04 23:00:00
+    shift_length: 1
+    code: honeyKing1
+- model: shifts.shift
+  pk: 589  
+  fields:
+    department: 7
+    start_time: 2014-06-05 11:00:00
+    shift_length: 1
+    code: honeyKing1
+- model: shifts.shift
+  pk: 590  
+  fields:
+    department: 7
+    start_time: 2014-06-05 23:00:00
+    shift_length: 1
+    code: honeyKing1
+- model: shifts.shift
+  pk: 591  
+  fields:
+    department: 7
+    start_time: 2014-06-06 11:00:00
+    shift_length: 1
+    code: honeyKing1
+- model: shifts.shift
+  pk: 592  
+  fields:
+    department: 7
+    start_time: 2014-06-06 23:00:00
+    shift_length: 1
+    code: honeyKing1
+- model: shifts.shift
+  pk: 593  
+  fields:
+    department: 7
+    start_time: 2014-06-07 11:00:00
+    shift_length: 1
+    code: honeyKing1
+- model: shifts.shift
+  pk: 594  
+  fields:
+    department: 7
+    start_time: 2014-06-07 23:00:00
+    shift_length: 1
+    code: honeyKing1
+- model: shifts.shift
+  pk: 595  
+  fields:
+    department: 7
+    start_time: 2014-06-08 11:00:00
+    shift_length: 1
+    code: honeyKing1
+- model: shifts.shift
+  pk: 596  
+  fields:
+    department: 7
+    start_time: 2014-06-08 23:00:00
+    shift_length: 1
+    code: honeyKing1
+- model: shifts.shift
+  pk: 597  
+  fields:
+    department: 7
+    start_time: 2014-06-09 11:00:00
+    shift_length: 1
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 598  
+  fields:
+    department: 5
+    start_time: 2014-06-03 0:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 599  
+  fields:
+    department: 5
+    start_time: 2014-06-03 8:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 600  
+  fields:
+    department: 5
+    start_time: 2014-06-03 16:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 601  
+  fields:
+    department: 5
+    start_time: 2014-06-04 0:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 602  
+  fields:
+    department: 5
+    start_time: 2014-06-04 8:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 603  
+  fields:
+    department: 5
+    start_time: 2014-06-04 16:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 604  
+  fields:
+    department: 5
+    start_time: 2014-06-05 0:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 605  
+  fields:
+    department: 5
+    start_time: 2014-06-05 8:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 606  
+  fields:
+    department: 5
+    start_time: 2014-06-05 16:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 607  
+  fields:
+    department: 5
+    start_time: 2014-06-06 0:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 608  
+  fields:
+    department: 5
+    start_time: 2014-06-06 8:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 609  
+  fields:
+    department: 5
+    start_time: 2014-06-06 16:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 610  
+  fields:
+    department: 5
+    start_time: 2014-06-07 0:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 611  
+  fields:
+    department: 5
+    start_time: 2014-06-07 8:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 612  
+  fields:
+    department: 5
+    start_time: 2014-06-07 16:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 613  
+  fields:
+    department: 5
+    start_time: 2014-06-08 0:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 614  
+  fields:
+    department: 5
+    start_time: 2014-06-08 8:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 615  
+  fields:
+    department: 5
+    start_time: 2014-06-08 16:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 616  
+  fields:
+    department: 5
+    start_time: 2014-06-09 0:00:00
+    shift_length: 8
+    code: honeyLEAD2
+- model: shifts.shift
+  pk: 617  
+  fields:
+    department: 5
+    start_time: 2014-06-09 8:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 618  
+  fields:
+    department: 4
+    start_time: 2014-06-02 0:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 619  
+  fields:
+    department: 4
+    start_time: 2014-06-02 8:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 620  
+  fields:
+    department: 4
+    start_time: 2014-06-02 16:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 621  
+  fields:
+    department: 4
+    start_time: 2014-06-04 0:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 622  
+  fields:
+    department: 4
+    start_time: 2014-06-04 8:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 623  
+  fields:
+    department: 4
+    start_time: 2014-06-04 16:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 624  
+  fields:
+    department: 4
+    start_time: 2014-06-05 0:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 625  
+  fields:
+    department: 4
+    start_time: 2014-06-05 8:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 626  
+  fields:
+    department: 4
+    start_time: 2014-06-05 16:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 627  
+  fields:
+    department: 4
+    start_time: 2014-06-06 0:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 628  
+  fields:
+    department: 4
+    start_time: 2014-06-06 8:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 629  
+  fields:
+    department: 4
+    start_time: 2014-06-06 16:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 630  
+  fields:
+    department: 4
+    start_time: 2014-06-07 0:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 631  
+  fields:
+    department: 4
+    start_time: 2014-06-07 8:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 632  
+  fields:
+    department: 4
+    start_time: 2014-06-07 16:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 633  
+  fields:
+    department: 4
+    start_time: 2014-06-08 0:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 634  
+  fields:
+    department: 4
+    start_time: 2014-06-08 8:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 635  
+  fields:
+    department: 4
+    start_time: 2014-06-08 16:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 636  
+  fields:
+    department: 4
+    start_time: 2014-06-09 0:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 637  
+  fields:
+    department: 4
+    start_time: 2014-06-09 8:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 638  
+  fields:
+    department: 6
+    start_time: 2014-06-03 0:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 639  
+  fields:
+    department: 6
+    start_time: 2014-06-03 8:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 640  
+  fields:
+    department: 6
+    start_time: 2014-06-03 16:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 641  
+  fields:
+    department: 6
+    start_time: 2014-06-04 0:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 642  
+  fields:
+    department: 6
+    start_time: 2014-06-04 8:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 643  
+  fields:
+    department: 6
+    start_time: 2014-06-04 16:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 644  
+  fields:
+    department: 6
+    start_time: 2014-06-05 0:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 645  
+  fields:
+    department: 6
+    start_time: 2014-06-05 8:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 646  
+  fields:
+    department: 6
+    start_time: 2014-06-05 16:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 647  
+  fields:
+    department: 6
+    start_time: 2014-06-06 0:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 648  
+  fields:
+    department: 6
+    start_time: 2014-06-06 8:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 649  
+  fields:
+    department: 6
+    start_time: 2014-06-06 16:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 650  
+  fields:
+    department: 6
+    start_time: 2014-06-07 0:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 651  
+  fields:
+    department: 6
+    start_time: 2014-06-07 8:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 652  
+  fields:
+    department: 6
+    start_time: 2014-06-07 16:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 653  
+  fields:
+    department: 6
+    start_time: 2014-06-08 0:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 654  
+  fields:
+    department: 6
+    start_time: 2014-06-08 8:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 655  
+  fields:
+    department: 6
+    start_time: 2014-06-08 16:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 656  
+  fields:
+    department: 6
+    start_time: 2014-06-09 0:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 657  
+  fields:
+    department: 6
+    start_time: 2014-06-09 8:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 658  
+  fields:
+    department: 3
+    start_time: 2014-06-03 0:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 659  
+  fields:
+    department: 3
+    start_time: 2014-06-03 8:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 660  
+  fields:
+    department: 3
+    start_time: 2014-06-03 16:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 661  
+  fields:
+    department: 3
+    start_time: 2014-06-04 0:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 662  
+  fields:
+    department: 3
+    start_time: 2014-06-04 8:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 663  
+  fields:
+    department: 3
+    start_time: 2014-06-04 16:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 664  
+  fields:
+    department: 3
+    start_time: 2014-06-05 0:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 665  
+  fields:
+    department: 3
+    start_time: 2014-06-05 8:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 666  
+  fields:
+    department: 3
+    start_time: 2014-06-05 16:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 667  
+  fields:
+    department: 3
+    start_time: 2014-06-06 0:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 668  
+  fields:
+    department: 3
+    start_time: 2014-06-06 8:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 669  
+  fields:
+    department: 3
+    start_time: 2014-06-06 16:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 670  
+  fields:
+    department: 3
+    start_time: 2014-06-07 0:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 671  
+  fields:
+    department: 3
+    start_time: 2014-06-07 8:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 672  
+  fields:
+    department: 3
+    start_time: 2014-06-07 16:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 673  
+  fields:
+    department: 3
+    start_time: 2014-06-08 0:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 674  
+  fields:
+    department: 3
+    start_time: 2014-06-08 8:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 675  
+  fields:
+    department: 3
+    start_time: 2014-06-08 16:00:00
+    shift_length: 8
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 676  
+  fields:
+    department: 1
+    start_time: 2014-06-03 15:00:00
+    shift_length: 8
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 677  
+  fields:
+    department: 1
+    start_time: 2014-06-03 21:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 678  
+  fields:
+    department: 1
+    start_time: 2014-06-04 3:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 679  
+  fields:
+    department: 1
+    start_time: 2014-06-04 9:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 680  
+  fields:
+    department: 1
+    start_time: 2014-06-04 15:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 681  
+  fields:
+    department: 1
+    start_time: 2014-06-04 21:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 682  
+  fields:
+    department: 1
+    start_time: 2014-06-05 3:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 683  
+  fields:
+    department: 1
+    start_time: 2014-06-05 9:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 684  
+  fields:
+    department: 1
+    start_time: 2014-06-05 15:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 685  
+  fields:
+    department: 1
+    start_time: 2014-06-05 21:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 686  
+  fields:
+    department: 1
+    start_time: 2014-06-06 3:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 687  
+  fields:
+    department: 1
+    start_time: 2014-06-06 9:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 688  
+  fields:
+    department: 1
+    start_time: 2014-06-06 15:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 689  
+  fields:
+    department: 1
+    start_time: 2014-06-06 21:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 690  
+  fields:
+    department: 1
+    start_time: 2014-06-07 3:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 691  
+  fields:
+    department: 1
+    start_time: 2014-06-07 9:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 692  
+  fields:
+    department: 1
+    start_time: 2014-06-07 15:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 693  
+  fields:
+    department: 1
+    start_time: 2014-06-07 21:00:00
+    shift_length: 6
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 694  
+  fields:
+    department: 24
+    start_time: 2014-06-03 11:30:00
+    shift_length: 1
+    code: AbreLe55
+- model: shifts.shift
+  pk: 695  
+  fields:
+    department: 24
+    start_time: 2014-06-04 9:00:00
+    shift_length: 6
+    code: AbreLe55
+- model: shifts.shift
+  pk: 696  
+  fields:
+    department: 24
+    start_time: 2014-06-04 15:00:00
+    shift_length: 6
+    code: AbreLe55
+- model: shifts.shift
+  pk: 697  
+  fields:
+    department: 24
+    start_time: 2014-06-05 9:00:00
+    shift_length: 6
+    code: AbreLe55
+- model: shifts.shift
+  pk: 698  
+  fields:
+    department: 24
+    start_time: 2014-06-05 15:00:00
+    shift_length: 6
+    code: AbreLe55
+- model: shifts.shift
+  pk: 699  
+  fields:
+    department: 24
+    start_time: 2014-06-06 9:00:00
+    shift_length: 6
+    code: AbreLe55
+- model: shifts.shift
+  pk: 700  
+  fields:
+    department: 24
+    start_time: 2014-06-06 15:00:00
+    shift_length: 5
+    code: AbreLe55
+- model: shifts.shift
+  pk: 701  
+  fields:
+    department: 24
+    start_time: 2014-06-07 9:00:00
+    shift_length: 6
+    code: AbreLe55
+- model: shifts.shift
+  pk: 702  
+  fields:
+    department: 24
+    start_time: 2014-06-07 15:00:00
+    shift_length: 5
+    code: AbreLe55
+- model: shifts.shift
+  pk: 703  
+  fields:
+    department: 14
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 704  
+  fields:
+    department: 17
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 705  
+  fields:
+    department: 14
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 706  
+  fields:
+    department: 17
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 707  
+  fields:
+    department: 11
+    start_time: 2014-06-04 8:00:00
+    shift_length: 6
+    code: TentMaster2
+- model: shifts.shift
+  pk: 708  
+  fields:
+    department: 11
+    start_time: 2014-06-04 14:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 709  
+  fields:
+    department: 12
+    start_time: 2014-06-04 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 710  
+  fields:
+    department: 10
+    start_time: 2014-06-04 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 711  
+  fields:
+    department: 8
+    start_time: 2014-06-04 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 712  
+  fields:
+    department: 13
+    start_time: 2014-06-04 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 713  
+  fields:
+    department: 15
+    start_time: 2014-06-04 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 714  
+  fields:
+    department: 11
+    start_time: 2014-06-05 8:00:00
+    shift_length: 6
+    code: TentMaster2
+- model: shifts.shift
+  pk: 715  
+  fields:
+    department: 11
+    start_time: 2014-06-05 14:00:00
+    shift_length: 6
+    code: TentMaster2
+- model: shifts.shift
+  pk: 716  
+  fields:
+    department: 12
+    start_time: 2014-06-05 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 717  
+  fields:
+    department: 10
+    start_time: 2014-06-05 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 718  
+  fields:
+    department: 8
+    start_time: 2014-06-05 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 719  
+  fields:
+    department: 13
+    start_time: 2014-06-05 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 720  
+  fields:
+    department: 15
+    start_time: 2014-06-05 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 721  
+  fields:
+    department: 11
+    start_time: 2014-06-06 8:00:00
+    shift_length: 6
+    code: TentMaster2
+- model: shifts.shift
+  pk: 722  
+  fields:
+    department: 11
+    start_time: 2014-06-06 14:00:00
+    shift_length: 6
+    code: TentMaster2
+- model: shifts.shift
+  pk: 723  
+  fields:
+    department: 12
+    start_time: 2014-06-06 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 724  
+  fields:
+    department: 10
+    start_time: 2014-06-06 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 725  
+  fields:
+    department: 8
+    start_time: 2014-06-06 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 726  
+  fields:
+    department: 13
+    start_time: 2014-06-06 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 727  
+  fields:
+    department: 15
+    start_time: 2014-06-06 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 728  
+  fields:
+    department: 11
+    start_time: 2014-06-07 8:00:00
+    shift_length: 6
+    code: TentMaster2
+- model: shifts.shift
+  pk: 729  
+  fields:
+    department: 11
+    start_time: 2014-06-07 14:00:00
+    shift_length: 6
+    code: TentMaster2
+- model: shifts.shift
+  pk: 730  
+  fields:
+    department: 12
+    start_time: 2014-06-07 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 731  
+  fields:
+    department: 10
+    start_time: 2014-06-07 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 732  
+  fields:
+    department: 8
+    start_time: 2014-06-07 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 733  
+  fields:
+    department: 13
+    start_time: 2014-06-07 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 734  
+  fields:
+    department: 15
+    start_time: 2014-06-07 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 735  
+  fields:
+    department: 14
+    start_time: 2014-06-08 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 736  
+  fields:
+    department: 14
+    start_time: 2014-06-08 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 737  
+  fields:
+    department: 27
+    start_time: 2014-06-03 11:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 738  
+  fields:
+    department: 30
+    start_time: 2014-06-03 11:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 739  
+  fields:
+    department: 29
+    start_time: 2014-06-03 11:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 740  
+  fields:
+    department: 27
+    start_time: 2014-06-04 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 741  
+  fields:
+    department: 30
+    start_time: 2014-06-04 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 742  
+  fields:
+    department: 27
+    start_time: 2014-06-05 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 743  
+  fields:
+    department: 30
+    start_time: 2014-06-05 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 744  
+  fields:
+    department: 29
+    start_time: 2014-06-05 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 745  
+  fields:
+    department: 27
+    start_time: 2014-06-06 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 746  
+  fields:
+    department: 30
+    start_time: 2014-06-06 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 747  
+  fields:
+    department: 29
+    start_time: 2014-06-06 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 748  
+  fields:
+    department: 27
+    start_time: 2014-06-07 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 749  
+  fields:
+    department: 30
+    start_time: 2014-06-07 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 750  
+  fields:
+    department: 29
+    start_time: 2014-06-07 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 751  
+  fields:
+    department: 30
+    start_time: 2014-06-08 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 752  
+  fields:
+    department: 29
+    start_time: 2014-06-08 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 753  
+  fields:
+    department: 30
+    start_time: 2014-06-09 9:00:00
+    shift_length: 6
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 754  
+  fields:
+    department: 29
+    start_time: 2014-06-09 9:00:00
+    shift_length: 6
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 755  
+  fields:
+    department: 36
+    start_time: 2014-06-05 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 756  
+  fields:
+    department: 36
+    start_time: 2014-06-06 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 757  
+  fields:
+    department: 36
+    start_time: 2014-06-07 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 758  
+  fields:
+    department: 36
+    start_time: 2014-06-08 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 759  
+  fields:
+    department: 36
+    start_time: 2014-06-09 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 760  
+  fields:
+    department: 36
+    start_time: 2014-06-09 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 761  
+  fields:
+    department: 4
+    start_time: 2014-06-05 0:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 762  
+  fields:
+    department: 4
+    start_time: 2014-06-05 8:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 763  
+  fields:
+    department: 4
+    start_time: 2014-06-05 16:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 764  
+  fields:
+    department: 4
+    start_time: 2014-06-06 0:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 765  
+  fields:
+    department: 4
+    start_time: 2014-06-06 8:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 766  
+  fields:
+    department: 4
+    start_time: 2014-06-06 16:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 767  
+  fields:
+    department: 4
+    start_time: 2014-06-08 0:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 768  
+  fields:
+    department: 4
+    start_time: 2014-06-08 8:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 769  
+  fields:
+    department: 4
+    start_time: 2014-06-08 16:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 770  
+  fields:
+    department: 6
+    start_time: 2014-06-07 0:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 771  
+  fields:
+    department: 6
+    start_time: 2014-06-07 8:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 772  
+  fields:
+    department: 6
+    start_time: 2014-06-07 16:00:00
+    shift_length: 8
+    code: honeySweet3
+- model: shifts.shift
+  pk: 773  
+  fields:
+    department: 3
+    start_time: 2014-06-03 0:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 774  
+  fields:
+    department: 3
+    start_time: 2014-06-03 8:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 775  
+  fields:
+    department: 3
+    start_time: 2014-06-03 16:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 776  
+  fields:
+    department: 3
+    start_time: 2014-06-04 0:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 777  
+  fields:
+    department: 3
+    start_time: 2014-06-04 8:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 778  
+  fields:
+    department: 3
+    start_time: 2014-06-04 16:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 779  
+  fields:
+    department: 3
+    start_time: 2014-06-05 0:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 780  
+  fields:
+    department: 3
+    start_time: 2014-06-05 8:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 781  
+  fields:
+    department: 3
+    start_time: 2014-06-05 16:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 782  
+  fields:
+    department: 3
+    start_time: 2014-06-06 0:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 783  
+  fields:
+    department: 3
+    start_time: 2014-06-06 8:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 784  
+  fields:
+    department: 3
+    start_time: 2014-06-06 16:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 785  
+  fields:
+    department: 3
+    start_time: 2014-06-07 0:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 786  
+  fields:
+    department: 3
+    start_time: 2014-06-07 8:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 787  
+  fields:
+    department: 3
+    start_time: 2014-06-07 16:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 788  
+  fields:
+    department: 3
+    start_time: 2014-06-08 0:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 789  
+  fields:
+    department: 3
+    start_time: 2014-06-08 8:00:00
+    shift_length: 8
+    code: BurnGeek1
+- model: shifts.shift
+  pk: 790  
+  fields:
+    department: 3
+    start_time: 2014-06-08 16:00:00
+    shift_length: 8
+    code: blueDonkey21
+- model: shifts.shift
+  pk: 791  
+  fields:
+    department: 12
+    start_time: 2014-06-04 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 792  
+  fields:
+    department: 8
+    start_time: 2014-06-04 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 793  
+  fields:
+    department: 12
+    start_time: 2014-06-05 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 794  
+  fields:
+    department: 8
+    start_time: 2014-06-05 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 795  
+  fields:
+    department: 12
+    start_time: 2014-06-06 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 796  
+  fields:
+    department: 8
+    start_time: 2014-06-06 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 797  
+  fields:
+    department: 12
+    start_time: 2014-06-07 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 798  
+  fields:
+    department: 8
+    start_time: 2014-06-07 10:00:00
+    shift_length: 2
+    code: TentMaster2
+- model: shifts.shift
+  pk: 799  
+  fields:
+    department: 23
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 800  
+  fields:
+    department: 23
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 801  
+  fields:
+    department: 23
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 802  
+  fields:
+    department: 23
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 803  
+  fields:
+    department: 23
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 804  
+  fields:
+    department: 23
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 805  
+  fields:
+    department: 23
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 806  
+  fields:
+    department: 23
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 807  
+  fields:
+    department: 23
+    start_time: 2014-06-06 18:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 808  
+  fields:
+    department: 4
+    start_time: 2014-06-07 0:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 809  
+  fields:
+    department: 4
+    start_time: 2014-06-07 8:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 810  
+  fields:
+    department: 4
+    start_time: 2014-06-07 16:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 811  
+  fields:
+    department: 23
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 812  
+  fields:
+    department: 23
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 813  
+  fields:
+    department: 23
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 814  
+  fields:
+    department: 23
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 815  
+  fields:
+    department: 23
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 816  
+  fields:
+    department: 23
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 817  
+  fields:
+    department: 23
+    start_time: 2014-06-06 12:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 818  
+  fields:
+    department: 23
+    start_time: 2014-06-06 15:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 819  
+  fields:
+    department: 23
+    start_time: 2014-06-06 18:00:00
+    shift_length: 3
+    code: GeekBurn7
+- model: shifts.shift
+  pk: 820  
+  fields:
+    department: 4
+    start_time: 2014-06-07 0:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 821  
+  fields:
+    department: 4
+    start_time: 2014-06-07 8:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 822  
+  fields:
+    department: 4
+    start_time: 2014-06-07 16:00:00
+    shift_length: 8
+    code: honeyDO3
+- model: shifts.shift
+  pk: 823  
+  fields:
+    department: 36
+    start_time: 2014-06-03 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 824  
+  fields:
+    department: 36
+    start_time: 2014-06-04 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 825  
+  fields:
+    department: 36
+    start_time: 2014-06-04 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 826  
+  fields:
+    department: 36
+    start_time: 2014-06-05 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 827  
+  fields:
+    department: 36
+    start_time: 2014-06-06 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 828  
+  fields:
+    department: 36
+    start_time: 2014-06-07 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 829  
+  fields:
+    department: 36
+    start_time: 2014-06-08 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 830  
+  fields:
+    department: 36
+    start_time: 2014-06-09 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 831  
+  fields:
+    department: 29
+    start_time: 2014-06-03 11:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 832  
+  fields:
+    department: 29
+    start_time: 2014-06-05 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 833  
+  fields:
+    department: 29
+    start_time: 2014-06-06 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 834  
+  fields:
+    department: 29
+    start_time: 2014-06-07 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 835  
+  fields:
+    department: 29
+    start_time: 2014-06-08 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 836  
+  fields:
+    department: 29
+    start_time: 2014-06-09 9:00:00
+    shift_length: 6
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 837  
+  fields:
+    department: 36
+    start_time: 2014-06-03 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 838  
+  fields:
+    department: 36
+    start_time: 2014-06-04 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 839  
+  fields:
+    department: 36
+    start_time: 2014-06-04 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 840  
+  fields:
+    department: 36
+    start_time: 2014-06-05 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 841  
+  fields:
+    department: 36
+    start_time: 2014-06-06 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 842  
+  fields:
+    department: 36
+    start_time: 2014-06-07 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 843  
+  fields:
+    department: 36
+    start_time: 2014-06-08 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 844  
+  fields:
+    department: 36
+    start_time: 2014-06-09 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 845  
+  fields:
+    department: 29
+    start_time: 2014-06-03 11:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 846  
+  fields:
+    department: 29
+    start_time: 2014-06-05 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 847  
+  fields:
+    department: 29
+    start_time: 2014-06-06 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 848  
+  fields:
+    department: 29
+    start_time: 2014-06-07 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 849  
+  fields:
+    department: 29
+    start_time: 2014-06-08 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 850  
+  fields:
+    department: 29
+    start_time: 2014-06-09 9:00:00
+    shift_length: 6
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 851  
+  fields:
+    department: 36
+    start_time: 2014-06-03 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 852  
+  fields:
+    department: 36
+    start_time: 2014-06-04 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 853  
+  fields:
+    department: 36
+    start_time: 2014-06-04 6:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 854  
+  fields:
+    department: 36
+    start_time: 2014-06-05 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 855  
+  fields:
+    department: 36
+    start_time: 2014-06-06 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 856  
+  fields:
+    department: 36
+    start_time: 2014-06-07 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 857  
+  fields:
+    department: 36
+    start_time: 2014-06-08 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 858  
+  fields:
+    department: 36
+    start_time: 2014-06-09 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 859  
+  fields:
+    department: 29
+    start_time: 2014-06-03 11:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 860  
+  fields:
+    department: 29
+    start_time: 2014-06-05 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 861  
+  fields:
+    department: 29
+    start_time: 2014-06-06 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 862  
+  fields:
+    department: 29
+    start_time: 2014-06-07 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 863  
+  fields:
+    department: 29
+    start_time: 2014-06-08 9:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 864  
+  fields:
+    department: 29
+    start_time: 2014-06-09 9:00:00
+    shift_length: 6
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 865  
+  fields:
+    department: 36
+    start_time: 2014-06-04 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 866  
+  fields:
+    department: 36
+    start_time: 2014-06-04 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 867  
+  fields:
+    department: 36
+    start_time: 2014-06-05 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 868  
+  fields:
+    department: 36
+    start_time: 2014-06-05 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 869  
+  fields:
+    department: 36
+    start_time: 2014-06-06 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 870  
+  fields:
+    department: 36
+    start_time: 2014-06-06 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 871  
+  fields:
+    department: 36
+    start_time: 2014-06-07 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 872  
+  fields:
+    department: 36
+    start_time: 2014-06-07 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 873  
+  fields:
+    department: 36
+    start_time: 2014-06-08 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 874  
+  fields:
+    department: 36
+    start_time: 2014-06-08 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 875  
+  fields:
+    department: 36
+    start_time: 2014-06-04 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 876  
+  fields:
+    department: 36
+    start_time: 2014-06-04 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 877  
+  fields:
+    department: 36
+    start_time: 2014-06-05 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 878  
+  fields:
+    department: 36
+    start_time: 2014-06-05 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 879  
+  fields:
+    department: 36
+    start_time: 2014-06-06 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 880  
+  fields:
+    department: 36
+    start_time: 2014-06-06 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 881  
+  fields:
+    department: 36
+    start_time: 2014-06-07 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 882  
+  fields:
+    department: 36
+    start_time: 2014-06-07 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 883  
+  fields:
+    department: 36
+    start_time: 2014-06-08 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 884  
+  fields:
+    department: 36
+    start_time: 2014-06-08 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 885  
+  fields:
+    department: 36
+    start_time: 2014-06-04 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 886  
+  fields:
+    department: 36
+    start_time: 2014-06-04 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 887  
+  fields:
+    department: 36
+    start_time: 2014-06-05 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 888  
+  fields:
+    department: 36
+    start_time: 2014-06-05 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 889  
+  fields:
+    department: 36
+    start_time: 2014-06-06 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 890  
+  fields:
+    department: 36
+    start_time: 2014-06-06 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 891  
+  fields:
+    department: 36
+    start_time: 2014-06-07 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 892  
+  fields:
+    department: 36
+    start_time: 2014-06-07 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 893  
+  fields:
+    department: 36
+    start_time: 2014-06-08 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 894  
+  fields:
+    department: 36
+    start_time: 2014-06-08 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 895  
+  fields:
+    department: 36
+    start_time: 2014-06-04 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 896  
+  fields:
+    department: 36
+    start_time: 2014-06-04 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 897  
+  fields:
+    department: 36
+    start_time: 2014-06-05 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 898  
+  fields:
+    department: 36
+    start_time: 2014-06-05 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 899  
+  fields:
+    department: 36
+    start_time: 2014-06-06 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 900  
+  fields:
+    department: 36
+    start_time: 2014-06-06 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 901  
+  fields:
+    department: 36
+    start_time: 2014-06-07 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 902  
+  fields:
+    department: 36
+    start_time: 2014-06-07 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 903  
+  fields:
+    department: 36
+    start_time: 2014-06-08 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 904  
+  fields:
+    department: 36
+    start_time: 2014-06-08 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 905  
+  fields:
+    department: 36
+    start_time: 2014-06-04 12:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 906  
+  fields:
+    department: 36
+    start_time: 2014-06-04 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 907  
+  fields:
+    department: 36
+    start_time: 2014-06-05 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 908  
+  fields:
+    department: 36
+    start_time: 2014-06-05 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 909  
+  fields:
+    department: 36
+    start_time: 2014-06-06 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 910  
+  fields:
+    department: 36
+    start_time: 2014-06-06 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 911  
+  fields:
+    department: 36
+    start_time: 2014-06-07 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 912  
+  fields:
+    department: 36
+    start_time: 2014-06-07 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 913  
+  fields:
+    department: 36
+    start_time: 2014-06-08 0:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 914  
+  fields:
+    department: 36
+    start_time: 2014-06-08 18:00:00
+    shift_length: 6
+    code: greenTiger4
+- model: shifts.shift
+  pk: 915  
+  fields:
+    department: 17
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 916  
+  fields:
+    department: 17
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 917  
+  fields:
+    department: 17
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 918  
+  fields:
+    department: 17
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 919  
+  fields:
+    department: 17
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 920  
+  fields:
+    department: 17
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 921  
+  fields:
+    department: 17
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 922  
+  fields:
+    department: 17
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 923  
+  fields:
+    department: 17
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 924  
+  fields:
+    department: 17
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 925  
+  fields:
+    department: 17
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 926  
+  fields:
+    department: 17
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 927  
+  fields:
+    department: 17
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 928  
+  fields:
+    department: 17
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 929  
+  fields:
+    department: 14
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 930  
+  fields:
+    department: 14
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 931  
+  fields:
+    department: 14
+    start_time: 2014-06-08 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 932  
+  fields:
+    department: 14
+    start_time: 2014-06-08 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 933  
+  fields:
+    department: 14
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 934  
+  fields:
+    department: 14
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 935  
+  fields:
+    department: 14
+    start_time: 2014-06-08 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 936  
+  fields:
+    department: 14
+    start_time: 2014-06-08 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 937  
+  fields:
+    department: 14
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 938  
+  fields:
+    department: 14
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 939  
+  fields:
+    department: 14
+    start_time: 2014-06-08 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 940  
+  fields:
+    department: 14
+    start_time: 2014-06-08 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 941  
+  fields:
+    department: 14
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 942  
+  fields:
+    department: 14
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 943  
+  fields:
+    department: 14
+    start_time: 2014-06-08 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 944  
+  fields:
+    department: 14
+    start_time: 2014-06-08 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 945  
+  fields:
+    department: 14
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 946  
+  fields:
+    department: 14
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 947  
+  fields:
+    department: 14
+    start_time: 2014-06-08 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 948  
+  fields:
+    department: 14
+    start_time: 2014-06-08 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 949  
+  fields:
+    department: 14
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 950  
+  fields:
+    department: 14
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 951  
+  fields:
+    department: 14
+    start_time: 2014-06-08 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 952  
+  fields:
+    department: 14
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 953  
+  fields:
+    department: 14
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 954  
+  fields:
+    department: 14
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 955  
+  fields:
+    department: 14
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 956  
+  fields:
+    department: 14
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 957  
+  fields:
+    department: 14
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 958  
+  fields:
+    department: 14
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 959  
+  fields:
+    department: 14
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 960  
+  fields:
+    department: 14
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 961  
+  fields:
+    department: 14
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 962  
+  fields:
+    department: 14
+    start_time: 2014-05-31 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 963  
+  fields:
+    department: 14
+    start_time: 2014-06-01 11:00:00
+    shift_length: 5
+    code: TentMaster2
+- model: shifts.shift
+  pk: 964  
+  fields:
+    department: 32
+    start_time: 2014-06-04 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 965  
+  fields:
+    department: 32
+    start_time: 2014-06-04 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 966  
+  fields:
+    department: 32
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 967  
+  fields:
+    department: 32
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 968  
+  fields:
+    department: 32
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 969  
+  fields:
+    department: 32
+    start_time: 2014-06-04 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 970  
+  fields:
+    department: 32
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 971  
+  fields:
+    department: 32
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 972  
+  fields:
+    department: 32
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 973  
+  fields:
+    department: 32
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 974  
+  fields:
+    department: 32
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 975  
+  fields:
+    department: 32
+    start_time: 2014-06-04 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 976  
+  fields:
+    department: 32
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 977  
+  fields:
+    department: 32
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 978  
+  fields:
+    department: 32
+    start_time: 2014-06-04 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 979  
+  fields:
+    department: 32
+    start_time: 2014-06-05 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 980  
+  fields:
+    department: 32
+    start_time: 2014-06-05 9:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 981  
+  fields:
+    department: 32
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 982  
+  fields:
+    department: 32
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 983  
+  fields:
+    department: 32
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 984  
+  fields:
+    department: 32
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 985  
+  fields:
+    department: 32
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 986  
+  fields:
+    department: 32
+    start_time: 2014-06-05 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 987  
+  fields:
+    department: 32
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 988  
+  fields:
+    department: 32
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 989  
+  fields:
+    department: 32
+    start_time: 2014-06-05 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 990  
+  fields:
+    department: 2
+    start_time: 2014-06-07 12:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 991  
+  fields:
+    department: 2
+    start_time: 2014-06-07 15:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 992  
+  fields:
+    department: 32
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 993  
+  fields:
+    department: 32
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 994  
+  fields:
+    department: 32
+    start_time: 2014-06-05 18:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 995  
+  fields:
+    department: 25
+    start_time: 2014-06-06 13:00:00
+    shift_length: 4
+    code: None
+- model: shifts.shift
+  pk: 996  
+  fields:
+    department: 25
+    start_time: 2014-06-06 17:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 997  
+  fields:
+    department: 25
+    start_time: 2014-06-06 17:00:00
+    shift_length: 3
+    code: None
+- model: shifts.shift
+  pk: 998  
+  fields:
+    department: 29
+    start_time: 2014-06-04 11:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 999  
+  fields:
+    department: 29
+    start_time: 2014-06-04 11:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 1000  
+  fields:
+    department: 29
+    start_time: 2014-06-04 11:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 1001  
+  fields:
+    department: 29
+    start_time: 2014-06-04 11:00:00
+    shift_length: 1
+    code: VroomMasters8
+- model: shifts.shift
+  pk: 1002  
+  fields:
+    department: 25
+    start_time: 2014-06-04 17:00:00
+    shift_length: 4
+    code: None
