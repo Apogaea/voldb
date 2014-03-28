@@ -100,7 +100,7 @@ textarea {
 }
 
 body {
-    font-family: 'Abel',"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: 'Abel', Helvetica, Arial, sans-serif;
     background: #000;
     background-image: url('../img/Apogaea_web_header_2014.png');
     background-position: center top, center bottom, center top;
@@ -115,14 +115,24 @@ body {
     background-size: 600px;
     font-size: 0.8em;
 
-}
+    min-width: 350px;
 
+}
+p {    
+    font-family: Helvetica,Arial,sans-serif;
+}
 table {
     border-collapse:collapse;
 }
 
 a {
     text-decoration: none;
+    color: #095806; 
+}
+a:hover{
+    text-decoration: underline;
+    color: #000;
+    background-color: rgba(255,255,128,0.8); 
 }
 
 h1 {
@@ -228,6 +238,46 @@ hr.close {
     background-color: rgba(48,56,64,0.9);
 }
 
+/** Effects **/
+
+.buttonize {
+    display: inline-block;
+    transition: background-color 0.1s ease-in-out;
+    border-radius: 20px; 
+    padding: 8px 30px;
+    margin: 4px 0;
+    font-size: 0.9em;
+    color: #000;    
+    background-color: rgba(128,128,128,0.7); 
+    border: 1px solid #666;
+}
+.buttonize:hover {
+    transition: border-color 3.1s ease-in;
+    transition: border-color 0.3s ease-out;
+    background-color: rgba(96,96,96,1); 
+    border: 1px solid #aaa;
+    color: #ddd;
+    text-decoration: none;
+}
+
+
+
+/*** home page layout ***/
+div#FlamingArt {
+    text-align: center;
+    padding: 2px;
+}
+div#FlamingArt img {
+    max-width: 80%;
+}
+div.thoughtBubble {
+    text-align: left;
+    background-color: rgba(255,255,255,0.9);
+    color: #333;
+    border-radius: 35px;
+    padding: 8px 20px;
+    margin: 4px;
+}
 
 /*** shifts page layout ***/
 
@@ -353,12 +403,117 @@ hr.close {
 }
 
 
+/*** Forms **/
+
+form {
+    margin: 10px auto;
+    max-width: 500px;
+
+}
+form label {
+    font-size: 1em;
+    color: #fff;
+    padding: 4px 4px 4px 20px;
+    font-weight: bold;
+    background-color: #444444;
+    background-color: rgba(48,56,64,0.9); 
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    margin: 0px 0px 1px 0px;
+    min-width: 120px;
+    width: 20%;
+    display: inline-block;
+    text-align: right;
+}
+
+form input {
+    width: 60%;
+    color: #ccc;
+    font-size: 1em;
+    background-color: #000;
+    background-color: rgba(48,56,64,0.8);
+    border: 1px solid #444;
+    margin: 0px 0px 1px 1px;
+    padding: 5px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    text-align: left;
+}
+form .required input {
+    color: #fff;
+    background-color: rgba(48,56,64,0.65);
+ }
+
+form input:focus {
+    color: #fff;
+    background-color: rgba(159,159,37,1); 
+
+}
+form .required input:focus {
+    background-color: rgba(159,159,37,0.9); 
+}
+
+
+form input[type="submit"] {
+    font-family: 'Abel', Helvetica, Arial, sans-serif;
+    transition: background-color 0.1s ease-in-out;
+    background-color: rgba(128,255,128,0.7); 
+    border-radius: 20px; 
+    display: block;
+    width: 66%;
+    padding: 6px 2px;
+    margin: 10px 0;
+    border: 1px solid #484;
+    font-size: 0.8em;
+    background-color: rgba(195,159,37,0.8); 
+    border: 1px solid #db3;
+    color: #000;    
+    text-align: center;
+    font-size: 1.1em;
+}
+form input[type="submit"]:hover {
+    transition: border-color 3.1s ease-in;
+    transition: border-color 0.3s ease-out;
+    background-color: rgba(159,159,37,1); 
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+form button.cancel {
+    background-color: rgba(128,128,128,0.7); 
+    border: 1px solid #666;
+}
+
+form button.cancel:hover {
+    transition: border-color 3.1s ease-in;
+    transition: border-color 0.3s ease-out;
+    background-color: rgba(128,128,128,1); 
+    border: 1px solid #aaa;
+}
+
+div.required {
+    background: no-repeat top left url('../img/icon-required.png');
+    margin-left: -25px;
+    padding-left: 25px;
+}
+
+ul.errorlist {
+    font-weight: bold;
+    color: #800;
+    padding-top: 2px;
+    margin-top: 2px;
+}
+ul.errorlist li {
+
+}
+
+
 /*
  * Modal window stylin
  */
 
 div#simplemodal-overlay {
-    background-color: rgba(64,32,0,1); 
+    background-color: rgba(64,92,64,1); 
 
 }
 form.claim-shift-modal {
@@ -438,13 +593,9 @@ form.claim-shift-modal button.cancel:hover {
 
 
 @media only screen and (min-width: 500px) {
-    /* Style adjustments for viewports that meet the condition */
+    /* A bump up from mobile to tablet - ish */
 
-    /* show desktop stuff above this resolution */
-    .dtonly {
-        visibility: visible;
-        display: initial;
-    }    
+      
     body {
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
@@ -482,7 +633,28 @@ form.claim-shift-modal button.cancel:hover {
 }
 
 @media only screen and (min-width: 800px) {
-    /* Style adjustments for viewports that meet the condition */
+    /* show desktop stuff above this resolution  *********************/
+    .dtonly {
+        visibility: visible;
+        display: initial;
+    }    
+    /*** home page layout ***/
+    div#FlamingArt {
+        padding: 4px;
+    }
+    div#FlamingArt img {
+        max-width: 40%;
+        margin-left: -10%;
+    }
+    div.thoughtBubble {
+        display: inline-block;
+        border-radius: 45px;
+        padding: 8px 20px;
+        margin: 4px;
+        max-width: 40%;
+    }  
+
+
     body {
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;

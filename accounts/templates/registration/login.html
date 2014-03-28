@@ -7,10 +7,9 @@
     <section>
 
 <form action="." method="post">{% csrf_token %}
-
 {{ form }}
 <input type="submit" />
-<a href="{% url 'password_reset' %}">Forgot Password?</a>
+<a href="{% url 'password_reset' %}" class="buttonize">Forgot Password?</a>
 </form>
 
 	</section>
