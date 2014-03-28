@@ -20,3 +20,27 @@ def unsign_registration_token(token):
     return signing.loads(
         token, salt=REGISTRATION_SALT, max_age=REGISTRATION_TOKEN_MAX_AGE,
     )
+
+
+def obfuscate_string(value, filler='*', index=1, min_length=4):
+    left = value[:index]
+    right = filler * max(len(value[index:]), min_length - 1)
+    return left + right
+
+
+def obfuscate_email(email):
+    left, _, right = email.partition('@')
+    if not right:
+        return obfuscate_string(left)
+    if len(left) > 3:
+        return '@'.join([
+            obfuscate_string(left),
+            right,
+        ])
+    else:
+        domain, _, tld = right.partition('.')
+        return '{left}@{domain}.{tld}'.format(
+            left=obfuscate_string(left),
+            domain=obfuscate_string(domain),
+            tld=tld,
+        )

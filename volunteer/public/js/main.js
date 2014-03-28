@@ -124,15 +124,17 @@ $(document).ready( function () {
                 link.data("shift", data.id);
                 link.data("restricted", data.requires_code);
                 link.data("owner", data.owner);
-//                link.data("department", data.department);
-//                link.data("start", data.start);
-//                link.data("shift_length", data.shift_length);
+                link.data("department", data.department);
+                link.data("start", data.start);
+                link.data("shift_length", data.shift_length);
                 link.text(data.display_text);
-                link.removeClass().addClass("shift-toggle");
+                link.removeClass();
+                link.addClass("shift-" + data.id);
+                link.addClass("shift-toggle");
                 if (data.owner) {
-                    link.removeClass().addClass("claimed-shift");                    
+                    link.addClass("claimed-shift");                    
                 } else {
-                    link.removeClass().addClass("open-shift");
+                    link.addClass("open-shift");
                     link.text("o p e n");
                 }
                 $.modal.close();

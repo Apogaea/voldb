@@ -3,5 +3,5 @@ from shifts.views import GridView
 
 
 urlpatterns = patterns('',  # NOQA
-    url(r'^$', GridView.as_view(), name='grid'),
+    url(r'^$', GridView.as_view(), name='shifts'),
 )
