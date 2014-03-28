@@ -44,7 +44,7 @@
                       <a href="/admin">Admin</a>
                     {% endif %}
                     <a href="{% url 'profile' %}">Account</a>             
-                    <a href="{% url 'logout' %}">logout {{ user.get_full_name }} </a>
+                    <a href="{% url 'logout' %}">logout <span class="dtonly">{{ user.get_full_name }}</span></a>
                 {% else %}
                 <a href="{% url 'register' %}">Register</a>
                 <a href="{% url 'login' %}">Login</a>
@@ -52,7 +52,6 @@
             </span>
             <a href="{% url 'home' %}">Home</a> 
             <a href="{% url 'shifts' %}">Shifts</a> 
-            <a href="{% url 'departments' %}">Depts</a> 
             <a href="{% url 'leaderboard' %}">LeaderBoard</a> 
         </nav>        
         {% block content %}

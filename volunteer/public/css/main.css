@@ -93,6 +93,12 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+/* hide desktop only stuff by default */
+.dtonly {
+    visibility:hidden;
+    display: none;
+}
+
 body {
     font-family: 'Abel',"Helvetica Neue",Helvetica,Arial,sans-serif;
     background: #000;
@@ -431,8 +437,14 @@ form.claim-shift-modal button.cancel:hover {
 
 
 
-@media only screen and (min-width: 550px) {
+@media only screen and (min-width: 500px) {
     /* Style adjustments for viewports that meet the condition */
+
+    /* show desktop stuff above this resolution */
+    .dtonly {
+        visibility: visible;
+        display: initial;
+    }    
     body {
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;

@@ -3,7 +3,7 @@
 
 {% block content %}
     <!-- Add your site or application content here -->
-    <h1>Profile</h1>
+    <h1>Volugean Profile {{ user.profile.display_name }}</h1>
     <section>
       <a href="{% url 'profile_edit' %}">Edit Profile</a>
       <dl>
