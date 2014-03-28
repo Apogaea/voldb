@@ -5,8 +5,15 @@
     <!-- Add your site or application content here -->
     <h1>Profile</h1>
     <section>
-      <p>
-          Blah Blah Blah
-      </p>
+      <a href="{% url 'profile_edit' %}">Edit Profile</a>
+      <dl>
+        <dt>Email:</dt>
+            <dd>{{ user.email }}</dd>
+        <dt>Full Name:</dt>
+            <dd>{{ user.profile.full_name }}</dd>
+        <dt>Display Name:</dt>
+            <dd>{{ user.profile.display_name }}</dd>
+        <dt>Phone:</dt>
+            <dd>{{ user.profile.phone }}</dd>
     </section>
 {% endblock %}

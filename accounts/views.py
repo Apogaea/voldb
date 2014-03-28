@@ -1,6 +1,6 @@
 from django.core import signing
 from django.views.generic import (
-    FormView, CreateView, TemplateView, DetailView,
+    FormView, CreateView, TemplateView, DetailView, UpdateView,
 )
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
@@ -11,7 +11,7 @@ User = get_user_model()
 from authtools.views import LoginRequiredMixin
 
 from accounts.forms import (
-    UserRegistrationForm, UserRegistrationConfirmForm,
+    UserRegistrationForm, UserRegistrationConfirmForm, ProfileForm,
 )
 from accounts.emails import send_registration_verification_email
 from accounts.utils import unsign_registration_token
@@ -35,7 +35,7 @@ class RegisterConfirmView(CreateView):
     template_name = 'registration/register_confirm.html'
     model = User
     form_class = UserRegistrationConfirmForm
-    success_url = reverse_lazy('grid')  # TODO, where should users get redirected post registration?
+    success_url = reverse_lazy('shifts')
 
     def dispatch(self, *args, **kwargs):
         try:
@@ -67,6 +67,13 @@ class RegisterConfirmView(CreateView):
         form.instance.email = self.email
         password = form.data['password1']
         form.save()
+        # profile fields
+        profile = form.instance.profile
+        profile.display_name = form.data['display_name']
+        profile.full_name = form.data['full_name']
+        profile.phone = form.data['phone']
+        profile.save()
+        # authenticate
         user = authenticate(
             username=form.instance.email,
             password=password,
@@ -80,3 +87,12 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
     def get_object(self):
         return self.request.user
+
+
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'accounts/profile_edit.html'
+    form_class = ProfileForm
+    success_url = reverse_lazy('profile')
+
+    def get_object(self):
+        return self.request.user.profile

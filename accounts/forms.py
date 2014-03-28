@@ -5,9 +5,14 @@ User = get_user_model()
 
 from betterforms.forms import BetterForm, BetterModelForm
 
+from profiles.models import Profile
+
 
 class UserRegistrationForm(BetterForm):
     email = forms.EmailField()
+    full_name = forms.CharField(required=False)
+    display_name = forms.CharField(required=False)
+    phone = forms.CharField(required=False)
 
     def validate_email(self, value):
         try:
@@ -49,3 +54,9 @@ class UserRegistrationConfirmForm(BetterModelForm):
         if commit:
             user.save()
         return user
+
+
+class ProfileForm(BetterModelForm):
+    class Meta:
+        model = Profile
+        fields = ('full_name', 'display_name', 'phone')

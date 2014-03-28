@@ -25,7 +25,10 @@ class Shift(models.Model):
                 self.owner,
             )[:7]
         else:
-            return self.start_time.strftime('%H:%M')
+            return self.get_start_time_display()
+
+    def get_start_time_display(self):
+        return self.start_time.strftime('%H:%M')
 
     @property
     def end_time(self):

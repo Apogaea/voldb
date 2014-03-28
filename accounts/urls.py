@@ -1,19 +1,18 @@
 from django.conf.urls import patterns, url
-from accounts.views import (
-    RegisterView, RegisterSuccessView, RegisterConfirmView, ProfileView,
-)
+from accounts import views
 
 
 urlpatterns = patterns('',  # NOQA
-    url(r'^/$', ProfileView.as_view(), name='profile'),
-    url(r'^register/$', RegisterView.as_view(), name='register'),
+    url(r'^/$', views.ProfileView.as_view(), name='profile'),
+    url(r'^edit/$', views.ProfileUpdateView.as_view(), name='profile_edit'),
+    url(r'^register/$', views.RegisterView.as_view(), name='register'),
     url(
-        r'^register/success/$', RegisterSuccessView.as_view(),
+        r'^register/success/$', views.RegisterSuccessView.as_view(),
         name='register_success',
     ),
     url(
         r'^register/(?P<token>[-a-zA-Z0-9_:]+)/$',
-        RegisterConfirmView.as_view(),
+        views.RegisterConfirmView.as_view(),
         name='register_confirm',
     ),
 )

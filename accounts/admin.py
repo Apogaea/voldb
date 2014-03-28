@@ -4,6 +4,7 @@ from accounts.models import User
 
 User = get_user_model()
 
+
 class UserAdmin(admin.ModelAdmin):
     list_display = ('email', 'id', 'date_joined')
     list_filter = ['user_permissions', 'date_joined']

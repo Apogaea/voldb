@@ -151,6 +151,9 @@ class RegistrationTest(TestCase):
         response = self.client.post(url, {
             'password1': 'secret',
             'password2': 'secret',
+            'display_name': 'test-display_name',
+            'full_name': 'test-full_name',
+            'phone': 'test-phone',
         })
         self.assertContains(response, '', status_code=status.HTTP_302_FOUND)
 
@@ -164,3 +167,7 @@ class RegistrationTest(TestCase):
             username=user.email,
             password='secret',
         ))
+
+        self.assertEqual(user.profile.full_name, 'test-full_name')
+        self.assertEqual(user.profile.display_name, 'test-display_name')
+        self.assertEqual(user.profile.phone, 'test-phone')

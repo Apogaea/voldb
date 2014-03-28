@@ -79,6 +79,8 @@ DATABASES = {
     }
 }
 
+ATOMIC_REQUESTS = True
+
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
 

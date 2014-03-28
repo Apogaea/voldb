@@ -40,10 +40,11 @@
         <nav id="primarynav">
             <span id="accntnav">
                 {% if user.is_authenticated %}
-                  {% if user.is_admin %}
-                    <a href="/admin">Admin</a>
-                  {% endif %}
-                <a href="{% url 'logout' %}">logout {{ user.get_full_name }} </a>
+                    {% if user.is_admin %}
+                      <a href="/admin">Admin</a>
+                    {% endif %}
+                    <a href="{% url 'profile' %}">Account</a>             
+                    <a href="{% url 'logout' %}">logout {{ user.get_full_name }} </a>
                 {% else %}
                 <a href="{% url 'register' %}">Register</a>
                 <a href="{% url 'login' %}">Login</a>
@@ -52,7 +53,6 @@
             <a href="{% url 'home' %}">Home</a> 
             <a href="{% url 'shifts' %}">Shifts</a> 
             <a href="{% url 'departments' %}">Depts</a> 
-            <a href="{% url 'profiles' %}">Profiles</a>             
         </nav>        
         {% block content %}
         {% endblock content %}

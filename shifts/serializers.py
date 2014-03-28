@@ -13,12 +13,15 @@ class ShiftSerializer(serializers.ModelSerializer):
     display_text = serializers.CharField(source='__str__', read_only=True)
     verification_code = serializers.CharField(required=False, write_only=True)
     requires_code = serializers.BooleanField(source='requires_code', read_only=True)
+    department = serializers.CharField(source='department', read_only=True)
+    start = serializers.CharField(source='get_start_time_display', read_only=True)
+    shift_length = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Shift
         fields = (
             'id', 'owner', 'display_text', 'verification_code',
-            'requires_code',
+            'requires_code', 'department', 'start', 'shift_length',
         )
 
     def validate(self, attrs):
