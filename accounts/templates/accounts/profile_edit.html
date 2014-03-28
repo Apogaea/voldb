@@ -7,7 +7,7 @@
 
 <form action="{% url 'profile_edit' %}" method="post">{% csrf_token %}
     {% include 'partials/form_as_fieldsets.html' %}
-    <input type="submit" name="Update" />
+    <input type="submit" value="Update" />
 </form>
 
 	</section>
