@@ -41,6 +41,8 @@ def build_shift_column(shift, date):
         else:
             raise ValueError('Shift does not appear to start or end on the '
                              'provided date')
+        if columns == 0:
+            import ipdb; ipdb.set_trace()
     else:
         columns = shift.shift_length
 
@@ -125,6 +127,8 @@ def group_shifts(shifts):
         if shift.start_time.astimezone(DENVER_TIMEZONE).date() == date:
             return True
         if shift.end_time.astimezone(DENVER_TIMEZONE).date() == date:
+            if shift.end_time.astimezone(DENVER_TIMEZONE).hour == 0:
+                return False
             return True
         return False
 

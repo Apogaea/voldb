@@ -78,6 +78,10 @@ class SpansMidnightPropertyTest(TestCase):
         shift = ShiftFactory(start_time=today_at_hour(23), shift_length=26)
         self.assertTrue(shift.is_midnight_spanning)
 
+    def test_ends_at_midnight(self):
+        shift = ShiftFactory(start_time=today_at_hour(21), shift_length=3)
+        self.assertFalse(shift.is_midnight_spanning)
+
 
 def has_overlaps(shifts):
     return any(l.overlaps_with(r) for l, r in pairwise(shifts))
@@ -306,9 +310,6 @@ class ShiftsGroupingTest(TestCase):
         self.assertEqual(len(data_3['tabular']), 20)  # this is the tabular data, dunno what to assert.
 
     def test_complex_grouping_with_shifts_spanning_midnight(self):
-        dpw = DepartmentFactory()
-        greeters = DepartmentFactory(name='Greeters')
-
         today = today_at_hour(0).date()
         yesterday = yesterday_at_hour(0).date()
         tomorrow = tomorrow_at_hour(0).date()
@@ -336,3 +337,25 @@ class ShiftsGroupingTest(TestCase):
 
         self.assertEqual(data_2['date'], tomorrow)
         self.assertEqual(len(data_2['tabular']), 3)  # this is the tabular data, dunno what to assert.
+
+    def test_shifts_ending_at_midnight_do_not_overlap(self):
+        today = today_at_hour(0).date()
+        yesterday = yesterday_at_hour(0).date()
+        tomorrow = tomorrow_at_hour(0).date()
+
+        # shift yesterday dpw
+        ShiftFactory(start_time=yesterday_at_hour(21), shift_length=3)
+        # shift today dpw
+        ShiftFactory(start_time=today_at_hour(0), shift_length=3)
+
+        data = list(group_shifts(Shift.objects.all()))
+
+        self.assertEqual(len(data), 2)
+
+        data_0, data_1 =  data
+
+        self.assertEqual(data_0['date'], yesterday)
+        self.assertEqual(len(data_0['tabular']), 22)  # this is the tabular data, dunno what to assert.
+
+        self.assertEqual(data_1['date'], today)
+        self.assertEqual(len(data_1['tabular']), 22)  # this is the tabular data, dunno what to assert.

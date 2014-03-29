@@ -52,7 +52,7 @@ class Shift(models.Model):
             return True
         start_hour = self.start_time.astimezone(DENVER_TIMEZONE).hour
         end_hour = self.end_time.astimezone(DENVER_TIMEZONE).hour
-        return start_hour > end_hour
+        return bool(end_hour) and start_hour > end_hour
 
 
 class ShiftHistory(models.Model):
