@@ -7,6 +7,8 @@ import herokuify
 from herokuify.common import *  # NOQA
 from herokuify.aws import *  # NOQA
 
+from volunteer.settings_aws import *  # NOQA
+
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
