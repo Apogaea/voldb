@@ -10,6 +10,8 @@ class Profile(models.Model):
     display_name = models.CharField(max_length=64)
     phone = models.CharField(max_length=16)
 
+    has_ticket = models.BooleanField('I have a ticket', default=False, blank=True)
+
 
 def create_volunteer_profile(sender, instance, created, raw, **kwargs):
     # Create a user profile when a new user account is created

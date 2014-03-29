@@ -14,6 +14,8 @@ class UserRegistrationForm(BetterForm):
     display_name = forms.CharField(required=False)
     phone = forms.CharField(required=False)
 
+    has_ticket = forms.BooleanField(label='I have a ticket', required=False)
+
     def validate_email(self, value):
         try:
             User.objects.get(email__iexact=value)
@@ -59,4 +61,4 @@ class UserRegistrationConfirmForm(BetterModelForm):
 class ProfileForm(BetterModelForm):
     class Meta:
         model = Profile
-        fields = ('full_name', 'display_name', 'phone')
+        fields = ('full_name', 'display_name', 'phone', 'has_ticket')

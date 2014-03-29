@@ -72,6 +72,7 @@ class RegisterConfirmView(CreateView):
         profile.display_name = form.data['display_name']
         profile.full_name = form.data['full_name']
         profile.phone = form.data['phone']
+        profile.has_ticket = form.data['has_ticket']
         profile.save()
         # authenticate
         user = authenticate(
