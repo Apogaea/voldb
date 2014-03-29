@@ -94,7 +94,7 @@ textarea {
    ========================================================================== */
 
 /* hide desktop only stuff by default */
-.dtonly {
+.above500, .above800, .above1000 {
     visibility:hidden;
     display: none;
 }
@@ -551,14 +551,17 @@ form.claim-shift-modal button.cancel:hover {
 
 
 @media only screen and (min-width: 500px) {
-    /* A bump up from mobile to tablet - ish */
-
+    /* show abjects with this class when above this resolution  *********/
+    .above500 {
+        visibility: visible;
+        display: initial;
+    }
       
     body {
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
         margin: 108px 20px 10px 20px;
-        font-size: 0.9em;
+        font-size: 0.84em;
         background-size: 800px;
     }
     h1 {
@@ -581,7 +584,7 @@ form.claim-shift-modal button.cancel:hover {
         margin: 0px 2px;
         padding: 5px 2px;
         border-radius: 8px;
-        font-size: 1em;
+        font-size: 0.9em;
         font-weight: bold;
     }    
     hr.close {
@@ -591,11 +594,12 @@ form.claim-shift-modal button.cancel:hover {
 }
 
 @media only screen and (min-width: 800px) {
-    /* show desktop stuff above this resolution  *********************/
-    .dtonly {
+    /* show abjects with this class when above this resolution  *********/
+    .above800 {
         visibility: visible;
         display: initial;
     }    
+
     /*** home page layout ***/
     div#FlamingArt {
         padding: 4px;
@@ -616,7 +620,7 @@ form.claim-shift-modal button.cancel:hover {
     body {
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
-        font-size: 1em;
+        font-size: 0.92em;
         margin: 161px 30px 10px 30px;
         background-size: 1200px;
 
@@ -638,7 +642,7 @@ form.claim-shift-modal button.cancel:hover {
         margin: 0px 4px;
         padding: 8px 8px 2px 8px;
         border-radius: 10px;
-        font-size: 1.1em;
+        font-size: 0.90em;
     }    
     hr.close {
         border-radius: 16px;
@@ -647,11 +651,17 @@ form.claim-shift-modal button.cancel:hover {
 }
 
 @media only screen and (min-width: 1000px) {
-    /* Style adjustments for viewports that meet the condition */
+    /* show abjects with this class when above this resolution  *********/    
+    .above1000 {
+        visibility: visible;
+        display: initial;
+    }
+
     body {
         max-width: 940px;
         margin: 242px auto 10px auto;
         background-size: 1800px;
+        font-size: 1em;
     }
     h1 {
         font-size: 1.6em;
