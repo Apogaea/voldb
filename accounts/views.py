@@ -25,7 +25,7 @@ class RegisterView(FormView):
     success_url = reverse_lazy('register_success')
 
     def form_valid(self, form):
-        send_registration_verification_email(form.data['email'])
+        send_registration_verification_email(form.cleaned_data['email'])
         return super(RegisterView, self).form_valid(form)
 
 
@@ -67,14 +67,14 @@ class RegisterConfirmView(CreateView):
 
     def form_valid(self, form):
         form.instance.email = self.email
-        password = form.data['password1']
+        password = form.cleaned_data['password1']
         form.save()
         # profile fields
         profile = form.instance.profile
-        profile.display_name = form.data['display_name']
-        profile.full_name = form.data['full_name']
-        profile.phone = form.data['phone']
-        profile.has_ticket = form.data['has_ticket']
+        profile.display_name = form.cleaned_data['display_name']
+        profile.full_name = form.cleaned_data['full_name']
+        profile.phone = form.cleaned_data['phone']
+        profile.has_ticket = form.cleaned_data['has_ticket']
         profile.save()
         # authenticate
         user = authenticate(

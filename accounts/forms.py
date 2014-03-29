@@ -10,6 +10,7 @@ from profiles.models import Profile
 
 class UserRegistrationForm(BetterForm):
     email = forms.EmailField()
+
     def validate_email(self, value):
         try:
             User.objects.get(email__iexact=value)

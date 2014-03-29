@@ -352,7 +352,7 @@ class ShiftsGroupingTest(TestCase):
 
         self.assertEqual(len(data), 2)
 
-        data_0, data_1 =  data
+        data_0, data_1 = data
 
         self.assertEqual(data_0['date'], yesterday)
         self.assertEqual(len(data_0['tabular']), 22)  # this is the tabular data, dunno what to assert.
