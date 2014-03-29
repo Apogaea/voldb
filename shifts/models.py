@@ -3,6 +3,8 @@ import datetime
 
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
+from django.db.models.signals import pre_save
 
 from departments.models import Department
 
@@ -51,3 +53,39 @@ class Shift(models.Model):
         start_hour = self.start_time.astimezone(DENVER_TIMEZONE).hour
         end_hour = self.end_time.astimezone(DENVER_TIMEZONE).hour
         return start_hour > end_hour
+
+
+class ShiftHistory(models.Model):
+    created_at = models.DateTimeField(default=timezone.now)
+
+    shift = models.ForeignKey('Shift', related_name='history')
+    ACTION_CLAIM = 'claim'
+    ACTION_RELEASE = 'release'
+    ACTION_CHOICES = (
+        (ACTION_CLAIM, 'Claim'),
+        (ACTION_RELEASE, 'Release'),
+    )
+    action = models.CharField(max_length=10, choices=ACTION_CHOICES)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+
+
+def track_shift_history(sender, instance, raw, **kwargs):
+    """
+    Each time a shift is saved, check to see if the owner is being claimed.  If
+    it is, track the change.
+    """
+    if not instance.pk or raw:
+        return
+    shift = Shift.objects.get(pk=instance.pk)
+    if not shift.owner == instance.owner:
+        if instance.owner is None:
+            action = ShiftHistory.ACTION_RELEASE
+        else:
+            action = ShiftHistory.ACTION_CLAIM
+        ShiftHistory.objects.create(
+            shift=instance,
+            user=instance.owner or shift.owner,
+            action=action,
+        )
+
+pre_save.connect(track_shift_history, sender=Shift)
