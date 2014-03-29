@@ -129,11 +129,12 @@ a {
     color: #095806; 
 }
 a:hover{
-    text-decoration: underline;
     color: #000;
+}
+p a:hover{
+    text-decoration: underline;
     background-color: rgba(255,255,128,0.8); 
 }
-
 h1 {
     color: #7C330A;
     font-size: 1.2em;
@@ -237,27 +238,6 @@ hr.close {
     background-color: rgba(48,56,64,0.9);
 }
 
-/** Effects **/
-
-.buttonize {
-    display: inline-block;
-    transition: background-color 0.1s ease-in-out;
-    border-radius: 20px; 
-    padding: 8px 30px;
-    margin: 4px 0;
-    font-size: 0.9em;
-    color: #000;    
-    background-color: rgba(128,128,128,0.7); 
-    border: 1px solid #666;
-}
-.buttonize:hover {
-    transition: border-color 3.1s ease-in;
-    transition: border-color 0.3s ease-out;
-    background-color: rgba(96,96,96,1); 
-    border: 1px solid #aaa;
-    color: #ddd;
-    text-decoration: none;
-}
 
 
 
@@ -344,7 +324,7 @@ div.thoughtBubble {
     transition: border-color 0.3s ease-out;
     background-color: rgba(195,159,37,1); 
     border: 1px solid #fff;
-    cursor: cell;
+    cursor: hand;
 }
 
 #shiftgrid td.shift a.claimed-shift {
@@ -402,15 +382,38 @@ div.thoughtBubble {
 }
 
 
+/** Effects **/
+
+button, .buttonize {
+    display: inline-block;
+    transition: background-color 0.1s ease-in-out;
+    border-radius: 20px; 
+    padding: 8px 30px;
+    margin: 4px 0;
+    font-size: 0.9em;
+    color: #000;    
+    background-color: rgba(128,128,128,0.7); 
+    border: 1px solid #666;
+}
+button:hover, .buttonize:hover {
+    transition: border-color 3.1s ease-in;
+    transition: border-color 0.3s ease-out;
+    background-color: rgba(96,96,96,1); 
+    border: 1px solid #aaa;
+    color: #ddd;
+    text-decoration: none;
+}
+
+
 /*** Forms **/
 
 form {
     margin: 10px auto;
     max-width: 500px;
-
+    min-width: 350px;
 }
 form label {
-    font-size: 1em;
+    font-size: 0.9em;
     color: #fff;
     padding: 4px 4px 4px 20px;
     font-weight: bold;
@@ -419,7 +422,7 @@ form label {
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     margin: 0px 0px 1px 0px;
-    min-width: 120px;
+    min-width: 7em;
     width: 20%;
     display: inline-block;
     text-align: right;
@@ -428,7 +431,7 @@ form label {
 form input {
     width: 60%;
     color: #ccc;
-    font-size: 1em;
+    font-size: 0.9em;
     background-color: #000;
     background-color: rgba(48,56,64,0.8);
     border: 1px solid #444;
@@ -453,14 +456,13 @@ form .required input:focus {
 }
 
 
-form input[type="submit"] {
+form input[type="submit"], form button[type="submit"] {
     font-family: 'Abel', Helvetica, Arial, sans-serif;
     transition: background-color 0.1s ease-in-out;
     background-color: rgba(128,255,128,0.7); 
     border-radius: 20px; 
-    display: block;
-    width: 66%;
-    padding: 6px 2px;
+    display: inline-block;
+    padding: 8px 30px;
     margin: 10px 0;
     border: 1px solid #484;
     font-size: 0.8em;
@@ -470,7 +472,7 @@ form input[type="submit"] {
     text-align: center;
     font-size: 1.1em;
 }
-form input[type="submit"]:hover {
+form input[type="submit"]:hover, form button[type="submit"]:hover {
     transition: border-color 3.1s ease-in;
     transition: border-color 0.3s ease-out;
     background-color: rgba(159,159,37,1); 
@@ -518,75 +520,32 @@ div#simplemodal-overlay {
 form.claim-shift-modal {
     background-color: #ccc;
     background-color: rgba(235,235,235,0.9); 
-    border: 1px solid #fff;
-    padding: 10%;
+    border: 4px solid #fff;
+    padding: 8%;
     border-radius: 10px; 
 
-    max-width: 340px;
+    max-width: 400px;
     min-width: 150px;
 
     text-align: center;
 }
-form.claim-shift-modal p {
-    font-size: 1em;
-}
 
 form.claim-shift-modal label {
-    font-size: 0.85em;
-    color: #fff;
-    padding: 4px 4px 4px 20px;
-    font-weight: bold;
-    background-color: #444444;
-    background-color: rgba(48,56,64,0.7); 
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    margin: 0px 1px;
 }
 
 form.claim-shift-modal input {
-    color: #fff;
-    font-size: 0.8em;
-    background-color: #000;
-    background-color: rgba(48,56,64,0.9);
-    border: 0px;
-    margin: 0px;
-    padding: 6px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-
 }
 
 form.claim-shift-modal button {
-    transition: background-color 0.1s ease-in-out;
-    background-color: rgba(128,255,128,0.7); 
-    border-radius: 14px; 
-    display: block;
-    width: 100%;
-    padding: 6px 2px;
-    margin: 10px 0px 2px 0px;
-    border: 1px solid #484;
-    font-size: 0.8em;
-    background-color: rgba(195,159,37,0.8); 
-    border: 1px solid #db3;
     
 }
 form.claim-shift-modal button:hover {
-    transition: border-color 3.1s ease-in;
-    transition: border-color 0.3s ease-out;
-    background-color: rgba(195,159,37,1); 
-    border: 1px solid #fff;
 }
 
 form.claim-shift-modal button.cancel {
-    background-color: rgba(128,128,128,0.7); 
-    border: 1px solid #666;
 }
 
 form.claim-shift-modal button.cancel:hover {
-    transition: border-color 3.1s ease-in;
-    transition: border-color 0.3s ease-out;
-    background-color: rgba(128,128,128,1); 
-    border: 1px solid #aaa;
 }
 
 
