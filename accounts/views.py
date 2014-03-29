@@ -10,6 +10,8 @@ User = get_user_model()
 
 from authtools.views import LoginRequiredMixin
 
+from shifts.utils import group_shifts
+
 from accounts.forms import (
     UserRegistrationForm, UserRegistrationConfirmForm, ProfileForm,
 )
@@ -88,6 +90,11 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
     def get_object(self):
         return self.request.user
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileView, self).get_context_data(**kwargs)
+        context['grouped_shifts'] = group_shifts(self.object.shifts.all())
+        return context
 
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):

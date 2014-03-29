@@ -1,15 +1,21 @@
-from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth.decorators import login_required
-from django.template import RequestContext, loader
+from django.views.generic import ListView, DetailView
+
+from shifts.utils import group_shifts
+
 from departments.models import Department
 
 
-def index(request):
-    department_list = Department.objects.all()
-    return render(request, 'departments/index.html', {'department_list': department_list})
+class DepartmentListView(ListView):
+    model = Department
 
 
-@login_required
-def detail(request, department_id):
-    return HttpResponse("You're looking at department %s." % department_id)
+class DepartmentDetailView(DetailView):
+    model = Department
+    context_object_name = 'department'
+
+    def get_context_data(self, **kwargs):
+        context = super(DepartmentDetailView, self).get_context_data(**kwargs)
+        context.update({
+            'grouped_shifts': group_shifts(self.object.shifts.all()),
+        })
+        return context

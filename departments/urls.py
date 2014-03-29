@@ -3,6 +3,9 @@ from departments import views
 
 
 urlpatterns = patterns('',  # NOQA
-    url(r'^$', views.index, name='departments'),
-     url(r'^(?P<department_id>\d+)/$', views.detail, name='department'),
+    url(r'^$', views.DepartmentListView.as_view(), name='department_list'),
+    url(
+        r'^(?P<pk>\d+)/$', views.DepartmentDetailView.as_view(),
+        name='department_detail',
+    ),
 )

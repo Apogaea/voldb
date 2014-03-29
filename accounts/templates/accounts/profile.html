@@ -18,4 +18,7 @@
       <a href="{% url 'profile_edit' %}" class="buttonize">Edit Profile</a>
       <a href="{% url 'password_change' %}" class="buttonize">Change Password</a>
     </section>
+    {% if user.shifts.exists %}
+      {% include 'shifts/partials/shift_grid.html' %}
+    {% endif %}
 {% endblock %}

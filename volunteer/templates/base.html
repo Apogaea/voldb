@@ -53,6 +53,7 @@
             <a href="{% url 'home' %}">Home</a> 
             {% if user.is_authenticated %}
                 <a href="{% url 'shifts' %}">Shifts</a> 
+                <a href="{% url 'department_list' %}">Departments</a> 
                 <a href="{% url 'leaderboard' %}">LeaderBoard</a> 
             {% endif %}
         </nav>        
