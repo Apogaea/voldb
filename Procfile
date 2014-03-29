@@ -1,1 +1,1 @@
-web: gunicorn volunteer.wsgi
+web: newrelic-admin run-program gunicorn volunteer.wsgi
