@@ -10,12 +10,6 @@ from profiles.models import Profile
 
 class UserRegistrationForm(BetterForm):
     email = forms.EmailField()
-    full_name = forms.CharField(required=False)
-    display_name = forms.CharField(required=False)
-    phone = forms.CharField(required=False)
-
-    has_ticket = forms.BooleanField(label='I have a ticket', required=False)
-
     def validate_email(self, value):
         try:
             User.objects.get(email__iexact=value)
@@ -31,6 +25,12 @@ class UserRegistrationConfirmForm(BetterModelForm):
     error_messages = {
         'password_mismatch': "The two password fields didn't match.",
     }
+    full_name = forms.CharField(required=False)
+    display_name = forms.CharField(required=False)
+    phone = forms.CharField(required=False)
+
+    has_ticket = forms.BooleanField(label='I have a ticket', required=False)
+
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Password confirmation",
                                 widget=forms.PasswordInput,
