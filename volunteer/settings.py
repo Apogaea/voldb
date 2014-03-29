@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'betterforms',
     'emailtools',
     'rest_framework',
+    'compressor',
     # local project
     'volunteer',
     # local apps
