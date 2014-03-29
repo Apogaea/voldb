@@ -5,17 +5,18 @@
 {% block content %}
     <!-- Add your site or application content here -->
     <h1><span>Departmental Structure</span></h1>
-    <section>
+    <section id="departments">
     	<h2><span>Departments</span></h2>
+      <table class="bodytable">
       {% for department in object_list %}
-          <div>
-              <span class="headleft">
-                <a href="{% url 'department_detail' pk=department.pk %}">{{ department }}</a>
-              </span>
+        <tr>
+          <th width="30%"><a href="{% url 'department_detail' pk=department.pk %}">{{ department }}</a></th>
+          <td width="70%">
               <span class="standard">{{ department.description }}</span>
-          </div>
+          </td>
+        </tr>
       {% endfor %}
-
+      </table>
 		<hr class="close" />
 	</section>
 {% endblock %}

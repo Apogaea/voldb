@@ -166,6 +166,12 @@ h2 span{
     display: inline-block;
 }
 
+h3 {
+    font-size: 1.2em;
+    margin: 0px;
+    background-color: rgba(48, 56, 64, 0.3);
+}
+
 #accntnav {
     float: right;
 }
@@ -210,24 +216,6 @@ body section {
 #shiftgrid {}
 
 
-.headleft {
-    background: #c39f25;
-    padding: 2px 1%;
-    color: #000;
-    text-align: right;
-    width: 20%;
-    display: inline-block;
-    margin: 1px 0 1px 0;
-}
-.standard {
-    background: #333;        
-    padding: 2px 0 2px 1%;
-    display: inline-block;
-    width: 75%;
-    border-bottom-right-radius: 15px;
-    border-top-right-radius: 15px;
-    margin: 1px 0 1px 0;
-}
 hr.close {
     border: 0px; 
     width: 100%;
@@ -238,8 +226,44 @@ hr.close {
     background-color: rgba(48,56,64,0.9);
 }
 
+/** a div to wrap text blocks and make them match
+    the opening h2 and closing hr tag styles **/
 
+div.solobody {
+    background-color: rgba(48, 56, 64, 0.3);
+    width: 92%;
+    margin: 0px;
+    padding: 2%;
+    margin: 0px;
+    border-left: 1em solid #555d60;
+    border-top-right-radius: 10px;   
+    border-bottom-right-radius: 10px;  
+}
 
+.solobody h3 {
+    background-color: rgba(255,255,255,0.1);
+    font-size: 2em;
+    margin: 0px;
+
+    background-color: rgba(48, 56, 64, 0.3);
+    width: 92%;
+    padding: 0;
+    margin: 0px;
+    border-left: 0.5em solid #555d60;
+    border-top-right-radius: 10px;   
+    border-bottom-right-radius: 10px;
+
+}
+.solobody h3 a{
+    padding: 10px;
+    display: inline-block;
+    margin: 0px 20px;
+}
+
+/** Profile Page **/
+section#profile {
+    text-align: center;
+}
 
 /*** home page layout ***/
 div#FlamingArt {
@@ -256,6 +280,52 @@ div.thoughtBubble {
     border-radius: 35px;
     padding: 8px 20px;
     margin: 4px;
+}
+
+/** A more generic styled table, this should
+    eventually reduce the shifts layouts below **/
+
+table.bodytable {
+    width: 98%;
+}
+
+table.bodytable tr:first-child td:last-child {
+    border-top-right-radius: 12px;   
+}
+
+table.bodytable tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;       
+}
+
+table.bodytable td {    
+    background-color: rgba(48,56,64,0.2); 
+    padding: 10px;
+}
+
+table.bodytable th {
+    background-color: rgba(48,56,64,0.7); 
+    color: #222;
+    text-align: right;
+    padding: 2px 4px 1px 4px;
+    margin:1px;
+    vertical-align: top
+}
+
+table.bodytable td {    
+    margin: 10px;
+    border-spacing: 1px
+}
+
+
+table.bodytable th a {    
+    color: #ddd;
+    display: block;
+    padding: 4px;
+}
+
+table.bodytable th a:hover {
+    color: #E8D758;
+    background-color: rgba(48,56,64,0.6); 
 }
 
 /*** shifts page layout ***/
@@ -276,19 +346,62 @@ div.thoughtBubble {
     padding-left: 1px;
 }
 
+#shiftgrid th {
+    font-weight: bold;
+    font-size: 0.8em;
+    background-color: rgba(48,56,64,0.7); 
+    color: #222;
+}
+
+
+#shiftgrid tr.hours th {
+    padding-top: 0.6em;
+    padding-bottom: 0.8em;
+    font-size: 0.6em;
+    color: #444;
+    background-color: rgba(48,56,64,0.6); 
+}
+#shiftgrid tr.hours th:nth-child(even) {
+    background-color: rgba(48,56,64,0.65); 
+}
+
+
+#shiftgrid tr.hours th:last-child {
+    border-top-right-radius: 6px;   
+    border-right: 0px;      
+}
+
 #shiftgrid tr.hours th {
     width: 4%;
 }
+
 #shiftgrid th.department {
+    transition: background-color 0.5s ease-in-out;
     text-align: right;
-    padding-right: 8px;
+    padding: 4px 6px 0px 6px;
+    color: #ddd;
+}
+
+#shiftgrid th.department:hover {
+    transition: background-color 0.1s ease-in-out;
+    background-color: rgba(48,56,64,0.6);  
+    color: #E8D758;
+    cursor: pointer;    
 }
 
 #shiftgrid td.empty {
     transition: background-color 3s ease-in;
     background-color: rgba(48,56,64,0.2); 
 }
+
+
+#shiftgrid td.empty:nth-child(even) {
+    transition: background-color 3s ease-in;
+    background-color: rgba(48,56,64,0.25); 
+}
 #shiftgrid td.empty:hover {
+    transition: background-color 0.1s ease-in-out;
+    background-color: rgba(48,56,64,0.1); 
 }
 #shiftgrid td.shift {
     letter-spacing:-1px;
@@ -307,6 +420,19 @@ div.thoughtBubble {
     overflow: hidden;
     max-height: 1.5em;
 }
+
+#shiftgrid td.cutoff-left a {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding-left: 0;
+}
+
+#shiftgrid td.cutoff-right a {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding-right: 0;
+}
+
 
 #shiftgrid td.shift a.busy,
 #shiftgrid td.shift a.busy:hover  {
@@ -332,7 +458,7 @@ div.thoughtBubble {
     transition: border-color 0.3s ease-out;
     background-color: rgba(195,159,37,1); 
     border: 1px solid #fff;
-    cursor: hand;
+    cursor: pointer;
 }
 
 #shiftgrid td.shift a.open-shift[data-restricted="true"]:hover {
@@ -368,30 +494,11 @@ div.thoughtBubble {
     color: #000;
     cursor: default;
 }
-
-#shiftgrid th {
-    font-weight: normal;
-    font-size: 0.8em;
-    background-color: rgba(48,56,64,0.7); 
-    color: #222;
-}
-
-
-#shiftgrid tr.hours th {
-    padding-top: 0.4em;
-    font-size: 0.6em;
-    color: #444;
-    background-color: rgba(48,56,64,0.6); 
-}
-
-
-#shiftgrid tr.hours th:last-child {
-    border-top-right-radius: 6px;     
-}
-#shiftgrid tr.bottom th {
+#shiftgrid tfoot th:last-child {
     border-bottom-right-radius: 6px;     
-    height: 8px;
+    height: 2.5em;
 }
+
 
 
 /** Effects **/
@@ -453,6 +560,19 @@ form input {
     border-bottom-right-radius: 15px;
     text-align: left;
 }
+
+
+form input[type="checkbox"] {
+    float: right;
+    height: 1.1em;
+    display: inline-block;
+    width: auto;
+    padding: 40px 0px;
+    margin-right: 60%;
+    margin-top: 0.4em;
+}
+
+
 form .required input {
     color: #fff;
     background-color: rgba(48,56,64,0.65);
@@ -504,11 +624,7 @@ form button.cancel:hover {
     border: 1px solid #aaa;
 }
 
-div.required {
-    background: no-repeat top left url('../img/icon-required.png');
-    margin-left: -25px;
-    padding-left: 25px;
-}
+
 
 ul.errorlist {
     font-weight: bold;

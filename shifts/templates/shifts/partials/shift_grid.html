@@ -33,24 +33,27 @@
     {% ifchanged %}<h2><span>{{ shifts_on_date.grouper|date:"l, M jS, Y" }}</span></h2>{% endifchanged %}
     
     {% regroup shifts_on_date.list by department as shifts_by_departments %}
-    {% for shifts_in_department in shifts_by_departments %}
         <table width="100%">
+    {% for shifts_in_department in shifts_by_departments %}
             <tr>
-                <th width="11%" class="department">{{ shifts_in_department.grouper }}</th>
-                <td width="89%">
+                <th width="12%" class="department">{{ shifts_in_department.grouper }}</th>
+                <td width="88%">
                 {% regroup shifts_in_department.list by length as shifts_by_lengths %}
                 {% for length in shifts_by_lengths %}
                     <table width="98%">
-                        <tr class="hours">
-                            <th>12a</th><th>1a</th><th>2a</th>
-                            <th>3a</th><th>4a</th><th>5a</th>
-                            <th>6a</th><th>7a</th><th>8a</th>
-                            <th>9a</th><th>10a</th><th>11a</th>
-                            <th>12p</th><th>1p</th><th>2p</th>
-                            <th>3p</th><th>4p</th><th>5p</th>
-                            <th>6p</th><th>7p</th><th>8p</th>
-                            <th>9p</th><th>10p</th><th>11p</th>
-                        </tr>
+                        <thead>
+                          <tr class="hours">
+                              <th>12a</th><th>1a</th><th>2a</th>
+                              <th>3a</th><th>4a</th><th>5a</th>
+                              <th>6a</th><th>7a</th><th>8a</th>
+                              <th>9a</th><th>10a</th><th>11a</th>
+                              <th>12p</th><th>1p</th><th>2p</th>
+                              <th>3p</th><th>4p</th><th>5p</th>
+                              <th>6p</th><th>7p</th><th>8p</th>
+                              <th>9p</th><th>10p</th><th>11p</th>
+                          </tr>
+                        </thead>
+                        <tbody class="hideable {% if is_big_grid %}hidden{% endif %}" >  
                         {% for row in length.list %}
                             <tr>
                                 {% for cell in row.tabular %}
@@ -78,13 +81,16 @@
                                 {% endfor %}
                             </tr>
                         {% endfor %}
-                        <tr class="bottom"><th colspan="24"></th></tr>
+                        </tbody>
+                        <tfoot>
+                          <tr><th colspan="24"></th></tr>
+                        </tfoot>
                     </table>
                 {% endfor %}
                 </td>
             </tr>
-        </table>
     {% endfor %}
+        </table>
     <hr class="close" />
 {% endfor %}
 
