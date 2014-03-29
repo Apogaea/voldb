@@ -14,3 +14,8 @@ CACHES = herokuify.get_cache_config()
 
 DEBUG = os.environ.get('DJANGO_DEBUG') == 'True'
 TEMPLATE_DEBUG = DEBUG
+
+# Set your DSN value
+RAVEN_CONFIG = {
+    'dsn': os.environ['SENTRY_DSN'],
+}

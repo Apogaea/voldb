@@ -16,3 +16,4 @@ djangorestframework==2.3.13
 django-compressor==1.3
 PyYAML==3.11
 newrelic==2.18.1.15
+raven==4.1.1

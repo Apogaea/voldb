@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'emailtools',
     'rest_framework',
     'compressor',
+    'raven.contrib.django.raven_compat',
     # local project
     'volunteer',
     # local apps
