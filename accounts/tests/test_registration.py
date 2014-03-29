@@ -154,6 +154,7 @@ class RegistrationTest(TestCase):
             'display_name': 'test-display_name',
             'full_name': 'test-full_name',
             'phone': 'test-phone',
+            'has_ticket': True,
         })
         self.assertContains(response, '', status_code=status.HTTP_302_FOUND)
 
@@ -171,3 +172,4 @@ class RegistrationTest(TestCase):
         self.assertEqual(user.profile.full_name, 'test-full_name')
         self.assertEqual(user.profile.display_name, 'test-display_name')
         self.assertEqual(user.profile.phone, 'test-phone')
+        self.assertTrue(user.profile.has_ticket)

@@ -1,9 +1,12 @@
 from django.conf.urls import patterns, url
+from django.core.urlresolvers import reverse_lazy
 from accounts import views
+
+from authtools.views import PasswordChangeView
 
 
 urlpatterns = patterns('',  # NOQA
-    url(r'^/$', views.ProfileView.as_view(), name='profile'),
+    url(r'^$', views.ProfileView.as_view(), name='profile'),
     url(r'^edit/$', views.ProfileUpdateView.as_view(), name='profile_edit'),
     url(r'^register/$', views.RegisterView.as_view(), name='register'),
     url(
@@ -21,6 +24,12 @@ urlpatterns += patterns(
     url(r'^login/$', 'login', name='login'),
     url(r'^logout/$', 'logout_then_login', name='logout'),
     url(r'^password-reset/$', 'password_reset', name='password_reset'),
+    url(
+        r'^change-password/$', PasswordChangeView.as_view(
+            template_name='accounts/change_password.html',
+            success_url=reverse_lazy('profile'),
+        ), name='password_change',
+    ),
     url(
         r'^password-reset-done/$', 'password_reset_done',
         name='password_reset_done',
