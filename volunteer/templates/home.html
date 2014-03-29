@@ -11,19 +11,17 @@
             <div class="thoughtBubble">
 
                 {% if user.is_authenticated %}
-
-                    <p>Welcome Back,</p>
-                    <p>Well, it looks like you made it through the registration process!</p>
-                    <p>The system underwent a significant overhaul since last year. 
-                      Things may be in some disarray. Some features are still being worked on. 
-                      Should you have any troubles that my guidance can not assist with, please contact 
+                    <p>Welcome Back {{ user }}, it appears you've made it through registration! It's good to see you. Let me give you an update:</p>
+                    <blockquote>Current Status: <b>Open Public Beta</b></blockquote>
+                    <p>The system underwent a significant overhaul since last year and it's far from over. Things may be in some disarray. Should you have any troubles that my guidance can not assist with, please contact: 
                       <a href="mailto:volunteerdatabase@apogaea.com">volunteerdatabase@apogaea.com</a>.
                     </p>
-                    <p>For now, here are some things to go do:
+                    <p>Here are some things to go do:
                         <ul>
-                            <li><a href="{% url 'profile' %}">Edit your profile</a>.</li>
-                            <li><a href="{% url 'shifts' %}">Claim some shifts.</a></li>
-                            <li><a href="{% url 'leaderboard' %}">View the leaderboard.</a></li>
+                            <li><a href="{% url 'profile' %}">Edit your profile</a>...</li>
+                            <li><a href="{% url 'shifts' %}">Learn about each department's shift</a>...</li>
+                            <li><a href="{% url 'shifts' %}">Claim some shifts</a>...</li>
+                            <li><a href="{% url 'leaderboard' %}">View the leaderboard</a>...</li>
                         </ul>
                     </p>
                     <p style="text-align: right">Your Superhero,<br />    
@@ -51,8 +49,8 @@
                 {% endif %}
 
             </div>
-            <div class="thoughtBubble dtonly">&nbsp;&nbsp;&nbsp;<br />&nbsp;</div>
-            <div class="thoughtBubble dtonly">&nbsp;</div>
+            <div class="thoughtBubble above800">&nbsp;&nbsp;&nbsp;<br />&nbsp;</div>
+            <div class="thoughtBubble above800">&nbsp;</div>
             <img src="{% static 'img/Flaming_Art.png' %}" />
         </div>
     </section>

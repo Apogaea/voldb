@@ -2,22 +2,21 @@
 {% block body_class %}{{ block.super }} home{% endblock %}
 
 {% block content %}
-    <!-- Add your site or application content here -->
-    <h1>Volugean Profile {{ user.profile.display_name }}</h1>
-    <section>
-      <dl>
-        <dt>Email:</dt>
-            <dd>{{ user.email }}</dd>
-        <dt>Full Name:</dt>
-            <dd>{{ user.profile.full_name }}</dd>
-        <dt>Display Name:</dt>
-            <dd>{{ user.profile.display_name }}</dd>
-        <dt>Phone:</dt>
-            <dd>{{ user.profile.phone }}</dd>
-      </dl>
-      <a href="{% url 'profile_edit' %}" class="buttonize">Edit Profile</a>
-      <a href="{% url 'password_change' %}" class="buttonize">Change Password</a>
+    <h1>Your Profile</h1>
+    <section id="profile">        
+        <h2><span>{{ user }}</span></h2>
+        <div class="solobody"><span>
+            <p><b>{{ user.profile.full_name }}</b></p>
+            <p>Display Name: {{ user }}<br />
+               {{ user.email }}<br />
+               {{ user.profile.phone }}
+            </p>
+            <a href="{% url 'password_change' %}" class="buttonize">Change Password</a><br />
+            <a href="{% url 'profile_edit' %}" class="buttonize">Edit Profile</a>
+        </span></div>            
+        <hr class="close" />
     </section>
+    <h1>Your Schedule</h1>
     {% if user.shifts.exists %}
       {% include 'shifts/partials/shift_grid.html' %}
     {% endif %}

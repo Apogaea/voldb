@@ -55,10 +55,13 @@ $(document).ready( function () {
     /*
      *  Parallax Scrolling
      */    
-    if (!isTouchDevice()) { 
-        $(window).scroll(function(){
-            parallaxScroll();
-        });
+
+
+
+    function isTouchDevice() {
+       var el = document.createElement('div');
+       el.setAttribute('ongesturestart', 'return;'); // or try "ontouchstart"
+       return typeof el.ongesturestart === "function";
     }
 
     function parallaxScroll(){
@@ -66,13 +69,19 @@ $(document).ready( function () {
         $("body").css("background-position", "center "+((scrolled*0.25))+"px");
     }
 
+    if (!isTouchDevice()) { 
+        parallaxScroll();
+        $(window).scroll(function(){
+            parallaxScroll();
+        });
+    }    
+
     /*
      *  Shift grid view claiming and releasing.
      */
     function bindToClaimShift() {
         $("a.locked").click(function(e) {
             e.preventDefault();
-            $(this).effect( "shake", {}, "fast" );
         });
         $("a.shift-toggle:not('locked')").click(function(e) {
             e.preventDefault();
@@ -164,12 +173,13 @@ $(document).ready( function () {
         }
     }
 
-    function isTouchDevice() {
-       var el = document.createElement('div');
-       el.setAttribute('ongesturestart', 'return;'); // or try "ontouchstart"
-       return typeof el.ongesturestart === "function";
+    function bindToggleDept() {
+        $("th.department").click(function(e) {
+            $(this).parent().find(".hideable").toggleClass("hidden");
+        });
     }
+    bindToggleDept()
+  
 
-    if (!isTouchDevice()) { parallaxScroll(); }
     bindToClaimShift();
 });

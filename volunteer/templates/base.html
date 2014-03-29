@@ -44,17 +44,17 @@
                       <a href="/admin">Admin</a>
                     {% endif %}
                     <a href="{% url 'profile' %}">Profile</a>             
-                    <a href="{% url 'logout' %}">logout <span class="dtonly">{{ user.get_full_name }}</span></a>
+                    <a href="{% url 'logout' %}">logout <span class="above500">{{ user.get_full_name }}</span></a>
                 {% else %}
                 <a href="{% url 'register' %}">Register</a>
                 <a href="{% url 'login' %}">Login</a>
                 {% endif %}
             </span>
-            <a href="{% url 'home' %}">Home</a> 
+            <a href="{% url 'home' %}"><span class="above500"><span class="above1000">Super Hero</span> Flaming</span> Art</a> 
             {% if user.is_authenticated %}
-                <a href="{% url 'shifts' %}">Shifts</a> 
+                <a href="{% url 'shifts' %}">ALL Shifts</a> 
                 <a href="{% url 'department_list' %}">Departments</a> 
-                <a href="{% url 'leaderboard' %}">LeaderBoard</a> 
+                <a href="{% url 'leaderboard' %}">Leader Board</a> 
             {% endif %}
         </nav>        
         {% block content %}

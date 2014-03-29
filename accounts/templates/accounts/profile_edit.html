@@ -3,13 +3,16 @@
 
 {% block content %}
     <h1><span>Edit Profile</span></h1>
-    <section>
-
-<form action="{% url 'profile_edit' %}" method="post">{% csrf_token %}
-    {% include 'partials/form_as_fieldsets.html' %}
-    <input type="submit" value="Update" />
-      <a href="{% url 'profile' %}" class="buttonize">Cancel</a>
-</form>
+    <section id="profile">
+        <h2><span>{{ user }}</span></h2>
+        <div class="solobody">
+            <form action="{% url 'profile_edit' %}" method="post">{% csrf_token %}
+                {% include 'partials/form_as_fieldsets.html' %}
+                <input type="submit" value="Update" />
+                  <a href="{% url 'profile' %}" class="buttonize">Cancel</a>
+            </form>
+        </div>
+    <hr class="close" />
 
 	</section>
 {% endblock %}
