@@ -118,37 +118,50 @@ $(document).ready( function () {
             url : form.attr("action"),
             type: "PUT",
             data : form.serializeArray(),
-            success: function(data, textStatus, jqXHR)
-            {
-                var link = $("a.shift-" + data.id);
-                link.data("shift", data.id);
-                link.data("restricted", data.requires_code);
-                link.data("owner", data.owner);
-                link.data("department", data.department);
-                link.data("start", data.start);
-                link.data("shift_length", data.shift_length);
-                link.text(data.display_text);
-                link.removeClass();
-                link.addClass("shift-" + data.id);
-                link.addClass("shift-toggle");
-                if (data.owner) {
-                    link.addClass("claimed-shift");                    
-                } else {
-                    link.addClass("open-shift");
-                    link.text("o p e n");
-                }
+            success: function(data) {
+                updateShiftCell(data);
                 $.modal.close();
             },
-            error: function(jqXHR, textStatus, errorThrown)
+            error: function(jqXHR)
             {
                 var errors = form.find("ul.errors");
                 errors.text("");
-                _.each(_.pairs(jqXHR.responseJSON), function(error) {
-                    var message = error[1];
-                    errors.append($("<li>" + message + "</li>"));
-                });
+                if ( !_.isUndefined(jqXHR.responseJSON) ) {
+                    _.each(_.pairs(jqXHR.responseJSON), function(error) {
+                        var message = error[1];
+                        errors.append($("<li>" + message + "</li>"));
+                    });
+                    $.ajax({
+                        url : form.attr("action"),
+                        type: "GET",
+                        success: updateShiftCell
+                    });
+                } else {
+                    errors.append($("<li>Something went terribly wrong... Try refreshing the page.</li>"));
+                }
             }
         });
+    }
+
+    function updateShiftCell(data) {
+        console.log("Updated shift")
+        var link = $("a.shift-" + data.id);
+        link.data("shift", data.id);
+        link.data("restricted", data.requires_code);
+        link.data("owner", data.owner);
+        link.data("department", data.department);
+        link.data("start", data.start);
+        link.data("shift_length", data.shift_length);
+        link.text(data.display_text);
+        link.removeClass();
+        link.addClass("shift-" + data.id);
+        link.addClass("shift-toggle");
+        if (data.owner) {
+            link.addClass("claimed-shift");
+        } else {
+            link.addClass("open-shift");
+            link.text("o p e n");
+        }
     }
 
     function isTouchDevice() {
