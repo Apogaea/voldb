@@ -285,7 +285,10 @@ div.thoughtBubble {
 }
 
 #shiftgrid td.empty {
+    transition: background-color 3s ease-in;
     background-color: rgba(48,56,64,0.2); 
+}
+#shiftgrid td.empty:hover {
 }
 #shiftgrid td.shift {
     letter-spacing:-1px;
@@ -313,10 +316,15 @@ div.thoughtBubble {
     color;#000;
     display: block;
 }
+
 #shiftgrid td.shift a.open-shift {
     transition: background-color 0.3s ease-in-out;
     background-color: rgba(195,159,37,0.4); 
     border: 1px solid #db3;
+}
+
+#shiftgrid td.shift a.open-shift[data-restricted="true"] {
+    background: rgba(195,159,37,0.4) no-repeat left center url('../img/data-restricted.png'); 
 }
 
 #shiftgrid td.shift a.open-shift:hover {
@@ -325,6 +333,10 @@ div.thoughtBubble {
     background-color: rgba(195,159,37,1); 
     border: 1px solid #fff;
     cursor: hand;
+}
+
+#shiftgrid td.shift a.open-shift[data-restricted="true"]:hover {
+    background: rgba(195,159,37,0.4) no-repeat 1% center url('../img/data-restricted-opened.png'); 
 }
 
 #shiftgrid td.shift a.claimed-shift {
