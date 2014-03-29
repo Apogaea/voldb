@@ -6,6 +6,7 @@ class ShiftAdmin(admin.ModelAdmin):
     list_display = ('id', 'department', 'start_time', 'shift_length', 'owner', 'code')
     list_filter = ['shift_length', 'department', 'code', 'start_time']
     actions = ['clear_code']
+    
     def clear_code(self, request, queryset):
         rows_updated = queryset.update(code='')
         if rows_updated == 1:
@@ -17,4 +18,3 @@ class ShiftAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Shift, ShiftAdmin)
-
