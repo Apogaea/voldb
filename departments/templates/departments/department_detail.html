@@ -4,7 +4,8 @@
 
 {% block content %}
 
-<h1>Volunteer Shifts</h1>
+<h1>{{ department }}</h1>
+<p>{{ department.description }}</p>
 
 {% include 'shifts/partials/shift_grid.html' %}
 
