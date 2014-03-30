@@ -54,7 +54,7 @@ $(document).ready( function () {
 
     /*
      *  Parallax Scrolling
-     */    
+     *   
 
     function parallaxScroll(){
         var scrolled = $(window).scrollTop();      
@@ -68,7 +68,7 @@ $(document).ready( function () {
                 parallaxScroll();
             });
     }
-
+*/
 
 
     /*
