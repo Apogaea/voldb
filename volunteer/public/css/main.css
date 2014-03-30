@@ -330,6 +330,11 @@ table.bodytable th a:hover {
 
 /*** shifts page layout ***/
 
+div#expandcollapse {
+    text-align: center;
+    padding: 4px;
+}
+
 #shiftgrid table, #shiftgrid td, #shiftgrid th, #shiftgrid tr, #shiftgrid tbody {
     vertical-align:text-top;
     margin: 0px;
@@ -378,11 +383,33 @@ table.bodytable th a:hover {
 #shiftgrid th.department {
     transition: background-color 0.5s ease-in-out;
     text-align: right;
-    padding: 4px 6px 0px 6px;
+    padding: 2px 6px 0px 6px;
     color: #ddd;
 }
 
-#shiftgrid th.department:hover {
+#shiftgrid th.department a {
+    transition: background-color 0.1s ease-in-out;
+    color: #ddd;
+    text-shadow: 1px 1px 8px #383838;
+    padding-top: 2px;
+}
+#shiftgrid th.department a:hover {
+    transition: background-color 0.1s ease-in-out;
+    color: #E8D758;
+}
+
+#shiftgrid tfoot th:last-child {
+    transition: background-color 0.5s ease-in-out;
+    border-bottom-right-radius: 6px;     
+    height: 1em;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-weight: normal;
+    font-size: 0.8em;
+    color: #ccc;
+}
+
+#shiftgrid tfoot th:hover {
     transition: background-color 0.1s ease-in-out;
     background-color: rgba(48,56,64,0.6);  
     color: #E8D758;
@@ -493,10 +520,6 @@ table.bodytable th a:hover {
     border: 1px solid #777;
     color: #000;
     cursor: default;
-}
-#shiftgrid tfoot th:last-child {
-    border-bottom-right-radius: 6px;     
-    height: 2.5em;
 }
 
 

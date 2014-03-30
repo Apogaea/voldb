@@ -28,6 +28,9 @@
 </script>
 {% endverbatim %}
 
+<div id="expandcollapse">
+  <button id="collapseall" class="buttonize">Collapse All</button>
+  <button id="expandall" class="buttonize">Expand All</button>
 {% regroup grouped_shifts by date as shifts_by_dates %}
 {% for shifts_on_date in shifts_by_dates %}
     {% ifchanged %}<h2><span>{{ shifts_on_date.grouper|date:"l, M jS, Y" }}</span></h2>{% endifchanged %}
@@ -36,7 +39,7 @@
         <table width="100%">
     {% for shifts_in_department in shifts_by_departments %}
             <tr>
-                <th width="12%" class="department">{{ shifts_in_department.grouper }}</th>
+                <th width="12%" class="department"><a href="{% url 'department_list' %}{{ shifts_in_department.grouper.pk }}">{{ shifts_in_department.grouper }}</a></th>
                 <td width="88%">
                 {% regroup shifts_in_department.list by length as shifts_by_lengths %}
                 {% for length in shifts_by_lengths %}
@@ -82,8 +85,8 @@
                             </tr>
                         {% endfor %}
                         </tbody>
-                        <tfoot>
-                          <tr><th colspan="24"></th></tr>
+                        <tfoot class="scheduletoggle">
+                          <tr><th colspan="24">click to expand / collapse</th></tr>
                         </tfoot>
                     </table>
                 {% endfor %}
@@ -93,7 +96,7 @@
         </table>
     <hr class="close" />
 {% endfor %}
-
+</div>
 
 
 

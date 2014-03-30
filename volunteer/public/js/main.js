@@ -173,13 +173,21 @@ $(document).ready( function () {
         }
     }
 
+    /* expand and collapse shift schedules */
     function bindToggleDept() {
-        $("th.department").click(function(e) {
-            $(this).parent().find(".hideable").toggleClass("hidden");
+        $("#collapseall").click(function(e) {
+            $(this).parent().find(".hideable").addClass("hidden");
         });
+        $("#expandall").click(function(e) {
+            $(this).parent().find(".hideable").removeClass("hidden");
+        });
+        $("tfoot.scheduletoggle").click(function(e) {
+            $(this).parent().find(".hideable").toggleClass("hidden");
+        }); 
+               
     }
-    bindToggleDept()
-  
+
+    bindToggleDept() 
 
     bindToClaimShift();
 });
