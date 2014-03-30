@@ -115,7 +115,7 @@ class SerializerTest(TestCase):
             serializer.errors,
         )
 
-    def test_cliaming_already_claimed_shift(self):
+    def test_claiming_already_claimed_shift(self):
         user = UserFactory()
         other_user = UserFactory()
 

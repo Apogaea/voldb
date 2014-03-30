@@ -7,7 +7,7 @@ class ShiftSerializer(serializers.ModelSerializer):
     custom_error_messages = {
         'suspicious_owner': 'You cannot claim a shift for another user',
         'already_claimed': 'This shift has already been claimed',
-        'unable_to_release': 'You may not release a shift cliamed by another user',
+        'unable_to_release': 'You may not release a shift claimed by another user',
         'invalid_code': 'The code you submitted is invalid',
     }
     display_text = serializers.CharField(source='__str__', read_only=True)
