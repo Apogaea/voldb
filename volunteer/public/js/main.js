@@ -56,25 +56,20 @@ $(document).ready( function () {
      *  Parallax Scrolling
      */    
 
-
-
-    function isTouchDevice() {
-       var el = document.createElement('div');
-       el.setAttribute('ongesturestart', 'return;'); // or try "ontouchstart"
-       return typeof el.ongesturestart === "function";
-    }
-
     function parallaxScroll(){
         var scrolled = $(window).scrollTop();      
         $("body").css("background-position", "center "+((scrolled*0.25))+"px");
     }
 
-    if (!isTouchDevice()) { 
-        parallaxScroll();
-        $(window).scroll(function(){
+    //Don't bother on mobile.
+    if (!( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )) {
             parallaxScroll();
-        });
-    }    
+            $(window).scroll(function(){
+                parallaxScroll();
+            });
+    }
+
+
 
     /*
      *  Shift grid view claiming and releasing.
