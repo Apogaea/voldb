@@ -18,7 +18,7 @@ MEDIA_URL = "https://{0}.s3.amazonaws.com/media/".format(AWS_STORAGE_BUCKET_NAME
 
 THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
 
-STATICFILES_STORAGE = "herokuify.storage.CachedS3StaticStorage"
+STATICFILES_STORAGE = "herokuify.storage.S3StaticStorage"
 STATIC_URL = "https://{0}.s3.amazonaws.com/static/".format(AWS_STORAGE_BUCKET_NAME)
 
 AWS_REDUCED_REDUNDANCY = True
