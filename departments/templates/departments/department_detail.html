@@ -12,7 +12,13 @@
         <hr class="close" />
     </section>
     <h1>{{ department }} Shifts</h1>
-{% include 'shifts/partials/shift_grid.html' %}
+    {% if user.is_authenticated %}
+        {% include 'shifts/partials/shift_grid.html' %}
+    {% else %}
+        <section>
+          <p>Please <a href="{% url 'register' %}">Register</a> to view and claim shifts</p>
+        </section>
+    {% endif %}
 
 {% endblock %}
 

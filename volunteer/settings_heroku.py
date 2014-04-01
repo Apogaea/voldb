@@ -19,3 +19,7 @@ TEMPLATE_DEBUG = DEBUG
 RAVEN_CONFIG = {
     'dsn': os.environ['SENTRY_DSN'],
 }
+
+TEMPLATE_LOADERS = (
+    ('django.template.loaders.cached.Loader', TEMPLATE_LOADERS),
+)
