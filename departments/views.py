@@ -1,15 +1,17 @@
 from django.views.generic import ListView, DetailView
 
+from authtools.views import LoginRequiredMixin
+
 from shifts.utils import group_shifts
 
 from departments.models import Department
 
 
-class DepartmentListView(ListView):
+class DepartmentListView(LoginRequiredMixin, ListView):
     model = Department
 
 
-class DepartmentDetailView(DetailView):
+class DepartmentDetailView(LoginRequiredMixin, DetailView):
     model = Department
     context_object_name = 'department'
 
