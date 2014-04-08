@@ -66,7 +66,7 @@ class RegisterConfirmView(CreateView):
         return kwargs
 
     def form_valid(self, form):
-        form.instance.email = self.email
+        form.instance.email = self.email.lower()
         password = form.cleaned_data['password1']
         form.save()
         # profile fields

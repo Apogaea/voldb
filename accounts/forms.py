@@ -11,11 +11,12 @@ from profiles.models import Profile
 class UserRegistrationForm(BetterForm):
     email = forms.EmailField()
 
-    def validate_email(self, value):
+    def clean_email(self):
+        email = self.cleaned_data['email'].lower()
         try:
-            User.objects.get(email__iexact=value)
+            User.objects.get(email__iexact=email)
         except User.DoesNotExist:
-            return value
+            return email
         else:
             raise forms.ValidationError(
                 'An account with that email address already exists',
