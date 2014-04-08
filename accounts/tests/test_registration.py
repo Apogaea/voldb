@@ -156,7 +156,7 @@ class RegistrationTest(TestCase):
             'phone': 'test-phone',
             'has_ticket': True,
         })
-        self.assertContains(response, '', status_code=status.HTTP_302_FOUND)
+        self.assertRedirects(response, reverse('shifts'))
 
         self.assertTrue(User.objects.filter(email=email).exists())
 
