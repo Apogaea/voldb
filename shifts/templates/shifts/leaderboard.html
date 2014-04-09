@@ -5,12 +5,25 @@
 {% block content %}
 <h1><span>Volunteer Leader Board</span></h1>
 <section id="leaderboard">
-  <h2><span>Rank</span></h2>
+  <h2><span>Organization Rank</span></h2>
   <table class="bodytable">
     <tbody>
-      {% for leader in page_obj %}
+      {% for leader in organization_leaders %}
         <tr>
-          <th>{{ forloop.counter0|add:page_obj.start_index }}</th>
+          <th>{{ forloop.counter }}</th>
+          <td>{{ leader }}</td>
+          <td>{{ leader.total_member_shift_hours }} hours</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <hr class="close" />
+  <h2><span>Individual Rank</span></h2>
+  <table class="bodytable">
+    <tbody>
+      {% for leader in user_leaders %}
+        <tr>
+          <th>{{ forloop.counter }}</th>
           <td>{{ leader }}</td>
           <td>{{ leader.shift_length_sum }} hours</td>
         </tr>

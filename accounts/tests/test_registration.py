@@ -11,7 +11,7 @@ User = get_user_model()
 
 from rest_framework import status
 
-from accounts.factories import UserFactory
+from accounts.factories import UserWithProfileFactory
 from accounts.utils import (
     generate_registration_token, reverse_registration_url,
     unsign_registration_token, REGISTRATION_TOKEN_MAX_AGE,
@@ -20,7 +20,7 @@ from accounts.utils import (
 
 class LoginTest(TestCase):
     def test_good_credentials(self):
-        user = UserFactory(password='secret')
+        user = UserWithProfileFactory(password='secret')
         url = reverse("login")
         response = self.client.post(url, {
             'username': user.email, 'password': 'secret',
@@ -28,7 +28,7 @@ class LoginTest(TestCase):
         self.assertEquals(response.status_code, status.HTTP_302_FOUND)
 
     def test_bad_credentials(self):
-        user = UserFactory(password='secret')
+        user = UserWithProfileFactory(password='secret')
         url = reverse("login")
         response = self.client.post(url, {
             'username': user.email, 'password': 'badpassword',
@@ -38,7 +38,7 @@ class LoginTest(TestCase):
 
 class LogoutTest(TestCase):
     def test_logout(self):
-        user = UserFactory(password='secret')
+        user = UserWithProfileFactory(password='secret')
 
         self.assertTrue(self.client.login(
             username=user.email,
@@ -124,7 +124,7 @@ class RegistrationTest(TestCase):
         self.assertTrue(post_response.context['bad_signature'])
 
     def test_registration_confirmation_page_with_email_taken(self):
-        UserFactory(email='test@example.com')
+        UserWithProfileFactory(email='test@example.com')
         url = reverse_registration_url('test@example.com')
 
         get_response = self.client.get(url)

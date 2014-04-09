@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block body_class %}{{ block.super }} home{% endblock %}
+
+{% block content %}
+    <!-- Add your site or application content here -->
+    <h1>Request Sent</h1>
+    <section>
+      <p>A request to join {{ organization }} has been created.  It's now up to the administrators of that organization to accept.</p>
+    </section>
+{% endblock %}

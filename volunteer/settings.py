@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     'shifts',
     'accounts',
     'profiles',
+    'organizations',
     # django admin
     'django.contrib.admin.apps.AdminConfig',
 )
@@ -82,10 +83,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ATOMIC_REQUESTS': True,
     }
 }
-
-ATOMIC_REQUESTS = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
