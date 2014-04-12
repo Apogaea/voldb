@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block body_class %}{{ block.super }} home{% endblock %}
+
+{% block content %}
+  <h1>Manage My Organizations</h1>
+    <section>
+
+    <form action="{% url 'my_organizations' %}" method="post">
+      {{ form.management_form }}
+      {% for sub_form in form %}
+        <h5>{{ sub_form.instance.organization }}</h5>
+        {% include 'partials/form_as_fieldsets.html' with form=sub_form %}
+      {% endfor %}
+      <input type="submit" value="Save" />
+    </form>
+
+	</section>
+{% endblock %}
+

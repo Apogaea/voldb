@@ -9,8 +9,12 @@
       {% if user.is_authenticated %}
         {% if user in organization.admin_members %}
           <a href="{% url 'organization_update' pk=organization.pk %}">Manage Organization</a>
-          <a href="{% url 'organization_manage_members' pk=organization.pk %}">Manage Membership</a>
-          <a href="{% url 'organization_manage_requests' pk=organization.pk %}">Manage Requests</a>
+          <a href="{% url 'organization_manage_members' pk=organization.pk %}">
+            Manage Members ({{ organization.members.count }})
+          </a>
+          <a href="{% url 'organization_manage_requests' pk=organization.pk %}">
+            Manage Requests ({{ organization.users.not_confirmed.count }})
+          </a>
         {% elif user not in organization.members %}
           <a href="{% url 'organization_join' pk=organization.pk %}">Join Organization</a>
         {% endif %}

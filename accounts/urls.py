@@ -1,5 +1,8 @@
 from django.conf.urls import patterns, url
 from django.core.urlresolvers import reverse_lazy
+
+from organizations import views as organization_views
+
 from accounts import views
 
 from authtools.views import PasswordChangeView
@@ -8,6 +11,11 @@ from authtools.views import PasswordChangeView
 urlpatterns = patterns('',  # NOQA
     url(r'^$', views.ProfileView.as_view(), name='profile'),
     url(r'^edit/$', views.ProfileUpdateView.as_view(), name='profile_edit'),
+    url(
+        r'^my-organizations/$',
+        organization_views.MyOrganizationMembershipView.as_view(),
+        name='my_organizations',
+    ),
     url(r'^register/$', views.RegisterView.as_view(), name='register'),
     url(
         r'^register/success/$', views.RegisterSuccessView.as_view(),

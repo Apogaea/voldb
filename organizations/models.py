@@ -6,6 +6,7 @@ from django.db import models
 from django.db.models import Sum
 from django.core.urlresolvers import reverse
 from django.utils import timezone
+from django.db.models.signals import post_delete
 
 
 class AdminMembersQuerySet(models.query.QuerySet):
@@ -73,3 +74,17 @@ class MembershipRequest(models.Model):
 
 class Membership(MembershipRequest):
     is_admin = models.BooleanField(default=False)
+
+
+def cleanup_memberless_organizations(sender, instance, **kwargs):
+    if not instance.organization.members.exists():
+        instance.organization.delete()
+    elif not instance.organization.admin_members.exists():
+        membership = Membership.objects.filter(
+            organization=instance.organization,
+        ).order_by('created_at').first()
+        membership.is_admin = True
+        membership.save()
+
+
+post_delete.connect(cleanup_memberless_organizations, sender=MembershipRequest)

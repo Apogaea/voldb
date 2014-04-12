@@ -295,3 +295,12 @@ class OrganizationMembershipRequestTest(AuthenticatedTestCase):
 
         self.assertFalse(Membership.objects.filter(pk=membership_pk).exists())
         self.assertFalse(MembershipRequest.objects.filter(pk=membership_pk).exists())
+
+
+class MyOrganizationViewsTest(AuthenticatedTestCase):
+    def test_manage_my_organization_page(self):
+        url = reverse('my_organizations')
+
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)

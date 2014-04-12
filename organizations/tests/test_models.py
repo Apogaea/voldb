@@ -4,7 +4,9 @@ from accounts.factories import UserWithProfileFactory
 
 from shifts.factories import ShiftFactory
 
-from organizations.models import MembershipRequest
+from organizations.models import (
+    MembershipRequest, Organization, Membership,
+)
 from organizations.tests.factories import (
     OrganizationFactory, MembershipRequestFactory, MembershipFactory,
 )
@@ -92,3 +94,38 @@ class MembershipRequestNotConfirmedTest(TestCase):
 
         self.assertIn(membership_request, MembershipRequest.objects.not_confirmed())
         self.assertNotIn(membership, MembershipRequest.objects.not_confirmed())
+
+
+class MemberlessOrganizationCleanupTest(TestCase):
+    def test_organization_deleted_if_memberless(self):
+        membership = MembershipFactory()
+
+        organization = membership.organization
+
+        membership.delete()
+
+        self.assertFalse(Organization.objects.filter(pk=organization.pk).exists())
+
+    def test_organization_preserved_if_other_members(self):
+        membership = MembershipFactory()
+        # Another membership
+        MembershipFactory(organization=membership.organization)
+
+        organization = membership.organization
+
+        membership.delete()
+
+        self.assertTrue(Organization.objects.filter(pk=organization.pk).exists())
+
+    def test_organization_with_no_admin_gets_an_admin_promoted(self):
+        admin = UserWithProfileFactory()
+        user = UserWithProfileFactory()
+
+        organization = OrganizationFactory(admins=(admin,), members=(user,))
+
+        self.assertNotIn(user, organization.admin_members)
+
+        membership = Membership.objects.get(user=admin, organization=organization)
+        membership.delete()
+
+        self.assertIn(user, organization.admin_members)

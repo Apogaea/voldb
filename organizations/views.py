@@ -12,7 +12,7 @@ from organizations.models import (
 )
 from organizations.forms import (
     OrganizationCreateForm, OrganizationUpdateForm, MembershipFormSet,
-    MembershipRequestFormSet,
+    MembershipRequestFormSet, MyMembershipFormSet,
 )
 
 
@@ -123,3 +123,16 @@ class OrganizationJoinSuccessView(LoginRequiredMixin, DetailView):
     template_name = 'organizations/organization_join_success.html'
     model = Organization
     context_object_name = 'organization'
+
+
+class MyOrganizationMembershipView(LoginRequiredMixin, UpdateView):
+    template_name = 'accounts/my_organizations.html'
+    form_class = MyMembershipFormSet
+
+    def get_object(self):
+        return self.request.user
+
+    def form_valid(self, form):
+        self.object = self.get_object()
+        self.object_list = form.save()
+        return redirect(self.get_success_url())

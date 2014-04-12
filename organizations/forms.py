@@ -1,5 +1,8 @@
 from django import forms
 from django.forms.models import inlineformset_factory, BaseInlineFormSet
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 from betterforms.forms import BetterModelForm
 
@@ -98,5 +101,13 @@ MembershipRequestFormSet = inlineformset_factory(
     formset=BaseMembershipRequestFormSet,
     form=MembershipRequestForm,
     can_delete=False,
+    extra=0,
+)
+
+
+MyMembershipFormSet = inlineformset_factory(
+    User,
+    Membership,
+    fields=tuple(),
     extra=0,
 )
