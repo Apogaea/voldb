@@ -53,6 +53,8 @@ class Organization(models.Model):
 
 
 class MembershipRequestQuerySet(models.query.QuerySet):
+    use_for_related_fields = True
+
     def not_confirmed(self):
         return self.filter(membership__isnull=True)
 

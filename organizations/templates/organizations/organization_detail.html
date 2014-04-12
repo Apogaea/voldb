@@ -13,7 +13,7 @@
             Manage Members ({{ organization.members.count }})
           </a>
           <a href="{% url 'organization_manage_requests' pk=organization.pk %}">
-            Manage Requests ({{ organization.users.not_confirmed.count }})
+            Manage Requests ({{ organization.organization_membership.not_confirmed.count }})
           </a>
         {% elif user not in organization.members %}
           <a href="{% url 'organization_join' pk=organization.pk %}">Join Organization</a>
