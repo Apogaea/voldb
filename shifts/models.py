@@ -14,7 +14,17 @@ from shifts.utils import DENVER_TIMEZONE
 class Shift(models.Model):
     department = models.ForeignKey(Department, related_name='shifts')
     start_time = models.DateTimeField('shift begins')
-    shift_length = models.PositiveSmallIntegerField(default=3)
+    SHIFT_LENGTH_CHOICES = tuple(
+        (i, '{0} Hour'.format(i)) for i in range(1, 25)
+    )
+    shift_length = models.PositiveSmallIntegerField(default=3, choices=SHIFT_LENGTH_CHOICES)
+    SHIFT_WEIGHT_CHOICES = (
+        (1, '0.5x'),
+        (2, '1x'),
+        (4, '2x'),
+        (6, '3x'),
+    )
+    shift_weight = models.PositiveSmallIntegerField(default=2, choices=SHIFT_WEIGHT_CHOICES)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='shifts')
 
     code = models.CharField(max_length=20, blank=True)
