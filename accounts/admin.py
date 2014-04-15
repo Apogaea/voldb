@@ -3,11 +3,11 @@ from django.contrib import admin
 from accounts.models import User
 from profiles.models import Profile
 
+
 User = get_user_model()
 
 class ProfileInLine(admin.TabularInline):
     model = Profile
-
 
 class UserAdmin(admin.ModelAdmin):
     list_display = ('email', 'id', 'date_joined')
