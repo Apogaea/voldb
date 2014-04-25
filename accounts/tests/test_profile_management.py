@@ -6,7 +6,7 @@ User = get_user_model()
 
 from rest_framework import status
 
-from accounts.factories import UserFactory
+from accounts.factories import UserWithProfileFactory
 from profiles.models import Profile
 
 
@@ -14,7 +14,7 @@ class ProfileEditingTest(TestCase):
     def setUp(self):
         super(ProfileEditingTest, self).setUp()
 
-        self.user = UserFactory(password='secret')
+        self.user = UserWithProfileFactory(password='secret')
         self.profile = self.user.profile
 
         self.profile.full_name = 'test-full_name'
@@ -58,7 +58,7 @@ class ChangePasswordTest(TestCase):
     def setUp(self):
         super(ChangePasswordTest, self).setUp()
 
-        self.user = UserFactory(password='secret')
+        self.user = UserWithProfileFactory(password='secret')
         self.assertTrue(self.client.login(
             username=self.user.email,
             password='secret',

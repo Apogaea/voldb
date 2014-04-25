@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body_class %}{{ block.super }} home{% endblock %}
+
+{% block content %}
+    <h1>Create an Organization</h1>
+    <section>
+
+    <form action="{% url 'organization_create' %}" method="post">
+      {% include 'partials/form_as_fieldsets.html' %}
+      <input type="submit" value="Create" />
+    </form>
+
+	</section>
+{% endblock %}

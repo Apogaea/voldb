@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block body_class %}{{ block.super }} home{% endblock %}
+
+{% block content %}
+    <h1>{{ organization }}</h1>
+    <section>
+      <h3>Members</h3>
+      {% if user.is_authenticated %}
+        {% if user in organization.admin_members %}
+          <a href="{% url 'organization_update' pk=organization.pk %}">Manage Organization</a>
+          <a href="{% url 'organization_manage_members' pk=organization.pk %}">
+            Manage Members ({{ organization.members.count }})
+          </a>
+          <a href="{% url 'organization_manage_requests' pk=organization.pk %}">
+            Manage Requests ({{ organization.organization_membership.not_confirmed.count }})
+          </a>
+        {% elif user not in organization.members %}
+          <a href="{% url 'organization_join' pk=organization.pk %}">Join Organization</a>
+        {% endif %}
+      {% endif %}
+      <ul>
+        {% for member in organization.members %}
+          <li>{{ member }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+{% endblock %}

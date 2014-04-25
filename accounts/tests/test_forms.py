@@ -1,12 +1,12 @@
 from django.test import TestCase
 
 from accounts.forms import UserRegistrationForm
-from accounts.factories import UserFactory
+from accounts.factories import UserWithProfileFactory
 
 
 class RegistrationFormTest(TestCase):
     def test_enforces_email_uniqueness(self):
-        user = UserFactory(email='test@example.com')
+        user = UserWithProfileFactory(email='test@example.com')
 
         form = UserRegistrationForm({'email': user.email})
 

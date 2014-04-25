@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
+from django.db.models.signals import post_save
 from django.core.exceptions import ObjectDoesNotExist
 
 from authtools.models import AbstractEmailUser
@@ -24,7 +25,18 @@ class User(AbstractEmailUser):
         return str(self)
 
     def __str__(self):
-        if self.profile.display_name:
-            return self.profile.display_name
-        else:
+        try:
+            profile = self._profile
+        except ObjectDoesNotExist:
             return obfuscate_email(self.email)
+        else:
+            return profile.display_name or obfuscate_email(self.email)
+
+
+def create_volunteer_profile(sender, instance, created, raw, **kwargs):
+    # Create a user profile when a new user account is created
+    if not raw and created:
+        from profiles.models import Profile
+        Profile.objects.get_or_create(user=instance)
+
+post_save.connect(create_volunteer_profile, sender=User)

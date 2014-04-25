@@ -1,3 +1,4 @@
+from django.test import TestCase
 from django.core import signing
 from django.core.validators import validate_email
 from django.core.urlresolvers import reverse
@@ -44,3 +45,15 @@ def obfuscate_email(email):
             domain=obfuscate_string(domain),
             tld=tld,
         )
+
+
+class AuthenticatedTestCase(TestCase):
+    def setUp(self):
+        from accounts.factories import UserWithProfileFactory
+        super(AuthenticatedTestCase, self).setUp()
+        self.user = UserWithProfileFactory(password='secret')
+
+        self.assertTrue(self.client.login(
+            username=self.user.email,
+            password='secret',
+        ))

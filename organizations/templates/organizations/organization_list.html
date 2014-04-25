@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block body_class %}{{ block.super }} home{% endblock %}
+
+{% block content %}
+    <h1>Organizations</h1>
+    <p>
+      Organizations can be a camp, a group of friends, etc.
+    </p>
+    <section>
+      <table>
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Members</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for organization in organization_list %}
+            <tr>
+              <td><a href="{% url 'organization_detail' pk=organization.pk %}">{{ organization }}</a></td>
+              <td>{{ organization.members.count }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% if user.is_authenticated %}
+        <a href="{% url 'organization_create' %}">Create an organization</a>
+      {% endif %}
+    </section>
+
+{% endblock %}

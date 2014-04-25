@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from accounts.factories import UserFactory
+from accounts.factories import UserWithProfileFactory
 
 from shifts.models import ShiftHistory
 from shifts.factories import ShiftFactory
@@ -8,7 +8,7 @@ from shifts.factories import ShiftFactory
 
 class TrackingTest(TestCase):
     def test_tracking_only_on_change(self):
-        shift = ShiftFactory(owner=UserFactory())
+        shift = ShiftFactory(owner=UserWithProfileFactory())
 
         self.assertFalse(ShiftHistory.objects.exists())
 
@@ -17,7 +17,7 @@ class TrackingTest(TestCase):
         self.assertFalse(ShiftHistory.objects.exists())
 
     def test_tracking_occurs_on_release(self):
-        user = UserFactory()
+        user = UserWithProfileFactory()
         shift = ShiftFactory(owner=user)
 
         self.assertFalse(ShiftHistory.objects.exists())
@@ -32,7 +32,7 @@ class TrackingTest(TestCase):
         self.assertEqual(entry.action, ShiftHistory.ACTION_RELEASE)
 
     def test_tracking_occurs_on_claim(self):
-        user = UserFactory()
+        user = UserWithProfileFactory()
         shift = ShiftFactory()
 
         self.assertFalse(ShiftHistory.objects.exists())

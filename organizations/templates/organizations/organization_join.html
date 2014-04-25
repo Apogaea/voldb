@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block body_class %}{{ block.super }} home{% endblock %}
+
+{% block content %}
+  <h1>Join {{ organization }}</h1>
+  <section>
+    <p>Are you sure you would like to join {{ organization }}?</p>
+
+    <form action="{% url 'organization_join' pk=organization.pk %}" method="post">
+      {% include 'partials/form_as_fieldsets.html' %}
+      {% if organization.is_closed %}
+        <input type="submit" value="Request to Join" />
+      {% else %}
+        <input type="submit" value="Request to Join" />
+      {% endif %}
+      <a href="{% url 'organization_list' %}">Cancel</a>
+    </form>
+
+	</section>
+{% endblock %}

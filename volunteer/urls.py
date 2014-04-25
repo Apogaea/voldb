@@ -17,6 +17,7 @@ urlpatterns = patterns('',  # NOQA
     # Views
     url(r'^admin/', include(admin.site.urls)),
     url(r'^shifts/', include('shifts.urls')),
+    url(r'^organizations/', include('organizations.urls')),
     url(r'^departments/', include('departments.urls')),
     url(r'^accounts/', include('accounts.urls')),
 

@@ -15,7 +15,6 @@ def normalize_email_addresses(apps, schema_editor):
             email__iexact=email,
         ).exclude(pk=user.pk).values_list('pk', flat=True))
 
-    print 'Deleting users {0}'.format(str(dupes))
     User.objects.filter(pk__in=dupes).delete()
 
 

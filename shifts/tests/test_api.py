@@ -8,9 +8,8 @@ from django.http.request import HttpRequest
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from accounts.factories import UserFactory
+from accounts.factories import UserWithProfileFactory
 
-from shifts.models import Shift
 from shifts.factories import ShiftFactory
 from shifts.serializers import ShiftSerializer
 
@@ -36,7 +35,7 @@ def dummy_request(user=None):
 
 class SerializerTest(TestCase):
     def test_claiming_unclaimed_shift(self):
-        user = UserFactory()
+        user = UserWithProfileFactory()
 
         shift = ShiftFactory()
 
@@ -51,7 +50,7 @@ class SerializerTest(TestCase):
         self.assertEqual(updated_shift.owner, user)
 
     def test_releasing_claimed_shift(self):
-        user = UserFactory()
+        user = UserWithProfileFactory()
 
         shift = ShiftFactory(owner=user)
 
@@ -66,7 +65,7 @@ class SerializerTest(TestCase):
         self.assertIsNone(updated_shift.owner)
 
     def test_claiming_shift_with_code(self):
-        user = UserFactory()
+        user = UserWithProfileFactory()
 
         shift = ShiftFactory(code='secret')
 
@@ -81,7 +80,7 @@ class SerializerTest(TestCase):
         self.assertEqual(updated_shift.owner, user)
 
     def test_releasing_shift_with_code(self):
-        user = UserFactory()
+        user = UserWithProfileFactory()
 
         shift = ShiftFactory(owner=user, code='secret')
 
@@ -96,8 +95,8 @@ class SerializerTest(TestCase):
         self.assertIsNone(updated_shift.owner)
 
     def test_releasing_someone_elses_shift(self):
-        user = UserFactory()
-        other_user = UserFactory()
+        user = UserWithProfileFactory()
+        other_user = UserWithProfileFactory()
 
         shift = ShiftFactory(owner=other_user)
 
@@ -116,8 +115,8 @@ class SerializerTest(TestCase):
         )
 
     def test_claiming_already_claimed_shift(self):
-        user = UserFactory()
-        other_user = UserFactory()
+        user = UserWithProfileFactory()
+        other_user = UserWithProfileFactory()
 
         shift = ShiftFactory(owner=other_user)
 
@@ -136,8 +135,8 @@ class SerializerTest(TestCase):
         )
 
     def test_attempt_to_claim_using_other_users_id(self):
-        user = UserFactory()
-        other_user = UserFactory()
+        user = UserWithProfileFactory()
+        other_user = UserWithProfileFactory()
 
         shift = ShiftFactory()
 
@@ -156,7 +155,7 @@ class SerializerTest(TestCase):
         )
 
     def test_attempt_to_claim_shift_that_requires_code(self):
-        user = UserFactory()
+        user = UserWithProfileFactory()
 
         shift = ShiftFactory(code='secret')
 

@@ -12,6 +12,9 @@ from volunteer.settings_aws import *  # NOQA
 DATABASES = herokuify.get_db_config()
 CACHES = herokuify.get_cache_config()
 
+# Transactional requests
+DATABASES['default']['ATOMIC_REQUESTS'] = True
+
 DEBUG = os.environ.get('DJANGO_DEBUG') == 'True'
 TEMPLATE_DEBUG = DEBUG
 
