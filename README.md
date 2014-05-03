@@ -10,11 +10,11 @@ This will use virtualenv to manage a Django v1.7 project.
 
 1. **Install postgres**  
 
-  We need to install `postgresql`.
+  We need to install `postgresql` and `memcached`.
 
   ```bash
-  $ brew install postgresql  # Mac
-  $ sudo apt-get install postgresql  # Ubuntu/Linux
+  $ brew install postgresql memcached libmemcached  # Mac
+  $ sudo apt-get install postgresql python-memcache memcached  # Ubuntu/Linux
   ```
 
 1. **Install virtualenv**  
