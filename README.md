@@ -28,7 +28,7 @@ This will use virtualenv to manage a Django v1.7 project.
   ```   
   ```bash
   $ pip install virtualenv           # MacOS
-  $ sudo apt-get isntall virtualenv  # Ubuntu Linux
+  $ sudo apt-get install virtualenv  # Ubuntu Linux
   ```
   
 1. **Clone the Apogaea VolDB Git repository**
