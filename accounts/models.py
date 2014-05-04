@@ -21,9 +21,6 @@ class User(AbstractEmailUser):
             return Profile.objects.get_or_create(user=self)[0]
 
     def __unicode__(self):
-        return str(self)
-
-    def __str__(self):
         if self.profile.display_name:
             return self.profile.display_name
         else:
