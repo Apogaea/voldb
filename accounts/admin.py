@@ -12,7 +12,7 @@ class ProfileInLine(admin.TabularInline):
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('email', 'id', 'date_joined', '__str__')
+    list_display = ('email', 'id', 'date_joined', '__unicode__')
     list_filter = ['email', 'date_joined']
     inlines = [ProfileInLine, ]
 

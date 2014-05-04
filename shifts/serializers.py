@@ -10,7 +10,7 @@ class ShiftSerializer(serializers.ModelSerializer):
         'unable_to_release': 'You may not release a shift claimed by another user',
         'invalid_code': 'The code you submitted is invalid',
     }
-    display_text = serializers.CharField(source='__str__', read_only=True)
+    display_text = serializers.CharField(source='__unicode__', read_only=True)
     verification_code = serializers.CharField(required=False, write_only=True)
     requires_code = serializers.BooleanField(source='requires_code', read_only=True)
     department = serializers.CharField(source='department', read_only=True)

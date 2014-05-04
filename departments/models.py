@@ -11,7 +11,4 @@ class Department(models.Model):
     active_liaison = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='liason')
 
     def __unicode__(self):
-        return str(self)
-
-    def __str__(self):
         return self.name

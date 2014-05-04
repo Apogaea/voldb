@@ -19,7 +19,7 @@ class Shift(models.Model):
 
     code = models.CharField(max_length=20, blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         if self.owner:
             # this should probably try for a nickname
             # first if one exists
