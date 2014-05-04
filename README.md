@@ -18,7 +18,7 @@ This will use virtualenv to manage a Django v1.7 project.
   ```
  
   On Mac, I also had to add `pg_config` to the path for pip to install requirements correctly:
-  ```
+  ```bash
   export PATH=$PATH:/opt/local/lib/postgresql92/bin # Optionally add this to .bashrc
   ```
 
