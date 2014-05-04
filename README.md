@@ -16,6 +16,11 @@ This will use virtualenv to manage a Django v1.7 project.
   $ brew install postgresql memcached libmemcached  # Mac
   $ sudo apt-get install postgresql python-memcache memcached  # Ubuntu/Linux
   ```
+ 
+  On Mac, I also had to add `pg_config` to the path for pip to install requirements correctly:
+  ```
+  export PATH=$PATH:/opt/local/lib/postgresql92/bin # Optionally add this to .bashrc
+  ```
 
 1. **Install virtualenv**  
   
