@@ -151,3 +151,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ),
 }
+
+REGISTRATION_OPEN = os.environ.get('REGISTRATION_OPEN', 'True') == 'True'
