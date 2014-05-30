@@ -47,6 +47,10 @@ class Shift(models.Model):
         return bool(self.code)
 
     @property
+    def locked(self):
+        return not settings.REGISTRATION_OPEN
+
+    @property
     def is_midnight_spanning(self):
         if self.shift_length > 24:
             return True

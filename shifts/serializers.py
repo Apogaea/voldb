@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from rest_framework import serializers
 
 from shifts.models import Shift
@@ -25,6 +27,8 @@ class ShiftSerializer(serializers.ModelSerializer):
         )
 
     def validate(self, attrs):
+        if not settings.REGISTRATION_OPEN:
+            raise serializers.ValidationError('Registration closed')
         if self.object.requires_code() and self.object.owner is None:
             submitted_code = attrs.get('verification_code')
             if not submitted_code == self.object.code:
