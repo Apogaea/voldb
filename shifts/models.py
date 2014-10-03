@@ -15,7 +15,9 @@ class Shift(models.Model):
     department = models.ForeignKey(Department, related_name='shifts')
     start_time = models.DateTimeField('shift begins')
     shift_length = models.PositiveSmallIntegerField(default=3)
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='shifts')
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL, blank=True, null=True, related_name='shifts',
+    )
 
     code = models.CharField(max_length=20, blank=True)
 

@@ -1,5 +1,4 @@
 import datetime
-from django.utils import timezone
 import factory
 
 from shifts.models import Shift
