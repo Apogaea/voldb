@@ -9,6 +9,7 @@ Welcome to Volunteer Database's documentation!
 Contents:
 
 .. toctree::
+   api
    :maxdepth: 2
 
 
