@@ -78,6 +78,26 @@ This will use virtualenv to manage a Django v1.7 project.
   $ python manage.py runserver '[::]:8000'
   ```
 
+### Running the tests
+
+The tests are run via tox.
+
+```bash
+$ tox
+```
+
+To run a only the flake8 tests
+
+```bash
+$ tox -e flake8
+```
+
+To run a only the python tests
+
+```bash
+$ tox -e py27-django17
+```
+
 ### Heroku Stuff
 
 The volunteer database, while fundamentally agnostic to the hosting

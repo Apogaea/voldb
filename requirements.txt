@@ -1,4 +1,4 @@
--e git+https://github.com/django/django.git@1.7b1#egg=Django-dev
+Django>=1.7.0,<1.8
 django-authtools==0.2.1
 django-backupdb==0.5.5
 django-test-pep8==0.1

@@ -8,3 +8,4 @@ venv
 .idea
 voldb.iml
 .env
+.tox
