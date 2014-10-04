@@ -110,9 +110,7 @@ Endpoints
    :statuscode 404: not found.
    :statuscode 403: permissions error.
 
-
-.. http:put /api/v1/shifts/:id/
-   http:patch /api/v1/shifts/:id/
+.. http:put:: /api/v1/shifts/:id/
 
    The detail view for a single shift.
 
@@ -123,12 +121,36 @@ Endpoints
       Content-Type: application/json
 
       {
-        "id": 1,
-        ...
+        ...  # TODO
       }
 
-   TODO: PUT/PATCH parameters.
+   **Example response**
+
+   .. sourcecode:: http
+
+      Content-Type: application/json
+
+      {
+        "id": 1,
+        ...  # TODO
+      }
 
    :statuscode 200: success.
    :statuscode 404: not found.
    :statuscode 403: permissions error.
+
+   :>json integer department: The primary key of the ``Department`` the shift belongs to.  Required.
+   :>json datetime start_time: A datetime in `ECMA 262 date time string specification <http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15>`_.  (Example ``2013-01-29T12:34:56.123Z``).  Required.
+   :>json integer shift_length: Number of hours in the shift.  Must be greater than zero and less than or equal to 24 (``0 < n <= 24``).  Requireds.
+   :>json integer owner: The primary key of the ``User`` who has claimed the shift.  Optional.  Nullable.
+   :>json string code: Code required to claim shift.  Optional.  If falsy, shift will not required a code.  Nullable.
+
+
+.. http:patch:: /api/v1/shifts/:id/
+
+    When making a ``PATCH`` request, only the fields that are posted are
+    validated.  This is useful for updating a single field, without caring what
+    the other values need to be such as claiming a shift.
+
+
+.. _ECMA 262 date time string specification: http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15
