@@ -10,6 +10,7 @@ Contents:
 
 .. toctree::
    api
+   shifts
    :maxdepth: 2
 
 

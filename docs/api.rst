@@ -1,156 +1,68 @@
 API Documentation
 =================
 
-Shifts
-------
+Notation
+--------
 
-TODO: high level overview of the shift model.
+Query Parameters
+~~~~~~~~~~~~~~~~
 
+Validation
+..........
 
-Schema
-~~~~~~
+Query parameters which do not pass validation will be silently ignored.
 
-TODO: specification for the shift schema and validation.
+Truthyness and Falsyness
+........................
 
+For query parameters which expect a boolean, the following values are interpreted as ``True``.
 
-Endpoints
-~~~~~~~~~
-.. http:get:: /api/v1/shifts/
+* the string ``'true'``
+* the string ``'True'``
+* the number ``1``
 
-   The list view of all shifts.
+For query parameters which expect a boolean, the following values are interpreted as ``False``.
 
-   **Example response**:
+* the string ``'false'``
+* the string ``'False'``
+* the number ``0``
 
-   .. sourcecode:: http
+Comparison notation
+...................
 
-      HTTP/1.1 200 OK
-      Vary: Accept
-      Content-Type: application/json
+  For query parameters which need comparisons beyond equality or truthyness,
+  the following notation is used.
 
-      {
-        "next": "http://example.com/api/v1/shifts/?page=2"
-        "prev": null,
-        "count": 123,
-        "results": [
-          {
-            "id": 1,
-            ...
-          },
-          {
-            "id": 2,
-            ...
-          },
-          ...
-        ]
-      }
+  :query_param integer size{__lt,__gt}: 
 
-   :query page: Integer for the desired page of results.
-   :query page_size: Integer for the page size for results.  Max 100.
+  In this example, the ``size`` query parameter can be sent in three formats.
 
-   :>json string next: The url of the next page of results. `null` if no next page.
-   :>json string prev: The url of the previous page of results. `null` if no next page.
-   :>json number count: The total number of records.
-   :>json object results: The shift objects.  See the detail view for the individual object schema.
+  * ``/endpoint/?size=3``
 
-   :statuscode 200: success.
-   :statuscode 403: permissions error.
+    All results with size equal to 3
 
+  * ``/endpoint/?size__lt=3``
 
-.. http:post /api/v1/shifts/
+    All results with size less than 3
 
-   Create a new shift entry.
+  * ``/endpoint/?size__gt=3``
 
-   **Example request**:
+    All results with size greater than 3
 
-   .. sourcecode:: http
+  The following suffixes map to the followin comparisons.
 
-      Content-Type: application/json
+  * ``__lt: <``
+  * ``__lt=: <=``
+  * ``__gt: >``
+  * ``__gte: >=``
+  * ``__ne: !=``
+  * ``__between l < x < r`` *(non-inclusive of endpoints)*
+  * ``__ibetween l <= x <= r`` *(inclusive of endpoints)*
+  * ``__lbetween l <= x < r`` *(left inclusive of endpoints)*
+  * ``__rbetween l < x <= r`` *(right inclusive of endpoints)*
 
-      {
-        ...  # TODO
-      }
+  For ``between`` comparisons, the two values should be separated by a comma.
 
-   **Example error response**:
+  * ``/endpoint/?size__between=1,8``
 
-   .. sourcecode:: http
-
-      HTTP/1.1 400 OK
-      Vary: Accept
-      Content-Type: application/json
-
-      {
-        "owner": ["This field is required"]
-      }
-
-   TODO: POST data schema
-
-   :statuscode 201: successful creation.
-   :statuscode 400: validation error.  Response body contains error details.
-   :statuscode 403: permissions error.
-
-.. http:get:: /api/v1/shifts/:id/
-
-   The detail view for a single shift.
-
-   **Example response**:
-
-   .. sourcecode:: http
-
-      Content-Type: application/json
-
-      {
-        "id": 1,
-        ...
-      }
-
-   :>json number id: The primary key of the shift.
-   TODO: the rest of the schema
-
-   :statuscode 200: success.
-   :statuscode 404: not found.
-   :statuscode 403: permissions error.
-
-.. http:put:: /api/v1/shifts/:id/
-
-   The detail view for a single shift.
-
-   **Example request**
-
-   .. sourcecode:: http
-
-      Content-Type: application/json
-
-      {
-        ...  # TODO
-      }
-
-   **Example response**
-
-   .. sourcecode:: http
-
-      Content-Type: application/json
-
-      {
-        "id": 1,
-        ...  # TODO
-      }
-
-   :statuscode 200: success.
-   :statuscode 404: not found.
-   :statuscode 403: permissions error.
-
-   :>json integer department: The primary key of the ``Department`` the shift belongs to.  Required.
-   :>json datetime start_time: A datetime in `ECMA 262 date time string specification <http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15>`_.  (Example ``2013-01-29T12:34:56.123Z``).  Required.
-   :>json integer shift_length: Number of hours in the shift.  Must be greater than zero and less than or equal to 24 (``0 < n <= 24``).  Requireds.
-   :>json integer owner: The primary key of the ``User`` who has claimed the shift.  Optional.  Nullable.
-   :>json string code: Code required to claim shift.  Optional.  If falsy, shift will not required a code.  Nullable.
-
-
-.. http:patch:: /api/v1/shifts/:id/
-
-    When making a ``PATCH`` request, only the fields that are posted are
-    validated.  This is useful for updating a single field, without caring what
-    the other values need to be such as claiming a shift.
-
-
-.. _ECMA 262 date time string specification: http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15
+    All sizes between 1 and 8,
