@@ -53,7 +53,7 @@ Endpoints
    :>json string next: The url of the next page of results. `null` if no next page.
    :>json string prev: The url of the previous page of results. `null` if no next page.
    :>json number count: The total number of records.
-   :>json object results: The shift objects.  See the detail view for the individual object schema.
+   :>json array results: The shift objects.  See the detail view for the individual object schema.
 
    :statuscode 200: success.
    :statuscode 403: permissions error.
