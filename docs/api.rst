@@ -26,6 +26,7 @@ For query parameters which expect a boolean, the following values are interprete
 * the string ``'false'``
 * the string ``'False'``
 * the number ``0``
+* the value ``null``
 
 Comparison notation
 ...................

@@ -43,8 +43,12 @@ Endpoints
 
    :query integer page: Specify which page of results.
    :query integer page_size: Page size for results.  Max 100.
-   :query integer shift_length{__lt,__lte,__gt,__gte,__between}: Filter to shifts matching the value
-   :query integer shift_length{__lt,__lte,__gt,__gte,__between}: Filter to shifts matching the value
+   :query integer order: Sort the results.  TODO: list choices.
+   :query integer shift_length{__lt,__lte,__gt,__gte,__between,__ibetween,__lbetween,__rbetween}: Filter to shifts based on their ``shift_length``
+   :query datetime start_time{__lt,__lte,__gt,__gte,__between,__ibetween,__lbetween,__rbetween}: Filter to shifts based on their ``start_time``
+   :query integer owner{__ne}: Filter to shifts based on the primary key of its owner.
+   :query integer department{__ne}: Filter to shifts based on the primary key of its department.
+   :query boolean requires_code: If ``True``, only return shifts which require a code to claim.  If ``False``, only return shifts which do **not** require a code to claim.
 
    :>json string next: The url of the next page of results. `null` if no next page.
    :>json string prev: The url of the previous page of results. `null` if no next page.
@@ -139,7 +143,7 @@ Endpoints
    :statuscode 403: permissions error.
 
    :>json integer department: The primary key of the ``Department`` the shift belongs to.  Required.
-   :>json datetime start_time: A datetime in `ECMA 262 date time string specification <http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15>`_.  (Example ``2013-01-29T12:34:56.123Z``).  Required.
+   :>json datetime start_time: A datetime in `ECMA 262 date time string specification`_.  (Example ``2013-01-29T12:34:56.123Z``).  All dates are in Mountain Time (``UTC-0700``).
    :>json integer shift_length: Number of hours in the shift.  Must be greater than zero and less than or equal to 24 (``0 < n <= 24``).  Requireds.
    :>json integer owner: The primary key of the ``User`` who has claimed the shift.  Optional.  Nullable.
    :>json string code: Code required to claim shift.  Optional.  If falsy, shift will not required a code.  Nullable.
