@@ -156,4 +156,13 @@ Endpoints
     the other values need to be such as claiming a shift.
 
 
+.. http:delete:: /api/v1/shifts/:id/
+
+   Delete the shift.
+
+   :statuscode 204: success.
+   :statuscode 404: not found.
+   :statuscode 403: permissions error.
+
+
 .. _ECMA 262 date time string specification: http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15
