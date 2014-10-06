@@ -1,0 +1,5 @@
+-r requirements.txt
+tox==1.8.0
+pytest==2.6.3
+pytest-django==2.7.0
+pytest-xdist==1.11

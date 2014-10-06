@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.contrib import admin
-from accounts.models import User
 from profiles.models import Profile
 
 
