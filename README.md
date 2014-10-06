@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/Apogaea/voldb.png)](https://travis-ci.org/Apogaea/voldb)
 
+### Contributing
+
+See the [Contribution Guide](CONTRIBUTING.md)
+
 ### Development Environment Setup
 
 This is assuming a MacOS X or Linux development environment, with Python 2.7 installed.
