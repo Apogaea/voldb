@@ -57,7 +57,7 @@ This will use virtualenv to manage a Django v1.7 project.
 4. **Install application dependencies**
   
   ```bash
-  $ pip install -r requirements.txt
+  $ pip install -r requirements-dev.txt
   ```
 
 5. **Setup your database**
