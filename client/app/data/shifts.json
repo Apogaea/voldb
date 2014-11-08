@@ -1,6 +1,7 @@
 {
     "data":[
         {
+            "id":1,
             "name":"Gate Lead",
             "slot":1,
             "department":"Gate",
@@ -9,6 +10,7 @@
             "user":"Rafe"
         },
         {
+            "id":2,
             "name":"Gate Regular",
             "slot":2,
             "department":"Gate",
@@ -17,6 +19,7 @@
             "user":null
         },
         {
+            "id":3,
             "name":"Gate Regular",
             "slot":2,
             "department":"Gate",
@@ -25,6 +28,7 @@
             "user":"Jellyfish"
         },
         {
+            "id":4,
             "name":"Gate Regular",
             "slot":3,
             "department":"Gate",
@@ -33,6 +37,7 @@
             "user":"Envix"
         },
         {
+            "id":5,
             "name":"Gate Regular",
             "slot":3,
             "department":"Gate",
@@ -41,6 +46,7 @@
             "user":null
         },
         {
+            "id":6,
             "name":"ASS Lead",
             "slot":1,
             "department":"Gate",
@@ -49,6 +55,7 @@
             "user":null
         },
         {
+            "id":7,
             "name":"ASS Regular",
             "slot":2,
             "department":"ASS",
@@ -57,6 +64,7 @@
             "user":null
         },
         {
+            "id":8,
             "name":"ASS Regular",
             "slot":2,
             "department":"ASS",
@@ -65,6 +73,7 @@
             "user":"envix"
         },
         {
+            "id":9,
             "name":"ASS Regular",
             "slot":3,
             "department":"ASS",
@@ -73,6 +82,7 @@
             "user":"jellyfish"
         },
         {
+            "id":10,
             "name":"ASS Regular",
             "slot":3,
             "department":"ASS",

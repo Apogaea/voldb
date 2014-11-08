@@ -1,6 +1,7 @@
 {
     "data":[
         {
+            "id":1,
             "name":"DPW",
             "description":"Deparment of Public Works",
             "leads":[
@@ -8,6 +9,7 @@
             "liaison":null
         },
         {
+            "id":2,
             "name":"Rangers",
             "description":"somehing something peaceful mediation",
             "leads":[
@@ -15,6 +17,7 @@
             "liaison":null
         },
         {
+            "id":3,
             "name":"BAMF",
             "description":"BUREAU OF APOGAEA MEDICAL AND FIRE",
             "leads":[
@@ -22,6 +25,7 @@
             "liaison":null
         },
         {
+            `"id":4,
             "name":"Greeters",
             "description":"gonna greet",
             "leads":[
@@ -30,6 +34,7 @@
             "liaison":null
         },
         {
+            "id":5,
             "name":"Gate",
             "description":"Keeping out the hippies",
             "leads":[
@@ -38,6 +43,7 @@
             "liaison":null
         },
         {
+            "id":6,
             "name":"ASS",
             "description":"Apo Security Squad",
             "leads":[
