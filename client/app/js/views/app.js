@@ -2,9 +2,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  './collections/users',
-  './collections/shifts',
-  './collections/departments'
+  'UserCollection',
+  'ShiftCollection',
+  'DepartmentCollection'
 ],function($,_,Backbone,UserCollection,ShiftCollection,DepartmentCollection){
   
   var App=Backbone.View.extend({

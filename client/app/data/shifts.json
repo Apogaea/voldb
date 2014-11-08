@@ -1,0 +1,84 @@
+{
+    "data":[
+        {
+            "name":"Gate Lead",
+            "slot":1,
+            "department":"Gate",
+            "start_time":"2014-06-04 15:00:00",
+            "shift_length":240,
+            "user":"Rafe"
+        },
+        {
+            "name":"Gate Regular",
+            "slot":2,
+            "department":"Gate",
+            "start_time":"2014-06-04 15:00:00",
+            "shift_length":120,
+            "user":null
+        },
+        {
+            "name":"Gate Regular",
+            "slot":2,
+            "department":"Gate",
+            "start_time":"2014-06-04 17:00:00",
+            "shift_length":120,
+            "user":"Jellyfish"
+        },
+        {
+            "name":"Gate Regular",
+            "slot":3,
+            "department":"Gate",
+            "start_time":"2014-06-04 15:00:00",
+            "shift_length":120,
+            "user":"Envix"
+        },
+        {
+            "name":"Gate Regular",
+            "slot":3,
+            "department":"Gate",
+            "start_time":"2014-06-04 17:00:00",
+            "shift_length":120,
+            "user":null
+        },
+        {
+            "name":"ASS Lead",
+            "slot":1,
+            "department":"Gate",
+            "start_time":"2014-06-04 15:00:00",
+            "shift_length":240,
+            "user":null
+        },
+        {
+            "name":"ASS Regular",
+            "slot":2,
+            "department":"ASS",
+            "start_time":"2014-06-04 15:00:00",
+            "shift_length":120,
+            "user":null
+        },
+        {
+            "name":"ASS Regular",
+            "slot":2,
+            "department":"ASS",
+            "start_time":"2014-06-04 17:00:00",
+            "shift_length":120,
+            "user":"envix"
+        },
+        {
+            "name":"ASS Regular",
+            "slot":3,
+            "department":"ASS",
+            "start_time":"2014-06-04 15:00:00",
+            "shift_length":120,
+            "user":"jellyfish"
+        },
+        {
+            "name":"ASS Regular",
+            "slot":3,
+            "department":"ASS",
+            "start_time":"2014-06-04 17:00:00",
+            "shift_length":120,
+            "user":"Shiner"
+        }
+    ]
+}
