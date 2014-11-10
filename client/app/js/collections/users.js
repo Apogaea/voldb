@@ -3,10 +3,10 @@ define(['underscore','backbone','UserModel'],function(_,Backbone,UserModel){
     url:'./data/users.json',
     model: UserModel,
     initialize:function(){
-      console.log('user init');
+      //console.log('user init');
       this.fetch();
     },
-    parse:utils.parseCollection
+    parse:utils.parse_collection
   });
   return Users;
 });

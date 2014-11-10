@@ -3,10 +3,10 @@ define(['underscore','backbone','DepartmentModel'],function(_,Backbone,Departmen
     url:'./data/departments.json',
     model: DepartmentModel,
     initialize:function(){
-      console.log('dept init');
+      //console.log('dept init');
       this.fetch();
     },
-    parse:utils.parseCollection
+    parse:utils.parse_collection
   });
   return Department;
 });
