@@ -56,6 +56,7 @@ define([
       
     },
     render:function(slots){
+
       var i,
           frag=document.createDocumentFragment(),
           bounds=this.get_bounds(slots);
@@ -64,7 +65,7 @@ define([
           frag.appendChild(this.make_slot(slots[i],bounds));
         }
       }
-      console.log(frag);
+      document.body.appendChild(frag);
     }
   });
   return Grid;
