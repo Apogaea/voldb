@@ -29,5 +29,6 @@ requirejs.config({
     //ShiftTemplate:'text!./templates/shiftItem.html'
   }
 });
+console.log('derp');
 require(['utils','router']);
 

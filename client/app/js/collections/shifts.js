@@ -2,6 +2,7 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
   var Shifts=Backbone.Collection.extend({
     url:'./data/shifts.json',
     model: ShiftModel,
+    children:[],
     initialize:function(){
       //console.log('shift init');
       this.first_load=true;
@@ -13,16 +14,30 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
             this.trigger('ready',collection);
           }
         }, this)
-      });
-      
+      }); 
     },
-    get_shifts:function(attributes){
-      var Collection=Backbone.Collection.extend();
-      if(typeof attributes==='object'){
-        return new Collection(this.where(attributes));
-      }
-      else if(attributes===undefined){
-        return new Collection(this.models);
+    add: function(models,options) {
+      //trigger event to update children
+      return Backbone.Collection.prototype.add.call(this,models, options);
+    },
+    get_shifts:function(attributes){ //todo add event to propagate changes/updates
+      var subset,
+          ChildCollection=Backbone.Collection.extend({
+            parent:this,
+            add: function(models,options) {
+              this.parent.add(models, options);
+              return Backbone.Collection.prototype.add.call(this,models, options);
+            }
+          });
+      if(typeof attributes==='object'||attributes===undefined){
+        if(typeof attributes==='object'){
+          subset=new ChildCollection(this.where(attributes));
+        }
+        else{ //please don't use this often. It seems like a really bad idea.
+          subset=new ChildCollection(this.models);
+        }
+        this.children.push(subset);
+        return subset;
       }
       else{
         return null;

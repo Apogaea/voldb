@@ -7,9 +7,11 @@ define([
   var Grid=Backbone.View.extend({
     shiftItem:_.template(ShiftItem),
     initialize:function(){
+ 
       //this.time_increment=30;//display grid in 30 minute increments
       this.slots=[];
-      _.each(this.collection,function(model){
+      console.log(this);
+      _.each(this.collection.models,function(model){
         if(!this.slots[model.get('slot')]){
           this.slots[model.get('slot')]=[];
         }
