@@ -184,3 +184,146 @@ You can see what's going on by tailing the logfiles.
 ```bash
 $ heroku logs -t
 ```
+
+
+# V2 API
+
+## Departments: `/api/v2/departments/`
+
+```json
+{
+    "count": 123,
+    "data":[
+        {
+            "id":1,
+            "name":"DPW",
+            "description":"Deparment of Public Works",
+            "leads":[
+            ],
+            "liaison":null
+        },
+        {
+            "id":2,
+            "name":"Rangers",
+            "description":"somehing something peaceful mediation",
+            "leads":null,
+            "liaison":null
+        },
+        ...
+    ]
+}
+```
+
+- **id**: The primary key of the department.
+- **name**: The department name.
+- **description**: The department description.
+- **leads**: Either `null` or an array of user ids.
+
+## Roles: `/api/v2/roles/`
+
+```json
+{
+    "prevous": null,
+    "next": "http://127.0.0.1:8000/api/v2/roles/?page=2",
+    "count": 123,
+    "data":[
+        {
+            "id":1,
+            "department":2,
+            "name":"the name of the role",
+            "description":"The description of the role"
+        },
+        {
+            "id":1,
+            "department":2,
+            "name":"the name of the role",
+            "description":"The description of the role"
+        },
+        ...
+    ]
+}
+```
+
+- **id**: The primary key of the role.
+- **department**: The primary key of the department this role belongs to.
+- **name**: The name of this role.
+- **description**: The department description.
+
+## Shifts: `/api/v2/shifts/`
+
+```json
+{
+    "prevous": null,
+    "next": "http://127.0.0.1:8000/api/v2/shifts/?page=2",
+    "count": 123,
+    "data":[
+        {
+            "id":1,
+            "role":2,
+            "start_time":1418947200,
+            "shift_length":3,
+            "owner":4
+        },
+        {
+            "id":2,
+            "role":2,
+            "start_time":1418947200,
+            "shift_length":3,
+            "owner":4
+        },
+        ...
+    ]
+}
+```
+
+- **id**: The primary key of the shift.
+- **role**: The primary key of the role this shift belongs to.
+- **start_time**: The timestamp of the time the shift starts at.
+- **shift_length**: The length in units of time (currently hours) of the shift.
+- **owner**: The primary key of the shifts owner.
+
+## Shift Grid `/api/v2/shift-grid/?s=1&s=2&s=3`
+
+Returns the shifts in grid format.
+
+[Full Example Response](https://gist.github.com/pipermerriam/929a4b3e32277c082f67)
+
+
+The response is structured as follows.
+
+For each combination of *date* and *shift_length*:
+
+```json
+{
+  "date": timestamp,
+  "length": shift_length,
+  "grid": [<column_object>, ...],
+}
+```
+
+- **date**: timestamp for what date this grid data is for.
+- **length**: the length of all shifts in this grid.
+- **grid**: the grid data (*see below*)
+
+
+```json
+{
+  "columns": 1,
+  "open_on_left": false,
+  "open_on_right": false,
+  "start_time": timestamp,
+  "end_time": timestamp,
+  "shift_length": 1,
+  "shifts": [1, 2, 3, 4]
+}
+```
+
+- **columns**: The number of columns (time units) this cell should take up.
+- **open_on_left**: Whether this cell should be *open* on the left since it
+  extends into the previous day.
+- **open_on_right**: Whether this cell should be *open* on the right since it
+  extends into the next day.
+- **start_time**: timestamp for when this set of shifts start.
+- **end_time**: timestamp for when this set of shifts end.
+- **shift_length**: number of time units long this shift is.
+- **shifts**: Array of shift id's that this cell represents.

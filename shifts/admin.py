@@ -5,8 +5,8 @@ from django.db.models import F
 
 
 class ShiftAdmin(admin.ModelAdmin):
-    list_display = ('id', 'department', 'start_time', 'shift_length', 'owner', 'code')
-    list_filter = ['shift_length', 'department', 'code', 'start_time']
+    list_display = ('id', 'role', 'start_time', 'shift_length', 'owner', 'code')
+    list_filter = ['shift_length', 'role', 'code', 'start_time']
     actions = ['clear_code', 'advance_time', 'reverse_time', 'add_hour', 'remove_hour']
 
     def clear_code(self, request, queryset):
