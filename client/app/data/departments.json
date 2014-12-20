@@ -1,55 +1,347 @@
 {
-    "data":[
+    "count": 38,
+    "data": [
         {
-            "id":1,
-            "name":"DPW",
-            "description":"Deparment of Public Works",
-            "leads":[
+            "liaison": [
+                null
             ],
-            "liaison":null
+            "description": null,
+            "id": 1,
+            "lead": null,
+            "name": "ASS Lead"
         },
         {
-            "id":2,
-            "name":"Rangers",
-            "description":"somehing something peaceful mediation",
-            "leads":[
+            "liaison": [
+                null
             ],
-            "liaison":null
+            "description": null,
+            "id": 2,
+            "lead": null,
+            "name": "ASS Regular"
         },
         {
-            "id":3,
-            "name":"BAMF",
-            "description":"BUREAU OF APOGAEA MEDICAL AND FIRE",
-            "leads":[
+            "liaison": [
+                null
             ],
-            "liaison":null
+            "description": null,
+            "id": 3,
+            "lead": null,
+            "name": "BAMF Fire"
         },
         {
-            "id":4,
-            "name":"Greeters",
-            "description":"gonna greet",
-            "leads":[
-                "Gus"
+            "liaison": [
+                null
             ],
-            "liaison":null
+            "description": null,
+            "id": 4,
+            "lead": null,
+            "name": "BAMF Primary"
         },
         {
-            "id":5,
-            "name":"Gate",
-            "description":"Keeping out the hippies",
-            "leads":[
-                "Baxter"
+            "liaison": [
+                null
             ],
-            "liaison":null
+            "description": null,
+            "id": 5,
+            "lead": null,
+            "name": "BAMF Shift lead"
         },
         {
-            "id":6,
-            "name":"ASS",
-            "description":"Apo Security Squad",
-            "leads":[
-                "Rafe"
+            "liaison": [
+                null
             ],
-            "liaison":null
+            "description": null,
+            "id": 6,
+            "lead": null,
+            "name": "BAMF Support"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 7,
+            "lead": null,
+            "name": "BAMF XXXO"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 8,
+            "lead": null,
+            "name": "Center Camp Cafe Lead"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 9,
+            "lead": null,
+            "name": "Center Camp Cafe Volunteer"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 10,
+            "lead": null,
+            "name": "Center Camp Commissary Lead"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 11,
+            "lead": null,
+            "name": "Center Camp Daily Lead"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 12,
+            "lead": null,
+            "name": "Center Camp Ice Lead"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 13,
+            "lead": null,
+            "name": "Center Camp Infrastructure Lead"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 14,
+            "lead": null,
+            "name": "Center Camp Lead"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 15,
+            "lead": null,
+            "name": "Center Camp Performance Lead"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 16,
+            "lead": null,
+            "name": "Center Camp Performance Volunteer"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 17,
+            "lead": null,
+            "name": "Center Camp Regular"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 18,
+            "lead": null,
+            "name": "DMV On-Call special"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 19,
+            "lead": null,
+            "name": "DMV On-Duty special"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 20,
+            "lead": null,
+            "name": "DMV Special requirements"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 21,
+            "lead": null,
+            "name": "DPW Regular"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 22,
+            "lead": null,
+            "name": "Fire Convergence Daily Lead"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 23,
+            "lead": null,
+            "name": "Fire Convergence Special training"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 24,
+            "lead": null,
+            "name": "Gate Daily Lead"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 25,
+            "lead": null,
+            "name": "Gate regular"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 26,
+            "lead": null,
+            "name": "greener regular"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 27,
+            "lead": null,
+            "name": "Parking Lead"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 28,
+            "lead": null,
+            "name": "Parking Regular"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 29,
+            "lead": null,
+            "name": "Parking Shuttle Pilot"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 30,
+            "lead": null,
+            "name": "Parking Traffic Tower"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 31,
+            "lead": null,
+            "name": "Placement peak capacity survey"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 32,
+            "lead": null,
+            "name": "Placement Regular"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 33,
+            "lead": null,
+            "name": "Quartermaster Regular"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 34,
+            "lead": null,
+            "name": "Rangers Incident Command"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 35,
+            "lead": null,
+            "name": "Rangers Khaki"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 36,
+            "lead": null,
+            "name": "Rangers Ranger"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 37,
+            "lead": null,
+            "name": "Volunteer Daily Lead"
+        },
+        {
+            "liaison": [
+                null
+            ],
+            "description": null,
+            "id": 38,
+            "lead": null,
+            "name": "Volunteer Regular"
         }
     ]
 }

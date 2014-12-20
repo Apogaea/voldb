@@ -6,13 +6,19 @@ from django.conf import settings
 from django.utils import timezone
 from django.db.models.signals import pre_save
 
-from departments.models import Department
-
 from shifts.utils import DENVER_TIMEZONE
 
 
+class Role(models.Model):
+    department = models.ForeignKey('departments.Department',
+                                   related_name='roles')
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+
+
 class Shift(models.Model):
-    department = models.ForeignKey(Department, related_name='shifts')
+    role = models.ForeignKey('Role', related_name='shifts')
+
     start_time = models.DateTimeField('shift begins')
     shift_length = models.PositiveSmallIntegerField(default=3)
     owner = models.ForeignKey(

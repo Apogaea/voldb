@@ -14,8 +14,8 @@ class ShiftSerializer(serializers.ModelSerializer):
     }
     display_text = serializers.CharField(source='__unicode__', read_only=True)
     verification_code = serializers.CharField(required=False, write_only=True)
-    requires_code = serializers.BooleanField(source='requires_code', read_only=True)
-    department = serializers.CharField(source='department', read_only=True)
+    requires_code = serializers.BooleanField(read_only=True)
+    department = serializers.CharField(read_only=True)
     start = serializers.CharField(source='get_start_time_display', read_only=True)
     shift_length = serializers.IntegerField(read_only=True)
 
@@ -29,30 +29,29 @@ class ShiftSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         if not settings.REGISTRATION_OPEN:
             raise serializers.ValidationError('Registration closed')
-        if self.object.requires_code() and self.object.owner is None:
+        if self.instance.requires_code() and self.instance.owner is None:
             submitted_code = attrs.get('verification_code')
-            if not submitted_code == self.object.code:
+            if not submitted_code == self.instance.code:
                 raise serializers.ValidationError(
                     self.custom_error_messages['invalid_code'],
                 )
         return attrs
 
-    def validate_owner(self, attrs, source):
+    def validate_owner(self, value):
         request = self.context['request']
-        owner = attrs[source]
-        if owner:
-            if not owner == request.user:
+        if value:
+            if not value == request.user:
                 raise serializers.ValidationError(
                     self.custom_error_messages['suspicious_owner'],
                 )
-            elif self.object.owner:
+            elif self.instance.owner:
                 raise serializers.ValidationError(
                     self.custom_error_messages['already_claimed'],
                 )
-        elif self.object.owner:
-            if not self.object.owner == request.user:
+        elif self.instance.owner:
+            if not self.instance.owner == request.user:
                 raise serializers.ValidationError(
                     self.custom_error_messages['unable_to_release'],
                 )
 
-        return attrs
+        return value

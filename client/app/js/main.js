@@ -2,6 +2,7 @@
  global require
 */
 requirejs.config({
+  baseUrl: 'js',
   shim: {
     backbone:{
       deps:['underscore','jquery'],
@@ -29,5 +30,6 @@ requirejs.config({
     //ShiftTemplate:'text!./templates/shiftItem.html'
   }
 });
+console.log('derp');
 require(['utils','router']);
 
