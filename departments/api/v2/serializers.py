@@ -1,10 +1,18 @@
+from django.contrib.auth import get_user_model
+
 from rest_framework import serializers
 
 from departments.models import Department
 
 
+User = get_user_model()
+
+
 class DepartmentSerializer(serializers.ModelSerializer):
-    lead = serializers.PrimaryKeyRelatedField(source='active_lead')
+    lead = serializers.PrimaryKeyRelatedField(
+        source='active_lead',
+        queryset=User.objects.all(),
+    )
     liaison = serializers.SerializerMethodField()
 
     class Meta:

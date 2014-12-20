@@ -20,6 +20,7 @@ def factories(db):
         DepartmentFactory,
     )
     from shifts.factories import (  # NOQA
+        RoleFactory,
         ShiftFactory,
     )
     from accounts.factories import (  # NOQA
