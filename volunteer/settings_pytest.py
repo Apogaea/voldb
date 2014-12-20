@@ -1,6 +1,8 @@
 import os
 import dotenv
 
+os.environ.setdefault('DATABASE_URL', 'postgres://postgres@localhost/voldb')
+
 # This file exists just so that we can load the env variables during tests runs
 # in a sane way but to keep them out of the main settings file.
 PROJECT_PATH = os.path.dirname(os.path.dirname(__file__))
