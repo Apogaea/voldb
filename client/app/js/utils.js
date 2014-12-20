@@ -22,6 +22,15 @@ define(['jquery','underscore'],function($,_){
       var end_time=start;//todo refactor  into utility method
       end_time.setMinutes(end_time.getMinutes()+duration);
       return end_time;      
+    },
+    create_subview:function(name,SubView,options,scope){
+      var child={};
+      scope=scope||this;
+      options=options||{};
+      child[name]=new SubView(options);
+      child[name].parent=scope;
+      _.extend((scope.children=scope.children||{}),child);
+      return child[name];
     }
   });  
 });

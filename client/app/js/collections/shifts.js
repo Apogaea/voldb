@@ -7,7 +7,6 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
       this.first_load=true;
       this.fetch({
         success:_.bind(function(collection) {
-          console.log(this,arguments);
           this.trigger('update',collection);
           if(this.first_load){
             this.first_load=false;
@@ -18,11 +17,12 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
       
     },
     get_shifts:function(attributes){
+      var Collection=Backbone.Collection.extend();
       if(typeof attributes==='object'){
-        return this.where(attributes);
+        return new Collection(this.where(attributes));
       }
       else if(attributes===undefined){
-        return this.models;
+        return new Collection(this.models);
       }
       else{
         return null;
