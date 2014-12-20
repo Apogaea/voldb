@@ -156,6 +156,10 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'drf_ujson.renderers.UJSONRenderer',
     ),
+    # Pagination
+    'PAGINATE_BY': 100,
+    'MAX_PAGINATE_BY': 100,
+    'PAGINATE_BY_PARAM': 'page_size',
 }
 
 
