@@ -4,10 +4,22 @@ from rest_framework import views
 from rest_framework import response
 from rest_framework import exceptions
 
-from shifts.models import Shift
+from shifts.models import (
+    Role,
+    Shift,
+)
 from shifts.utils import shifts_as_grid
 
-from shifts.api.v2.serializers import ShiftSerializer
+from shifts.api.v2.serializers import (
+    RoleSerializer,
+    ShiftSerializer,
+)
+
+
+class RoleViewSet(generics.ListAPIView,
+                  viewsets.GenericViewSet):
+    queryset = Role.objects.all()
+    serializer_class = RoleSerializer
 
 
 class ShiftViewSet(generics.ListAPIView,

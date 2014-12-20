@@ -4,7 +4,7 @@ from departments.models import Department
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
-    lead = serializers.SerializerMethodField()
+    lead = serializers.PrimaryKeyRelatedField(source='active_lead')
     liaison = serializers.SerializerMethodField()
 
     class Meta:
@@ -16,9 +16,6 @@ class DepartmentSerializer(serializers.ModelSerializer):
             'lead',
             'liaison',
         )
-
-    def get_lead(self, obj):
-        return getattr(obj.active_lead, 'pk', None)
 
     def get_liaison(self, obj):
         if obj.active_liaison:
