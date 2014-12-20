@@ -121,6 +121,7 @@ STATICFILES_STORAGE = excavator.env_string(
 )
 
 STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'client', 'dist'),
     os.path.join(BASE_DIR, 'volunteer', 'public'),
 )
 
