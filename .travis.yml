@@ -1,10 +1,14 @@
 language: python
 python:
   - "2.7"
+sudo: false
+addons:
+  postgresql: "9.3"
 env:
   global:
     - PIP_DOWNLOAD_CACHE=$HOME/.pip_cache
     - DJANGO_SECRET_KEY="not-a-real-key"
+    - DATABASE_URL='postgres://travis@localhost/voldb')
   matrix:
     - TOX_ENV=py27-django17
     - TOX_ENV=flake8
@@ -14,6 +18,8 @@ cache:
 install:
   - "travis_retry pip install setuptools --upgrade"
   - "pip install tox"
+before_script:
+  - psql -c 'create database se_tags;' -U postgres
 script:
   - tox -e $TOX_ENV
 after_script:
