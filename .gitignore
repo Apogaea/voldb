@@ -10,6 +10,7 @@ venv
 voldb.iml
 .env
 .tox
+
 *.py[cod]
 
 # C extensions
@@ -55,3 +56,15 @@ docs/_build
 
 # SQLite
 *.sqlite3
+=======
+
+# Client build files
+client/node_modules
+*/npm-debug.log
+client/node_modules
+client/dist
+client/.tmp
+client/.sass-cache
+client/bower_components
+client/test/bower_components
+
