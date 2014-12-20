@@ -153,8 +153,13 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'drf_ujson.renderers.UJSONRenderer',
+    ),
 }
 
+
+# Should users be allowed to register
 REGISTRATION_OPEN = os.environ.get('REGISTRATION_OPEN', 'True') == 'True'
 
 # Sentry

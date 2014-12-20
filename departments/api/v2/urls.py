@@ -4,6 +4,6 @@ from . import views
 
 router = routers.SimpleRouter()
 
-router.register(r'shifts', views.ShiftViewSet)
+router.register(r'departments', views.DepartmentViewSet)
 
 urlpatterns = router.urls
