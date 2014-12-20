@@ -1,5 +1,7 @@
 import pytest
 
+from rest_framework.test import APIClient
+
 
 @pytest.fixture()  # NOQA
 def webtest_client(db):
@@ -49,3 +51,28 @@ def models(db):
         (object,),
         dict_,
     )
+
+
+@pytest.fixture()
+def user(django_user_model):
+    try:
+        user = django_user_model.objects.get(
+            email='user@example.com',
+        )
+    except django_user_model.DoesNotExist:
+        user = django_user_model.objects.create(
+            email='user@example.com',
+            password='password',
+        )
+
+    return user
+
+
+@pytest.fixture()
+def api_client(user, db):
+    """
+    A rest_framework api test client not auth'd.
+    """
+    client = APIClient()
+    client.force_authenticate(user=user)
+    return client

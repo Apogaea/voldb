@@ -156,6 +156,8 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'drf_ujson.renderers.UJSONRenderer',
     ),
+    # Make test client always return json
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
     # Pagination
     'PAGINATE_BY': 100,
     'MAX_PAGINATE_BY': 100,

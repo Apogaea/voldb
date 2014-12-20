@@ -7,21 +7,12 @@ django-compressor==1.3
 django-emailtools==0.2.1
 django-herokuify==1.0.pre3
 djangorestframework==3.0.2
+drf-ujson==1.1
 env-excavator==1.2.0
 gunicorn==18.0
-<<<<<<< HEAD
-=======
-psycopg2==2.5.2
-djangorestframework==2.4.0
-django-compressor==1.3
-PyYAML==3.11
-newrelic==2.18.1.15
-raven==4.1.1
->>>>>>> build
 ipython==1.2.1
 newrelic==2.18.1.15
 psycopg2==2.5.4
 pylibmc==1.4.1
 pytz==2014.10
 raven==5.1.1
-drf-ujson==1.1
