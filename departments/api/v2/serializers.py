@@ -4,7 +4,8 @@ from departments.models import Department
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
-    leads = serializers.SerializerMethodField()
+    lead = serializers.SerializerMethodField()
+    liaison = serializers.SerializerMethodField()
 
     class Meta:
         model = Department
@@ -13,7 +14,7 @@ class DepartmentSerializer(serializers.ModelSerializer):
             'name',
             'description',
             'lead',
-            'liaisons',
+            'liaison',
         )
 
     def get_lead(self, obj):
