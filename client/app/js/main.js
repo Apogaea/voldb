@@ -2,6 +2,7 @@
  global require
 */
 requirejs.config({
+  baseUrl: 'js',
   shim: {
     backbone:{
       deps:['underscore','jquery'],

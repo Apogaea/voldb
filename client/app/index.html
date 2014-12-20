@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <!-- build:css(.tmp) sass/main.css -->
+    <link rel="stylesheet" href="sass/main.css">
+    <!-- endbuild -->
+  </head>
   <body>
     <div id="app"></div>
   </body>
-  <script data-main="js/main" src="js/lib/require.js"></script>
+
+  <!-- build:remove -->
+  <script src="bower_components/requirejs/require.js"></script>
+  <!-- endbuild -->
+
+  <script data-main="js/main" src="js/main.js"></script>
+
 </html>
