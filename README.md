@@ -166,3 +166,33 @@ You can see what's going on by tailing the logfiles.
 ```bash
 $ heroku logs -t
 ```
+
+
+# V2 API
+
+## Departments: `/api/v2/departments/`
+
+```json
+{
+    "count": 123,
+    "data":[
+        {
+            "id":1,
+            "name":"DPW",
+            "description":"Deparment of Public Works",
+            "leads":[
+            ],
+            "liaison":null
+        },
+        {
+            "id":2,
+            "name":"Rangers",
+            "description":"somehing something peaceful mediation",
+            "leads":[
+            ],
+            "liaison":null
+        },
+        ...
+    ]
+}
+```
