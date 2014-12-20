@@ -50,12 +50,12 @@ module.exports = function (grunt) {
       },
 
       sass: {
-        files: ['<%= config.appLocation %>/sass/{,*/}*.{scss,sass}'],
+        files: ['<%= config.appLocation %>/css/{,*/}*.{scss,sass}'],
         tasks: ['sass:server', 'autoprefixer']
       },
 
       styles: {
-        files: ['<%= config.appLocation %>/sass/{,*/}*.css'],
+        files: ['<%= config.appLocation %>/css/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
 
@@ -65,7 +65,7 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= config.appLocation %>/**/*.html',
-          '.tmp/sass/**/*.css',
+          '.tmp/css/**/*.css',
           '<%= config.appLocation %>/images/**/*'
         ]
       }
@@ -174,21 +174,21 @@ module.exports = function (grunt) {
     sass: {
       options: {
         // sourcemap: 'auto',
-        loadPath: ['bower_components', 'bower_components/foundation/scss', '<%= config.appLocation %>/sass']
+        loadPath: ['bower_components', 'bower_components/foundation/scss', '<%= config.appLocation %>/css']
       },
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= config.appLocation %>/sass',
+          cwd: '<%= config.appLocation %>/css',
           src: ['*.{scss,sass}'],
-          dest: '.tmp/sass',
+          dest: '.tmp/css',
           ext: '.css'
         }]
       },
       server: {
         files: [{
-          src: ['<%= config.appLocation %>/sass/theme.scss'],
-          dest: '.tmp/sass/main.css'
+          src: ['<%= config.appLocation %>/css/theme.scss'],
+          dest: '.tmp/css/main.css'
         }]
       }
     },
@@ -201,9 +201,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '.tmp/sass/',
+          cwd: '.tmp/css/',
           src: '{,*/}*.css',
-          dest: '.tmp/sass/'
+          dest: '.tmp/css/'
         }]
       }
     },
@@ -215,7 +215,7 @@ module.exports = function (grunt) {
         src: ['<%= config.appLocation %>/index.html']
       },
       sass: {
-        src: ['<%= config.appLocation %>/sass/{,*/}*.{scss,sass}'],
+        src: ['<%= config.appLocation %>/css/{,*/}*.{scss,sass}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }
     },
@@ -226,9 +226,9 @@ module.exports = function (grunt) {
         files: {
           src: [
             '<%= config.distLocation %>/js/**/*.js',
-            '<%= config.distLocation %>/sass/**/*.css',
+            '<%= config.distLocation %>/css/**/*.css',
             '<%= config.distLocation %>/images/**/*.*',
-            '<%= config.distLocation %>/sass/fonts/**.*',
+            '<%= config.distLocation %>/css/fonts/**.*',
             '<%= config.distLocation %>/*.{ico,png}'
           ]
         }
@@ -251,11 +251,11 @@ module.exports = function (grunt) {
         assetsDirs: [
           '<%= config.distLocation %>',
           '<%= config.distLocation %>/images',
-          '<%= config.distLocation %>/sass'
+          '<%= config.distLocation %>/css'
         ]
       },
       html: ['<%= config.distLocation %>/{,*/}*.html'],
-      css: ['<%= config.distLocation %>/sass/{,*/}*.css']
+      css: ['<%= config.distLocation %>/css/{,*/}*.css']
     },
 
     // The following *-min tasks produce minified files in the dist folder
@@ -309,9 +309,9 @@ module.exports = function (grunt) {
     // cssmin: {
     //   dist: {
     //     files: {
-    //       '<%= config.distLocation %>/sass/main.css': [
-    //         '.tmp/sass/{,*/}*.css',
-    //         '<%= config.appLocation %>/sass/{,*/}*.css'
+    //       '<%= config.distLocation %>/css/main.css': [
+    //         '.tmp/css/{,*/}*.css',
+    //         '<%= config.appLocation %>/css/{,*/}*.css'
     //       ]
     //     }
     //   }
@@ -351,8 +351,8 @@ module.exports = function (grunt) {
       styles: {
         expand: true,
         dot: true,
-        cwd: '<%= config.appLocation %>/sass',
-        dest: '.tmp/sass/',
+        cwd: '<%= config.appLocation %>/css',
+        dest: '.tmp/css/',
         src: '{,*/}*.css'
       }
     },
@@ -420,7 +420,7 @@ module.exports = function (grunt) {
     'cssmin',
     // 'uglify',
     'copy:dist',
-    'rev',
+//    'rev',
     'usemin',
     'htmlmin'
   ]);
