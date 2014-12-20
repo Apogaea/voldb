@@ -19,7 +19,7 @@ install:
   - "travis_retry pip install setuptools --upgrade"
   - "pip install tox"
 before_script:
-  - psql -c 'create database se_tags;' -U postgres
+  - psql -c 'create database voldb;' -U postgres
 script:
   - tox -e $TOX_ENV
 after_script:

@@ -21,4 +21,7 @@ class DepartmentSerializer(serializers.ModelSerializer):
         return getattr(obj.active_lead, 'pk', None)
 
     def get_liaison(self, obj):
-        return [getattr(obj.active_liaison, 'pk', None)]
+        if obj.active_liaison:
+            return [obj.active_liaison.pk]
+        else:
+            return []

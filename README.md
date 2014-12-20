@@ -196,3 +196,49 @@ $ heroku logs -t
     ]
 }
 ```
+
+## Shift Grid `/api/v2/shift-grid/?s=1&s=2&s=3`
+
+Returns the shifts in grid format.
+
+[Full Example Response](https://gist.github.com/pipermerriam/929a4b3e32277c082f67)
+
+
+The response is structured as follows.
+
+For each combination of *date* and *shift_length*:
+
+```json
+{
+  "date": timestamp,
+  "length": shift_length,
+  "grid": [<column_object>, ...],
+}
+```
+
+- **date**: timestamp for what date this grid data is for.
+- **length**: the length of all shifts in this grid.
+- **grid**: the grid data (*see below*)
+
+
+```json
+{
+  "columns": 1,
+  "open_on_left": false,
+  "open_on_right": false,
+  "start_time": timestamp,
+  "end_time": timestamp,
+  "shift_length": 1,
+  "shifts": [1, 2, 3, 4]
+}
+```
+
+- **columns**: The number of columns (time units) this cell should take up.
+- **open_on_left**: Whether this cell should be *open* on the left since it
+  extends into the previous day.
+- **open_on_right**: Whether this cell should be *open* on the right since it
+  extends into the next day.
+- **start_time**: timestamp for when this set of shifts start.
+- **end_time**: timestamp for when this set of shifts end.
+- **shift_length**: number of time units long this shift is.
+- **shifts**: Array of shift id's that this cell represents.
