@@ -21,6 +21,7 @@ urlpatterns = patterns('',  # NOQA
     url(r'^accounts/', include('accounts.urls')),
 
     # API
+    url(r'^api/v2/', include('shifts.api.v2.urls')),
     url(r'^api/', include('shifts.api.urls')),
 
 
