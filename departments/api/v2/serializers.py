@@ -1,10 +1,18 @@
+from django.contrib.auth import get_user_model
+
 from rest_framework import serializers
 
 from departments.models import Department
 
 
+User = get_user_model()
+
+
 class DepartmentSerializer(serializers.ModelSerializer):
-    lead = serializers.SerializerMethodField()
+    lead = serializers.PrimaryKeyRelatedField(
+        source='active_lead',
+        queryset=User.objects.all(),
+    )
     liaison = serializers.SerializerMethodField()
 
     class Meta:
@@ -16,9 +24,6 @@ class DepartmentSerializer(serializers.ModelSerializer):
             'lead',
             'liaison',
         )
-
-    def get_lead(self, obj):
-        return getattr(obj.active_lead, 'pk', None)
 
     def get_liaison(self, obj):
         if obj.active_liaison:

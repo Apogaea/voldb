@@ -188,14 +188,81 @@ $ heroku logs -t
             "id":2,
             "name":"Rangers",
             "description":"somehing something peaceful mediation",
-            "leads":[
-            ],
+            "leads":null,
             "liaison":null
         },
         ...
     ]
 }
 ```
+
+- **id**: The primary key of the department.
+- **name**: The department name.
+- **description**: The department description.
+- **leads**: Either `null` or an array of user ids.
+
+## Roles: `/api/v2/roles/`
+
+```json
+{
+    "prevous": null,
+    "next": "http://127.0.0.1:8000/api/v2/roles/?page=2",
+    "count": 123,
+    "data":[
+        {
+            "id":1,
+            "department":2,
+            "name":"the name of the role",
+            "description":"The description of the role"
+        },
+        {
+            "id":1,
+            "department":2,
+            "name":"the name of the role",
+            "description":"The description of the role"
+        },
+        ...
+    ]
+}
+```
+
+- **id**: The primary key of the role.
+- **department**: The primary key of the department this role belongs to.
+- **name**: The name of this role.
+- **description**: The department description.
+
+## Shifts: `/api/v2/shifts/`
+
+```json
+{
+    "prevous": null,
+    "next": "http://127.0.0.1:8000/api/v2/shifts/?page=2",
+    "count": 123,
+    "data":[
+        {
+            "id":1,
+            "role":2,
+            "start_time":1418947200,
+            "shift_length":3,
+            "owner":4
+        },
+        {
+            "id":2,
+            "role":2,
+            "start_time":1418947200,
+            "shift_length":3,
+            "owner":4
+        },
+        ...
+    ]
+}
+```
+
+- **id**: The primary key of the shift.
+- **role**: The primary key of the role this shift belongs to.
+- **start_time**: The timestamp of the time the shift starts at.
+- **shift_length**: The length in units of time (currently hours) of the shift.
+- **owner**: The primary key of the shifts owner.
 
 ## Shift Grid `/api/v2/shift-grid/?s=1&s=2&s=3`
 

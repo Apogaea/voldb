@@ -6,6 +6,7 @@ from . import views
 router = routers.SimpleRouter()
 
 router.register(r'shifts', views.ShiftViewSet)
+router.register(r'roles', views.RoleViewSet)
 
 urlpatterns = patterns(
     '',  # NOQA
