@@ -14,7 +14,10 @@ This will use virtualenv to manage a Django v1.7 project.
 
 1. **Install postgres**  
 
-  We need to install `postgresql` and `memcached`.
+  This application uses `postgresql` and `memcached` in the live 
+  environment. If you do not want to configure postgresql for
+  local development work, the default sqlite database will suffice. 
+  There are some explicit steps for sqlite installs noted below. 
 
   ```bash
   $ brew install postgresql memcached libmemcached  # Mac
@@ -60,6 +63,21 @@ This will use virtualenv to manage a Django v1.7 project.
   $ pip install -r requirements-dev.txt
   ```
 
+  > Note: If you are choosing to use SQLite instead of postgresql, you
+  will need to comment the psycopg2 package out of requirements-dev.txt
+  before running 'pip install'. Otherwise, the installation will fail.
+
+  ```diff
+  gunicorn==18.0
+  ipython==1.2.1
+  newrelic==2.18.1.15
+  -psycopg2==2.5.4
+  +#psycopg2==2.5.4
+  pylibmc==1.4.1
+  pytz==2014.10
+
+  ```
+  
 5. **Setup your database**
 
   ```bash
