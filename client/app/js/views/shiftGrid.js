@@ -1,3 +1,4 @@
+/*global define, utils */
 define([
   'jquery',
   'underscore',
@@ -10,7 +11,6 @@ define([
  
       //this.time_increment=30;//display grid in 30 minute increments
       this.slots=[];
-      console.log(this);
       _.each(this.collection.models,function(model){
         if(!this.slots[model.get('slot')]){
           this.slots[model.get('slot')]=[];

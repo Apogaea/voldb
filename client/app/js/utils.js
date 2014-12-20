@@ -1,3 +1,4 @@
+/*global define */
 define(['jquery','underscore'],function($,_){
   _.extend((window.utils=window.utils||{}),{
     parse_collection:function(data,options){

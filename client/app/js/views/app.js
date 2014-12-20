@@ -1,4 +1,4 @@
-/* globals define */
+/*global define, utils */
 define([
   'jquery',
   'underscore',
@@ -15,10 +15,10 @@ define([
     initialize:function(){ 
       this.collections={
         users:new UserCollection(),
-        shifts:new ShiftCollection(),
+        shifts:new ShiftCollection([],{url:'./data/shifts.json',fetch_on_init:true}),
         departments:new DepartmentCollection()
       };      
-      this.listenTo(this.collections.shifts,'ready',function(){//defer creating view until shifts are loaded
+/*      this.listenTo(this.collections.shifts,'ready',function(){//defer creating view until shifts are loaded
         utils.create_subview('gate',ShiftGrid,{
           collection:this.collections.shifts.get_shifts({department:'Gate'})
         },this);
@@ -26,7 +26,7 @@ define([
           collection:this.collections.shifts.get_shifts({department:'ASS'})
         },this);
         this.render().render(['gate','ass']); //render without arguments loads bare layout. With args, it will render listed subviews
-      });      
+      });    */  
     },
     render:function(subviews,to_empty){
       //console.log(this.el);
