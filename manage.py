@@ -2,8 +2,11 @@
 import os
 import sys
 import dotenv
-dotenv.read_dotenv()  # Load any local overrides
-dotenv.read_dotenv('.env_defaults')  # Load the default development environment variables
+
+PROJECT_PATH = os.path.dirname(__file__)
+
+dotenv.load_dotenv(os.path.join(PROJECT_PATH, ".env"))
+dotenv.load_dotenv(os.path.join(PROJECT_PATH, ".env_defaults"))
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "volunteer.settings")

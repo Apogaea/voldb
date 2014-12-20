@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from django.contrib.auth import get_user_model
 from django.db.models import Sum
 
@@ -42,3 +42,7 @@ class LeaderBoardView(LoginRequiredMixin, ListView):
         ).filter(
             shift_length_sum__isnull=False,
         ).order_by('-shift_length_sum')
+
+
+class ShiftAppView(TemplateView):
+    template_name = "shifts/app.html"
