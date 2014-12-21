@@ -1,4 +1,6 @@
-/*global define, utils */
+/*global define, utils 
+* js/collections/shift.js
+*/ 
 define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
   var Shifts=Backbone.Collection.extend({
     parse:utils.parse_collection,

@@ -25,8 +25,8 @@ requirejs.config({
     DepartmentModel:'./models/department',
     ShiftCollection:'./collections/shifts',
     UserCollection:'./collections/users',
-    DepartmentCollection:'./collections/departments',
-    ShiftGrid:'./views/shiftGrid'//,
+    DepartmentCollection:'./collections/departments'//,
+    //ShiftGrid:'./views/shiftGrid'//,
     //ShiftTemplate:'text!./templates/shiftItem.html'
   }
 });

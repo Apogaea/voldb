@@ -3,20 +3,23 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!./templates/shiftItem.html'
+  'text!../templates/shiftItem.html'
 ],function($,_,Backbone,ShiftItem){  
+  console.log('hi',Backbone)
   var Grid=Backbone.View.extend({
     shiftItem:_.template(ShiftItem),
     initialize:function(){
- 
+      console.log('bloop');
       //this.time_increment=30;//display grid in 30 minute increments
       this.slots=[];
-      _.each(this.collection.models,function(model){
+      if(this.collection&&this.collection.models){
+       _.each(this.collection.models,function(model){
         if(!this.slots[model.get('slot')]){
           this.slots[model.get('slot')]=[];
         }
         utils.splice_after(model,this.slots[model.get('slot')],'start_time');
       },this);
+      }
       //this.render(this.slots);//take out of init
     },
     make_slot:function(shiftRow,bounds){
@@ -29,7 +32,6 @@ define([
           length:(item.get('shift_length')*2)
         });
       },this);
-      //console.log(slot);
       return slot;
     },
     get_bounds:function(slots){

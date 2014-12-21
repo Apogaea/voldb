@@ -1,4 +1,6 @@
-/*global define, utils */
+/*global define, utils 
+* app/js/views/app.js
+*/
 define([
   'jquery',
   'underscore',
@@ -6,27 +8,24 @@ define([
   'UserCollection',
   'ShiftCollection',
   'DepartmentCollection',
-  'ShiftGrid',
   'text!./templates/layout.html'
-],function($,_,Backbone,UserCollection,ShiftCollection,DepartmentCollection,ShiftGrid,layout){  
-  var App=Backbone.View.extend({
+],function($,_,Backbone,UserCollection,ShiftCollection,DepartmentCollection,layout){  
+  var App=Backbone.View.extend({ //todo does this need to be a view?
     el:'#app',
     template:_.template(layout),
-    initialize:function(){ 
-      this.collections={
-        users:new UserCollection(),
-        shifts:new ShiftCollection([],{url:'./data/shifts.json',fetch_on_init:true}),
-        departments:new DepartmentCollection()
-      };      
-/*      this.listenTo(this.collections.shifts,'ready',function(){//defer creating view until shifts are loaded
-        utils.create_subview('gate',ShiftGrid,{
-          collection:this.collections.shifts.get_shifts({department:'Gate'})
-        },this);
-        utils.create_subview('ass',ShiftGrid,{
-          collection:this.collections.shifts.get_shifts({department:'ASS'})
-        },this);
-        this.render().render(['gate','ass']); //render without arguments loads bare layout. With args, it will render listed subviews
-      });    */  
+    collections:{},
+    modules:{},
+    current_module:null,
+    initialize:function(){
+      //todo require these in contained block
+      this.collections.users=new UserCollection();
+      this.collections.shifts=new ShiftCollection([],{
+        url:'./data/shifts.json', //todo remove this and give to controllers
+        fetch_on_init:true
+      });
+      this.collections.departments=new DepartmentCollection();
+    
+      
     },
     render:function(subviews,to_empty){
       //console.log(this.el);
@@ -42,6 +41,39 @@ define([
         this.$el.append(frag);
       }
       return this;
+    },
+    load_module:function(module,options,cb){
+      var scope,
+          path='./apps/'+module+'/'+module+'App';
+      console.log('loading '+path);
+      if(this.modules[module]==undefined){
+        console.log('loading...');
+        scope=this;//todo find a workaround. i hate doing this.
+        require([path],function(Module){
+          console.log(this,scope)
+          scope.modules[module]=new Module({initialize:function(){
+            
+            utils.create_subview('gateGrid',scope.ShiftGridView,{
+              collection:scope.collections.shifts.get_shifts({department:'Gate'})
+            },scope);
+            
+          }});
+          if(cb){
+            cb(scope.modules[module]);
+          }
+        });
+      }
+      else{
+        //todo loading/unloading existing
+      }
+    },
+    start:function(module){
+      console.log('app starting');
+      module=module||'shift';
+      this.load_module(module,undefined,function(module){
+        console.log('module '+module+' starting');
+        module.start();
+      });    
     }
   });
   

@@ -1,16 +1,19 @@
 define(['backbone','appView'],function(Backbone,AppView){
-
+  
   var AppRouter = Backbone.Router.extend({
     routes: {
       "*actions": "defaultRoute",
       "user/:id": "viewUser"
     }
-  });
+  }),
+      volDB;
   
   AppRouter = new AppRouter;
   AppRouter.on('route:defaultRoute', function () {
-    if(!window.volDB){
-        window.volDB=new AppView();
+    if(!volDB){
+      volDB=new AppView();
+      volDB.start();
+      window.volDB=volDB;//todo remove this for prod 
     } 
   });
   AppRouter.on('route:viewUser', function () {
