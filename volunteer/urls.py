@@ -21,9 +21,6 @@ urlpatterns = patterns('',  # NOQA
     url(r'^accounts/', include('accounts.urls')),
 
     # API
-    url(r'^api/v2/', include('shifts.api.v2.urls', namespace='v2')),
-    url(r'^api/v2/', include('departments.api.v2.urls', namespace='v2')),
-    url(r'^api/', include('shifts.api.urls')),
-
+    url(r'^api/', include('volunteer.api.urls')),
 
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
