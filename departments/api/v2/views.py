@@ -9,7 +9,6 @@ from departments.api.v2.serializers import DepartmentSerializer
 
 
 class PassThroughPaginator(pagination.BasePaginationSerializer):
-    results_field = 'data'
     count = serializers.IntegerField()
 
 
