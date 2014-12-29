@@ -51,6 +51,11 @@ define(['jquery','underscore'],function($,_){
       else{
         return null;
       }
+    },
+    format_time:function(time,options){
+      //todo type check & convert if needed
+      //todo check options
+      return time;
     }
   });  
 });

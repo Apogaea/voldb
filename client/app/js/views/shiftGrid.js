@@ -1,26 +1,38 @@
 /*global $,_,Backbone,define, utils */
 define([
+  'text!../templates/shiftGrid.html',
   'text!../templates/shiftItem.html'
-],function(ShiftItem){  
+],function(ShiftGrid,ShiftItem){  
   //console.log('hi',Backbone)
   var Grid=Backbone.View.extend({
     events:{
-      "click [shiftAction]":this.handleAction
+      "click .actions a":'handleAction'
     },
     handleAction:function(e){
-      var action;
+      console.log('handleAction',e);
+      var shiftItem=e.target,
+          shiftId=$(e.target).parents("[shift]").first().attr('shift');//todo fix jquery abuse
+      
       /*
        actions can be:
        - take
        - release
        - edit //todo after take/release is working
        */
-
-      //todo add modal/handler/whatever (specifically for actions that require interaction)
-      //console.log(e,e.getAttribute('shiftAction'));
-      action=e.getAttribute('shiftAction');
-      this.controller.modify[action+'_shift']();
+      switch(shiftItem.hash){//todo refactor this mess
+        case '#take':
+        this.controller.take_shift(this.collection._byId[shiftId]);
+        break;
+        case '#release':
+        this.controller.release_shift(this.collection._byId[shiftId]);
+        break;
+        default:
+        console.log('wat');//todo
+        break;
+      }
+      
     },
+    template:_.template(ShiftGrid),
     shiftItem:_.template(ShiftItem),
     initialize:function(options){
       window.shiftGrid=this;//todo remove this
@@ -49,8 +61,10 @@ define([
       var slot=document.createElement('div');
       _.each(shiftRow,function(item){
         slot.innerHTML+=this.shiftItem({
+          shiftId:item.get('id'),
           name:this.controller.roles.get_name_by_id(item.get('role')),
-          length:(item.get('shift_length')*20)//todo add percentage maths here
+          length:(item.get('shift_length')*20),//todo add percentage maths here
+          start_time:utils.format_time(item.get('start_time'))
         });
       },this);
       return slot;
@@ -96,8 +110,10 @@ define([
           frag.appendChild(this.make_slot(slots[i],bounds));
         }
       }
-      this.el.appendChild(frag);
-      //console.log(this);
+      console.log(this);
+      this.$el.html(this.template({
+        name:'this is some test grid'
+      })).append(frag);
       return this;
     }
   });

@@ -1,4 +1,4 @@
-/*global Backbone,define, utils, $ */
+/*global Backbone,define, utils, $, _ */
 
 define([
 '../../views/shiftGrid' //todo pull this into app?
@@ -7,13 +7,20 @@ define([
     ShiftGridView:ShiftGrid,
     children:{},
     container:$('#content'), //todo change this and make configurable    
-    modify:{ //keep crud operations isolated 
-      take_shift:function(shiftModel){
-        console.log('user '+ this.app.user.id+' is taking:',shiftModel);
-      },//todo
-      release_shift:function(shiftModel){},//todo
-      edit_shift:function(shiftModel,changes){}//todo
-    },
+    take_shift:function(shiftModel,options){
+      options=options||{};
+      var uid=options.uid||this.parent.user.id;
+      //console.log(shiftModel.set('owner'),uid);
+      console.log(shiftModel);
+      window.sm=shiftModel;
+      this.shifts.trigger('claim',shiftModel.id,uid);
+      //this.superCollection
+      //console.log('user '+ this.app.user.id+' is taking:',shiftModel);
+    },//todo
+    release_shift:function(shiftModel,options){
+      
+    },//todo
+    edit_shift:function(shiftModel,options){},//todo
     initialize:function(options){
       console.log('creating shiftapp');
       _.extend(this,options);
@@ -28,9 +35,9 @@ define([
       //todo remove defaults
       //todo refactor object structure to extend cleanly
       options=options||{};
-      options.filter = (options.filter||{"department":this.departments.get_id_by_name("Gate")}); 
+      options.filter = (options.filter||{"department":this.departments.get_id_by_name("Gate")});  
       options.name= options.name||"default test view";
-      options.collection=options.collection||this.superCollection.get_shifts(options.filter);
+      options.collection=options.collection||this.shifts.get_shifts(options.filter);
       options.controller=this;
       //todo handle name collisions      
       return utils.create_subview(options.name,this.ShiftGridView,options,this);
@@ -40,7 +47,7 @@ define([
         this.roles=this.parent.collections.roles; //todo is there a better way to do this?
         
         this.departments=this.parent.collections.departments; //todo is there a better way to do this?
-        this.superCollection=this.parent.collections.shifts;
+        this.shifts=this.parent.collections.shifts;
       }
       else{
         console.error('parent collections missing');
@@ -50,12 +57,19 @@ define([
       return this;
     },
     draw:function(){
-     
+     this.create_grid({
+       "department":this.departments.get_id_by_name("ASS"),
+       "name":"Another che"
+     });
+      window.sg=this.create_grid({
+       "department":this.departments.get_id_by_name("Gate"),
+       "name":"Another gate shiftgrid"
+     });
       this.container.html(this.create_grid().render().el);//todo create only if view not already instantiated
     },
     stop:function(){
       return this;
-    }//todo
+    }//todo cleanup gracefully
   });
   return ShiftController;
 });

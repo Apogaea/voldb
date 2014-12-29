@@ -1,3 +1,9 @@
-<div style="width:'<%= length %>px;'">
-<div><%= name %></div>
+<div style="width:'<%= length %>px;'" shift="<%= shiftId %>">
+  <div><%= name %></div>
+  <div><%= start_time %></div>
+  <div class='actions'><!-- todo create this block programatically -->
+    <a href='#take'>take shift</a>
+    <a href='#release'>release shift</a>
+    <!-- <a href='#edit>edit shift</a> -->
+  </div>
 </div>

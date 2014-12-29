@@ -6,6 +6,15 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
     parse:utils.parse_collection,
     model: ShiftModel,
     children:[],
+    register_events:function(){
+      this.on('claim',function(shiftId,user){
+        console.log('user '+user+' is claiming the shift with an id of '+shiftId);
+        this._byId[shiftId].set('owner',user);
+      });
+      this.on('release',function(shiftId,user){
+        console.log('user '+user+' is releasing the shift with an id of '+shiftId);
+      });
+    },
     initialize:function(models,options){
       //console.log('initing shift collection');
       if(options.url){
@@ -15,6 +24,7 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
           this.fetch();
         }
       }
+      this.register_events();//todo make this pubsubbable
       //console.log('shift init');
       /*this.first_load=true;
       this.fetch({
@@ -27,7 +37,8 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
         }, this)
       });*/ 
     },
-    get_shifts:function(filter){ //todo add event to propagate changes/updates
+    get_shifts:function(filter){ 
+      //todo add event to propagate changes/updates
       //console.log('getting shifts',this,filter);
       var subset,
           ChildCollection=Backbone.Collection.extend({//todo make this a utils method/mixin
