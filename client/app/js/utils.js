@@ -33,6 +33,24 @@ define(['jquery','underscore'],function($,_){
       child[name].parent=scope;
       _.extend((scope.children=scope.children||{}),child);
       return child[name];
+    },
+    get_name_by_id:function(id,scope){//todo make mixin
+      var result=scope.findWhere({id:id});
+      if(result!==undefined){
+        return result.get('name');
+      }
+      else{
+        return null;
+      }
+    }, 
+    get_id_by_name:function(name,scope){ //todo make mixin
+      var result=scope.findWhere({name:name});
+      if(result!==undefined){
+        return result.get('id');
+      }
+      else{
+        return null;
+      }
     }
   });  
 });

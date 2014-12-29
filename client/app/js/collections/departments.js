@@ -1,3 +1,4 @@
+/*global define,utils */
 define(['underscore','backbone','DepartmentModel'],function(_,Backbone,DepartmentModel){
   var Department=Backbone.Collection.extend({
     url:'./data/departments.json',
@@ -6,23 +7,13 @@ define(['underscore','backbone','DepartmentModel'],function(_,Backbone,Departmen
       //console.log('dept init');
       this.fetch();
     },
-    get_name_by_id:function(id){//todo make mixin
-      var result=this.findWhere({id:id});
-      if(result!==undefined){
-        return result.get('name');
-      }
-      else{
-        return null;
-      }
-    },
-    get_id_by_name:function(name){ //todo make mixin
-      var result=this.findWhere({name:name});
-      if(result!==undefined){
-        return result.get('id');
-      }
-      else{
-        return null;
-      }
+    get_name_by_id:function(id){//todo make this neater via BaseCollection
+      console.log(id,this);
+      return utils.get_name_by_id(id,this);
+    }, 
+    get_id_by_name:function(name){
+      console.log(name,this);
+      return utils.get_id_by_name(name,this);
     },
     parse:utils.parse_collection
   });

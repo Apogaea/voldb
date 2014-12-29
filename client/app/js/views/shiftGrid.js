@@ -25,7 +25,7 @@ define([
          if(model.get('slot')==undefined){
            model.set('slot',0);
          }
-         console.log(model.get('slot'));
+         //console.log(model.get('slot'));
          if(this.slots[model.get('slot')]==undefined){
            this.slots[model.get('slot')]=[];
          }
@@ -40,9 +40,10 @@ define([
       //console.log(this.shiftItem);
       var slot=document.createElement('div');
       _.each(shiftRow,function(item){
+        console.log(item.get('role'),item);
         slot.innerHTML+=this.shiftItem({
-          name:item.get('name'),
-          length:(item.get('shift_length')*2)
+          name:this.controller.roles.get_name_by_id(item.get('role')),
+          length:(item.get('shift_length')*2)//todo add percentage maths here
         });
       },this);
       return slot;

@@ -1,15 +1,16 @@
 /*global require, define, utils 
 * app/js/views/app.js
 */
-define([
+define([//todo clean up creation of supercollections; this define block is fugly
   'jquery',
   'underscore',
   'backbone',
-  'UserCollection',
+  'UserCollection', 
+  'RoleCollection',
   'ShiftCollection',
   'DepartmentCollection',
   'text!./templates/layout.html'
-],function($,_,Backbone,UserCollection,ShiftCollection,DepartmentCollection,layout){  
+],function($,_,Backbone,UserCollection,RoleCollection,ShiftCollection,DepartmentCollection,layout){  
   var App=Backbone.View.extend({ //todo does this need to be a view?
     el:'#app',
     template:_.template(layout),
@@ -20,6 +21,10 @@ define([
       
       //todo require these in contained block
       this.collections.users=new UserCollection();
+      this.collections.roles=new RoleCollection([],{
+        url:'./data/roles.json', //todo remove this and give to controllers
+        fetch_on_init:true
+      });
       this.collections.shifts=new ShiftCollection([],{
         url:'./data/shifts.json', //todo remove this and give to controllers
         fetch_on_init:true
@@ -65,6 +70,9 @@ define([
     },
     start:function(module_name){
       console.log('app starting');
+      this.$el.html(this.template({
+        title:'hello apo!'
+      }));
       module_name=module_name||'landing';
       this.load_module(module_name,undefined,function(module){
         //console.log(module_name+'module starting');

@@ -3,9 +3,10 @@
 define([
 '../../views/shiftGrid' //todo pull this into app?
 ],function(ShiftGrid){  
-  var ShiftController=Backbone.View.extend({ //todo are views really needed? Could we use something else?
+  var ShiftController=Backbone.View.extend({ //todo are views really needed? Could we use something else? Maybe make a controller out of a base view?
     ShiftGridView:ShiftGrid,
     children:{},
+    container:$('#content'), //todo change this and make configurable    
     take_shift:function(){},//todo
     release_shift:function(){},//todo
     edit_shift:function(){},//todo
@@ -27,14 +28,18 @@ define([
     },
     start:function(params){
       if(this.parent&&this.parent.collections){
+        this.roles=this.parent.collections.roles; //todo is there a better way to do this?
         this.departments=this.parent.collections.departments; //todo is there a better way to do this?
         this.superCollection=this.parent.collections.shifts;
       }
       else{
         console.error('parent collections missing');
       }
-      console.log(this.create_grid().render().el); //todo remove
+      this.draw();//todo remove this, or at least make it configurable
       return this;
+    },
+    draw:function(){
+      this.container.html(this.create_grid().render().el);//todo create only if view not already instantiated
     },
     stop:function(){
       return this;
