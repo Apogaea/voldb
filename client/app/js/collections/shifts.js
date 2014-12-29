@@ -7,9 +7,11 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
     model: ShiftModel,
     children:[],
     initialize:function(models,options){
+      console.log('initing shift collection');
       if(options.url){
         this.url=options.url;
         if(options.fetch_on_init===true){
+          console.log('fetching shifts from',this.url);
           this.fetch();
         }
       }
@@ -25,9 +27,11 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
         }, this)
       });*/ 
     },
-    get_shifts:function(attributes){ //todo add event to propagate changes/updates
+    get_shifts:function(filter){ //todo add event to propagate changes/updates
+      console.log('getting shifts',this,filter);
       var subset,
           ChildCollection=Backbone.Collection.extend({//todo make this a utils method/mixin
+            model:ShiftModel,//todo make this configurable
             parent:this,
             add: function(models,options) {
               this.parent.add(models, options);
@@ -38,9 +42,10 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
               return Backbone.Collection.prototype.remove.call(this,models, options);
             }            
           });
-      if(typeof attributes==='object'||attributes===undefined){
-        if(typeof attributes==='object'){
-          subset=new ChildCollection(this.where(attributes));
+      if(typeof filter==='object'||filter===undefined){
+        if(typeof filter==='object'){
+          console.log(this,this.where(filter));
+          subset=new ChildCollection(this.where(filter));
         }
         else{ //please don't use this often. It seems like a bad idea.
           subset=new ChildCollection(this.models);

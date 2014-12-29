@@ -1,4 +1,4 @@
-/*global define, utils 
+/*global require, define, utils 
 * app/js/views/app.js
 */
 define([
@@ -17,6 +17,7 @@ define([
     modules:{},
     current_module:null,
     initialize:function(){
+      
       //todo require these in contained block
       this.collections.users=new UserCollection();
       this.collections.shifts=new ShiftCollection([],{
@@ -24,7 +25,7 @@ define([
         fetch_on_init:true
       });
       this.collections.departments=new DepartmentCollection();
-    
+      return this;
       
     },
     render:function(subviews,to_empty){
@@ -45,19 +46,14 @@ define([
     load_module:function(module,options,cb){
       var scope,
           path='./apps/'+module+'/'+module+'App';
-      console.log('loading '+path);
+      //console.log('loading '+path);
       if(this.modules[module]==undefined){
-        console.log('loading...');
+        //console.log('loading...');
         scope=this;//todo find a workaround. i hate doing this.
         require([path],function(Module){
-          console.log(this,scope)
-          scope.modules[module]=new Module({initialize:function(){
-            
-            utils.create_subview('gateGrid',scope.ShiftGridView,{
-              collection:scope.collections.shifts.get_shifts({department:'Gate'})
-            },scope);
-            
-          }});
+//          console.log(this,scope)
+          scope.modules[module]=new Module(options);
+          scope.modules[module].parent=scope;
           if(cb){
             cb(scope.modules[module]);
           }
@@ -67,11 +63,11 @@ define([
         //todo loading/unloading existing
       }
     },
-    start:function(module){
+    start:function(module_name){
       console.log('app starting');
-      module=module||'shift';
-      this.load_module(module,undefined,function(module){
-        console.log('module '+module+' starting');
+      module_name=module_name||'landing';
+      this.load_module(module_name,undefined,function(module){
+        //console.log(module_name+'module starting');
         module.start();
       });    
     }

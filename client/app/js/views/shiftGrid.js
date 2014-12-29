@@ -1,23 +1,36 @@
-/*global define, utils */
+/*global $,_,Backbone,define, utils */
 define([
-  'jquery',
-  'underscore',
-  'backbone',
   'text!../templates/shiftItem.html'
-],function($,_,Backbone,ShiftItem){  
-  console.log('hi',Backbone)
+],function(ShiftItem){  
+  //console.log('hi',Backbone)
   var Grid=Backbone.View.extend({
+    events:{
+      "click [shiftAction]":this.handleAction
+    },
+    handleAction:function(e){
+      console.log(e,e.getAttribute('shiftAction'));
+    },
     shiftItem:_.template(ShiftItem),
-    initialize:function(){
-      console.log('bloop');
-      //this.time_increment=30;//display grid in 30 minute increments
+    initialize:function(options){
+      console.log('making new shiftgrid');
+      console.log('arguments',arguments);
+      //console.log('this',this);
+      _.extend(this,options);
+      //console.log('bloop');
+      this.time_increment=30;//todo configuration refactor //display grid in 30 minute increments. 
       this.slots=[];
+      
       if(this.collection&&this.collection.models){
        _.each(this.collection.models,function(model){
-        if(!this.slots[model.get('slot')]){
-          this.slots[model.get('slot')]=[];
-        }
-        utils.splice_after(model,this.slots[model.get('slot')],'start_time');
+         if(model.get('slot')==undefined){
+           model.set('slot',0);
+         }
+         console.log(model.get('slot'));
+         if(this.slots[model.get('slot')]==undefined){
+           this.slots[model.get('slot')]=[];
+         }
+         utils.splice_after(model,this.slots[model.get('slot')],'start_time');
+         //console.log(model,this.slots,model);
       },this);
       }
       //this.render(this.slots);//take out of init
@@ -76,6 +89,7 @@ define([
         }
       }
       this.el.appendChild(frag);
+      console.log(this);
       return this;
     }
   });

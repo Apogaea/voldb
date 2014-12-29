@@ -2,7 +2,8 @@
 define(['jquery','underscore'],function($,_){
   _.extend((window.utils=window.utils||{}),{
     parse_collection:function(data,options){
-      return data.data?data.data:data;
+      //console.log('parsing collection ',(data.results?data.results:data));
+      return data.results?data.results:data;//todo handle pagination and error path 
     },
     splice_after:function(item,target,attribute){
       var i=0;
