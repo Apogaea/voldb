@@ -8,11 +8,9 @@ define(['underscore','backbone','DepartmentModel'],function(_,Backbone,Departmen
       this.fetch();
     },
     get_name_by_id:function(id){//todo make this neater via BaseCollection
-      console.log(id,this);
       return utils.get_name_by_id(id,this);
     }, 
     get_id_by_name:function(name){
-      console.log(name,this);
       return utils.get_id_by_name(name,this);
     },
     parse:utils.parse_collection

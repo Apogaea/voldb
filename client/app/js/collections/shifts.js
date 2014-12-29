@@ -7,11 +7,11 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
     model: ShiftModel,
     children:[],
     initialize:function(models,options){
-      console.log('initing shift collection');
+      //console.log('initing shift collection');
       if(options.url){
         this.url=options.url;
         if(options.fetch_on_init===true){
-          console.log('fetching shifts from',this.url);
+          //console.log('fetching shifts from',this.url);
           this.fetch();
         }
       }
@@ -28,7 +28,7 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
       });*/ 
     },
     get_shifts:function(filter){ //todo add event to propagate changes/updates
-      console.log('getting shifts',this,filter);
+      //console.log('getting shifts',this,filter);
       var subset,
           ChildCollection=Backbone.Collection.extend({//todo make this a utils method/mixin
             model:ShiftModel,//todo make this configurable
@@ -44,7 +44,7 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
           });
       if(typeof filter==='object'||filter===undefined){
         if(typeof filter==='object'){
-          console.log(this,this.where(filter));
+          //console.log(this,this.where(filter));
           subset=new ChildCollection(this.where(filter));
         }
         else{ //please don't use this often. It seems like a bad idea.

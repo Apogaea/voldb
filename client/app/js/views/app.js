@@ -17,6 +17,10 @@ define([//todo clean up creation of supercollections; this define block is fugly
     collections:{},
     modules:{},
     current_module:null,
+    current_user:null,
+    set_user:function(){//todo authentication
+      this.user=this.collections.users.get_current(); //todo make this work; currently returns static uid for testing;  
+    },
     initialize:function(){
       
       //todo require these in contained block
@@ -52,6 +56,8 @@ define([//todo clean up creation of supercollections; this define block is fugly
       var scope,
           path='./apps/'+module+'/'+module+'App';
       //console.log('loading '+path);
+      options=options?options:{};
+      options.app=this;
       if(this.modules[module]==undefined){
         //console.log('loading...');
         scope=this;//todo find a workaround. i hate doing this.
@@ -69,6 +75,7 @@ define([//todo clean up creation of supercollections; this define block is fugly
       }
     },
     start:function(module_name){
+      this.set_user();//todo call this on auth
       console.log('app starting');
       this.$el.html(this.template({
         title:'hello apo!'

@@ -6,11 +6,11 @@ define(['underscore','backbone','RoleModel'],function(_,Backbone,RoleModel){
     model: RoleModel,
     children:[],
     initialize:function(models,options){
-      console.log('initing role collection');
+      //console.log('initing role collection');
       if(options.url){
         this.url=options.url;
         if(options.fetch_on_init===true){
-          console.log('fetching roles from',this.url);
+          //console.log('fetching roles from',this.url);
           this.fetch();
         }
       }

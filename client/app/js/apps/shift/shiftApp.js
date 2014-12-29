@@ -1,4 +1,4 @@
-/*global Backbone,define, utils */
+/*global Backbone,define, utils, $ */
 
 define([
 '../../views/shiftGrid' //todo pull this into app?
@@ -7,12 +7,21 @@ define([
     ShiftGridView:ShiftGrid,
     children:{},
     container:$('#content'), //todo change this and make configurable    
-    take_shift:function(){},//todo
-    release_shift:function(){},//todo
-    edit_shift:function(){},//todo
+    modify:{ //keep crud operations isolated 
+      take_shift:function(shiftModel){
+        console.log('user '+ this.app.user.id+' is taking:',shiftModel);
+      },//todo
+      release_shift:function(shiftModel){},//todo
+      edit_shift:function(shiftModel,changes){}//todo
+    },
+    initialize:function(options){
+      console.log('creating shiftapp');
+      _.extend(this,options);
+    },
     destroy_grid:function(name){
       this.children[name].remove();
       //todo do we need to do anything else?
+      
     },
     create_grid:function(options){
       //console.log('making shiftgrid');
@@ -29,6 +38,7 @@ define([
     start:function(params){
       if(this.parent&&this.parent.collections){
         this.roles=this.parent.collections.roles; //todo is there a better way to do this?
+        
         this.departments=this.parent.collections.departments; //todo is there a better way to do this?
         this.superCollection=this.parent.collections.shifts;
       }
@@ -36,9 +46,11 @@ define([
         console.error('parent collections missing');
       }
       this.draw();//todo remove this, or at least make it configurable
+      window.shiftApp=this;//todo remove this
       return this;
     },
     draw:function(){
+     
       this.container.html(this.create_grid().render().el);//todo create only if view not already instantiated
     },
     stop:function(){

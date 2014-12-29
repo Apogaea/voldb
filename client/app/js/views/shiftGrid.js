@@ -8,16 +8,24 @@ define([
       "click [shiftAction]":this.handleAction
     },
     handleAction:function(e){
-      console.log(e,e.getAttribute('shiftAction'));
+      var action;
+      /*
+       actions can be:
+       - take
+       - release
+       - edit //todo after take/release is working
+       */
+
+      //todo add modal/handler/whatever (specifically for actions that require interaction)
+      //console.log(e,e.getAttribute('shiftAction'));
+      action=e.getAttribute('shiftAction');
+      this.controller.modify[action+'_shift']();
     },
     shiftItem:_.template(ShiftItem),
     initialize:function(options){
-      console.log('making new shiftgrid');
-      console.log('arguments',arguments);
-      //console.log('this',this);
+      window.shiftGrid=this;//todo remove this
       _.extend(this,options);
-      //console.log('bloop');
-      this.time_increment=30;//todo configuration refactor //display grid in 30 minute increments. 
+      this.time_increment=30;//todo refactor configuration flow //display grid in 30 minute increments. 
       this.slots=[];
       
       if(this.collection&&this.collection.models){
@@ -40,10 +48,9 @@ define([
       //console.log(this.shiftItem);
       var slot=document.createElement('div');
       _.each(shiftRow,function(item){
-        console.log(item.get('role'),item);
         slot.innerHTML+=this.shiftItem({
           name:this.controller.roles.get_name_by_id(item.get('role')),
-          length:(item.get('shift_length')*2)//todo add percentage maths here
+          length:(item.get('shift_length')*20)//todo add percentage maths here
         });
       },this);
       return slot;
@@ -90,7 +97,7 @@ define([
         }
       }
       this.el.appendChild(frag);
-      console.log(this);
+      //console.log(this);
       return this;
     }
   });
