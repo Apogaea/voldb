@@ -10,15 +10,18 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
       this.on('claim',function(shiftId,user){
         console.log('user '+user+' is claiming the shift with an id of '+shiftId);
         this._byId[shiftId].set('owner',user);
+        this.url='/shifts/'+shiftId+'/claim';
+        this.sync();
       });
       this.on('release',function(shiftId,user){
         console.log('user '+user+' is releasing the shift with an id of '+shiftId);
+        
       });
     },
     initialize:function(models,options){
       //console.log('initing shift collection');
       if(options.url){
-        this.url=options.url;
+        this.url=this.default_url=options.url;
         if(options.fetch_on_init===true){
           //console.log('fetching shifts from',this.url);
           this.fetch();
