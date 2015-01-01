@@ -68,3 +68,10 @@ client/.sass-cache
 client/bower_components
 client/test/bower_components
 
+# client test data
+app/css/temp.css
+app/data/departments_current.json
+app/data/departments_mine.json
+app/data/roles_current.json
+app/data/shifts_current.json
+app/data/shifts_mine.json
