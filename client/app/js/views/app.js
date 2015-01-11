@@ -17,12 +17,8 @@ define([//todo clean up creation of supercollections; this define block is fugly
     collections:{},
     modules:{},
     current_module:null,
-    current_user:null,
-    set_user:function(){//todo authentication
-      this.user=this.collections.users.get_current(); //todo make this work; currently returns static uid for testing;  
-    },
+    current_user:null,    
     initialize:function(){
-      
       //todo require these in contained block
       this.collections.users=new UserCollection();
       this.collections.roles=new RoleCollection([],{
@@ -36,6 +32,9 @@ define([//todo clean up creation of supercollections; this define block is fugly
       this.collections.departments=new DepartmentCollection();
       return this;
       
+    },
+    set_user:function(){//todo authentication
+      this.user=this.collections.users.get_current(); //todo make this work; currently returns static uid for testing;  
     },
     render:function(subviews,to_empty){
       //console.log(this.el);

@@ -98,6 +98,7 @@ define([
       //      console.log('getting parent dimensions',parent.$el.width());
     },
     render:function(slots){
+      console.log('shiftGrid.render');
       slots=slots||this.slots;
       //console.log(this);
       //console.log(this.parent);

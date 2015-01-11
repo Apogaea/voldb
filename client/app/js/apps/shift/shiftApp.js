@@ -45,7 +45,6 @@ define([
     start:function(params){
       if(this.parent&&this.parent.collections){
         this.roles=this.parent.collections.roles; //todo is there a better way to do this?
-        
         this.departments=this.parent.collections.departments; //todo is there a better way to do this?
         this.shifts=this.parent.collections.shifts;
       }
@@ -64,7 +63,7 @@ define([
       window.sg=this.create_grid({
        "department":this.departments.get_id_by_name("Gate"),
        "name":"Another gate shiftgrid"
-     });
+     });//this one is just debug
       this.container.html(this.create_grid().render().el);//todo create only if view not already instantiated
     },
     stop:function(){

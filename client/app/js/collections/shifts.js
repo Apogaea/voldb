@@ -9,12 +9,15 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
     register_events:function(){
       this.on('claim',function(shiftId,user){
         console.log('user '+user+' is claiming the shift with an id of '+shiftId);
+        
         this._byId[shiftId].set('owner',user);
-        this.url='/shifts/'+shiftId+'/claim';
-        this.sync();
+        this.sync('update',this._byId[shiftId],{type:"POST"});
+        
       });
       this.on('release',function(shiftId,user){
         console.log('user '+user+' is releasing the shift with an id of '+shiftId);
+        this._byId[shiftId].set('owner',null);        
+        this.sync('update',this._byId[shiftId],{type:"POST"});
         
       });
     },
