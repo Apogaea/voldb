@@ -1,1 +1,235 @@
-{"count":38,"previous":null,"results":[{"department":1,"description":"This role was generated during the creation of the `Role` model","id":1,"name":"Generated role for: ASS Lead"},{"department":2,"description":"This role was generated during the creation of the `Role` model","id":2,"name":"Generated role for: ASS Regular"},{"department":3,"description":"This role was generated during the creation of the `Role` model","id":3,"name":"Generated role for: BAMF Fire"},{"department":4,"description":"This role was generated during the creation of the `Role` model","id":4,"name":"Generated role for: BAMF Primary"},{"department":5,"description":"This role was generated during the creation of the `Role` model","id":5,"name":"Generated role for: BAMF Shift lead"},{"department":6,"description":"This role was generated during the creation of the `Role` model","id":6,"name":"Generated role for: BAMF Support"},{"department":7,"description":"This role was generated during the creation of the `Role` model","id":7,"name":"Generated role for: BAMF XXXO"},{"department":8,"description":"This role was generated during the creation of the `Role` model","id":8,"name":"Generated role for: Center Camp Cafe Lead"},{"department":9,"description":"This role was generated during the creation of the `Role` model","id":9,"name":"Generated role for: Center Camp Cafe Volunteer"},{"department":10,"description":"This role was generated during the creation of the `Role` model","id":10,"name":"Generated role for: Center Camp Commissary Lead"},{"department":11,"description":"This role was generated during the creation of the `Role` model","id":11,"name":"Generated role for: Center Camp Daily Lead"},{"department":12,"description":"This role was generated during the creation of the `Role` model","id":12,"name":"Generated role for: Center Camp Ice Lead"},{"department":13,"description":"This role was generated during the creation of the `Role` model","id":13,"name":"Generated role for: Center Camp Infrastructure Lead"},{"department":14,"description":"This role was generated during the creation of the `Role` model","id":14,"name":"Generated role for: Center Camp Lead"},{"department":15,"description":"This role was generated during the creation of the `Role` model","id":15,"name":"Generated role for: Center Camp Performance Lead"},{"department":16,"description":"This role was generated during the creation of the `Role` model","id":16,"name":"Generated role for: Center Camp Performance Volunteer"},{"department":17,"description":"This role was generated during the creation of the `Role` model","id":17,"name":"Generated role for: Center Camp Regular"},{"department":18,"description":"This role was generated during the creation of the `Role` model","id":18,"name":"Generated role for: DMV On-Call special"},{"department":19,"description":"This role was generated during the creation of the `Role` model","id":19,"name":"Generated role for: DMV On-Duty special"},{"department":20,"description":"This role was generated during the creation of the `Role` model","id":20,"name":"Generated role for: DMV Special requirements"},{"department":21,"description":"This role was generated during the creation of the `Role` model","id":21,"name":"Generated role for: DPW Regular"},{"department":22,"description":"This role was generated during the creation of the `Role` model","id":22,"name":"Generated role for: Fire Convergence Daily Lead"},{"department":23,"description":"This role was generated during the creation of the `Role` model","id":23,"name":"Generated role for: Fire Convergence Special training"},{"department":24,"description":"This role was generated during the creation of the `Role` model","id":24,"name":"Generated role for: Gate Daily Lead"},{"department":25,"description":"This role was generated during the creation of the `Role` model","id":25,"name":"Generated role for: Gate regular"},{"department":26,"description":"This role was generated during the creation of the `Role` model","id":26,"name":"Generated role for: greener regular"},{"department":27,"description":"This role was generated during the creation of the `Role` model","id":27,"name":"Generated role for: Parking Lead"},{"department":28,"description":"This role was generated during the creation of the `Role` model","id":28,"name":"Generated role for: Parking Regular"},{"department":29,"description":"This role was generated during the creation of the `Role` model","id":29,"name":"Generated role for: Parking Shuttle Pilot"},{"department":30,"description":"This role was generated during the creation of the `Role` model","id":30,"name":"Generated role for: Parking Traffic Tower"},{"department":31,"description":"This role was generated during the creation of the `Role` model","id":31,"name":"Generated role for: Placement peak capacity survey"},{"department":32,"description":"This role was generated during the creation of the `Role` model","id":32,"name":"Generated role for: Placement Regular"},{"department":33,"description":"This role was generated during the creation of the `Role` model","id":33,"name":"Generated role for: Quartermaster Regular"},{"department":34,"description":"This role was generated during the creation of the `Role` model","id":34,"name":"Generated role for: Rangers Incident Command"},{"department":35,"description":"This role was generated during the creation of the `Role` model","id":35,"name":"Generated role for: Rangers Khaki"},{"department":36,"description":"This role was generated during the creation of the `Role` model","id":36,"name":"Generated role for: Rangers Ranger"},{"department":37,"description":"This role was generated during the creation of the `Role` model","id":37,"name":"Generated role for: Volunteer Daily Lead"},{"department":38,"description":"This role was generated during the creation of the `Role` model","id":38,"name":"Generated role for: Volunteer Regular"}],"next":null}
+{
+  "count":38,
+  "previous":null,
+  "results":[
+    {
+      "department":1,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":1,
+      "name":"Generated role for: ASS Lead"
+    },
+    {
+      "department":2,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":2,
+      "name":"Generated role for: ASS Regular"
+    },
+    {
+      "department":3,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":3,
+      "name":"Generated role for: BAMF Fire"
+    },
+    {
+      "department":4,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":4,
+      "name":"Generated role for: BAMF Primary"
+    },
+    {
+      "department":5,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":5,
+      "name":"Generated role for: BAMF Shift lead"
+    },
+    {
+      "department":6,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":6,
+      "name":"Generated role for: BAMF Support"
+    },
+    {
+      "department":7,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":7,
+      "name":"Generated role for: BAMF XXXO"
+    },
+    {
+      "department":8,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":8,
+      "name":"Generated role for: Center Camp Cafe Lead"
+    },
+    {
+      "department":9,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":9,
+      "name":"Generated role for: Center Camp Cafe Volunteer"
+    },
+    {
+      "department":10,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":10,
+      "name":"Generated role for: Center Camp Commissary Lead"
+    },
+    {
+      "department":11,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":11,
+      "name":"Generated role for: Center Camp Daily Lead"
+    },
+    {
+      "department":12,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":12,
+      "name":"Generated role for: Center Camp Ice Lead"
+    },
+    {
+      "department":13,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":13,
+      "name":"Generated role for: Center Camp Infrastructure Lead"
+    },
+    {
+      "department":14,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":14,
+      "name":"Generated role for: Center Camp Lead"
+    },
+    {
+      "department":15,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":15,
+      "name":"Generated role for: Center Camp Performance Lead"
+    },
+    {
+      "department":16,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":16,
+      "name":"Generated role for: Center Camp Performance Volunteer"
+    },
+    {
+      "department":17,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":17,
+      "name":"Generated role for: Center Camp Regular"
+    },
+    {
+      "department":18,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":18,
+      "name":"Generated role for: DMV On-Call special"
+    },
+    {
+      "department":19,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":19,
+      "name":"Generated role for: DMV On-Duty special"
+    },
+    {
+      "department":20,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":20,
+      "name":"Generated role for: DMV Special requirements"
+    },
+    {
+      "department":21,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":21,
+      "name":"Generated role for: DPW Regular"
+    },
+    {
+      "department":22,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":22,
+      "name":"Generated role for: Fire Convergence Daily Lead"
+    },
+    {
+      "department":23,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":23,
+      "name":"Generated role for: Fire Convergence Special training"
+    },
+    {
+      "department":24,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":24,
+      "name":"Generated role for: Gate Daily Lead"
+    },
+    {
+      "department":25,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":25,
+      "name":"Generated role for: Gate regular"
+    },
+    {
+      "department":26,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":26,
+      "name":"Generated role for: greener regular"
+    },
+    {
+      "department":27,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":27,
+      "name":"Generated role for: Parking Lead"
+    },
+    {
+      "department":28,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":28,
+      "name":"Generated role for: Parking Regular"
+    },
+    {
+      "department":29,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":29,
+      "name":"Generated role for: Parking Shuttle Pilot"
+    },
+    {
+      "department":30,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":30,
+      "name":"Generated role for: Parking Traffic Tower"
+    },
+    {
+      "department":31,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":31,
+      "name":"Generated role for: Placement peak capacity survey"
+    },
+    {
+      "department":32,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":32,
+      "name":"Generated role for: Placement Regular"
+    },
+    {
+      "department":33,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":33,
+      "name":"Generated role for: Quartermaster Regular"
+    },
+    {
+      "department":34,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":34,
+      "name":"Generated role for: Rangers Incident Command"
+    },
+    {
+      "department":35,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":35,
+      "name":"Generated role for: Rangers Khaki"
+    },
+    {
+      "department":36,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":36,
+      "name":"Generated role for: Rangers Ranger"
+    },
+    {
+      "department":37,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":37,
+      "name":"Generated role for: Volunteer Daily Lead"
+    },
+    {
+      "department":38,
+      "description":"This role was generated during the creation of the `Role` model",
+      "id":38,
+      "name":"Generated role for: Volunteer Regular"
+    }
+  ],
+  "next":null
+}
