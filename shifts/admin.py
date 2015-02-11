@@ -1,7 +1,12 @@
 from django.contrib import admin
 from shifts.models import Shift
+from shifts.models import Role
 from datetime import timedelta
 from django.db.models import F
+
+class RoleAdmin(admin.ModelAdmin):
+    list_display = ('id', 'department', 'name')
+    list_filter = ['department', 'name', 'description']
 
 
 class ShiftAdmin(admin.ModelAdmin):
@@ -56,3 +61,4 @@ class ShiftAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Shift, ShiftAdmin)
+admin.site.register(Role, RoleAdmin)
