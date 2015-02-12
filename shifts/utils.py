@@ -186,10 +186,11 @@ def shifts_as_grid(shifts):
     """
     length_getter = operator.itemgetter('shift_length')
 
-    overall_sort_key = lambda s: (
-        s['shift_length'],
-        s['start_time'].astimezone(DENVER_TIMEZONE),
-    )
+    def overall_sort_key(s):
+        return (
+            s['shift_length'],
+            s['start_time'].astimezone(DENVER_TIMEZONE),
+        )
 
     dates = sorted(
         set(

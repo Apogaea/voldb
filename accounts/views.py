@@ -6,8 +6,6 @@ from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib.auth import get_user_model, login as auth_login, authenticate
 
-User = get_user_model()
-
 from authtools.views import LoginRequiredMixin
 
 from accounts.forms import (
@@ -15,6 +13,8 @@ from accounts.forms import (
 )
 from accounts.emails import send_registration_verification_email
 from accounts.utils import unsign_registration_token
+
+User = get_user_model()
 
 
 class RegisterView(FormView):
