@@ -76,4 +76,5 @@ def api_client(user, db):
     """
     client = APIClient()
     client.force_authenticate(user=user)
+    client.user = user
     return client

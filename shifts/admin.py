@@ -4,6 +4,7 @@ from shifts.models import Role
 from datetime import timedelta
 from django.db.models import F
 
+
 class RoleAdmin(admin.ModelAdmin):
     list_display = ('id', 'department', 'name')
     list_filter = ['department', 'name', 'description']

@@ -1,11 +1,11 @@
 from django import forms
 from django.contrib.auth import get_user_model
 
-User = get_user_model()
-
 from betterforms.forms import BetterForm, BetterModelForm
 
 from profiles.models import Profile
+
+User = get_user_model()
 
 
 class UserRegistrationForm(BetterForm):

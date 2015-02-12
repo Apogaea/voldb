@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import excavator
+import herokuify
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -75,8 +77,6 @@ LOGIN_REDIRECT_URL = 'profile'
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
-import herokuify
-
 DATABASES = herokuify.get_db_config()
 DATABASES['default'].setdefault('ATOMIC_REQUESTS', True)
 

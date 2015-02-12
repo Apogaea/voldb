@@ -2,9 +2,9 @@ from django.views.generic import ListView, TemplateView
 from django.contrib.auth import get_user_model
 from django.db.models import Sum
 
-User = get_user_model()
-
 from authtools.views import LoginRequiredMixin
+
+User = get_user_model()
 
 
 class LeaderBoardView(LoginRequiredMixin, ListView):
