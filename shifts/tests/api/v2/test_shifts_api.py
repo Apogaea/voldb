@@ -65,12 +65,26 @@ def test_releasing_own_shift(factories, api_client, models):
     assert updated_shift.owner is None
 
 
-def test_cannot_releasing_others_shift(factories, api_client, models):
+def test_cannot_releasing_others_shift(factories, api_client):
     other_user = factories.UserFactory()
     shift = factories.ShiftFactory(owner=other_user)
 
     shift_data = ShiftSerializer(shift).data
     shift_data['owner'] = api_client.user.pk
+
+    detail_url = reverse('v2:shift-detail', kwargs={'pk': shift.pk})
+
+    response = api_client.put(detail_url, shift_data)
+
+    assert response.status_code == 400, response.data
+
+
+def test_cannot_cliam_shift_for_other(factories, api_client):
+    other_user = factories.UserFactory()
+    shift = factories.ShiftFactory()
+
+    shift_data = ShiftSerializer(shift).data
+    shift_data['owner'] = other_user.pk
 
     detail_url = reverse('v2:shift-detail', kwargs={'pk': shift.pk})
 

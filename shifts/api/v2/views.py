@@ -33,6 +33,9 @@ class ShiftViewSet(generics.ListAPIView,
         shift = self.get_object()
         if shift.owner and not shift.owner == self.request.user:
             raise exceptions.ParseError("You cannot release other people's shifts")
+        elif shift.owner is None and self.request.DATA.get('owner') is not None:
+            if self.request.DATA.get('owner') != self.request.user.pk:
+                raise exceptions.ParseError("You cannot claim a shift for another user")
         return super(ShiftViewSet, self).update(*args, **kwargs)
 
 

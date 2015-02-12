@@ -264,6 +264,16 @@ $ heroku logs -t
 - **shift_length**: The length in units of time (currently hours) of the shift.
 - **owner**: The primary key of the shifts owner.
 
+## Shift Claiming: `/api/v2/shifts/:id/`
+
+A `PUT` or `PATCH` to the detail endpoint for a shift will allow you to *claim*
+it by specifying the claiming user's id as the `owner` field in the request
+data.
+
+You cannot modify a shift that is not claimed by you.
+
+Shifts with no owner can be claimed by anyone.
+
 ## Shift Grid `/api/v2/shift-grid/?s=1&s=2&s=3`
 
 Returns the shifts in grid format.
