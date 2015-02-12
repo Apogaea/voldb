@@ -23,9 +23,17 @@ class RoleViewSet(generics.ListAPIView,
 
 
 class ShiftViewSet(generics.ListAPIView,
+                   generics.RetrieveAPIView,
+                   generics.UpdateAPIView,
                    viewsets.GenericViewSet):
     queryset = Shift.objects.all()
     serializer_class = ShiftSerializer
+
+    def update(self, *args, **kwargs):
+        shift = self.get_object()
+        if shift.owner and not shift.owner == self.request.user:
+            raise exceptions.ParseError("You cannot release other people's shifts")
+        return super(ShiftViewSet, self).update(*args, **kwargs)
 
 
 class GridAPIView(views.APIView):
