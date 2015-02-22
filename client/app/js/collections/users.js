@@ -6,7 +6,7 @@ define(['underscore','backbone','UserModel'],function(_,Backbone,UserModel){
       //console.log('user init');
       
       this.add({ //todo remove this after auth is set up 
-        "id":10,
+        "id":3,
         "is_admin":true,
         "email":"rafe@bestdog.com",
         "user":"rafe",
@@ -21,7 +21,7 @@ define(['underscore','backbone','UserModel'],function(_,Backbone,UserModel){
       return Backbone.Collection.prototype.fetch.call(this, options);
     },
     get_current:function(){
-      return this.get(10); //todo make this actually work after auth is set up.
+      return this.get(3); //todo make this actually work after auth is set up.
     },
     parse:utils.parse_collection
   });

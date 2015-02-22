@@ -23,7 +23,7 @@
             "has_ticket":true
         },
         {
-            "id":3,
+            "id":10,
             "is_admin":false,
             "email":"",
             "password":"",
@@ -96,17 +96,6 @@
             "user":"",
             "full_name":"",
             "display_name":"Gus",
-            "phone":"",
-            "has_ticket":false
-        },
-        {
-            "id":10,
-            "is_admin":true,
-            "email":"",
-            "password":"",
-            "user":"",
-            "full_name":"",
-            "display_name":"Rafe",
             "phone":"",
             "has_ticket":false
         }

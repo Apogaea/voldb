@@ -22,11 +22,11 @@ define([//todo clean up creation of supercollections; this define block is fugly
       //todo require these in contained block
       this.collections.users=new UserCollection();
       this.collections.roles=new RoleCollection([],{
-        url:'./data/roles.json', //todo remove this and give to controllers
+        url:'/api/v2/roles/', //todo remove this and give to controllers
         fetch_on_init:true
       });
       this.collections.shifts=new ShiftCollection([],{
-        url:'./data/shifts.json', //todo remove this and give to controllers
+        url:'/api/v2/shifts/', //todo request less stuff?
         fetch_on_init:true
       });
       this.collections.departments=new DepartmentCollection();
@@ -51,7 +51,7 @@ define([//todo clean up creation of supercollections; this define block is fugly
       }
       return this;
     },
-    load_module:function(module,options,cb){
+    load_module:function(module,options,cb){ 
       var scope,
           path='./apps/'+module+'/'+module+'App';
       //console.log('loading '+path);

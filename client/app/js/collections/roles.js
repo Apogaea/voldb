@@ -4,9 +4,13 @@
 define(['underscore','backbone','RoleModel'],function(_,Backbone,RoleModel){
   var Roles=Backbone.Collection.extend({ //todo extend from custom collection which shims ChildCollection creation
     model: RoleModel,
+    departments:[],
     children:[],
     initialize:function(models,options){
       //console.log('initing role collection');
+      this.on('add',function(role){
+        console.log(role.id);
+      });
       if(options.url){
         this.url=options.url;
         if(options.fetch_on_init===true){
