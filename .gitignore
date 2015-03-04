@@ -62,7 +62,7 @@ docs/_build
 client/node_modules
 */npm-debug.log
 client/node_modules
-client/dist
+#client/dist #hacks
 client/.tmp
 client/.sass-cache
 client/bower_components
