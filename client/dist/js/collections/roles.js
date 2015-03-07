@@ -31,6 +31,7 @@ define(['underscore','backbone','RoleModel'],function(_,Backbone,RoleModel){
     },
     initialize:function(models,options){
       //console.log('initing role collection');
+      if(options.parent){this.parent=this;}
       if(options.url){
         this.url=options.url;
         if(options.fetch_on_init===true){

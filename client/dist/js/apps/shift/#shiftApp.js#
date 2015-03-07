@@ -36,7 +36,7 @@ define([
       //todo refactor object structure to extend cleanly
       options=options||{};
 //
-      console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',this.parent.collections.roles.get_roles_by_department(this.parent.collections.departments.get_id_by_name("Center Camp")))
+      //console.log('zzzz???zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',this.parent.collections.roles.get_roles_by_department(this.parent.collections.departments.get_id_by_name("Center Camp")))
       //options.filter = (options.filter||{"department":this.departments.get_id_by_name("Center Camp")});  
       options.name= options.name||"default test view";
       options.collection=options.collection||this.shifts.get_shifts(options.filter);

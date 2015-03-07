@@ -2,7 +2,7 @@ define(['underscore','backbone'],function(_,Backbone){
   var Shift=Backbone.Model.extend({
     initialize:function(){
       if(this.id){
-        this.url='/api/v2/shifts/'+this.id;
+        this.url='/api/v2/shifts/'+this.id+'/';
       }
       else{
         console.log('no url?',this.url);

@@ -22,7 +22,11 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
         
       });
       this.on('add',function(shift){
-        console.log('adding shift');
+        //console.log('adding shift',shift);
+        if(this.parent.collections.roles._byId[shift.get('role')]){//shim in department so we can query shifts by department quickly           
+           shift.set('department',this.parent.collections.roles._byId[shift.get('role')].get('department'));
+        }
+        //console.log(this.parent.collections.roles._byId[]);
         if(!this.roles[shift.get('role')]){
           var ChildCollection=Backbone.Collection.extend({//todo make this a utils method/mixin
             model:ShiftModel,//todo make this configurable
@@ -44,33 +48,47 @@ define(['underscore','backbone','ShiftModel'],function(_,Backbone,ShiftModel){
       cb.call(scope);
     },
     initialize:function(models,options){
-      //console.log('initing shift collection');
-      
+      console.log('initing shift collection',options);
+      if(options.parent){
+        //console.log('setting parent:',options.parent);
+        this.parent=options.parent;
+      }
       this.register_events(function(){
         if(options.url){
-          this.url=this.default_url=options.url;
+          this.url=this.defaultUrl=options.url;
           if(options.fetch_on_init===true){
-            console.log('fetching shifts from',this.url);
-            this.fetch({complete:function(){
-              console.log(this)
-              //console.log(this.trigger('ready'));
-            }});
+            //console.log('fetching shifts from',this.url);
+            this.fetch_all_shifts();
           }
         }
       },this);//todo make this pubsubbable
       
       
-      //console.log('shift init');
-      /*this.first_load=true;
-      this.fetch({
-        success:_.bind(function(collection) {
-          this.trigger('update',collection);
-          if(this.first_load){
-            this.first_load=false;
-            this.trigger('ready',collection);
-          }
-        }, this)
-      });*/ 
+      
+    },
+    fetch_all_shifts:function(url){
+      //console.log(this);
+      var self=this;
+      if(!url){
+        this.url=this.defaultUrl;
+      }
+      else{
+        this.url=url;
+      }
+      this.fetch({remove:false,complete:function(xhr,status){
+       // console.log(arguments);
+        if(status!=='success'){
+          //todo retry
+        }
+        else if(xhr.responseJSON.next){
+          //console.log('fetching next page',xhr.responseJSON);
+          self.fetch_all_shifts(xhr.responseJSON.next);
+        }
+        else{                  
+          //console.log('done with pagination',xhr.responseJSON);
+          console.log(self.trigger('ready'));
+        }
+      }});
     },
     get_shifts:function(filter){ 
       //todo add event to propagate changes/updates

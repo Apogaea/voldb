@@ -20,7 +20,8 @@ define([//todo clean up creation of supercollections; this define block is fugly
     current_user:null,    
     initialize:function(){
       //todo require these in contained block
-      var check_completion,loaded_collections=0,self=this;
+      var check_completion,loaded_collections=0,
+          self=this;//ew
       //console.log('----------------getting departments----------------------');
       
       check_completion = function (){
@@ -28,18 +29,23 @@ define([//todo clean up creation of supercollections; this define block is fugly
         if(loaded_collections==2){
           self.collections.shifts=new ShiftCollection([],{
             url:'/api/v2/shifts/', //todo request less stuff?
-            fetch_on_init:true
+            fetch_on_init:true,
+            parent:self
           });
-          self.collections.shifts.once('ready',self.trigger('ready'));
+          self.collections.shifts.once('ready',function(){
+            self.collections.shifts.once('ready',self.trigger('ready'));
+          });
+          
         }
       };
       
-      this.collections.departments=new DepartmentCollection();
+      this.collections.departments=new DepartmentCollection([],{parent:this});
       this.collections.departments.once('loaded',check_completion);
 
       this.collections.roles=new RoleCollection([],{
         url:'/api/v2/roles/', //todo remove this and give to controllers
-        fetch_on_init:true
+        fetch_on_init:true,
+        parent:this
       });
       this.collections.roles.once('loaded',check_completion);
       this.collections.users=new UserCollection();
@@ -97,7 +103,7 @@ define([//todo clean up creation of supercollections; this define block is fugly
       this.on('ready',function(){
         console.log('app ready');
         this.load_module(module_name,undefined,function(module){
-          //console.log(module_name+'module starting');
+          console.log(module_name+' module starting');
           module.start();
         });    
       },this);
