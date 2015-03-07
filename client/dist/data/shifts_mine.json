@@ -1,0 +1,121 @@
+{
+    "data":[
+        {
+            "id":1,
+            "name":"Gate Lead",
+            "slot":1,
+            "department":"Gate",
+            "start_time":"Wed Jun 04 2014 15:00:00 GMT-0600 (MDT)",
+            "shift_length":240,
+            "user":"Rafe"
+        },
+        {
+            "id":2,
+            "name":"Gate Regular",
+            "slot":2,
+            "department":"Gate",
+            "start_time":"Wed Jun 04 2014 15:00:00 GMT-0600 (MDT)",
+            "shift_length":120,
+            "user":null
+        },
+        {
+            "id":3,
+            "name":"Gate Regular",
+            "slot":2,
+            "department":"Gate",
+            "start_time":"Wed Jun 04 2014 17:00:00 GMT-0600 (MDT)",
+            "shift_length":120,
+            "user":"Jellyfish"
+        },
+        {
+            "id":4,
+            "name":"Gate Regular",
+            "slot":3,
+            "department":"Gate",
+            "start_time":"Wed Jun 04 2014 15:00:00 GMT-0600 (MDT)",
+            "shift_length":120,
+            "user":"Envix"
+        },
+        {
+            "id":5,
+            "name":"Gate Regular",
+            "slot":3,
+            "department":"Gate",
+            "start_time":"Wed Jun 04 2014 17:00:00 GMT-0600 (MDT)",
+            "shift_length":120,
+            "user":null
+        },
+        {
+            "id":6,
+            "name":"ASS Lead",
+            "slot":4,
+            "department":"ASS",
+            "start_time":"Wed Jun 04 2014 15:00:00 GMT-0600 (MDT)",
+            "shift_length":240,
+            "user":null
+        },
+        {
+            "id":7,
+            "name":"ASS Regular",
+            "slot":5,
+            "department":"ASS",
+            "start_time":"Wed Jun 04 2014 15:00:00 GMT-0600 (MDT)",
+            "shift_length":120,
+            "user":null
+        },
+        {
+            "id":8,
+            "name":"ASS Regular",
+            "slot":5,
+            "department":"ASS",
+            "start_time":"Wed Jun 04 2014 17:00:00 GMT-0600 (MDT)",
+            "shift_length":120,
+            "user":"envix"
+        },
+        {
+            "id":9,
+            "name":"ASS Regular",
+            "slot":6,
+            "department":"ASS",
+            "start_time":"Wed Jun 04 2014 15:00:00 GMT-0600 (MDT)",
+            "shift_length":120,
+            "user":"jellyfish"
+        },
+        {
+            "id":10,
+            "name":"ASS Regular",
+            "slot":6,
+            "department":"ASS",
+            "start_time":"Wed Jun 04 2014 17:00:00 GMT-0600 (MDT)",
+            "shift_length":120,
+            "user":"Shiner"
+        },
+        {
+            "id":11,
+            "name":"ASS Regular",
+            "slot":7,
+            "department":"ASS",
+            "start_time":"Wed Jun 04 2014 17:00:00 GMT-0600 (MDT)",
+            "shift_length":120,
+            "user":"envix"
+        },
+        {
+            "id":12,
+            "name":"ASS Regular",
+            "slot":7,
+            "department":"ASS",
+            "start_time":"Wed Jun 04 2014 15:00:00 GMT-0600 (MDT)",
+            "shift_length":120,
+            "user":"jellyfish"
+        },
+        {
+            "id":13,
+            "name":"ASS Regular",
+            "slot":7,
+            "department":"ASS",
+            "start_time":"Wed Jun 04 2014 19:00:00 GMT-0600 (MDT)",
+            "shift_length":120,
+            "user":"Shiner"
+        }
+    ]
+}
