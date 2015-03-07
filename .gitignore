@@ -19,7 +19,7 @@ voldb.iml
 # Packages
 *.egg
 *.egg-info
-dist
+#dist #hax
 build
 eggs
 parts
