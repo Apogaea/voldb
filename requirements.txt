@@ -14,5 +14,6 @@ ipython==1.2.1
 newrelic==2.18.1.15
 psycopg2==2.5.4
 pylibmc==1.4.1
+python-dotenv==0.1.0
 pytz==2014.10
 raven==5.1.1
