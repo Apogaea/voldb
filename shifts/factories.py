@@ -21,7 +21,6 @@ def tomorrow_at_hour(hour):
 
 
 class ShiftFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = Shift
     department = factory.SubFactory('departments.factories.DepartmentFactory')
     start_time = factory.LazyAttribute(
         lambda x: today_at_hour(9)
@@ -29,3 +28,6 @@ class ShiftFactory(factory.DjangoModelFactory):
     shift_length = 3
     owner = None
     code = ''
+
+    class Meta:
+        model = Shift
