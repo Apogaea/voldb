@@ -1,6 +1,7 @@
 from django.contrib import admin
 from shifts.models import Shift
 from shifts.models import Role
+from departments.models import Department
 from datetime import timedelta
 from django.db.models import F
 
