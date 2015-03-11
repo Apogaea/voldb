@@ -1,4 +1,4 @@
-{% load staticfiles %}<!DOCTYPE html>
+{% load static pipeline %}<!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -13,22 +13,13 @@
         <meta name="viewport" content="width=device-width" />
         <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
         <link rel="stylesheet" href="{% static 'css/main.css' %}" />
-        {% block css %}{% endblock %}
-        
-        <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
-        <link href='//fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
-        <link href='//fonts.googleapis.com/css?family=Michroma|Poiret+One|Montserrat+Alternates:400,700|Nova+Square|Varela|Comfortaa:400,700' rel='stylesheet' type='text/css'>
+        {% stylesheet 'base' %}
+        {% javascript 'base' %}
+
+        {% block css %}
+        {% endblock %}
 
         {% block javascript %}
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.2/handlebars.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/simplemodal/1.4.4/jquery.simplemodal.min.js"></script>
-        <script src="{% static 'js/plugins.js' %}"></script>
-        <script src="{% static 'js/main.js' %}"></script>
-        <script>
-          {% if user.is_authenticated %}window.user = {{ user.pk }};{% endif %}
-        </script>
         {% endblock javascript %}
     </head>
 
