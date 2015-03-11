@@ -23,8 +23,8 @@ DEBUG = excavator.env_bool('DJANGO_DEBUG', default=False)
 
 TEMPLATE_DEBUG = DEBUG
 
-# Allow
-# TODO: docs link
+# Allowed Hosts
+# https://docs.djangoproject.com/en/1.7/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = excavator.env_list('DJANGO_ALLOWED_HOSTS', required=not DEBUG)
 
 # Application definition
