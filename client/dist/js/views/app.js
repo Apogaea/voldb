@@ -50,6 +50,14 @@ define([//todo clean up creation of supercollections; this define block is fugly
       this.collections.roles.once('loaded',check_completion);
       this.collections.users=new UserCollection();
       
+
+      //todo remove these when optimizing. These are for ease of use while developing so you don't need to manually load modules.
+      this.load_module('shift');
+      this.load_module('search');
+      this.load_module('landing');
+      
+      
+
       return this;
       
     },
@@ -90,6 +98,7 @@ define([//todo clean up creation of supercollections; this define block is fugly
         });
       }
       else{
+        cb(this.modules[module]);
         //todo loading/unloading existing
       }
     },
@@ -101,7 +110,7 @@ define([//todo clean up creation of supercollections; this define block is fugly
       }));
       module_name=module_name||'landing';
       this.on('ready',function(){
-        console.log('app ready');
+       console.log('app ready');
         this.load_module(module_name,undefined,function(module){
           console.log(module_name+' module starting');
           module.start(params);
