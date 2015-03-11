@@ -93,9 +93,9 @@ define([//todo clean up creation of supercollections; this define block is fugly
         //todo loading/unloading existing
       }
     },
-    start:function(module_name){
+    start:function(module_name,params){
       this.set_user();//todo call this on auth
-      console.log('app starting');
+      console.log(module_name +' app starting');
       this.$el.html(this.template({
         title:'hello apo!'
       }));
@@ -104,7 +104,7 @@ define([//todo clean up creation of supercollections; this define block is fugly
         console.log('app ready');
         this.load_module(module_name,undefined,function(module){
           console.log(module_name+' module starting');
-          module.start();
+          module.start(params);
         });    
       },this);
     }

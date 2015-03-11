@@ -31,7 +31,7 @@ define([
       
     },
     create_grid:function(options){
-      //console.log('making shiftgrid');
+      console.log('making shiftgrid');
       //todo remove defaults
       //todo refactor object structure to extend cleanly
       options=options||{};
@@ -39,12 +39,14 @@ define([
       //console.log('zzzz???zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',this.parent.collections.roles.get_roles_by_department(this.parent.collections.departments.get_id_by_name("Center Camp")))
       //options.filter = (options.filter||{"department":this.departments.get_id_by_name("Center Camp")});  
       options.name= options.name||"default test view";
-      options.collection=options.collection||this.shifts.get_shifts(options.filter);
+      options.collection=options.collection||this.shifts.get_shifts(options);//todo pluck only required info
       options.controller=this;
       //todo handle name collisions      
       return utils.create_subview(options.name,this.ShiftGridView,options,this);
     },
     start:function(params){
+      console.log('shiftApp.start')
+      _.extend(this,params);
       if(this.parent&&this.parent.collections){
         this.roles=this.parent.collections.roles; //todo is there a better way to do this?
         this.departments=this.parent.collections.departments; //todo is there a better way to do this?
@@ -58,6 +60,7 @@ define([
       return this;
     },
     draw:function(){
+     
      /*this.create_grid({
        "department":this.departments.get_id_by_name("ASS"),
        "name":"Another che"
@@ -66,7 +69,9 @@ define([
        "department":this.departments.get_id_by_name("Gate"),
        "name":"Another gate shiftgrid"
      });//this one is just debug*/
-      this.container.html(this.create_grid().render().el);//todo create only if view not already instantiated
+      console.log('drawing',this.config);
+      this.container.html(this.create_grid(this.config).render().el);//todo create only if view not already instantiated
+      
     },
     stop:function(){
       return this;
