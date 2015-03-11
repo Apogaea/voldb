@@ -15,6 +15,9 @@ class Role(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
 
+    def __unicode__(self):
+        return self.department.name + ': ' + self.name
+
 
 class Shift(models.Model):
     role = models.ForeignKey('Role', related_name='shifts')

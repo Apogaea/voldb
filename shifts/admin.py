@@ -6,14 +6,20 @@ from django.db.models import F
 
 
 class RoleAdmin(admin.ModelAdmin):
-    list_display = ('id', 'department', 'name')
-    list_filter = ['department', 'name', 'description']
+    list_display = ('id', 'name', 'department')
+    list_filter = [ 'department']
 
 
 class ShiftAdmin(admin.ModelAdmin):
     list_display = ('id', 'role', 'start_time', 'shift_length', 'owner', 'code')
     list_filter = ['shift_length', 'role', 'code', 'start_time']
     actions = ['clear_code', 'advance_time', 'reverse_time', 'add_hour', 'remove_hour']
+
+
+    def related_role(self, obj):
+        return obj.roleid.name
+    related_role.short_description = 'Role'
+
 
     def clear_code(self, request, queryset):
         rows_updated = queryset.update(code='')
