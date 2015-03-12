@@ -3,7 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from authtools.models import AbstractEmailUser
 
-from accounts.utils import obfuscate_email
+from volunteer.apps.accounts.utils import obfuscate_email
 
 
 class User(AbstractEmailUser):
@@ -16,7 +16,7 @@ class User(AbstractEmailUser):
         try:
             return self._profile
         except ObjectDoesNotExist:
-            from profiles.models import Profile
+            from volunteer.apps.profiles.models import Profile
             return Profile.objects.get_or_create(user=self)[0]
 
     def __unicode__(self):

@@ -1,8 +1,9 @@
 from django.conf.urls import patterns, url
 from django.core.urlresolvers import reverse_lazy
-from accounts import views
 
 from authtools.views import PasswordChangeView
+
+from volunteer.apps.accounts import views
 
 
 urlpatterns = patterns('',  # NOQA

@@ -36,14 +36,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
     # local project
-    'volunteer',
+    'volunteer.core',
     # local apps
-    'departments',
-    'shifts',
-    'accounts',
-    'profiles',
-    # django admin
-    'django.contrib.admin.apps.AdminConfig',
+    'volunteer.apps.departments',
+    'volunteer.apps.shifts',
+    'volunteer.apps.accounts',
+    'volunteer.apps.profiles',
 
     # third party
     'authtools',

@@ -2,12 +2,12 @@ from django.views.generic import ListView
 from django.contrib.auth import get_user_model
 from django.db.models import Sum
 
-User = get_user_model()
-
 from authtools.views import LoginRequiredMixin
 
-from shifts.models import Shift
-from shifts.utils import group_shifts
+from volunteer.apps.shifts.models import Shift
+from volunteer.apps.shifts.utils import group_shifts
+
+User = get_user_model()
 
 
 class GridView(LoginRequiredMixin, ListView):
@@ -23,10 +23,6 @@ class GridView(LoginRequiredMixin, ListView):
         context['grouped_shifts'] = list(group_shifts(self.object_list))
         context['is_big_grid'] = True
         return context
-
-    def extract_date(entity):
-        'extracts the starting date from an entity'
-        return entity.start_time.date()
 
 
 class LeaderBoardView(LoginRequiredMixin, ListView):

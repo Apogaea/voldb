@@ -1,10 +1,13 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import (
+    ListView,
+    DetailView,
+)
 
 from authtools.views import LoginRequiredMixin
 
-from shifts.utils import group_shifts
+from volunteer.apps.shifts.utils import group_shifts
 
-from departments.models import Department
+from volunteer.apps.departments.models import Department
 
 
 class DepartmentListView(LoginRequiredMixin, ListView):

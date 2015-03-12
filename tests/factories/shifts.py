@@ -1,8 +1,8 @@
 import datetime
 import factory
 
-from shifts.models import Shift
-from shifts.utils import DENVER_TIMEZONE
+from volunteer.apps.shifts.models import Shift
+from volunteer.apps.shifts.utils import DENVER_TIMEZONE
 
 
 def today_at_hour(hour):
