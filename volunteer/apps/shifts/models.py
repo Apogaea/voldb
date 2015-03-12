@@ -3,38 +3,40 @@ import datetime
 
 from django.db import models
 from django.conf import settings
-from django.utils import timezone
+from django.utils.encoding import python_2_unicode_compatible
+
+from volunteer.core.models import Timestamped
 
 from volunteer.apps.shifts.utils import DENVER_TIMEZONE
 
 
-class Role(models.Model):
-    department = models.ForeignKey('departments.Department',
-                                   related_name='roles')
+@python_2_unicode_compatible
+class Role(Timestamped):
+    department = models.ForeignKey(
+        'departments.Department', related_name='roles',
+        on_delete=models.PROTECT,
+    )
     name = models.CharField(max_length=255)
     description = models.TextField()
 
+    def __str__(self):
+        return self.name
 
-class Shift(models.Model):
-    role = models.ForeignKey('Role', related_name='shifts')
+
+@python_2_unicode_compatible
+class Shift(Timestamped):
+    event = models.ForeignKey(
+        'events.Event', related_name='shifts', on_delete=models.PROTECT,
+    )
+    role = models.ForeignKey('Role', related_name='shifts', on_delete=models.PROTECT)
 
     start_time = models.DateTimeField('shift begins')
     shift_length = models.PositiveSmallIntegerField(default=3)
-    owner = models.ForeignKey(
-        settings.AUTH_USER_MODEL, blank=True, null=True, related_name='shifts',
-    )
 
     code = models.CharField(max_length=20, blank=True)
 
-    def __unicode__(self):
-        if self.owner:
-            # this should probably try for a nickname
-            # first if one exists
-            return '{0}'.format(
-                self.owner,
-            )[:7]
-        else:
-            return self.get_start_time_display()
+    def __str__(self):
+        return self.get_start_time_display()
 
     def get_start_time_display(self):
         return self.start_time.strftime('%H:%M')
@@ -66,15 +68,14 @@ class Shift(models.Model):
         return bool(end_hour) and start_hour > end_hour
 
 
-class ShiftHistory(models.Model):
-    created_at = models.DateTimeField(default=timezone.now)
+@python_2_unicode_compatible
+class ShiftSlot(Timestamped):
+    shift = models.ForeignKey('Shift', related_name='slots')
+    # TODO: either volunteer needs to be nullable or this model needs a
+    # validity window.  Either will do.
+    volunteer = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='shifts')
 
-    shift = models.ForeignKey('Shift', related_name='history')
-    ACTION_CLAIM = 'claim'
-    ACTION_RELEASE = 'release'
-    ACTION_CHOICES = (
-        (ACTION_CLAIM, 'Claim'),
-        (ACTION_RELEASE, 'Release'),
-    )
-    action = models.CharField(max_length=10, choices=ACTION_CHOICES)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    cancelled_at = models.DateTimeField(null=True)
+
+    def __str__(self):
+        return "{s.shift_id:s.volunteer_id}".format(s=self)

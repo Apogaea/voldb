@@ -38,7 +38,7 @@ def factories(transactional_db):
 
 
 @pytest.fixture()  # NOQA
-def models(transactional_db):
+def models_no_db():
     from django.apps import apps
 
     dict_ = {M._meta.object_name: M for M in apps.get_models()}
@@ -48,6 +48,11 @@ def models(transactional_db):
         (object,),
         dict_,
     )
+
+
+@pytest.fixture()  # NOQA
+def models(models_no_db, transactional_db):
+    return models_no_db
 
 
 class DjangoTestApp(BaseDjangoTestApp):

@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     # local project
     'volunteer.core',
     # local apps
+    'volunteer.apps.events',
     'volunteer.apps.departments',
     'volunteer.apps.shifts',
     'volunteer.apps.accounts',
