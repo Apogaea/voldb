@@ -1,15 +1,13 @@
-{% extends "base.html" %}
-{% block body_class %}{{ block.super }} home{% endblock %}
+{% extends "layout_skinny.html" %}
 
 {% block content %}
-    <!-- Add your site or application content here -->
-    <h1><span>Register</span></h1>
+    <h1>Register</h1>
     <section>
 
-<form action="{% url 'register' %}" method="post">{% csrf_token %}
-    {% include 'partials/form_as_fieldsets.html' %}
-    <br /><input type="submit" />
-</form>
+        <form action="." method="post">
+            {% include 'partials/form_as_fieldsets.html' %}
+            <button class="btn btn-default" type="submit">Submit</button>
+        </form>
 
 	</section>
 {% endblock %}

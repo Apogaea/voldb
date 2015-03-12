@@ -12,7 +12,7 @@
         {% endblock %}
 
         {% block extra_javascript %}
-        {% endblock javascript %}
+        {% endblock %}
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
@@ -22,7 +22,8 @@
                 <a class="navbar-brand" href="{% url 'site-index' %}">Volunteer Database</a>
                 <ul class="nav navbar-nav">
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'departments' %}">Departments</a></li>
+                        <li><a href="{% url 'department-list' %}">Departments</a></li>
+                        <li><a href="{% url 'dashboard' %}">My Stuff</a></li>
                     {% endif %}
                 </ul>
                 <ul class="nav navbar-nav pull-right">
@@ -39,8 +40,8 @@
                 </ul>
             </div>
         </nav>
-        {% block content %}
-        {% endblock content %}
+        {% block content_wrapper %}
+        {% endblock content_wrapper %}
 
         {% javascript 'base' %}
     {% endblock body %}

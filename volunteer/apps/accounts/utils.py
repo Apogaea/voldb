@@ -13,7 +13,7 @@ def generate_registration_token(email):
 def reverse_registration_url(email):
     validate_email(email)
     token = generate_registration_token(email)
-    return reverse('register_confirm', kwargs={'token': token})
+    return reverse('register-confirm', kwargs={'token': token})
 
 
 def unsign_registration_token(token):

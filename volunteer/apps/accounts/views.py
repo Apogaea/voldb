@@ -1,20 +1,30 @@
 from django.core import signing
 from django.views.generic import (
-    FormView, CreateView, TemplateView, DetailView, UpdateView,
+    FormView,
+    CreateView,
+    TemplateView,
+    DetailView,
+    UpdateView,
 )
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
-from django.contrib.auth import get_user_model, login as auth_login, authenticate
-
-User = get_user_model()
+from django.contrib.auth import (
+    get_user_model,
+    login as auth_login,
+    authenticate,
+)
 
 from authtools.views import LoginRequiredMixin
 
 from volunteer.apps.accounts.forms import (
-    UserRegistrationForm, UserRegistrationConfirmForm, ProfileForm,
+    UserRegistrationForm,
+    UserRegistrationConfirmForm,
+    ProfileForm,
 )
 from volunteer.apps.accounts.emails import send_registration_verification_email
 from volunteer.apps.accounts.utils import unsign_registration_token
+
+User = get_user_model()
 
 
 class RegisterView(FormView):
@@ -35,7 +45,7 @@ class RegisterConfirmView(CreateView):
     template_name = 'registration/register_confirm.html'
     model = User
     form_class = UserRegistrationConfirmForm
-    success_url = reverse_lazy('shifts')
+    success_url = reverse_lazy('department-list')
 
     def dispatch(self, *args, **kwargs):
         try:
@@ -83,8 +93,8 @@ class RegisterConfirmView(CreateView):
         return redirect(self.success_url)
 
 
-class ProfileView(LoginRequiredMixin, DetailView):
-    template_name = 'accounts/profile.html'
+class DashboardView(LoginRequiredMixin, DetailView):
+    template_name = 'accounts/dashboard.html'
 
     def get_object(self):
         return self.request.user
@@ -93,7 +103,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'accounts/profile_edit.html'
     form_class = ProfileForm
-    success_url = reverse_lazy('profile')
+    success_url = reverse_lazy('dashboard')
 
     def get_object(self):
         return self.request.user.profile
