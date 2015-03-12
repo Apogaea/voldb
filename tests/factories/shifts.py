@@ -26,7 +26,7 @@ def tomorrow_at_hour(hour):
 class RoleFactory(factory.DjangoModelFactory):
     name = factory.Sequence("role-{0}".format)
     description = "Role Description"
-    department = factory.SubFactory('departments.factories.DepartmentFactory')
+    department = factory.SubFactory('tests.factories.departments.DepartmentFactory')
 
     class Meta:
         model = Role

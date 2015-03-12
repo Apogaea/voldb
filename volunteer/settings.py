@@ -130,7 +130,7 @@ STATIC_URL = excavator.env_string('DJANGO_STATIC_URL', default='/static/')
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, 'volunteer', 'public'),
+    os.path.join(BASE_DIR, 'volunteer', 'static'),
 )
 
 # Django Pipeline Settings
@@ -226,6 +226,15 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
     ),
+    #'DEFAULT_RENDERER_CLASSES': (
+    #    'drf_ujson.renderers.UJSONRenderer',
+    #),
+    # Make test client always return json
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    # Pagination
+    'PAGINATE_BY': 100,
+    'MAX_PAGINATE_BY': 100,
+    'PAGINATE_BY_PARAM': 'page_size',
 }
 
 REGISTRATION_OPEN = excavator.env_bool('REGISTRATION_OPEN', default=True)

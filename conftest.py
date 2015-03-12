@@ -5,6 +5,8 @@ from django_webtest import (
     DjangoTestApp as BaseDjangoTestApp,
 )
 
+from rest_framework.test import APIClient
+
 
 @pytest.fixture()  # NOQA
 def factories(transactional_db):
@@ -12,6 +14,7 @@ def factories(transactional_db):
 
     from tests.factories.shifts import (  # NOQA
         ShiftFactory,
+        RoleFactory,
     )
     from tests.factories.departments import (  # NOQA
         DepartmentFactory,
@@ -106,8 +109,10 @@ def admin_user(factories, User):
     try:
         return User.objects.get(email='admin@example.com')
     except User.DoesNotExist:
-        return factories.SuperUserWithProfileFactory(
+        return factories.UserFactory(
             email='admin@example.com',
+            is_superuser=True,
+            password='password',
         )
 
 
@@ -116,8 +121,9 @@ def user(factories, User):
     try:
         return User.objects.get(email='test@example.com')
     except User.DoesNotExist:
-        return factories.UserWithProfileFactory(
+        return factories.UserFactory(
             email='test@example.com',
+            password='password',
         )
 
 
@@ -132,4 +138,14 @@ def user_client(user, client):
 def admin_client(admin_user, client):
     assert client.login(username=admin_user.email, password='secret')
     client.user = admin_user
+    return client
+
+
+@pytest.fixture()
+def api_client(user, db):
+    """
+    A rest_framework api test client not auth'd.
+    """
+    client = APIClient()
+    client.force_authenticate(user=user)
     return client

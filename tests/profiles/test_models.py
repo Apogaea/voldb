@@ -1,16 +1,7 @@
-from django.test import TestCase
-from django.contrib.auth import get_user_model
+def test_profile_created_for_new_user(User, models):
+    assert not models.Profile.objects.exists()
 
-from volunteer.apps.profiles.models import Profile
+    user = User.objects.create(email='test@example.com')
 
-User = get_user_model()
-
-
-class ProfileCreationTest(TestCase):
-    def test_profile_created_for_new_user(self):
-        self.assertFalse(Profile.objects.exists())
-
-        user = User.objects.create(email='test@example.com')
-
-        self.assertTrue(Profile.objects.exists())
-        self.assertTrue(user.profile)
+    assert models.Profile.objects.exists()
+    assert user.profile
