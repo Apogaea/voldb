@@ -24,9 +24,14 @@ def create_shift_slots_for_shifts(apps, schema_editor):
                 cancelled_at__isnull=True,
             ).order_by('-created_at').first()
             if not slot:
-                raise ValueError("There should have been an active slot")
-            slot.cancelled_at = history.created_at
-            slot.save()
+                history.shift.slots.create(
+                    created_at=history.created_at,
+                    volunteer=history.user,
+                    cancelled_at=history.created_at,
+                )
+            else:
+                slot.cancelled_at = history.created_at
+                slot.save()
         else:
             raise ValueError("Unknown action")
 

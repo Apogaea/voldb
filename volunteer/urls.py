@@ -1,26 +1,31 @@
 from django.views.generic import TemplateView
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+
 from django.conf import settings
-from django.conf.urls.static import static
 
 
-urlpatterns = patterns('',  # NOQA
+urlpatterns = patterns(
+    '',
     url(
         '^robots.txt$', TemplateView.as_view(
             content_type='text/plain', template_name='robots.txt',
         ),
     ),
     # Examples:
-    url(r'^$', 'volunteer.core.views.home', name='home'),
+    url(r'^$', 'volunteer.core.views.home', name='site-index'),
 
     # Views
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^shifts/', include('volunteer.apps.shifts.urls')),
+    url(r'^admin/', include(admin.site.urls, namespace='admin')),
     url(r'^departments/', include('volunteer.apps.departments.urls')),
     url(r'^accounts/', include('volunteer.apps.accounts.urls')),
 
     # API
     url(r'^api/', include('volunteer.core.api.urls')),
 
-) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+)
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

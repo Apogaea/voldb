@@ -9,6 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('shifts', '0012_auto_20150312_1137'),
+        ('events', '0002_auto_20150312_1137'),
     ]
 
     operations = [

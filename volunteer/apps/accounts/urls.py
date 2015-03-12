@@ -6,7 +6,8 @@ from authtools.views import PasswordChangeView
 from volunteer.apps.accounts import views
 
 
-urlpatterns = patterns('',  # NOQA
+urlpatterns = patterns(
+    '',
     url(r'^$', views.ProfileView.as_view(), name='profile'),
     url(r'^edit/$', views.ProfileUpdateView.as_view(), name='profile_edit'),
     url(r'^register/$', views.RegisterView.as_view(), name='register'),

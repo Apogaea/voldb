@@ -143,8 +143,8 @@ PIPELINE_CSS = {
     'base': {
         'source_filenames': (
             "css/bootstrap.css",
-            "css/bootstrap-responsive.css",
-            "css/ladder.css",
+            "css/bootstrap-theme.css",
+            "css/volunteer.css",
         ),
         'output_filename': 'base.css',
     },
@@ -153,12 +153,17 @@ PIPELINE_CSS = {
 PIPELINE_JS = {
     'base': {
         'source_filenames': (
-            "js/jquery-2.1.0.js",
-            "js/underscore-1.6.0.js",
+            "js/jquery.js",
+            "js/bootstrap.js",
+            "js/json2.js",
+            "js/underscore.js",
             "js/handlebars.js",
             "js/backbone.js",
-            "js/bootstrap.js",
-            "js/ladder.js",
+            "js/backbone.wreqr.js",
+            "js/backbone.babysitter.js",
+            "js/backbone.marionette.js",
+            "js/backbone.marionette.export.js",
+            "js/volunteer.js",
         ),
         'output_filename': 'base.js',
     },

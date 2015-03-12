@@ -15,7 +15,7 @@ def create_2014_apogaea_event(apps, schema_editor):
     close_at = timezone.now().replace(
         year=2014, month=6, day=1, hour=0, minute=0, second=0, microsecond=0,
     )
-    apogaea_2013 = Event.objects.get_or_create(
+    apogaea_2013, _ = Event.objects.get_or_create(
         name='Apogaea 2013',
         defaults={
             'registration_open_at': open_at,
@@ -34,6 +34,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('events', '0001_initial'),
+        ('shifts', '0012_auto_20150312_1137'),
     ]
 
     operations = [
