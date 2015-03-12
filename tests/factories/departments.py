@@ -1,11 +1,10 @@
 import factory
-
 from departments.models import Department
 
 
 class DepartmentFactory(factory.DjangoModelFactory):
     name = 'DPW'
-    description = 'Deparment of Public Works'
+    description = 'Department of Public Works'
     active_lead = None
     active_liaison = None
 

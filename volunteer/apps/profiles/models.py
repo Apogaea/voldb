@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.db.models.signals import post_save
 
 
 class Profile(models.Model):
@@ -10,3 +11,11 @@ class Profile(models.Model):
     phone = models.CharField(max_length=16)
 
     has_ticket = models.BooleanField('I have a ticket', default=False, blank=True)
+
+
+def create_volunteer_profile(sender, instance, created, raw, **kwargs):
+    # Create a user profile when a new user account is created
+    if not raw and created:
+        Profile.objects.get_or_create(user=instance)
+
+post_save.connect(create_volunteer_profile, sender=settings.AUTH_USER_MODEL)

@@ -1,8 +1,11 @@
 import datetime
 import factory
 
-from volunteer.apps.shifts.models import Shift
-from volunteer.apps.shifts.utils import DENVER_TIMEZONE
+from shifts.models import (
+    Shift,
+    Role,
+)
+from shifts.utils import DENVER_TIMEZONE
 
 
 def today_at_hour(hour):
@@ -20,8 +23,17 @@ def tomorrow_at_hour(hour):
     return today_at_hour(hour) + datetime.timedelta(1)
 
 
-class ShiftFactory(factory.DjangoModelFactory):
+class RoleFactory(factory.DjangoModelFactory):
+    name = factory.Sequence(lambda n: "role-{0}".format(n))
+    description = "Role Description"
     department = factory.SubFactory('departments.factories.DepartmentFactory')
+
+    class Meta:
+        model = Role
+
+
+class ShiftFactory(factory.DjangoModelFactory):
+    role = factory.SubFactory(RoleFactory)
     start_time = factory.LazyAttribute(
         lambda x: today_at_hour(9)
     )
