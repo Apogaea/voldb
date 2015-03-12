@@ -167,9 +167,24 @@ PIPELINE_JS = {
         ),
         'output_filename': 'base.js',
     },
+    'shift-grid': {
+        'source_filenames': (
+            "js/shift-grid/templates/**.handlebars",
+            "js/shift-grid/models.js",
+            "js/shift-grid/collections.js",
+            "js/shift-grid/views.js",
+            "js/shift-grid/layouts.js",
+            "js/shift-grid/app.js",
+        ),
+        'output_filename': 'js/shift-grid.js',
+    },
 }
 PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.NoopCompressor'
 PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.NoopCompressor'
+
+PIPELINE_TEMPLATE_EXT = '.handlebars'
+PIPELINE_TEMPLATE_FUNC = 'Handlebars.compile'
+PIPELINE_TEMPLATE_NAMESPACE = 'Handlebars.templates'
 
 # Custome User Model
 # http://django-authtools.readthedocs.org/en/latest/intro.html#quick-setup
