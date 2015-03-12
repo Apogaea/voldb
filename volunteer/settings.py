@@ -247,9 +247,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
     ),
-    #'DEFAULT_RENDERER_CLASSES': (
-    #    'drf_ujson.renderers.UJSONRenderer',
-    #),
+    'DEFAULT_RENDERER_CLASSES': (
+        'drf_ujson.renderers.UJSONRenderer',
+    ),
     # Make test client always return json
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
     # Pagination
