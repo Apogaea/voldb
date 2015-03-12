@@ -4,9 +4,8 @@ import datetime
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
-from django.db.models.signals import pre_save
 
-from shifts.utils import DENVER_TIMEZONE
+from volunteer.apps.shifts.utils import DENVER_TIMEZONE
 
 
 class Role(models.Model):
@@ -79,25 +78,3 @@ class ShiftHistory(models.Model):
     )
     action = models.CharField(max_length=10, choices=ACTION_CHOICES)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
-
-
-def track_shift_history(sender, instance, raw, **kwargs):
-    """
-    Each time a shift is saved, check to see if the owner is being claimed.  If
-    it is, track the change.
-    """
-    if not instance.pk or raw:
-        return
-    shift = Shift.objects.get(pk=instance.pk)
-    if not shift.owner == instance.owner:
-        if instance.owner is None:
-            action = ShiftHistory.ACTION_RELEASE
-        else:
-            action = ShiftHistory.ACTION_CLAIM
-        ShiftHistory.objects.create(
-            shift=instance,
-            user=instance.owner or shift.owner,
-            action=action,
-        )
-
-pre_save.connect(track_shift_history, sender=Shift)

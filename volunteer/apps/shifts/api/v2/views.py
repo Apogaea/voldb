@@ -4,13 +4,13 @@ from rest_framework import views
 from rest_framework import response
 from rest_framework import exceptions
 
-from shifts.models import (
+from volunteer.apps.shifts.models import (
     Role,
     Shift,
 )
-from shifts.utils import shifts_as_grid
+from volunteer.apps.shifts.utils import shifts_as_grid
 
-from shifts.api.v2.serializers import (
+from volunteer.apps.shifts.api.v2.serializers import (
     RoleSerializer,
     ShiftSerializer,
 )

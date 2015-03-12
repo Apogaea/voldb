@@ -1,7 +1,7 @@
 from emailtools import MarkdownEmail
-from emailtools import mixins
+from emailtools.cbe import mixins
 
-from accounts.utils import reverse_registration_url
+from volunteer.apps.accounts.utils import reverse_registration_url
 
 
 class RegistrationVerificationEmail(mixins.BuildAbsoluteURIMixin, MarkdownEmail):

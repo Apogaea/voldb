@@ -3,9 +3,9 @@ from rest_framework import generics
 from rest_framework import pagination
 from rest_framework import serializers
 
-from departments.models import Department
+from volunteer.apps.departments.models import Department
 
-from departments.api.v2.serializers import DepartmentSerializer
+from volunteer.apps.departments.api.v2.serializers import DepartmentSerializer
 
 
 class PassThroughPaginator(pagination.BasePaginationSerializer):

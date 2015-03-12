@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from shifts.models import (
+from volunteer.apps.shifts.models import (
     Role,
     Shift,
 )

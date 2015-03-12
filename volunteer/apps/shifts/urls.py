@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url
-from shifts import views
+
+from volunteer.apps.shifts import views
 
 
 urlpatterns = patterns('',  # NOQA

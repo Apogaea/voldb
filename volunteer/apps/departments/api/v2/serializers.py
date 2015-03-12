@@ -2,8 +2,7 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
 
-from departments.models import Department
-
+from volunteer.apps.departments.models import Department
 
 User = get_user_model()
 

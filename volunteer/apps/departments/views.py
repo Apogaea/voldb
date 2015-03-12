@@ -2,7 +2,7 @@ from django.views.generic import ListView, DetailView
 
 from authtools.views import LoginRequiredMixin
 
-from departments.models import Department
+from volunteer.apps.departments.models import Department
 
 
 class DepartmentListView(LoginRequiredMixin, ListView):
