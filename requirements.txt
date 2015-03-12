@@ -19,3 +19,4 @@ psycopg2==2.5.2
 pylibmc==1.2.3
 pytz==2013.9
 raven==4.1.1
+django-bootstrap3==5.1.1

@@ -7,15 +7,15 @@ from django.contrib.auth import get_user_model
 from django.core import mail
 from django.core.urlresolvers import reverse
 
-User = get_user_model()
-
 from rest_framework import status
 
-from accounts.factories import UserFactory
-from accounts.utils import (
+from tests.factories.accounts import UserFactory
+from volunteer.apps.accounts.utils import (
     generate_registration_token, reverse_registration_url,
     unsign_registration_token, REGISTRATION_TOKEN_MAX_AGE,
 )
+
+User = get_user_model()
 
 
 class LoginTest(TestCase):

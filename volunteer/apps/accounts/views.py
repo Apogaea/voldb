@@ -10,11 +10,11 @@ User = get_user_model()
 
 from authtools.views import LoginRequiredMixin
 
-from accounts.forms import (
+from volunteer.apps.accounts.forms import (
     UserRegistrationForm, UserRegistrationConfirmForm, ProfileForm,
 )
-from accounts.emails import send_registration_verification_email
-from accounts.utils import unsign_registration_token
+from volunteer.apps.accounts.emails import send_registration_verification_email
+from volunteer.apps.accounts.utils import unsign_registration_token
 
 
 class RegisterView(FormView):

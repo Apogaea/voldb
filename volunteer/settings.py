@@ -49,7 +49,8 @@ INSTALLED_APPS = (
     'betterforms',
     'emailtools',
     'rest_framework',
-    'compressor',
+    'pipeline',
+    'bootstrap3',
     'raven.contrib.django.raven_compat',
 )
 
@@ -98,6 +99,12 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# Template Locations
+# https://docs.djangoproject.com/en/1.7/ref/settings/#template-dirs
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'volunteer', 'templates'),
+)
 
 
 # Static files (CSS, JavaScript, Images)

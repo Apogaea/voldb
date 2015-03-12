@@ -10,4 +10,3 @@ def test_shifts_api_endpoint(factories, api_client):
 
     assert response.status_code == 200, response.data
     assert response.data.get('results')
-

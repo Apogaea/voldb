@@ -1,4 +1,4 @@
-from departments.api.v2.serializers import DepartmentSerializer
+from volunteer.apps.departments.api.v2.serializers import DepartmentSerializer
 
 
 def test_department_serialization(factories, models):
@@ -15,6 +15,7 @@ def test_department_serialization(factories, models):
         'id': department.pk,
         'name': department.name,
         'description': department.description,
-        'liaisons': [liaison.pk],
+        'liaison': [liaison.pk],
         'lead': lead.pk,
     }
+    assert serializer.data == expected

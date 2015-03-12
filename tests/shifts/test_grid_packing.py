@@ -4,12 +4,8 @@ import datetime
 
 from django.utils import timezone
 
-from shifts.models import Shift
-from shifts.factories import (
-    today_at_hour, yesterday_at_hour, tomorrow_at_hour,
-    ShiftFactory,
-)
-from shifts.utils import (
+from volunteer.apps.shifts.models import Shift
+from volunteer.apps.shifts.utils import (
     pairwise,
     shifts_to_tabular_data,
     get_num_columns,
@@ -18,6 +14,11 @@ from shifts.utils import (
     check_if_overlap,
     check_if_midnight_spanning,
     shifts_to_non_overlapping_rows,
+)
+from tests.factories.shifts import (
+    today_at_hour,
+    yesterday_at_hour,
+    tomorrow_at_hour,
 )
 
 
@@ -136,6 +137,7 @@ def test_has_overlaps_util():
         [ShiftDict(start_time=today_at_hour(2), shift_length=3)],
     ))
 
+
 def test_with_no_overlaps():
     shifts = (
         ShiftDict(start_time=today_at_hour(0), shift_length=3),
@@ -154,6 +156,7 @@ def test_with_no_overlaps():
     assert not any(
         has_overlaps(row) for row in rows
     )
+
 
 def test_single_set_of_overlaps():
     shifts = (
@@ -184,6 +187,7 @@ def test_single_set_of_overlaps():
     assert not any(
         has_overlaps(row) for row in rows
     )
+
 
 def test_two_sets_of_overlap():
     shifts = (
@@ -229,6 +233,7 @@ def assert_columns_all_at_correct_location(data):
         if column['open_on_left']:
             continue
         assert get_num_columns(data[:index]) == column['start_time'].hour
+
 
 #
 # shifts_to_tabular_data tests
@@ -332,6 +337,7 @@ def test_with_shift_that_spans_previous_midnight():
     assert data[0]['columns'] == 4
     assert all(c['columns'] == 5 for c in data[1:4])
     assert all(c['columns'] == 1 for c in data[4:])
+
 
 def test_with_shift_that_spans_upcoming_midnight():
     """
@@ -467,7 +473,6 @@ def test_complex_grouping_with_shifts_spanning_midnight(factories):
 def test_shifts_ending_at_midnight_do_not_overlap(factories):
     today = today_at_hour(0).date()
     yesterday = yesterday_at_hour(0).date()
-    tomorrow = tomorrow_at_hour(0).date()
 
     # shift yesterday dpw
     factories.ShiftFactory(start_time=yesterday_at_hour(21), shift_length=3)

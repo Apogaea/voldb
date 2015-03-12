@@ -2,8 +2,9 @@ import urllib
 
 from django.core.urlresolvers import reverse
 
-from shifts.utils import shifts_as_grid
-from shifts.factories import (
+from volunteer.apps.shifts.utils import shifts_as_grid
+
+from tests.factories.shifts import (
     today_at_hour, yesterday_at_hour,
 )
 

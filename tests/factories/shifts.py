@@ -1,11 +1,11 @@
 import datetime
 import factory
 
-from shifts.models import (
+from volunteer.apps.shifts.models import (
     Shift,
     Role,
 )
-from shifts.utils import DENVER_TIMEZONE
+from volunteer.apps.shifts.utils import DENVER_TIMEZONE
 
 
 def today_at_hour(hour):
@@ -24,7 +24,7 @@ def tomorrow_at_hour(hour):
 
 
 class RoleFactory(factory.DjangoModelFactory):
-    name = factory.Sequence(lambda n: "role-{0}".format(n))
+    name = factory.Sequence("role-{0}".format)
     description = "Role Description"
     department = factory.SubFactory('departments.factories.DepartmentFactory')
 

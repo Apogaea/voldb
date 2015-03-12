@@ -1,5 +1,6 @@
 import factory
-from departments.models import Department
+
+from volunteer.apps.departments.models import Department
 
 
 class DepartmentFactory(factory.DjangoModelFactory):

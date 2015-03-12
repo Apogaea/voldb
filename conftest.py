@@ -10,13 +10,13 @@ from django_webtest import (
 def factories(transactional_db):
     import factory
 
-    from shifts.factories import (  # NOQA
+    from tests.factories.shifts import (  # NOQA
         ShiftFactory,
     )
-    from departments.factories import (  # NOQA
+    from tests.factories.departments import (  # NOQA
         DepartmentFactory,
     )
-    from accounts.factories import (  # NOQA
+    from tests.factories.accounts import (  # NOQA
         UserFactory,
     )
 

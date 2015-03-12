@@ -1,47 +1,40 @@
-from django.test import TestCase
+def test_tracking_only_on_change(factories, models):
+    shift = factories.ShiftFactory(owner=factories.UserFactory())
 
-from accounts.factories import UserFactory
+    assert not models.ShiftHistory.objects.exists()
 
-from shifts.models import ShiftHistory
-from shifts.factories import ShiftFactory
+    shift.save()
+
+    assert not models.ShiftHistory.objects.exists()
 
 
-class TrackingTest(TestCase):
-    def test_tracking_only_on_change(self):
-        shift = ShiftFactory(owner=UserFactory())
+def test_tracking_occurs_on_release(factories, models):
+    user = factories.UserFactory()
+    shift = factories.ShiftFactory(owner=user)
 
-        self.assertFalse(ShiftHistory.objects.exists())
+    assert not models.ShiftHistory.objects.exists()
 
-        shift.save()
+    shift.owner = None
+    shift.save()
 
-        self.assertFalse(ShiftHistory.objects.exists())
+    assert models.ShiftHistory.objects.exists()
 
-    def test_tracking_occurs_on_release(self):
-        user = UserFactory()
-        shift = ShiftFactory(owner=user)
+    entry = shift.history.get()
+    assert entry.user == user
+    assert entry.action == models.ShiftHistory.ACTION_RELEASE
 
-        self.assertFalse(ShiftHistory.objects.exists())
 
-        shift.owner = None
-        shift.save()
+def test_tracking_occurs_on_claim(factories, models):
+    user = factories.UserFactory()
+    shift = factories.ShiftFactory()
 
-        self.assertTrue(ShiftHistory.objects.exists())
+    assert not models.ShiftHistory.objects.exists()
 
-        entry = shift.history.get()
-        self.assertEqual(entry.user, user)
-        self.assertEqual(entry.action, ShiftHistory.ACTION_RELEASE)
+    shift.owner = user
+    shift.save()
 
-    def test_tracking_occurs_on_claim(self):
-        user = UserFactory()
-        shift = ShiftFactory()
+    assert models.ShiftHistory.objects.exists()
 
-        self.assertFalse(ShiftHistory.objects.exists())
-
-        shift.owner = user
-        shift.save()
-
-        self.assertTrue(ShiftHistory.objects.exists())
-
-        entry = shift.history.get()
-        self.assertEqual(entry.user, user)
-        self.assertEqual(entry.action, ShiftHistory.ACTION_CLAIM)
+    entry = shift.history.get()
+    assert entry.user == user
+    assert entry.action == models.ShiftHistory.ACTION_CLAIM

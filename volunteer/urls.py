@@ -12,15 +12,15 @@ urlpatterns = patterns('',  # NOQA
         ),
     ),
     # Examples:
-    url(r'^$', 'volunteer.views.home', name='home'),
+    url(r'^$', 'volunteer.core.views.home', name='home'),
 
     # Views
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^shifts/', include('shifts.urls')),
-    url(r'^departments/', include('departments.urls')),
-    url(r'^accounts/', include('accounts.urls')),
+    url(r'^shifts/', include('volunteer.apps.shifts.urls')),
+    url(r'^departments/', include('volunteer.apps.departments.urls')),
+    url(r'^accounts/', include('volunteer.apps.accounts.urls')),
 
     # API
-    url(r'^api/', include('volunteer.api.urls')),
+    url(r'^api/', include('volunteer.core.api.urls')),
 
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
