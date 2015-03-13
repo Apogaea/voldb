@@ -249,7 +249,7 @@ def shifts_as_grid(shifts):
                 yield {
                     'date': date,
                     'length': length,
-                    'grid': collapse_empty_columns(shifts_to_tabular_data(
+                    'cells': collapse_empty_columns(shifts_to_tabular_data(
                         shift_row,
                         date,
                     )),

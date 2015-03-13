@@ -3,19 +3,19 @@ var app = app || {};
 $(function(){
     "use-strict";
 
-    var GridRow = Backbone.Collection.extend({
-        model: app.GridCell,
-        comparator: "start_time",
-        initialize: function(models, options) {
-            this.shiftLength = options.length;
-            this.gridDate = options.date;
-        }
+    var GridCells = Backbone.Collection.extend({
+        model: app.GridCell
     });
 
     var Shifts = Backbone.Collection.extend({
         model: app.Shift
     });
 
+    var GridRows = Backbone.Collection.extend({
+        model: app.GridRow
+    });
+
     app.Shifts = Shifts;
-    app.GridRow = GridRow;
+    app.GridCells = GridCells;
+    app.GridRows = GridRows;
 });

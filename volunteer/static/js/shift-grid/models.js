@@ -32,6 +32,14 @@ $(function(){
         }
     });
 
+    var GridRow = Backbone.Model.extend({
+        initialize: function(options) {
+            this.set("cells", new app.GridCells(options.cells));
+            delete options.cells;
+        }
+    });
+
     app.Shift = Shift;
     app.GridCell = GridCell;
+    app.GridRow = GridRow;
 });

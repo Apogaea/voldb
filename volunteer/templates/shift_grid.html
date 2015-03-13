@@ -5,13 +5,14 @@
 
 {% block content %}
     <h1>Shift Grid App</h1>
-    <section>    	       
-        {% if user.is_authenticated %}
-            <p>You're logged in</p>
-        {% else %}
-            <p>You should register or log in.</p>
-        {% endif %}
-    </section>
+    <div id="role-{{ role.id }}-shift-grid-container">
+        <div class="shift-grid">
+            <!-- ShiftGridView -->
+        </div>
+        <div class="shift-modal">
+            <!-- ShiftModalView -->
+        </div>
+    </div>
 {% endblock %}
 
 
@@ -19,10 +20,10 @@
 {{ block.super }}
 <script>
 $(document).ready(function() {
-    var shifts = {{ shifts|as_grid|json }};
-    var role_shifts = {{ role.shifts.all|as_grid|json }};
+    var rows = {{ shifts|as_grid|json }};
     window.application = new app.ShiftGridApplication({
-        shifts: shifts,
+        el: $('#role-{{ role.id }}-shift-grid-container'),
+        rows: rows
     });
     window.application.start();
 });
