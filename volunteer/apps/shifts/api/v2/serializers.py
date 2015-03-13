@@ -22,8 +22,8 @@ class ShiftSerializer(serializers.ModelSerializer):
         model = Shift
         fields = (
             'id',
+            'event',
             'role',
             'start_time',
             'shift_length',
-            'owner',
         )
