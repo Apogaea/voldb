@@ -13,17 +13,18 @@ urlpatterns = patterns(
             content_type='text/plain', template_name='robots.txt',
         ),
     ),
-    # Examples:
+    # Site Home Page
     url(r'^$', views.SiteIndexView.as_view(), name='site-index'),
+    # tmp
+    url(r'^shift-grid/$', views.ShiftGridView.as_view(), name='shift-grid'),
 
-    # Views
+    # App Views
     # url(r'^admin/', include('volunteer.core.admin.urls', namespace='admin')),
     url(r'^departments/', include('volunteer.apps.departments.urls')),
     url(r'^accounts/', include('volunteer.apps.accounts.urls')),
 
     # API
     url(r'^api/', include('volunteer.core.api.urls')),
-
 )
 
 if settings.DEBUG:

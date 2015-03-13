@@ -10,6 +10,8 @@ from volunteer.apps.shifts.utils import (
     shifts_to_tabular_data,
     get_num_columns,
     shifts_as_grid,
+    collapse_empty_columns,
+    build_empty_column,
     build_shift_column,
     check_if_overlap,
     check_if_midnight_spanning,
@@ -32,6 +34,8 @@ def shift_to_dict(shift):
         'start_time': shift.start_time.astimezone(timezone.get_default_timezone()),
         'shift_length': shift.shift_length,
         'end_time': shift.end_time.astimezone(timezone.get_default_timezone()),
+        'is_empty': False,
+        'columns': shift.shift_length,
     }
 
 
@@ -427,15 +431,15 @@ def test_grouping(factories):
 
     assert data_0['date'] == yesterday
     assert data_0['length'] == 3
-    assert len(data_0['grid']) == 20  # this is the tabular data, dunno what to assert.
+    assert len(data_0['grid']) == 4  # this is the tabular data, dunno what to assert.
 
     assert data_1['date'] == today
     assert data_1['length'] == 3
-    assert len(data_1['grid']) == 16  # this is the tabular data, dunno what to assert.
+    assert len(data_1['grid']) == 6  # this is the tabular data, dunno what to assert.
 
     assert data_2['date'] == today
     assert data_2['length'] == 6
-    assert len(data_2['grid']) == 14  # this is the tabular data, dunno what to assert.
+    assert len(data_2['grid']) == 4  # this is the tabular data, dunno what to assert.
 
 
 @pytest.mark.django_db
@@ -460,7 +464,7 @@ def test_complex_grouping_with_shifts_spanning_midnight(factories):
     data_0, data_1, data_2 = data
 
     assert data_0['date'] == yesterday
-    assert len(data_0['grid']) == 13  # this is the tabular data, dunno what to assert.
+    assert len(data_0['grid']) == 3  # this is the tabular data, dunno what to assert.
 
     assert data_1['date'] == today
     assert len(data_1['grid']) == 3  # this is the tabular data, dunno what to assert.
@@ -486,7 +490,106 @@ def test_shifts_ending_at_midnight_do_not_overlap(factories):
     data_0, data_1 = data
 
     assert data_0['date'] == yesterday
-    assert len(data_0['grid']) == 22  # this is the tabular data, dunno what to assert.
+    assert len(data_0['grid']) == 2  # this is the tabular data, dunno what to assert.
 
     assert data_1['date'] == today
-    assert len(data_1['grid']) == 22  # this is the tabular data, dunno what to assert.
+    assert len(data_1['grid']) == 2  # this is the tabular data, dunno what to assert.
+
+
+#
+# Test merge empties
+#
+@pytest.mark.django_db
+def test_merging_single_set_of_empty_columns(factories):
+    SF = factories.ShiftFactory
+    shifts = (
+        shift_to_dict(SF(start_time=today_at_hour(0),  shift_length=6)),
+        build_empty_column(start_time=today_at_hour(6)),
+        build_empty_column(start_time=today_at_hour(7)),
+        build_empty_column(start_time=today_at_hour(8)),
+        build_empty_column(start_time=today_at_hour(9)),
+        build_empty_column(start_time=today_at_hour(10)),
+        build_empty_column(start_time=today_at_hour(11)),
+        shift_to_dict(SF(start_time=today_at_hour(12),  shift_length=6)),
+        shift_to_dict(SF(start_time=today_at_hour(18),  shift_length=6)),
+    )
+
+    merged_shifts = collapse_empty_columns(shifts)
+    assert len(merged_shifts) == 4
+
+    assert merged_shifts[1]['shift_length'] == 6
+    assert not merged_shifts[1]['shifts']
+    assert merged_shifts[1]['is_empty']
+
+
+@pytest.mark.django_db
+def test_merging_starting_with_set_of_empty_columns(factories):
+    SF = factories.ShiftFactory
+    shifts = (
+        build_empty_column(start_time=today_at_hour(0)),
+        build_empty_column(start_time=today_at_hour(1)),
+        build_empty_column(start_time=today_at_hour(2)),
+        build_empty_column(start_time=today_at_hour(3)),
+        build_empty_column(start_time=today_at_hour(4)),
+        build_empty_column(start_time=today_at_hour(5)),
+        shift_to_dict(SF(start_time=today_at_hour(6),  shift_length=6)),
+        shift_to_dict(SF(start_time=today_at_hour(12),  shift_length=6)),
+        shift_to_dict(SF(start_time=today_at_hour(18),  shift_length=6)),
+    )
+
+    merged_shifts = collapse_empty_columns(shifts)
+    assert len(merged_shifts) == 4
+
+    assert merged_shifts[0]['shift_length'] == 6
+    assert not merged_shifts[0]['shifts']
+    assert merged_shifts[0]['is_empty']
+
+
+@pytest.mark.django_db
+def test_merging_empties_from_end_of_columns(factories):
+    SF = factories.ShiftFactory
+    shifts = (
+        shift_to_dict(SF(start_time=today_at_hour(0),  shift_length=6)),
+        shift_to_dict(SF(start_time=today_at_hour(6),  shift_length=6)),
+        shift_to_dict(SF(start_time=today_at_hour(12),  shift_length=6)),
+        build_empty_column(start_time=today_at_hour(18)),
+        build_empty_column(start_time=today_at_hour(19)),
+        build_empty_column(start_time=today_at_hour(20)),
+        build_empty_column(start_time=today_at_hour(21)),
+        build_empty_column(start_time=today_at_hour(22)),
+        build_empty_column(start_time=today_at_hour(23)),
+    )
+
+    merged_shifts = collapse_empty_columns(shifts)
+    assert len(merged_shifts) == 4
+
+    assert merged_shifts[3]['shift_length'] == 6
+    assert not merged_shifts[3]['shifts']
+    assert merged_shifts[3]['is_empty']
+
+
+@pytest.mark.django_db
+def test_split_sets_of_empties(factories):
+    SF = factories.ShiftFactory
+    shifts = (
+        build_empty_column(start_time=today_at_hour(0)),
+        build_empty_column(start_time=today_at_hour(1)),
+        shift_to_dict(SF(start_time=today_at_hour(2),  shift_length=6)),
+        shift_to_dict(SF(start_time=today_at_hour(8),  shift_length=6)),
+        shift_to_dict(SF(start_time=today_at_hour(14),  shift_length=6)),
+        build_empty_column(start_time=today_at_hour(20)),
+        build_empty_column(start_time=today_at_hour(21)),
+        build_empty_column(start_time=today_at_hour(22)),
+        build_empty_column(start_time=today_at_hour(23)),
+    )
+
+    merged_shifts = collapse_empty_columns(shifts)
+    assert len(merged_shifts) == 5
+
+    assert merged_shifts[0]['shift_length'] == 2
+    assert not merged_shifts[0]['shifts']
+    assert merged_shifts[0]['is_empty']
+
+    assert merged_shifts[4]['shift_length'] == 4
+    assert not merged_shifts[4]['shifts']
+    assert merged_shifts[4]['is_empty']

@@ -10,9 +10,6 @@
 
         {% block extra_css %}
         {% endblock %}
-
-        {% block extra_javascript %}
-        {% endblock %}
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
@@ -44,6 +41,10 @@
         {% endblock content_wrapper %}
 
         {% javascript 'base' %}
+        {% javascript 'shift-grid' %}
+
+        {% block extra_javascript %}
+        {% endblock %}
     {% endblock body %}
     </body>
 </html>

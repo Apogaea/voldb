@@ -2,10 +2,10 @@ var app = app || {};
 
 $(function(){
     "use-strict";
-    var SingleCellView = Backbone.Marionette.ItemView.extend({
+    var ShiftCellView = Backbone.Marionette.ItemView.extend({
     });
 
-    var SingleRowView = Backbone.Marionette.CompositeView.extend({
+    var ShiftRowView = Backbone.Marionette.CompositeView.extend({
         childView: ShiftCellView
     });
 

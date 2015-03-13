@@ -23,6 +23,7 @@ class RoleViewSet(generics.ListAPIView,
 
 
 class ShiftViewSet(generics.ListAPIView,
+                   generics.RetrieveAPIView,
                    viewsets.GenericViewSet):
     queryset = Shift.objects.all()
     serializer_class = ShiftSerializer

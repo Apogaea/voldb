@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'pipeline',
     'bootstrap3',
+    'argonauts',
     'raven.contrib.django.raven_compat',
 )
 
@@ -242,10 +243,10 @@ SITE_ID = excavator.env_int('DJANGO_SITE_ID', default=1)
 # django-rest-framework
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        #'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_RENDERER_CLASSES': (
         'drf_ujson.renderers.UJSONRenderer',

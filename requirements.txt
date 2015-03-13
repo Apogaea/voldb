@@ -1,6 +1,7 @@
 Django>=1.7.0,<1.8
 PyYAML==3.11
 dj-database-url==0.3.0
+django-argonauts==1.0.1
 django-authtools==0.2.1
 django-backupdb==0.5.5
 django-betterforms==1.1.1

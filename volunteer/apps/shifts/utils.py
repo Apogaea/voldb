@@ -41,16 +41,17 @@ def check_if_midnight_spanning(shift):
     return bool(end_hour) and start_hour > end_hour
 
 
-def build_empty_column(start_time):
-    end_time = start_time + datetime.timedelta(hours=1)
+def build_empty_column(start_time, hours=1):
+    end_time = start_time + datetime.timedelta(hours=hours)
     return {
-        'columns': 1,
+        'columns': hours,
         'open_on_left': False,
         'open_on_right': False,
         'start_time': start_time,
         'end_time': end_time,
         'shift_length': 1,
         'shifts': [],
+        'is_empty': True,
     }
 
 
@@ -83,6 +84,7 @@ def build_shift_column(shifts, shift_date):
         'end_time': end_time.astimezone(DENVER_TIMEZONE),
         'shift_length': shift_length,
         'shifts': [shift['id'] for shift in shifts],
+        'is_empty': False,
     }
 
 
@@ -178,6 +180,29 @@ def shifts_to_tabular_data(grouped_shifts, date):
     return data
 
 
+def merge_columns(*columns):
+    return {
+        'columns': sum(map(operator.itemgetter('columns'), columns)),
+        'open_on_left': columns[0]['open_on_left'],
+        'open_on_right': columns[-1]['open_on_right'],
+        'start_time': columns[0]['start_time'],
+        'end_time': columns[-1]['end_time'],
+        'shift_length': sum(map(operator.itemgetter('shift_length'), columns)),
+        'shifts': list(itertools.chain.from_iterable(map(operator.itemgetter('shifts'), columns))),
+        'is_empty': any(column['is_empty'] for column in columns),
+    }
+
+
+def collapse_empty_columns(columns):
+    data = list(columns[:1])
+    for column in columns[1:]:
+        if column['is_empty'] and data[-1]['is_empty']:
+            data[-1] = merge_columns(data[-1], column)
+        else:
+            data.append(column)
+    return data
+
+
 def shifts_as_grid(shifts):
     """
     Given a list of shifts, returns them sorted and grouped by
@@ -224,8 +249,8 @@ def shifts_as_grid(shifts):
                 yield {
                     'date': date,
                     'length': length,
-                    'grid': shifts_to_tabular_data(
+                    'grid': collapse_empty_columns(shifts_to_tabular_data(
                         shift_row,
                         date,
-                    ),
+                    )),
                 }

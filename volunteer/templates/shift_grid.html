@@ -1,0 +1,30 @@
+{% extends "layout_full.html" %}
+{% load shift_utils %}
+{% load argonauts %}
+
+
+{% block content %}
+    <h1>Shift Grid App</h1>
+    <section>    	       
+        {% if user.is_authenticated %}
+            <p>You're logged in</p>
+        {% else %}
+            <p>You should register or log in.</p>
+        {% endif %}
+    </section>
+{% endblock %}
+
+
+{% block extra_javascript %}
+{{ block.super }}
+<script>
+$(document).ready(function() {
+    var shifts = {{ shifts|as_grid|json }};
+    var role_shifts = {{ role.shifts.all|as_grid|json }};
+    window.application = new app.ShiftGridApplication({
+        shifts: shifts,
+    });
+    window.application.start();
+});
+</script>
+{% endblock %}
