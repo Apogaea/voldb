@@ -16,6 +16,10 @@ from django.contrib.auth import (
 
 from authtools.views import LoginRequiredMixin
 
+from volunteer.decorators import (
+    AnonymousRequiredMixin,
+)
+
 from volunteer.apps.accounts.forms import (
     UserRegistrationForm,
     UserRegistrationConfirmForm,
@@ -27,25 +31,25 @@ from volunteer.apps.accounts.utils import unsign_registration_token
 User = get_user_model()
 
 
-class RegisterView(FormView):
+class RegisterView(AnonymousRequiredMixin, FormView):
     template_name = 'registration/register.html'
     form_class = UserRegistrationForm
-    success_url = reverse_lazy('register_success')
+    success_url = reverse_lazy('register-success')
 
     def form_valid(self, form):
         send_registration_verification_email(form.cleaned_data['email'])
         return super(RegisterView, self).form_valid(form)
 
 
-class RegisterSuccessView(TemplateView):
+class RegisterSuccessView(AnonymousRequiredMixin, TemplateView):
     template_name = 'registration/register_success.html'
 
 
-class RegisterConfirmView(CreateView):
+class RegisterConfirmView(AnonymousRequiredMixin, CreateView):
     template_name = 'registration/register_confirm.html'
     model = User
     form_class = UserRegistrationConfirmForm
-    success_url = reverse_lazy('department-list')
+    success_url = reverse_lazy('dashboard')
 
     def dispatch(self, *args, **kwargs):
         try:

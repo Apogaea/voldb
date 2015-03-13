@@ -80,7 +80,7 @@ ROOT_URLCONF = 'volunteer.urls'
 
 WSGI_APPLICATION = 'volunteer.wsgi.application'
 
-LOGIN_REDIRECT_URL = 'profile'
+LOGIN_REDIRECT_URL = 'dashboard'
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases

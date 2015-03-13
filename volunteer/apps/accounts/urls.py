@@ -29,7 +29,7 @@ urlpatterns += patterns(
     url(
         r'^change-password/$', PasswordChangeView.as_view(
             template_name='accounts/change_password.html',
-            success_url=reverse_lazy('profile'),
+            success_url=reverse_lazy('dashboard'),
         ), name='password-change',
     ),
     url(

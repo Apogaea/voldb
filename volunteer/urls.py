@@ -3,6 +3,8 @@ from django.conf.urls import patterns, include, url
 
 from django.conf import settings
 
+from volunteer.core import views
+
 
 urlpatterns = patterns(
     '',
@@ -12,7 +14,7 @@ urlpatterns = patterns(
         ),
     ),
     # Examples:
-    url(r'^$', 'volunteer.core.views.home', name='site-index'),
+    url(r'^$', views.SiteIndexView.as_view(), name='site-index'),
 
     # Views
     # url(r'^admin/', include('volunteer.core.admin.urls', namespace='admin')),

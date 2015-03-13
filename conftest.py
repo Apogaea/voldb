@@ -12,6 +12,9 @@ from rest_framework.test import APIClient
 def factories(transactional_db):
     import factory
 
+    from tests.factories.events import (  # NOQA
+        EventFactory,
+    )
     from tests.factories.shifts import (  # NOQA
         ShiftFactory,
         RoleFactory,
