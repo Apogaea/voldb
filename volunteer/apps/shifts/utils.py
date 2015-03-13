@@ -76,12 +76,15 @@ def build_shift_column(shifts, shift_date):
     else:
         columns = shift_length
 
+    start_at = start_time.astimezone(DENVER_TIMEZONE)
+    end_at = end_time.astimezone(DENVER_TIMEZONE)
+
     return {
         'columns': columns,
         'open_on_left': open_on_left,
         'open_on_right': open_on_right,
-        'start_time': start_time.astimezone(DENVER_TIMEZONE),
-        'end_time': end_time.astimezone(DENVER_TIMEZONE),
+        'start_time': start_at,
+        'end_time': end_at,
         'shift_length': shift_length,
         'shifts': [shift['id'] for shift in shifts],
         'is_empty': False,

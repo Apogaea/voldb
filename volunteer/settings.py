@@ -135,11 +135,18 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'volunteer', 'static'),
 )
 
+# Static file finders.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+)
+
 # Django Pipeline Settings
 PIPELINE_DISABLE_WRAPPER = excavator.env_bool(
     'DJANGO_PIPELINE_DISABLE_WRAPPER', default=True,
 )
-PIPELINE_ENABLED = excavator.env_bool('DJANGO_PIPELINE_ENABLED', default=not DEBUG)
+PIPELINE_ENABLED = excavator.env_bool('DJANGO_PIPELINE_ENABLED', not DEBUG)
 PIPELINE_CSS = {
     'base': {
         'source_filenames': (
@@ -147,7 +154,7 @@ PIPELINE_CSS = {
             "css/bootstrap-theme.css",
             "css/volunteer.css",
         ),
-        'output_filename': 'base.css',
+        'output_filename': 'css/base.css',
     },
 }
 
@@ -155,6 +162,7 @@ PIPELINE_JS = {
     'base': {
         'source_filenames': (
             "js/jquery.js",
+            "js/moment-with-locales.js",
             "js/bootstrap.js",
             "js/json2.js",
             "js/underscore.js",

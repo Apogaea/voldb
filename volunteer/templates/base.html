@@ -1,10 +1,10 @@
-{% load static pipeline %}<!DOCTYPE html>
+<!DOCTYPE html>
+{% load static pipeline %}
 <html>
     <head>
-        <meta charset="utf-8" />
-        <title>{% block page_title %}{% endblock %}</title>
-        
-        <meta name="viewport" content="width=device-width" />
+        <meta charset="UTF-8">
+        <title>{% block title %}Apogaea Volunteer Database{% endblock %}</title>
+        <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
 
         {% stylesheet 'base' %}
 
@@ -12,7 +12,7 @@
         {% endblock %}
     </head>
 
-    <body class="{% block body_class %}{% endblock %}">
+    <body>
     {% block body %}
         <nav class="navbar navbar-default">
             <div class="container-fluid">

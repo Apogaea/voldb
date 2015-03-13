@@ -7,6 +7,28 @@ $(function(){
         urlRoot: "/api/v2/shifts/",
         url: function() {
             return this.urlRoot + this.id + "/";
+        },
+        /*
+         *  Template and View Helpers
+         */
+        exportable: [
+            "shiftIcon",
+            "isClaimable",
+        ],
+        shiftIcon: function() {
+            if ( this.get("is_locked") ) {
+                return "lock";
+            } else if ( this.get("has_open_slots") ) {
+                return "plus-sign";
+            } else {
+                return "minus-sign";
+            }
+        },
+        isClaimable: function() {
+            if ( this.get("is_locked") || !this.get("has_open_slots") ) {
+                return false;
+            }
+            return true;
         }
     });
 
@@ -24,11 +46,26 @@ $(function(){
 
             delete options.shifts;
 
-            this.set("end_time", new Date(options.end_time));
+            this.set("end_time", moment(options.end_time));
             delete options.end_time;
 
-            this.set("start_time", new Date(options.start_time));
+            this.set("start_time", new moment(options.start_time));
             delete options.start_time;
+        },
+        /*
+         *  Template and View Helpers
+         */
+        exportable: [
+            "cellTitle",
+        ],
+        cellTitle: function() {
+            var startAt = this.get("start_time");
+            var endAt = this.get("end_time");
+            if ( startAt.format("A") === endAt.format("A") ) {
+                return startAt.format("h:mm") + "-" + endAt.format("h:mm A");
+            } else {
+                return startAt.format("h:mm A") + "-" + endAt.format("h:mm A");
+            }
         }
     });
 

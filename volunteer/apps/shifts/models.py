@@ -33,10 +33,24 @@ class Shift(Timestamped):
     start_time = models.DateTimeField('shift begins')
     shift_length = models.PositiveSmallIntegerField(default=3)
 
+    num_slots = models.PositiveSmallIntegerField(default=1)
+
     code = models.CharField(max_length=20, blank=True)
 
     def __str__(self):
         return self.get_start_time_display()
+
+    @property
+    def open_slot_count(self):
+        return max(0, self.num_slots - self.slots.filter(cancelled_at__isnull=True).count())
+
+    @property
+    def filled_slot_count(self):
+        return self.slots.filter(cancelled_at__isnull=True).count()
+
+    @property
+    def has_open_slots(self):
+        return self.slots.filter(cancelled_at__isnull=True).count()
 
     def get_start_time_display(self):
         return self.start_time.strftime('%H:%M')

@@ -6,7 +6,7 @@ $(function(){
     var ShiftGridLayout = Backbone.Marionette.LayoutView.extend({
         regions: {
             grid: ".shift-grid",
-            shift_modal: ".shift-modal",
+            cell_modal: ".cell-modal",
         },
     });
 

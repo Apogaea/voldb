@@ -20,10 +20,14 @@ $(function(){
     });
 
     var ShiftView = Backbone.Marionette.ItemView.extend({
-        template: Handlebars.templates.shift_template
+        tagName: 'li',
+        template: Handlebars.templates.shift_cell_template,
+        modelEvents: {
+            'sync': 'render'
+        }
     });
 
-    var ShiftCellView = Backbone.Marionette.CompositeView.extend({
+    var GridCellView = Backbone.Marionette.CompositeView.extend({
         tagName: 'td',
         attributes: function() {
             var classes = [];
@@ -36,25 +40,60 @@ $(function(){
             };
         },
         childView: ShiftView,
-        template: Handlebars.templates.shift_cell_template
+        childViewContainer: 'ul.shifts',
+        template: Handlebars.templates.grid_cell_template,
+        templateHelpers: function() {
+            return {
+                x: 3  // TODO?
+            };
+        },
     });
 
-    var ShiftRowView = NestedCollectionCompositeView.extend({
+    var ModalShiftView = Backbone.Marionette.ItemView.extend({
+        triggers: {
+            "click": "shift:click"
+        },
+        template: Handlebars.templates.shift_modal_template
+    });
+
+    var ModalCellView = Backbone.Marionette.CompositeView.extend({
+        attributes: {
+            class: "modal fade"
+        },
+        childView: ModalShiftView,
+        childViewContainer: '.shifts',
+        template: Handlebars.templates.cell_modal_template
+    });
+
+    var GridRowView = NestedCollectionCompositeView.extend({
         tagName: 'tr',
-        childView: ShiftCellView,
+        childView: GridCellView,
         childCollectionProperty: "shifts",
-        template: Handlebars.templates.shift_row_template
+        childEvents: {
+            'cell:click': 'delegateClick'
+        },
+        delegateClick: function(cellView) {
+            this.trigger("cell:click", cellView);
+        },
+        template: Handlebars.templates.grid_row_template
     });
 
-    var ShiftGridView = NestedCollectionCompositeView.extend({
+    var GridView = NestedCollectionCompositeView.extend({
         tagName: 'table',
         attributes: {
             class: "table table-bordered shift-grid"
         },
-        childView: ShiftRowView,
+        childView: GridRowView,
         childCollectionProperty: "cells",
+        childEvents: {
+            'cell:click': 'delegateClick'
+        },
+        delegateClick: function(childView, cellView) {
+            this.trigger("cell:click", cellView);
+        },
         template: Handlebars.templates.shift_grid_template
     });
 
-    app.ShiftGridView = ShiftGridView;
+    app.GridView = GridView;
+    app.ModalCellView = ModalCellView;
 });
