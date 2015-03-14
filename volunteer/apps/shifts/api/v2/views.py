@@ -1,6 +1,6 @@
-from rest_framework import views
 from rest_framework import viewsets
 from rest_framework import generics
+from rest_framework.decorators import detail_route
 
 from volunteer.apps.shifts.models import (
     Role,
@@ -25,5 +25,6 @@ class ShiftViewSet(generics.ListAPIView,
     queryset = Shift.objects.all()
     serializer_class = ShiftSerializer
 
-
-class ClaimShiftView(
+    @detail_route(methods=['post'])
+    def claim(self, *args, **kwargs):
+        shift = self.get_object()
