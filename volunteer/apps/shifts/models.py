@@ -3,6 +3,7 @@ import datetime
 
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 
 from volunteer.core.models import Timestamped
@@ -50,7 +51,7 @@ class Shift(Timestamped):
 
     @property
     def has_open_slots(self):
-        return self.slots.filter(cancelled_at__isnull=True).count()
+        return bool(self.open_slot_count)
 
     def get_start_time_display(self):
         return self.start_time.strftime('%H:%M')
@@ -93,3 +94,7 @@ class ShiftSlot(Timestamped):
 
     def __str__(self):
         return "{s.shift_id:s.volunteer_id}".format(s=self)
+
+    def cancel(self):
+        self.cancelled_at = timezone.now()
+        self.save()

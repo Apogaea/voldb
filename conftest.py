@@ -18,6 +18,7 @@ def factories(transactional_db):
     from tests.factories.shifts import (  # NOQA
         ShiftFactory,
         RoleFactory,
+        ShiftSlotFactory,
     )
     from tests.factories.departments import (  # NOQA
         DepartmentFactory,

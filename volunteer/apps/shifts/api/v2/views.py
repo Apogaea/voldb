@@ -1,3 +1,4 @@
+from rest_framework import views
 from rest_framework import viewsets
 from rest_framework import generics
 
@@ -23,3 +24,6 @@ class ShiftViewSet(generics.ListAPIView,
                    viewsets.GenericViewSet):
     queryset = Shift.objects.all()
     serializer_class = ShiftSerializer
+
+
+class ClaimShiftView(
