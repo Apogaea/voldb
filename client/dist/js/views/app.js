@@ -6,11 +6,11 @@ define([//todo clean up creation of supercollections; this define block is fugly
   'underscore',
   'backbone',
   'UserCollection', 
-  'RoleCollection',
+//  'RoleCollection',
   'ShiftCollection',
   'DepartmentCollection',
   'text!./templates/layout.html'
-],function($,_,Backbone,UserCollection,RoleCollection,ShiftCollection,DepartmentCollection,layout){  
+],function($,_,Backbone,UserCollection/*,RoleCollection*/,ShiftCollection,DepartmentCollection,layout){  
   var App=Backbone.View.extend({ //todo does this need to be a view?
     el:'#app',
     template:_.template(layout),
@@ -42,12 +42,12 @@ define([//todo clean up creation of supercollections; this define block is fugly
       this.collections.departments=new DepartmentCollection([],{parent:this});
       this.collections.departments.once('loaded',check_completion);
 
-      this.collections.roles=new RoleCollection([],{
-        url:'/api/v2/roles/', //todo remove this and give to controllers
-        fetch_on_init:true,
-        parent:this
-      });
-      this.collections.roles.once('loaded',check_completion);
+      //this.collections.roles=new RoleCollection([],{
+      //  url:'/api/v2/roles/', //todo remove this and give to controllers
+      //  fetch_on_init:true,
+      //  parent:this
+      //});
+//      this.collections.roles.once('loaded',check_completion);
       this.collections.users=new UserCollection();
       
 

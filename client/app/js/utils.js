@@ -21,8 +21,9 @@ define(['jquery','underscore'],function($,_){
       }
     },
     get_end_time:function(start,duration){
-      var end_time=start;//todo refactor  into utility method
-      end_time.setMinutes(end_time.getMinutes()+duration);
+      var end_time=new Date(start);
+      //console.log('end_time',end_time);
+      end_time.setMinutes(end_time.getMinutes()+(duration*30));//todo change api to remove need for duration multiplier
       return end_time;      
     },
     create_subview:function(name,SubView,options,scope){

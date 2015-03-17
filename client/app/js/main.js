@@ -27,9 +27,7 @@ requirejs.config({
     ShiftCollection:'./collections/shifts',
     UserCollection:'./collections/users',
     RoleCollection:'./collections/roles',
-    DepartmentCollection:'./collections/departments'//,
-    //ShiftGrid:'./views/shiftGrid'//,
-    //ShiftTemplate:'text!./templates/shiftItem.html'
+    DepartmentCollection:'./collections/departments'
   }
 });
 console.log('derp');

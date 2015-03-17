@@ -6,11 +6,11 @@ define([//todo clean up creation of supercollections; this define block is fugly
   'underscore',
   'backbone',
   'UserCollection', 
-  'RoleCollection',
+//  'RoleCollection',
   'ShiftCollection',
   'DepartmentCollection',
   'text!./templates/layout.html'
-],function($,_,Backbone,UserCollection,RoleCollection,ShiftCollection,DepartmentCollection,layout){  
+],function($,_,Backbone,UserCollection/*,RoleCollection*/,ShiftCollection,DepartmentCollection,layout){  
   var App=Backbone.View.extend({ //todo does this need to be a view?
     el:'#app',
     template:_.template(layout),
@@ -19,18 +19,45 @@ define([//todo clean up creation of supercollections; this define block is fugly
     current_module:null,
     current_user:null,    
     initialize:function(){
-      console.log('??????????????????????????????????????????????');
       //todo require these in contained block
+      var check_completion,loaded_collections=0,
+          self=this;//ew
+      //console.log('----------------getting departments----------------------');
+      
+      check_completion = function (){
+        loaded_collections++;
+        if(loaded_collections==2){
+          self.collections.shifts=new ShiftCollection([],{
+            url:'/api/v2/shifts/', //todo request less stuff?
+            fetch_on_init:true,
+            parent:self
+          });
+          self.collections.shifts.once('ready',function(){
+            self.collections.shifts.once('ready',self.trigger('ready'));
+          });
+          
+        }
+      };
+      
+      this.collections.departments=new DepartmentCollection([],{parent:this});
+      this.collections.departments.once('loaded',check_completion);
+
+      //this.collections.roles=new RoleCollection([],{
+      //  url:'/api/v2/roles/', //todo remove this and give to controllers
+      //  fetch_on_init:true,
+      //  parent:this
+      //});
+//      this.collections.roles.once('loaded',check_completion);
       this.collections.users=new UserCollection();
-      this.collections.roles=new RoleCollection([],{
-        url:'/api/v2/roles/', //todo remove this and give to controllers
-        fetch_on_init:true
-      });
-      this.collections.shifts=new ShiftCollection([],{
-        url:'/api/v2/shifts/', //todo request less stuff?
-        fetch_on_init:true
-      });
-      this.collections.departments=new DepartmentCollection();
+      
+
+      //todo remove these when optimizing. These are for ease of use while developing so you don't need to manually load modules.
+      this.load_module('shift');
+      this.load_module('search');
+      this.load_module('landing');
+      
+      
+
       return this;
       
     },
@@ -71,20 +98,24 @@ define([//todo clean up creation of supercollections; this define block is fugly
         });
       }
       else{
+        cb(this.modules[module]);
         //todo loading/unloading existing
       }
     },
-    start:function(module_name){
+    start:function(module_name,params){
       this.set_user();//todo call this on auth
-      console.log('app starting');
+      console.log(module_name +' app starting');
       this.$el.html(this.template({
         title:'hello apo!'
       }));
       module_name=module_name||'landing';
-      this.load_module(module_name,undefined,function(module){
-        //console.log(module_name+'module starting');
-        module.start();
-      });    
+      this.on('ready',function(){
+       console.log('app ready');
+        this.load_module(module_name,undefined,function(module){
+          console.log(module_name+' module starting');
+          module.start(params);
+        });    
+      },this);
     }
   });
   
