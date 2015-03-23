@@ -51,3 +51,6 @@ class ShiftSlotFactory(factory.DjangoModelFactory):
     volunteer = factory.SubFactory('tests.factories.accounts.UserFactory')
 
     cancelled_at = None
+
+    class Meta:
+        model = ShiftSlot
