@@ -8,6 +8,9 @@ $(function(){
         url: function() {
             return this.urlRoot + this.id + "/";
         },
+        isHydrated: function() {
+            return Boolean(_.without(Object.keys(this.attributes), "id").length);
+        },
         /*
          *  Template and View Helpers
          */
@@ -29,19 +32,14 @@ $(function(){
                 return false;
             }
             return true;
-        }
+        },
     });
 
     var GridCell = Backbone.Model.extend({
         initialize: function(options) {
             var shifts = new app.Shifts(_.map(options.shifts, function(shiftId) {
-                return {
-                    id: shiftId
-                };
+                return {id: shiftId};
             }));
-            shifts.each(function(shift) {
-                shift.fetch();
-            });
             this.set('shifts', shifts);
 
             delete options.shifts;
