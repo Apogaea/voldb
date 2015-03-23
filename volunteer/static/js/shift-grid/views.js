@@ -19,15 +19,7 @@ $(function(){
         },
     });
 
-    var ShiftView = Backbone.Marionette.ItemView.extend({
-        tagName: 'li',
-        template: Handlebars.templates.shift_cell_template,
-        modelEvents: {
-            'sync': 'render'
-        }
-    });
-
-    var GridCellView = Backbone.Marionette.CompositeView.extend({
+    var GridCellView = Backbone.Marionette.ItemView.extend({
         tagName: 'td',
         attributes: function() {
             var classes = [];
@@ -42,14 +34,7 @@ $(function(){
         triggers: {
             "click": "cell:click"
         },
-        childView: ShiftView,
-        childViewContainer: 'ul.shifts',
-        template: Handlebars.templates.grid_cell_template,
-        templateHelpers: function() {
-            return {
-                x: 3  // TODO?
-            };
-        },
+        template: Handlebars.templates.grid_cell_template
     });
 
     var GridRowView = NestedCollectionCompositeView.extend({
@@ -83,6 +68,12 @@ $(function(){
      *  Modal Window Views
      */
     var ModalShiftView = Backbone.Marionette.ItemView.extend({
+        initialize: function(options) {
+            if ( !this.model.isHydrated() ) {
+                this.model.fetch();
+            }
+            this.listenTo(this.model, "sync", this.render);
+        },
         triggers: {
             "click": "shift:click"
         },
