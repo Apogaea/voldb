@@ -6,9 +6,11 @@
     </h4>
     <div class="claimed-slots">
     </div>
+    {{#if hasOpenSlots }}
+        <p><strong>{{ open_slot_count }}</strong> open slot(s) for this shift.</p>
+    {{/if}}
     {{#if isClaimable }}
         <div class="claim-slot">
-            <p><strong>{{ open_slot_count }}</strong> open slot(s) for this shift.</p>
             <button type="button" class="btn btn-primary claim-slot">Claim a slot</button>
         </div>
     {{/if}}

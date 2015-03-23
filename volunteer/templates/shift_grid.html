@@ -1,18 +1,12 @@
 {% extends "layout_full.html" %}
 {% load shift_utils %}
-{% load user_utils %}
 {% load argonauts %}
 
 
 {% block content %}
     <h1>Shift Grid App</h1>
     <div id="role-{{ role.id }}-shift-grid-container">
-        <div class="shift-grid">
-            <!-- ShiftGridView -->
-        </div>
-        <div class="cell-modal">
-            <!-- ModalCellView -->
-        </div>
+        {% include "shifts/partials/shift_grid.html" %}
     </div>
 {% endblock %}
 
@@ -21,7 +15,6 @@
 {{ block.super }}
 <script>
 $(document).ready(function() {
-    window.django_user = new Backbone.Model({{ user|serialized_user|json }});
     var rows = {{ shifts|as_grid|json }};
     window.application = new app.ShiftGridApplication({
         el: $('#role-{{ role.id }}-shift-grid-container'),

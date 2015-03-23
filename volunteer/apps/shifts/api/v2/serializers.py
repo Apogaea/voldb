@@ -13,6 +13,7 @@ from volunteer.apps.shifts.models import (
 
 class ShiftSlotSerializer(serializers.ModelSerializer):
     is_cancelled = serializers.BooleanField()
+    volunteer_display_name = serializers.CharField(source='volunteer.profile.display_name')
 
     class Meta:
         model = ShiftSlot
@@ -20,12 +21,14 @@ class ShiftSlotSerializer(serializers.ModelSerializer):
             'id',
             'shift',
             'volunteer',
+            'volunteer_display_name',
             'is_cancelled',
         )
         read_only_fields = (
             'id',
             'shift',
             'volunteer',
+            'volunteer_display_name',
         )
 
 

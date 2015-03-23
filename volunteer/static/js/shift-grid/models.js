@@ -58,6 +58,7 @@ $(function(){
         exportable: [
             "shiftIcon",
             "alreadyClaimedByUser",
+            "hasOpenSlots",
             "isClaimable",
         ],
         shiftIcon: function() {
@@ -69,11 +70,14 @@ $(function(){
                 return "minus-sign";
             }
         },
+        hasOpenSlots: function() {
+            return Boolean(this.get("open_slot_count"));
+        },
         alreadyClaimedByUser: function() {
             return !_.isUndefined(this.get("claimed_slots").findWhere({volunteer: window.django_user.id}));
         },
         isClaimable: function() {
-            if ( this.get("is_locked") || !this.get("open_slot_count") ) {
+            if ( this.get("is_locked") || !this.hasOpenSlots() ) {
                 return false;
             } else if ( this.alreadyClaimedByUser() ) {
                 return false;
@@ -97,7 +101,7 @@ $(function(){
             "isClaimedByUser",
         ],
         isClaimedByUser: function() {
-            return !_.isUndefined(this.get("volunteer") === window.django_user.id);
+            return this.get("volunteer") === window.django_user.id;
         }
     });
 
