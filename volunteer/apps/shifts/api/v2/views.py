@@ -27,4 +27,5 @@ class ShiftViewSet(generics.ListAPIView,
 
     @detail_route(methods=['post'])
     def claim(self, *args, **kwargs):
-        shift = self.get_object()
+        pass
+        # shift = self.get_object()
