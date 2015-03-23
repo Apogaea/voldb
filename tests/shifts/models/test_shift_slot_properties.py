@@ -6,7 +6,7 @@ def test_has_open_slots(factories):
     assert shift.has_open_slots
     factories.ShiftSlotFactory(shift=shift)
     assert not shift.has_open_slots
-    slot.cance()
+    slot.cancel()
     assert shift.has_open_slots
     factories.ShiftSlotFactory(shift=shift)
     assert not shift.has_open_slots

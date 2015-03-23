@@ -15,7 +15,7 @@ def test_department_serialization(factories, models):
         'id': department.pk,
         'name': department.name,
         'description': department.description,
-        'liaison': [liaison.pk],
-        'lead': lead.pk,
+        'active_liaison': liaison.pk,
+        'active_lead': lead.pk,
     }
     assert serializer.data == expected
