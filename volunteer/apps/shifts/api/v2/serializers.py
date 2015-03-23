@@ -1,20 +1,13 @@
 from rest_framework import serializers
 
+from volunteer.apps.departments.api.v2.serializers import (
+    DepartmentSerializer,
+)
+
 from volunteer.apps.shifts.models import (
     Role,
     Shift,
 )
-
-
-class RoleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Role
-        fields = (
-            'id',
-            'department',
-            'name',
-            'description',
-        )
 
 
 class ShiftSerializer(serializers.ModelSerializer):
@@ -32,4 +25,19 @@ class ShiftSerializer(serializers.ModelSerializer):
             'num_slots',
             'open_slot_count',
             'filled_slot_count',
+        )
+
+
+class RoleSerializer(serializers.ModelSerializer):
+    department = DepartmentSerializer(read_only=True)
+    shifts = ShiftSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Role
+        fields = (
+            'id',
+            'department',
+            'name',
+            'description',
+            'shifts',
         )

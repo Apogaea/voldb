@@ -51,6 +51,7 @@ def build_empty_column(start_time, hours=1):
         'end_time': end_time,
         'shift_length': 1,
         'shifts': [],
+        'roles': [],
         'is_empty': True,
     }
 
@@ -87,6 +88,7 @@ def build_shift_column(shifts, shift_date):
         'end_time': end_at,
         'shift_length': shift_length,
         'shifts': [shift['id'] for shift in shifts],
+        'roles': list(set((shift['role_id'] for shift in shifts))),
         'is_empty': False,
     }
 
@@ -191,7 +193,12 @@ def merge_columns(*columns):
         'start_time': columns[0]['start_time'],
         'end_time': columns[-1]['end_time'],
         'shift_length': sum(map(operator.itemgetter('shift_length'), columns)),
-        'shifts': list(itertools.chain.from_iterable(map(operator.itemgetter('shifts'), columns))),
+        'shifts': list(
+            itertools.chain.from_iterable(map(operator.itemgetter('shifts'), columns))
+        ),
+        'roles': list(set(
+            itertools.chain.from_iterable(map(operator.itemgetter('roles'), columns))
+        )),
         'is_empty': any(column['is_empty'] for column in columns),
     }
 
@@ -228,7 +235,7 @@ def shifts_as_grid(shifts):
     )
 
     shift_data = shifts.values(
-        'id', 'start_time', 'shift_length',
+        'id', 'start_time', 'shift_length', 'role_id',
     )
 
     def shift_intersects_date(date, shift):

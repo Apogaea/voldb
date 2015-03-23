@@ -14,6 +14,7 @@ from volunteer.apps.shifts.api.v2.serializers import (
 
 
 class RoleViewSet(generics.ListAPIView,
+                  generics.RetrieveAPIView,
                   viewsets.GenericViewSet):
     queryset = Role.objects.all()
     serializer_class = RoleSerializer

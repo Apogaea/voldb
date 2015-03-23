@@ -31,6 +31,7 @@ def ShiftDict(*args, **kwargs):
 def shift_to_dict(shift):
     return {
         'id': shift.pk,
+        'role_id': shift.role_id,
         'start_time': shift.start_time.astimezone(timezone.get_default_timezone()),
         'shift_length': shift.shift_length,
         'end_time': shift.end_time.astimezone(timezone.get_default_timezone()),

@@ -74,18 +74,28 @@ $(function(){
             }
             this.listenTo(this.model, "sync", this.render);
         },
-        triggers: {
-            "click": "shift:click"
-        },
         template: Handlebars.templates.shift_modal_template
     });
 
-    var ModalCellView = Backbone.Marionette.CompositeView.extend({
-        attributes: {
-            class: "modal fade"
+    var ModalRoleView = Backbone.Marionette.CompositeView.extend({
+        initialize: function(options) {
+            if ( !this.model.isHydrated() ) {
+                this.model.fetch();
+            }
+            this.listenTo(this.model, "sync", this.render);
         },
         childView: ModalShiftView,
         childViewContainer: '.shifts',
+        template: Handlebars.templates.role_modal_template
+    });
+
+    var ModalCellView = NestedCollectionCompositeView.extend({
+        attributes: {
+            class: "modal fade"
+        },
+        childView: ModalRoleView,
+        childViewContainer: '.roles',
+        childCollectionProperty: "shifts",
         template: Handlebars.templates.cell_modal_template
     });
 
