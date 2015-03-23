@@ -37,10 +37,27 @@ $(function(){
             return Boolean(_.without(Object.keys(this.attributes), "id", "claimed_slots").length);
         },
         /*
+         *  Claiming slots
+         */
+        claimUrl: function() {
+            return this.url() + 'claim/';
+        },
+        claimSlot: function(options) {
+            return Backbone.sync("create", new app.Slot(), {
+                url: this.claimUrl(),
+                success: _.bind(this.cliamSlotSuccess, this)
+            })
+        },
+        cliamSlotSuccess: function(slotData) {
+            this.get("claimed_slots").add(slotData);
+            this.fetch();
+        },
+        /*
          *  Template and View Helpers
          */
         exportable: [
             "shiftIcon",
+            "alreadyClaimedByUser",
             "isClaimable",
         ],
         shiftIcon: function() {
@@ -52,8 +69,13 @@ $(function(){
                 return "minus-sign";
             }
         },
+        alreadyClaimedByUser: function() {
+            return !_.isUndefined(this.get("claimed_slots").findWhere({volunteer: window.django_user.id}));
+        },
         isClaimable: function() {
             if ( this.get("is_locked") || !this.get("open_slot_count") ) {
+                return false;
+            } else if ( this.alreadyClaimedByUser() ) {
                 return false;
             }
             return true;
@@ -61,9 +83,21 @@ $(function(){
     });
 
     var Slot = Backbone.Model.extend({
+        parse: function() {
+            debugger;
+        },
         urlRoot: "/api/v2/slots/",
         url: function() {
             return this.urlRoot + this.id + "/";
+        },
+        /*
+         *  Template and View Helpers
+         */
+        exportable: [
+            "isClaimedByUser",
+        ],
+        isClaimedByUser: function() {
+            return !_.isUndefined(this.get("volunteer") === window.django_user.id);
         }
     });
 

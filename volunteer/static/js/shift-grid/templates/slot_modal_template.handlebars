@@ -1,1 +1,4 @@
 - {{ shift }}:{{ volunteer }}
+{{#if isClaimedByUser }}
+    <button type="button" class="btn btn-warning release-slot">Release Slot</button>
+{{/if}}

@@ -85,7 +85,7 @@ $(function(){
          *  Claiming a shift slot
          */
         claimSlot: function(event) {
-            debugger;
+            this.model.claimSlot();
         }
     });
 

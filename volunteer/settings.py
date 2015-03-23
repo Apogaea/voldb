@@ -162,6 +162,7 @@ PIPELINE_JS = {
     'base': {
         'source_filenames': (
             "js/jquery.js",
+            "js/jquery.djangoCSRF.js",
             "js/moment-with-locales.js",
             "js/bootstrap.js",
             "js/json2.js",
