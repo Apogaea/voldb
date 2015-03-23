@@ -72,3 +72,9 @@ volunteer/public/**
 # Whoosh
 **/whoosh_index
 static_assets/static/**
+
+# Node
+node_modules/**
+
+# Handlebars Templates
+js_tests/compiled/*.js

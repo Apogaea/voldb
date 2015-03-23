@@ -41,7 +41,7 @@ $(function(){
             }));
             shifts.each(function(shift) {
                 shift.fetch();
-            })
+            });
             this.set('shifts', shifts);
 
             delete options.shifts;
