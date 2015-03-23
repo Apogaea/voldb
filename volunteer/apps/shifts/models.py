@@ -75,8 +75,8 @@ class Shift(Timestamped):
         return bool(self.code)
 
     @property
-    def locked(self):
-        return not settings.REGISTRATION_OPEN
+    def is_locked(self):
+        return not self.event.is_registration_open
 
     @property
     def is_midnight_spanning(self):
@@ -85,6 +85,21 @@ class Shift(Timestamped):
         start_hour = self.start_time.astimezone(DENVER_TIMEZONE).hour
         end_hour = self.end_time.astimezone(DENVER_TIMEZONE).hour
         return bool(end_hour) and start_hour > end_hour
+
+    # Permissions Methods
+    def is_claimable_by_user(self, user):
+        """
+        Not locked.
+        Has open slots.
+        User does not already have a slot.
+        """
+        if self.is_locked:
+            return False
+        elif not self.has_open_slots:
+            return False
+        elif self.claimed_slots.filter(volunteer=user).exists():
+            return False
+        return True
 
 
 @python_2_unicode_compatible

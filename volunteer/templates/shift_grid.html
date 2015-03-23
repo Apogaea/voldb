@@ -1,5 +1,6 @@
 {% extends "layout_full.html" %}
 {% load shift_utils %}
+{% load user_utils %}
 {% load argonauts %}
 
 
@@ -23,7 +24,8 @@ $(document).ready(function() {
     var rows = {{ shifts|as_grid|json }};
     window.application = new app.ShiftGridApplication({
         el: $('#role-{{ role.id }}-shift-grid-container'),
-        rows: rows
+        rows: rows,
+        user: {{ user|serialized_user|json }}
     });
     window.application.start();
 });
