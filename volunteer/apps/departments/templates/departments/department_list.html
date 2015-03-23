@@ -1,0 +1,13 @@
+{% extends "layout_full.html" %}
+
+{% block content %}
+    <h1>Departments</h1>
+    <section id="departments">
+    	<h2><span>Departments</span></h2>
+        <ul>
+            {% for department in object_list %}
+                <li><a href="{% url 'department-detail' pk=department.pk %}">{{ department }}</a></li>
+            {% endfor %}
+        </ul>
+	</section>
+{% endblock %}

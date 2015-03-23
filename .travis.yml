@@ -8,6 +8,8 @@ env:
   matrix:
     - TOX_ENV=py27-django17
     - TOX_ENV=flake8
+    - TOX_ENV=jshint
+    - TOX_ENV=jasmine
 cache:
   directories:
     - $HOME/.pip-cache/

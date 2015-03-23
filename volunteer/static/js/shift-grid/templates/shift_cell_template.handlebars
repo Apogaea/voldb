@@ -1,0 +1,10 @@
+{{#if is_locked }}
+    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+{{else}}
+    {{#if has_open_slots }}
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+    {{else}}
+        <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+    {{/if}}
+{{/if}}
+<span class="badge">{{ filled_slot_count }} / {{ num_slots }}</span>

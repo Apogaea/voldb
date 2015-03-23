@@ -7,32 +7,27 @@ https://docs.djangoproject.com/en/dev/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
+import os
+import excavator
+import dj_database_url
+import django_cache_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+SECRET_KEY = excavator.env_string('DJANGO_SECRET_KEY', required=True)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = excavator.env_bool('DJANGO_DEBUG', default=False)
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
-ALLOWED_HOSTS += filter(
-    bool,
-    os.environ.get('DJANGO_ALLOWED_HOSTS', '').split(','),
-)
-
+# Allowed Hosts
+# https://docs.djangoproject.com/en/1.7/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = excavator.env_list('DJANGO_ALLOWED_HOSTS', required=not DEBUG)
 
 # Application definition
-
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,24 +35,38 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    # local project
+    'volunteer.core',
+    # local apps
+    'volunteer.apps.events',
+    'volunteer.apps.departments',
+    'volunteer.apps.shifts',
+    'volunteer.apps.accounts',
+    'volunteer.apps.profiles',
+
     # third party
     'authtools',
     'backupdb',
     'betterforms',
     'emailtools',
     'rest_framework',
-    'compressor',
+    'pipeline',
+    'bootstrap3',
+    'argonauts',
     'raven.contrib.django.raven_compat',
-    # local project
-    'volunteer',
-    # local apps
-    'departments',
-    'shifts',
-    'accounts',
-    'profiles',
-    # django admin
-    'django.contrib.admin.apps.AdminConfig',
 )
+
+if DEBUG:
+    try:
+        import django_extensions  # NOQA
+        INSTALLED_APPS.append('django_extensions')
+    except ImportError:
+        pass
+    try:
+        import debug_toolbar  # NOQA
+        INSTALLED_APPS.append('debug_toolbar')
+    except ImportError:
+        pass
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -72,24 +81,17 @@ ROOT_URLCONF = 'volunteer.urls'
 
 WSGI_APPLICATION = 'volunteer.wsgi.application'
 
-LOGIN_REDIRECT_URL = 'profile'
-
+LOGIN_REDIRECT_URL = 'dashboard'
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.parse(excavator.env_string('DATABASE_URL', required=True)),
 }
-
-ATOMIC_REQUESTS = True
+DATABASES['default'].setdefault('ATOMIC_REQUESTS', True)
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'MST'
@@ -100,46 +102,151 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Template Locations
+# https://docs.djangoproject.com/en/1.7/ref/settings/#template-dirs
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'volunteer', 'templates'),
+)
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
-
-# I made static files work
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'volunteer', 'public'),
+DEFAULT_FILE_STORAGE = excavator.env_string(
+    'DJANGO_DEFAULT_FILE_STORAGE',
+    default='django.core.files.storage.FileSystemStorage',
+)
+STATICFILES_STORAGE = excavator.env_string(
+    'DJANGO_STATICFILES_STORAGE',
+    default='django.contrib.staticfiles.storage.StaticFilesStorage',
 )
 
-# Adding Auth Tools
+# User-uploaded files
+MEDIA_ROOT = excavator.env_string('DJANGO_MEDIA_ROOT')
+MEDIA_URL = excavator.env_string('DJANGO_MEDIA_URL', default='/media/')
+
+# Static files
+STATIC_ROOT = excavator.env_string('DJANGO_STATIC_ROOT')
+STATIC_URL = excavator.env_string('DJANGO_STATIC_URL', default='/static/')
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(BASE_DIR, 'volunteer', 'static'),
+)
+
+# Static file finders.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+)
+
+# Django Pipeline Settings
+PIPELINE_DISABLE_WRAPPER = excavator.env_bool(
+    'DJANGO_PIPELINE_DISABLE_WRAPPER', default=True,
+)
+PIPELINE_ENABLED = excavator.env_bool('DJANGO_PIPELINE_ENABLED', not DEBUG)
+PIPELINE_CSS = {
+    'base': {
+        'source_filenames': (
+            "css/bootstrap.css",
+            "css/bootstrap-theme.css",
+            "css/volunteer.css",
+        ),
+        'output_filename': 'css/base.css',
+    },
+}
+
+PIPELINE_JS = {
+    'base': {
+        'source_filenames': (
+            "js/jquery.js",
+            "js/moment-with-locales.js",
+            "js/bootstrap.js",
+            "js/json2.js",
+            "js/underscore.js",
+            "js/handlebars.js",
+            "js/backbone.js",
+            "js/backbone.wreqr.js",
+            "js/backbone.babysitter.js",
+            "js/backbone.marionette.js",
+            "js/backbone.marionette.export.js",
+            "js/volunteer.js",
+        ),
+        'output_filename': 'base.js',
+    },
+    'shift-grid': {
+        'source_filenames': (
+            "js/shift-grid/templates/**.handlebars",
+            "js/shift-grid/models.js",
+            "js/shift-grid/collections.js",
+            "js/shift-grid/views.js",
+            "js/shift-grid/layouts.js",
+            "js/shift-grid/app.js",
+        ),
+        'output_filename': 'js/shift-grid.js',
+    },
+}
+PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.NoopCompressor'
+PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.NoopCompressor'
+
+PIPELINE_TEMPLATE_EXT = '.handlebars'
+PIPELINE_TEMPLATE_FUNC = 'Handlebars.compile'
+PIPELINE_TEMPLATE_NAMESPACE = 'Handlebars.templates'
+
+# Custome User Model
 # http://django-authtools.readthedocs.org/en/latest/intro.html#quick-setup
 AUTH_USER_MODEL = 'accounts.User'
 
 
-TEST_PEP8_DIRS = ['.']
-
-TEST_PEP8_EXCLUDE = [
-    'migrations',
-]
-TEST_PEP8_IGNORE = ['E501']
-
-
 # Email Settings
 EMAIL_LAYOUT = 'mail/base.html'
-EMAIL_BACKEND = os.environ.get(
+EMAIL_BACKEND = excavator.env_string(
     'DJANGO_EMAIL_BACKEND',
-    'django.core.mail.backends.smtp.EmailBackend',
+    default='django.core.mail.backends.smtp.EmailBackend',
 )
-EMAIL_HOST = os.environ.get('EMAIL_HOST', 'localhost')
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
-EMAIL_PORT = os.environ.get('EMAIL_PORT', '25')
-EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS') == 'True'
-EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL') == 'True'
+EMAIL_HOST = excavator.env_string('EMAIL_HOST')
+EMAIL_HOST_USER = excavator.env_string('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = excavator.env_string('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = excavator.env_string('EMAIL_PORT', default='25')
+EMAIL_USE_TLS = excavator.env_bool('EMAIL_USE_TLS', default=True)
+EMAIL_USE_SSL = excavator.env_bool('EMAIL_USE_SSL', default=True)
+
+# AWS Config
+AWS_ACCESS_KEY_ID = excavator.env_string('AWS_ACCESS_KEY_ID', default=None)
+AWS_SECRET_ACCESS_KEY = excavator.env_string('AWS_SECRET_ACCESS_KEY', default=None)
+AWS_STORAGE_BUCKET_NAME = excavator.env_string('AWS_STORAGE_BUCKET_NAME', default=None)
+
+DEFAULT_S3_PATH = "media"
+STATIC_S3_PATH = "static"
+
+# Boto config
+AWS_REDUCED_REDUNDANCY = True
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_FILE_OVERWRITE = True
+AWS_S3_SECURE_URLS = True
+AWS_IS_GZIPPED = False
+AWS_PRELOAD_METADATA = True
+AWS_HEADERS = {
+    "Cache-Control": "public, max-age=86400",
+}
+
+# Sentry error reporting
+RAVEN_CONFIG = {
+    'dsn': excavator.env_string('SENTRY_DSN', default=None)
+}
+
+# Cache setup
+CACHES = {
+    'default': django_cache_url.config(),
+}
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # `django.contrib.sites` settings
-SITE_ID = 1
+SITE_ID = excavator.env_int('DJANGO_SITE_ID', default=1)
 
 # django-rest-framework
 REST_FRAMEWORK = {
@@ -147,9 +254,30 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'drf_ujson.renderers.UJSONRenderer',
+    ),
+    # Make test client always return json
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    # Pagination
+    'PAGINATE_BY': 100,
+    'MAX_PAGINATE_BY': 100,
+    'PAGINATE_BY_PARAM': 'page_size',
 }
 
-REGISTRATION_OPEN = os.environ.get('REGISTRATION_OPEN', 'True') == 'True'
+REGISTRATION_OPEN = excavator.env_bool('REGISTRATION_OPEN', default=True)
+
+if DEBUG:
+    TEMPLATE_LOADERS = (
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+    )
+else:
+    TEMPLATE_LOADERS = (
+        ('django.template.loaders.cached.Loader', (
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
+        )),
+    )

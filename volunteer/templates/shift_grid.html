@@ -1,0 +1,31 @@
+{% extends "layout_full.html" %}
+{% load shift_utils %}
+{% load argonauts %}
+
+
+{% block content %}
+    <h1>Shift Grid App</h1>
+    <div id="role-{{ role.id }}-shift-grid-container">
+        <div class="shift-grid">
+            <!-- ShiftGridView -->
+        </div>
+        <div class="cell-modal">
+            <!-- ModalCellView -->
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block extra_javascript %}
+{{ block.super }}
+<script>
+$(document).ready(function() {
+    var rows = {{ shifts|as_grid|json }};
+    window.application = new app.ShiftGridApplication({
+        el: $('#role-{{ role.id }}-shift-grid-container'),
+        rows: rows
+    });
+    window.application.start();
+});
+</script>
+{% endblock %}

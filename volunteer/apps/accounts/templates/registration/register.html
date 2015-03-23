@@ -1,0 +1,13 @@
+{% extends "layout_skinny.html" %}
+
+{% block content %}
+    <h1>Register</h1>
+    <section>
+
+        <form action="." method="post">
+            {% include 'partials/form_as_fieldsets.html' %}
+            <button class="btn btn-default" type="submit">Submit</button>
+        </form>
+
+	</section>
+{% endblock %}

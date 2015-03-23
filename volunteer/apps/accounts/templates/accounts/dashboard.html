@@ -1,0 +1,19 @@
+{% extends "layout_full.html" %}
+
+{% block content %}
+    <h1>Account Dashboard</h1>
+    <section id="profile">        
+        <h2>{{ user }}</h2>
+        <div>
+            <p><b>{{ user.profile.full_name }}</b></p>
+            <p>Display Name: {{ user }}<br />
+               {{ user.email }}<br />
+               {{ user.profile.phone }}
+            </p>
+            <a href="{% url 'password-change' %}" class="btn btn-default">Change Password</a><br />
+            <a href="{% url 'profile-edit' %}" class="btn btn-default">Edit Profile</a>
+        </div>            
+    </section>
+    <h1>Your Schedule</h1>
+    <p>TODO</p>
+{% endblock %}
