@@ -80,6 +80,8 @@ def build_shift_column(shifts, shift_date):
     start_at = start_time.astimezone(DENVER_TIMEZONE)
     end_at = end_time.astimezone(DENVER_TIMEZONE)
 
+    shifts_by_role = sorted(shifts, key=lambda s: s['role_id'])
+
     return {
         'columns': columns,
         'open_on_left': open_on_left,
@@ -88,7 +90,11 @@ def build_shift_column(shifts, shift_date):
         'end_time': end_at,
         'shift_length': shift_length,
         'shifts': [shift['id'] for shift in shifts],
-        'roles': list(set((shift['role_id'] for shift in shifts))),
+        'roles': [
+            {'id': role_id, 'shifts': [{'id': s['id']} for s in list(role_shifts)]}
+            for role_id, role_shifts
+            in itertools.groupby(shifts_by_role, key=operator.itemgetter('role_id'))
+        ],
         'is_empty': False,
     }
 

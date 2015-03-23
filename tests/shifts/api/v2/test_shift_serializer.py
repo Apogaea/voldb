@@ -1,4 +1,4 @@
-from volunteer.app.shifts.api.v2.serializers import (
+from volunteer.apps.shifts.api.v2.serializers import (
     ShiftSerializer,
 )
 

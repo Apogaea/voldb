@@ -6,5 +6,6 @@ router = routers.SimpleRouter()
 
 router.register(r'shifts', views.ShiftViewSet)
 router.register(r'roles', views.RoleViewSet)
+router.register(r'slots', views.ShiftSlotViewSet)
 
 urlpatterns = router.urls  # NOQA

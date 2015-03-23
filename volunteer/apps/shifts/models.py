@@ -53,6 +53,10 @@ class Shift(Timestamped):
     def has_open_slots(self):
         return bool(self.open_slot_count)
 
+    @property
+    def claimed_slots(self):
+        return self.slots.filter(cancelled_at__isnull=True)
+
     def get_start_time_display(self):
         return self.start_time.strftime('%H:%M')
 
@@ -86,15 +90,26 @@ class Shift(Timestamped):
 @python_2_unicode_compatible
 class ShiftSlot(Timestamped):
     shift = models.ForeignKey('Shift', related_name='slots')
-    # TODO: either volunteer needs to be nullable or this model needs a
-    # validity window.  Either will do.
     volunteer = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='shifts')
 
     cancelled_at = models.DateTimeField(null=True)
 
     def __str__(self):
-        return "{s.shift_id:s.volunteer_id}".format(s=self)
+        return "{s.shift_id}:{s.volunteer_id}".format(s=self)
 
     def cancel(self):
-        self.cancelled_at = timezone.now()
+        self.is_cancelled = True
         self.save()
+
+    def _is_cancelled_getter(self):
+        return bool(self.cancelled_at)
+
+    def _is_cancelled_setter(self, value):
+        if bool(value) is bool(self.cancelled_at):
+            return
+        elif value:
+            self.cancelled_at = timezone.now()
+        else:
+            self.cancelled_at = None
+
+    is_cancelled = property(_is_cancelled_getter, _is_cancelled_setter)

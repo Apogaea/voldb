@@ -67,25 +67,43 @@ $(function(){
     /*
      *  Modal Window Views
      */
-    var ModalShiftView = Backbone.Marionette.ItemView.extend({
-        initialize: function(options) {
-            if ( !this.model.isHydrated() ) {
-                this.model.fetch();
-            }
-            this.listenTo(this.model, "sync", this.render);
-        },
-        template: Handlebars.templates.shift_modal_template
+    var ModalSlotView = Backbone.Marionette.ItemView.extend({
+        template: Handlebars.templates.slot_modal_template
     });
 
-    var ModalRoleView = Backbone.Marionette.CompositeView.extend({
+    var ModalShiftView = Backbone.Marionette.CompositeView.extend({
         initialize: function(options) {
+            this.listenTo(this.model, "sync", this.render);
+        },
+        events: {
+            'click button.claim-slot': 'claimSlot'
+        },
+        childView: ModalSlotView,
+        childViewContainer: '.claimed-slots',
+        template: Handlebars.templates.shift_modal_template,
+        /*
+         *  Claiming a shift slot
+         */
+        claimSlot: function(event) {
+            debugger;
+        }
+    });
+
+    var ModalRoleView = NestedCollectionCompositeView.extend({
+        initialize: function(options) {
+            this.listenTo(this.model, "sync", this.render);
             if ( !this.model.isHydrated() ) {
                 this.model.fetch();
             }
-            this.listenTo(this.model, "sync", this.render);
+            this.collection.each(function(shift) {
+                if ( !shift.isHydrated() ) {
+                    shift.fetch();
+                }
+            });
         },
         childView: ModalShiftView,
         childViewContainer: '.shifts',
+        childCollectionProperty: "claimed_slots",
         template: Handlebars.templates.role_modal_template
     });
 

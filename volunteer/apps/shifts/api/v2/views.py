@@ -5,11 +5,13 @@ from rest_framework.decorators import detail_route
 from volunteer.apps.shifts.models import (
     Role,
     Shift,
+    ShiftSlot,
 )
 
 from volunteer.apps.shifts.api.v2.serializers import (
     RoleSerializer,
     ShiftSerializer,
+    ShiftSlotSerializer,
 )
 
 
@@ -30,3 +32,10 @@ class ShiftViewSet(generics.ListAPIView,
     def claim(self, *args, **kwargs):
         pass
         # shift = self.get_object()  # TODO
+
+
+class ShiftSlotViewSet(generics.ListAPIView,
+                       generics.RetrieveAPIView,
+                       viewsets.GenericViewSet):
+    queryset = ShiftSlot.objects.all()
+    serializer_class = ShiftSlotSerializer
