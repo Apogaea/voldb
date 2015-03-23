@@ -6,8 +6,8 @@ from django.core.urlresolvers import reverse
 from rest_framework import status
 
 from volunteer.apps.accounts.utils import (
-    generate_registration_token, reverse_registration_url,
-    unsign_registration_token, REGISTRATION_TOKEN_MAX_AGE,
+    reverse_registration_url,
+    REGISTRATION_TOKEN_MAX_AGE,
 )
 
 

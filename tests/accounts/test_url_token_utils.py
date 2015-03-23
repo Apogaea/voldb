@@ -13,6 +13,7 @@ def test_url_generation():
 
     assert urllib.quote_plus(token) in url
 
+
 def test_unsigning_token():
     original_email = 'test@example.com'
     token = generate_registration_token(original_email)

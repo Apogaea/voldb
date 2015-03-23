@@ -7,7 +7,6 @@ django-backupdb==0.5.5
 django-betterforms==1.1.1
 django-bootstrap3==5.1.1
 django-cache-url==0.8.0
-django-dotenv==1.2
 django-emailtools==0.2.1
 django-herokuify==1.0.pre3
 django-pipeline==1.4.6
@@ -20,5 +19,6 @@ ipython==1.2.1
 newrelic==2.18.1.15
 psycopg2==2.5.2
 pylibmc==1.2.3
+python-dotenv==0.1.0
 pytz==2013.9
 raven==4.1.1
