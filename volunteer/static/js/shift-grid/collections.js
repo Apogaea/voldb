@@ -28,7 +28,7 @@ $(function(){
         getPageInfo: function() {
             return {
                 dates: _.uniq(this.pluck('date'))
-            }
+            };
         }
     });
 
