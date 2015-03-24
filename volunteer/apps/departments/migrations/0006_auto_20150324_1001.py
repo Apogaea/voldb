@@ -67,6 +67,8 @@ def merge_departments(apps, schema_editor):
 
     # Merge departments
     for department_name, departments in dept_groups.items():
+        if not departments:
+            continue
         primary_department = departments[0]
         primary_department.name = department_name
         primary_department.save()
