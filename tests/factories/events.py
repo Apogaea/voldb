@@ -19,3 +19,21 @@ class EventFactory(factory.DjangoModelFactory):
 
     class Meta:
         model = Event
+
+
+class FutureEventFactory(EventFactory):
+    registration_open_at = factory.LazyAttribute(
+        lambda e: timezone.now() + timezone.timedelta(10)
+    )
+    registration_close_at = factory.LazyAttribute(
+        lambda e: timezone.now() + timezone.timedelta(20)
+    )
+
+
+class PastEventFactory(EventFactory):
+    registration_open_at = factory.LazyAttribute(
+        lambda e: timezone.now() - timezone.timedelta(20)
+    )
+    registration_close_at = factory.LazyAttribute(
+        lambda e: timezone.now() - timezone.timedelta(10)
+    )

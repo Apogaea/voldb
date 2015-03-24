@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static pipeline %}
+{% load static pipeline user_utils argonauts %}
 <html>
     <head>
         <meta charset="UTF-8">
@@ -42,6 +42,11 @@
 
         {% javascript 'base' %}
         {% javascript 'shift-grid' %}
+<script type="text/javascript">
+$(document).ready(function() {
+    window.django_user = new Backbone.Model({{ user|serialized_user|json }});
+})
+</script>
 
         {% block extra_javascript %}
         {% endblock %}

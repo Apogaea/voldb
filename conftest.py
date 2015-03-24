@@ -14,6 +14,8 @@ def factories(transactional_db):
 
     from tests.factories.events import (  # NOQA
         EventFactory,
+        FutureEventFactory,
+        PastEventFactory,
     )
     from tests.factories.shifts import (  # NOQA
         ShiftFactory,

@@ -4,7 +4,14 @@
         <span class="glyphicon glyphicon-{{ shiftIcon }}" aria-hidden="true"></span>
         <span class="badge">{{ filled_slot_count }} / {{ num_slots }}</span>
     </h4>
+    <div class="claimed-slots">
+    </div>
+    {{#if hasOpenSlots }}
+        <p><strong>{{ open_slot_count }}</strong> open slot(s) for this shift.</p>
+    {{/if}}
     {{#if isClaimable }}
-        <button type="button" class="btn btn-primary">Claim</button>
+        <div class="claim-slot">
+            <button type="button" class="btn btn-primary claim-slot">Claim a slot</button>
+        </div>
     {{/if}}
 </div>

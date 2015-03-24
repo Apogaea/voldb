@@ -3,46 +3,122 @@ var app = app || {};
 $(function(){
     "use-strict";
 
+    var Role = Backbone.Model.extend({
+        initialize: function(options) {
+            if ( _.isArray(options.shifts) ) {
+                var shifts = new app.Shifts(options.shifts);
+                this.set("shifts", shifts);
+                delete options.shifts;
+            }
+        },
+        urlRoot: "/api/v2/roles/",
+        url: function() {
+            return this.urlRoot + this.id + "/";
+        },
+        isHydrated: function() {
+            return Boolean(_.without(Object.keys(this.attributes), "id", "shifts").length);
+        }
+    });
+
     var Shift = Backbone.Model.extend({
+        initialize: function(options) {
+            var claimedSlots = new app.Slots((options || {}).claimed_slots || []);
+            this.set("claimed_slots", claimedSlots);
+            this.listenTo(claimedSlots, "add remove", this.refetchShift);
+        },
+        refetchShift: function() {
+            this.fetch();
+        },
+        parse: function(response, options) {
+            this.get("claimed_slots").reset(response.claimed_slots || []);
+            delete response.claimed_slots;
+            return response;
+        },
         urlRoot: "/api/v2/shifts/",
         url: function() {
             return this.urlRoot + this.id + "/";
         },
         isHydrated: function() {
-            return Boolean(_.without(Object.keys(this.attributes), "id").length);
+            return Boolean(_.without(Object.keys(this.attributes), "id", "claimed_slots").length);
+        },
+        /*
+         *  Claiming slots
+         */
+        claimUrl: function() {
+            return this.url() + "claim/";
+        },
+        claimSlot: function(options) {
+            return Backbone.sync("create", new app.Slot(), {
+                url: this.claimUrl(),
+                success: _.bind(this.cliamSlotSuccess, this)
+            });
+        },
+        cliamSlotSuccess: function(slotData) {
+            this.get("claimed_slots").add(slotData);
         },
         /*
          *  Template and View Helpers
          */
         exportable: [
             "shiftIcon",
+            "alreadyClaimedByUser",
+            "hasOpenSlots",
             "isClaimable",
         ],
         shiftIcon: function() {
             if ( this.get("is_locked") ) {
                 return "lock";
-            } else if ( this.get("has_open_slots") ) {
+            } else if ( this.get("open_slot_count") ) {
                 return "plus-sign";
             } else {
                 return "minus-sign";
             }
         },
+        hasOpenSlots: function() {
+            return Boolean(this.get("open_slot_count"));
+        },
+        alreadyClaimedByUser: function() {
+            return !_.isUndefined(this.get("claimed_slots").findWhere({volunteer: window.django_user.id}));
+        },
         isClaimable: function() {
-            if ( this.get("is_locked") || !this.get("has_open_slots") ) {
+            if ( this.get("is_locked") || !this.hasOpenSlots() ) {
+                return false;
+            } else if ( this.alreadyClaimedByUser() ) {
                 return false;
             }
             return true;
         },
     });
 
+    var Slot = Backbone.Model.extend({
+        urlRoot: "/api/v2/slots/",
+        url: function() {
+            return this.urlRoot + this.id + "/";
+        },
+        /*
+         *  Template and View Helpers
+         */
+        exportable: [
+            "isClaimedByUser",
+        ],
+        isClaimedByUser: function() {
+            return this.get("volunteer") === window.django_user.id;
+        }
+    });
+
     var GridCell = Backbone.Model.extend({
         initialize: function(options) {
+            // Setup shift collection
             var shifts = new app.Shifts(_.map(options.shifts, function(shiftId) {
                 return {id: shiftId};
             }));
-            this.set('shifts', shifts);
-
+            this.set("shifts", shifts);
             delete options.shifts;
+
+            // Setup roles collection
+            var roles = new app.Roles(options.roles);
+            this.set("roles", roles);
+            delete options.roles;
 
             this.set("end_time", moment(options.end_time));
             delete options.end_time;
@@ -74,7 +150,9 @@ $(function(){
         }
     });
 
+    app.Role = Role;
     app.Shift = Shift;
+    app.Slot = Slot;
     app.GridCell = GridCell;
     app.GridRow = GridRow;
 });

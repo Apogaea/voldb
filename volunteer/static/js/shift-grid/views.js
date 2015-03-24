@@ -20,7 +20,7 @@ $(function(){
     });
 
     var GridCellView = Backbone.Marionette.ItemView.extend({
-        tagName: 'td',
+        tagName: "td",
         attributes: function() {
             var classes = [];
             if ( this.model.get("is_empty") ) { classes.push("empty"); }
@@ -28,7 +28,7 @@ $(function(){
             if ( this.model.get("open_on_right") ) { classes.push("open-right"); }
             return {
                 colspan: this.model.get("columns"),
-                classes: classes.join(' ')
+                classes: classes.join(" ")
             };
         },
         triggers: {
@@ -38,11 +38,11 @@ $(function(){
     });
 
     var GridRowView = NestedCollectionCompositeView.extend({
-        tagName: 'tr',
+        tagName: "tr",
         childView: GridCellView,
         childCollectionProperty: "shifts",
         childEvents: {
-            'cell:click': function(cellView) {
+            "cell:click": function(cellView) {
                 this.trigger("cell:click", cellView);
             }
         },
@@ -50,14 +50,14 @@ $(function(){
     });
 
     var GridView = NestedCollectionCompositeView.extend({
-        tagName: 'table',
+        tagName: "table",
         attributes: {
             class: "table table-bordered shift-grid"
         },
         childView: GridRowView,
         childCollectionProperty: "cells",
         childEvents: {
-            'cell:click': function(childView, cellView) {
+            "cell:click": function(childView, cellView) {
                 this.trigger("cell:click", cellView);
             }
         },
@@ -67,25 +67,69 @@ $(function(){
     /*
      *  Modal Window Views
      */
-    var ModalShiftView = Backbone.Marionette.ItemView.extend({
+    var ModalSlotView = Backbone.Marionette.ItemView.extend({
+        events: {
+            "click button.release-slot": "releaseSlot"
+        },
+        template: Handlebars.templates.slot_modal_template,
+        /*
+         *  Releasing a slot,
+         */
+        releaseSlot: function(event) {
+            event.preventDefault();
+            this.model.save({is_cancelled: true}, {
+                success: _.bind(this.releaseSlotSuccess, this)
+            });
+        },
+        releaseSlotSuccess: function(model, response, options) {
+            model.collection.remove(model);
+        }
+    });
+
+    var ModalShiftView = Backbone.Marionette.CompositeView.extend({
         initialize: function(options) {
+            this.listenTo(this.model, "sync", this.render);
+        },
+        events: {
+            "click button.claim-slot": "claimSlot"
+        },
+        childView: ModalSlotView,
+        childViewContainer: ".claimed-slots",
+        template: Handlebars.templates.shift_modal_template,
+        /*
+         *  Claiming a shift slot
+         */
+        claimSlot: function(event) {
+            event.preventDefault();
+            this.model.claimSlot();
+        }
+    });
+
+    var ModalRoleView = NestedCollectionCompositeView.extend({
+        initialize: function(options) {
+            this.listenTo(this.model, "sync", this.render);
             if ( !this.model.isHydrated() ) {
                 this.model.fetch();
             }
-            this.listenTo(this.model, "sync", this.render);
+            this.collection.each(function(shift) {
+                if ( !shift.isHydrated() ) {
+                    shift.fetch();
+                }
+            });
         },
-        triggers: {
-            "click": "shift:click"
-        },
-        template: Handlebars.templates.shift_modal_template
+        childView: ModalShiftView,
+        childViewContainer: ".shifts",
+        childCollectionProperty: "claimed_slots",
+        template: Handlebars.templates.role_modal_template
     });
 
-    var ModalCellView = Backbone.Marionette.CompositeView.extend({
+    var ModalCellView = NestedCollectionCompositeView.extend({
         attributes: {
             class: "modal fade"
         },
-        childView: ModalShiftView,
-        childViewContainer: '.shifts',
+        childView: ModalRoleView,
+        childViewContainer: ".roles",
+        childCollectionProperty: "shifts",
         template: Handlebars.templates.cell_modal_template
     });
 

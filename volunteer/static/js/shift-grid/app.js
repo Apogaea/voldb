@@ -20,7 +20,7 @@ $(function(){
              */
             var cellModal = new app.ModalCellView({
                 model: cellView.model,
-                collection: cellView.model.get("shifts")
+                collection: cellView.model.get("roles"),
             });
             this.shiftLayout.cell_modal.show(cellModal);
             cellModal.$el.modal("show");
