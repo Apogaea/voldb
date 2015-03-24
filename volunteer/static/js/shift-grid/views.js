@@ -2,7 +2,13 @@ var app = app || {};
 
 $(function(){
     "use-strict";
+
     var NestedCollectionCompositeView = Backbone.Marionette.CompositeView.extend({
+        /*
+         *  This view class instantiates a childview that is also a composite
+         *  view, using a property of the child model as the collection value
+         *  for the child view.
+         */
         buildChildView: function(child, ChildViewClass, childViewOptions){
             // build the final list of options for the childView class
             if ( _.isUndefined(this.childCollectionProperty) ) {
@@ -18,8 +24,28 @@ $(function(){
             return view;
         },
     });
+    /*
+     *  Pagination views
+     */
+    var GridPageNumberView = Backbone.Marionette.ItemView.extend({
+        tagName: "li",
+        template: Handlebars.templates.grid_page_number_template
+    });
 
+    var GridPaginationView = Backbone.Marionette.CompositeView.extend({
+        tagName: "nav",
+        template: Handlebars.templates.grid_pagination_template,
+        childView: GridPageNumberView,
+        childViewContainer: ".pages"
+    });
+
+    /*
+     *  shift grid table views
+     */
     var GridCellView = Backbone.Marionette.ItemView.extend({
+        /*
+         *  View for a single cell in the shift grid.
+         */
         tagName: "td",
         attributes: function() {
             var classes = [];
@@ -38,6 +64,9 @@ $(function(){
     });
 
     var GridRowView = NestedCollectionCompositeView.extend({
+        /*
+         *  View for a single row in the shift grid.
+         */
         tagName: "tr",
         childView: GridCellView,
         childCollectionProperty: "shifts",
@@ -50,6 +79,9 @@ $(function(){
     });
 
     var GridView = NestedCollectionCompositeView.extend({
+        /*
+         *  View for the full table of the shift grid.
+         */
         tagName: "table",
         attributes: {
             class: "table table-bordered shift-grid"
@@ -133,6 +165,7 @@ $(function(){
         template: Handlebars.templates.cell_modal_template
     });
 
+    app.GridPaginationView = GridPaginationView;
     app.GridView = GridView;
     app.ModalCellView = ModalCellView;
 });

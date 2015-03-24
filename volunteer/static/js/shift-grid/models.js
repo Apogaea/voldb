@@ -3,6 +3,9 @@ var app = app || {};
 $(function(){
     "use-strict";
 
+    /*
+     *  Models that are backed by database tables.
+     */
     var Role = Backbone.Model.extend({
         initialize: function(options) {
             if ( _.isArray(options.shifts) ) {
@@ -106,6 +109,9 @@ $(function(){
         }
     });
 
+    /*
+     *  Meta models that are used for the shift grid views
+     */
     var GridCell = Backbone.Model.extend({
         initialize: function(options) {
             // Setup shift collection
@@ -146,10 +152,44 @@ $(function(){
     var GridRow = Backbone.Model.extend({
         initialize: function(options) {
             this.set("cells", new app.GridCells(options.cells));
-            delete options.cells;
+            this.set("date", new Date(options.date));
         }
     });
 
+    var GridPageInfo = Backbone.Model.extend({
+        defaults: {
+            selectedDate: null
+        },
+        /*
+         *  Template and View Helpers
+         */
+        exportable: [
+            "selectedPage",
+            "hasPreviousPage",
+            "hasNextPage",
+        ],
+        selectedPage: function() {
+            if ( _.isNull(this.get("selectedDate")) ) {
+                return this.get("dates")[0];
+            } else {
+                return this.get("selectedDate");
+            }
+        },
+        hasPreviousPage: function() {
+            var selectedPage = this.selectedPage();
+            return _.some(this.get("dates"), function(date) {
+                return date < selectedPage;
+            });
+        },
+        hasNextPage: function() {
+            var selectedPage = this.selectedPage();
+            return _.some(this.get("dates"), function(date) {
+                return date > selectedPage;
+            });
+        }
+    });
+
+    app.GridPageInfo = GridPageInfo;
     app.Role = Role;
     app.Shift = Shift;
     app.Slot = Slot;
