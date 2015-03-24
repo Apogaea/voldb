@@ -39,11 +39,19 @@ class ShiftViewSet(generics.ListAPIView,
             serializer = ShiftSlotSerializer(shift_slot)
             return response.Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
-            raise exceptions.PermissionDenied("You are not allowed to claim this shift")
+            raise exceptions.PermissionDenied("You are not allowed to claim a slot")
 
 
 class ShiftSlotViewSet(generics.ListAPIView,
                        generics.RetrieveAPIView,
+                       generics.UpdateAPIView,
                        viewsets.GenericViewSet):
     queryset = ShiftSlot.objects.all()
     serializer_class = ShiftSlotSerializer
+
+    def update(self, *args, **kwargs):
+        shift_slot = self.get_object()
+        if shift_slot.is_cancelable_by_user(self.request.user):
+            return super(ShiftSlotViewSet, self).update(*args, **kwargs)
+        else:
+            raise exceptions.PermissionDenied("You are not allowed to release this slot")

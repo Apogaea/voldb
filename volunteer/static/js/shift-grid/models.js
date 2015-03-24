@@ -22,7 +22,12 @@ $(function(){
 
     var Shift = Backbone.Model.extend({
         initialize: function(options) {
-            this.set("claimed_slots", new app.Slots(options.claimed_slots || []));
+            var claimedSlots = new app.Slots(options.claimed_slots || []);
+            this.set("claimed_slots", claimedSlots);
+            this.listenTo(claimedSlots, "add remove", this.refetchShift);
+        },
+        refetchShift: function() {
+            this.fetch();
         },
         parse: function(response, options) {
             this.get("claimed_slots").reset(response.claimed_slots || []);
@@ -50,7 +55,6 @@ $(function(){
         },
         cliamSlotSuccess: function(slotData) {
             this.get("claimed_slots").add(slotData);
-            this.fetch();
         },
         /*
          *  Template and View Helpers
@@ -87,9 +91,6 @@ $(function(){
     });
 
     var Slot = Backbone.Model.extend({
-        parse: function() {
-            debugger;
-        },
         urlRoot: "/api/v2/slots/",
         url: function() {
             return this.urlRoot + this.id + "/";

@@ -128,3 +128,25 @@ class ShiftSlot(Timestamped):
             self.cancelled_at = None
 
     is_cancelled = property(_is_cancelled_getter, _is_cancelled_setter)
+
+    @property
+    def is_locked(self):
+        return self.shift.is_locked
+
+    #
+    # Permissions Methods
+    #
+    def is_cancelable_by_user(self, user):
+        """
+        Not locked.
+        Not cancelled.
+        User is the volunteer or is an admin
+        else, not allowed.
+        """
+        if self.is_cancelled:
+            return False
+        elif self.is_locked:
+            return False
+        elif user.pk == self.volunteer_id or user.is_admin:
+            return True
+        return False

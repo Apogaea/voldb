@@ -68,7 +68,22 @@ $(function(){
      *  Modal Window Views
      */
     var ModalSlotView = Backbone.Marionette.ItemView.extend({
-        template: Handlebars.templates.slot_modal_template
+        events: {
+            'click button.release-slot': 'releaseSlot'
+        },
+        template: Handlebars.templates.slot_modal_template,
+        /*
+         *  Releasing a slot,
+         */
+        releaseSlot: function(event) {
+            event.preventDefault();
+            this.model.save({is_cancelled: true}, {
+                success: _.bind(this.releaseSlotSuccess, this)
+            });
+        },
+        releaseSlotSuccess: function(model, response, options) {
+            model.collection.remove(model);
+        }
     });
 
     var ModalShiftView = Backbone.Marionette.CompositeView.extend({
@@ -85,6 +100,7 @@ $(function(){
          *  Claiming a shift slot
          */
         claimSlot: function(event) {
+            event.preventDefault();
             this.model.claimSlot();
         }
     });
