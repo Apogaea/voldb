@@ -20,7 +20,7 @@ $(function(){
     });
 
     var GridCellView = Backbone.Marionette.ItemView.extend({
-        tagName: 'td',
+        tagName: "td",
         attributes: function() {
             var classes = [];
             if ( this.model.get("is_empty") ) { classes.push("empty"); }
@@ -28,7 +28,7 @@ $(function(){
             if ( this.model.get("open_on_right") ) { classes.push("open-right"); }
             return {
                 colspan: this.model.get("columns"),
-                classes: classes.join(' ')
+                classes: classes.join(" ")
             };
         },
         triggers: {
@@ -38,11 +38,11 @@ $(function(){
     });
 
     var GridRowView = NestedCollectionCompositeView.extend({
-        tagName: 'tr',
+        tagName: "tr",
         childView: GridCellView,
         childCollectionProperty: "shifts",
         childEvents: {
-            'cell:click': function(cellView) {
+            "cell:click": function(cellView) {
                 this.trigger("cell:click", cellView);
             }
         },
@@ -50,14 +50,14 @@ $(function(){
     });
 
     var GridView = NestedCollectionCompositeView.extend({
-        tagName: 'table',
+        tagName: "table",
         attributes: {
             class: "table table-bordered shift-grid"
         },
         childView: GridRowView,
         childCollectionProperty: "cells",
         childEvents: {
-            'cell:click': function(childView, cellView) {
+            "cell:click": function(childView, cellView) {
                 this.trigger("cell:click", cellView);
             }
         },
@@ -69,7 +69,7 @@ $(function(){
      */
     var ModalSlotView = Backbone.Marionette.ItemView.extend({
         events: {
-            'click button.release-slot': 'releaseSlot'
+            "click button.release-slot": "releaseSlot"
         },
         template: Handlebars.templates.slot_modal_template,
         /*
@@ -91,10 +91,10 @@ $(function(){
             this.listenTo(this.model, "sync", this.render);
         },
         events: {
-            'click button.claim-slot': 'claimSlot'
+            "click button.claim-slot": "claimSlot"
         },
         childView: ModalSlotView,
-        childViewContainer: '.claimed-slots',
+        childViewContainer: ".claimed-slots",
         template: Handlebars.templates.shift_modal_template,
         /*
          *  Claiming a shift slot
@@ -118,7 +118,7 @@ $(function(){
             });
         },
         childView: ModalShiftView,
-        childViewContainer: '.shifts',
+        childViewContainer: ".shifts",
         childCollectionProperty: "claimed_slots",
         template: Handlebars.templates.role_modal_template
     });
@@ -128,7 +128,7 @@ $(function(){
             class: "modal fade"
         },
         childView: ModalRoleView,
-        childViewContainer: '.roles',
+        childViewContainer: ".roles",
         childCollectionProperty: "shifts",
         template: Handlebars.templates.cell_modal_template
     });

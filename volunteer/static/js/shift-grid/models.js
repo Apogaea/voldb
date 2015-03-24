@@ -7,7 +7,7 @@ $(function(){
         initialize: function(options) {
             if ( _.isArray(options.shifts) ) {
                 var shifts = new app.Shifts(options.shifts);
-                this.set('shifts', shifts);
+                this.set("shifts", shifts);
                 delete options.shifts;
             }
         },
@@ -22,7 +22,7 @@ $(function(){
 
     var Shift = Backbone.Model.extend({
         initialize: function(options) {
-            var claimedSlots = new app.Slots(options.claimed_slots || []);
+            var claimedSlots = new app.Slots((options || {}).claimed_slots || []);
             this.set("claimed_slots", claimedSlots);
             this.listenTo(claimedSlots, "add remove", this.refetchShift);
         },
@@ -31,8 +31,8 @@ $(function(){
         },
         parse: function(response, options) {
             this.get("claimed_slots").reset(response.claimed_slots || []);
-            delete response.claimed_slots
-            return response
+            delete response.claimed_slots;
+            return response;
         },
         urlRoot: "/api/v2/shifts/",
         url: function() {
@@ -45,13 +45,13 @@ $(function(){
          *  Claiming slots
          */
         claimUrl: function() {
-            return this.url() + 'claim/';
+            return this.url() + "claim/";
         },
         claimSlot: function(options) {
             return Backbone.sync("create", new app.Slot(), {
                 url: this.claimUrl(),
                 success: _.bind(this.cliamSlotSuccess, this)
-            })
+            });
         },
         cliamSlotSuccess: function(slotData) {
             this.get("claimed_slots").add(slotData);
@@ -112,12 +112,12 @@ $(function(){
             var shifts = new app.Shifts(_.map(options.shifts, function(shiftId) {
                 return {id: shiftId};
             }));
-            this.set('shifts', shifts);
+            this.set("shifts", shifts);
             delete options.shifts;
 
             // Setup roles collection
             var roles = new app.Roles(options.roles);
-            this.set('roles', roles);
+            this.set("roles", roles);
             delete options.roles;
 
             this.set("end_time", moment(options.end_time));
