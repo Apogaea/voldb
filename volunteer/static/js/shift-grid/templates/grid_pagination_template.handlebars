@@ -1,17 +1,23 @@
-<ul class="pagination">
-    <li{{#unless hasPreviousPage }} class="disabled"{{/unless}}>
-        <a href="#" class="previous-page" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-        </a>
-    </li>
-</ul>
-<ul class="pagination pages">
-    <!-- GridPageNumberView(s) -->
-</ul>
-<ul class="pagination">
-    <li{{#unless hasNextPage }} class="disabled"{{/unless}}>
-        <a href="#" class="next-page" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-        </a>
-    </li>
-</ul>
+<nav>
+    <ul class="pagination pull-left">
+        <li{{#unless hasPreviousPage }} class="disabled"{{/unless}}>
+            <a href="#" class="previous-page" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+    </ul>
+    <ul class="pagination pages">
+        {{#each pages }}
+            <li{{#if isActive }} class="active"{{/if}} data-index="{{ pageNumber }}">
+                <a href="#">{{ dateDisplay }}</a>
+            </li>
+        {{/each}}
+    </ul>
+    <ul class="pagination pull-right">
+        <li{{#unless hasNextPage }} class="disabled"{{/unless}}>
+            <a href="#" class="next-page" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

@@ -16,10 +16,10 @@ $(function(){
 
             // Pagination
             var paginationView = new app.GridPaginationView({
-                model: new app.GridPageInfo(this.shiftData.getPageInfo()),
-                collection: this.shiftData
+                model: new app.GridPageInfo(this.shiftData.getPageInfo())
             });
             this.shiftLayout.pagination.show(paginationView);
+            gridView.listenTo(paginationView.model, "change:selectedDate", gridView.changeDate);
         },
         initializeModal: function(cellView) {
             /*

@@ -27,7 +27,7 @@ $(function(){
         comparator: "date",
         getPageInfo: function() {
             return {
-                dates: this.pluck('date')
+                dates: _.uniq(this.pluck('date'))
             }
         }
     });

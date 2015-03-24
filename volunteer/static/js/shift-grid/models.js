@@ -152,7 +152,7 @@ $(function(){
     var GridRow = Backbone.Model.extend({
         initialize: function(options) {
             this.set("cells", new app.GridCells(options.cells));
-            this.set("date", new Date(options.date));
+            this.set("date", moment(options.date));
         }
     });
 
@@ -160,31 +160,53 @@ $(function(){
         defaults: {
             selectedDate: null
         },
+        selectPage: function(pageNumber) {
+            var dates = this.get("dates");
+            var selectedPage = _.min([
+                _.max([
+                    Number(pageNumber) - 1,
+                    0
+                ]),
+                this.totalPages() - 1
+            ]);
+            this.set("selectedDate", dates[selectedPage]);
+        },
         /*
          *  Template and View Helpers
          */
         exportable: [
-            "selectedPage",
+            "totalPages",
+            "activePage",
             "hasPreviousPage",
             "hasNextPage",
+            "pages",
         ],
-        selectedPage: function() {
+        totalPages: function() {
+            return this.get("dates").length;
+        },
+        activePage: function() {
             if ( _.isNull(this.get("selectedDate")) ) {
-                return this.get("dates")[0];
+                return 1;
             } else {
-                return this.get("selectedDate");
+                return _.indexOf(this.get("dates"), this.get("selectedDate")) + 1;
             }
         },
         hasPreviousPage: function() {
-            var selectedPage = this.selectedPage();
-            return _.some(this.get("dates"), function(date) {
-                return date < selectedPage;
-            });
+            return this.activePage() > 1;
         },
         hasNextPage: function() {
-            var selectedPage = this.selectedPage();
-            return _.some(this.get("dates"), function(date) {
-                return date > selectedPage;
+            return this.activePage() < this.totalPages();
+        },
+        pages: function() {
+            var dates = this.get("dates");
+            var activePage = this.activePage();
+            return _.map(this.get("dates"), function(date) {
+                var pageNumber = _.indexOf(dates, date) + 1;
+                return {
+                    pageNumber: pageNumber,
+                    isActive: pageNumber === activePage,
+                    dateDisplay: date.format("ddd (Do)")
+                };
             });
         }
     });

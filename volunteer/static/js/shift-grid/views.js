@@ -27,16 +27,33 @@ $(function(){
     /*
      *  Pagination views
      */
-    var GridPageNumberView = Backbone.Marionette.ItemView.extend({
-        tagName: "li",
-        template: Handlebars.templates.grid_page_number_template
-    });
-
-    var GridPaginationView = Backbone.Marionette.CompositeView.extend({
-        tagName: "nav",
+    var GridPaginationView = Backbone.Marionette.ItemView.extend({
+        initialize: function(options) {
+            this.listenTo(this.model, "change", this.render);
+        },
+        tagName: "div",
+        attributes: {
+            class: "text-center"
+        },
         template: Handlebars.templates.grid_pagination_template,
-        childView: GridPageNumberView,
-        childViewContainer: ".pages"
+        events: {
+            "click ul.pages li": "selectPage",
+            "click a.previous-page": "decrementPage",
+            "click a.next-page": "incrementPage",
+        },
+        selectPage: function(event) {
+            event.preventDefault();
+            var selectedPage = event.currentTarget.dataset.index;
+            this.model.selectPage(selectedPage);
+        },
+        decrementPage: function(event) {
+            event.preventDefault();
+            this.model.selectPage(this.model.activePage() - 1);
+        },
+        incrementPage: function(event) {
+            event.preventDefault();
+            this.model.selectPage(this.model.activePage() + 1);
+        }
     });
 
     /*
@@ -82,6 +99,9 @@ $(function(){
         /*
          *  View for the full table of the shift grid.
          */
+        initialize: function(options) {
+            this.selectedDate = this.collection.first().get("date");
+        },
         tagName: "table",
         attributes: {
             class: "table table-bordered shift-grid"
@@ -93,7 +113,14 @@ $(function(){
                 this.trigger("cell:click", cellView);
             }
         },
-        template: Handlebars.templates.shift_grid_template
+        template: Handlebars.templates.shift_grid_template,
+        filter: function(child, index, collection) {
+            return child.get("date") === this.selectedDate;
+        },
+        changeDate: function(model, value, options) {
+            this.selectedDate = value;
+            this.render();
+        }
     });
 
     /*
