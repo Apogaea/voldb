@@ -10,7 +10,7 @@ class DepartmentListView(LoginRequiredMixin, ListView):
     context_object_name = 'departments'
 
     def get_queryset(self):
-        return Department.objects.filter(roles__isnull=False)
+        return Department.objects.filter(roles__isnull=False).distinct()
 
 
 class DepartmentDetailView(LoginRequiredMixin, DetailView):
@@ -18,4 +18,6 @@ class DepartmentDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'department'
 
     def get_queryset(self):
-        return Department.objects.filter(roles__isnull=False).prefetch_related('roles')
+        return Department.objects.filter(
+            roles__isnull=False,
+        ).distinct().prefetch_related('roles')
