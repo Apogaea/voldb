@@ -9,4 +9,6 @@ register = template.Library()
 
 @register.filter(name='serialized_user')
 def serialized_user(user):
+    if user.is_anonymous():
+        return {"id": None}
     return UserSerializer(user).data
