@@ -41,7 +41,7 @@
 <script>
 $(document).ready(function() {
     var applications = {};
-    {% for row in department.roles.all %}applications.role_{{ role.pk }} = new app.ShiftGridApplication({
+    {% for role in department.roles.all %}applications.role_{{ role.pk }} = new app.ShiftGridApplication({
         el: $('#role-{{ role.id }}-shift-grid-container'),
         rows: {{ role.shifts.all|as_grid|json }}
     });
