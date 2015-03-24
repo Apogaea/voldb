@@ -8,10 +8,9 @@ $(function(){
      */
     var Role = Backbone.Model.extend({
         initialize: function(options) {
-            if ( _.isArray(options.shifts) ) {
+            if ( _.isArray((options || {}).shifts) ) {
                 var shifts = new app.Shifts(options.shifts);
                 this.set("shifts", shifts);
-                delete options.shifts;
             }
         },
         urlRoot: "/api/v2/roles/",
