@@ -1,15 +1,53 @@
 {% extends "layout_full.html" %}
+{% load shift_utils argonauts %}
 
 {% block content %}
-    <h1>{{ department }}</h1>
-    <section id="department">
-        <h2><span>Description</span></h2>
-        <p>{{ department.description }}</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Department: {{ department }}</h2>
+                <p>{{ department.description|linebreaksbr }}</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Roles</h3>
+                <ul>
+                    {% for role in department.roles.all %}
+                        <li><a href="#role-{{ role.pk }}">{{ role }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
     </section>
     {% for role in department.roles.all %}
-        <section id="department">
-            <h2>{{ role }}</h2>
-            <p>{{ role.description }}</p>
-        </section>
+        <div class="role">
+            <h4>
+                Role: {{ role }}
+                <a href="#role-{{ role.pk }}" class="text-muted">
+                    <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                </a>
+            </h4>
+            <p>{{ role.description|linebreaksbr }}</p>
+            <div id="role-{{ role.pk }}-shift-grid-container">
+                {% include "shifts/partials/shift_grid.html" %}
+            </div>
+        </div>
     {% endfor %}
+{% endblock %}
+
+
+{% block extra_javascript %}
+{{ block.super }}
+<script>
+$(document).ready(function() {
+    var applications = {};
+    {% for row in department.roles.all %}applications.role_{{ role.pk }} = new app.ShiftGridApplication({
+        el: $('#role-{{ role.id }}-shift-grid-container'),
+        rows: {{ role.shifts.all|as_grid|json }}
+    });
+    applications.role_{{ role.pk }}.start();
+    {% endfor %}
+    window.applications = applications;
+});
+</script>
 {% endblock %}
