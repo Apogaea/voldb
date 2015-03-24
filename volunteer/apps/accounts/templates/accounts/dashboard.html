@@ -1,4 +1,5 @@
 {% extends "layout_full.html" %}
+{% load shift_utils argonauts %}
 
 {% block content %}
     <h1>Account Dashboard</h1>
@@ -15,5 +16,21 @@
         </div>            
     </section>
     <h1>Your Schedule</h1>
-    <p>TODO</p>
+    <div id="my-shifts-grid" class="shift-grid">
+        {% include "shifts/partials/shift_grid.html" %}
+    </div>
+{% endblock %}
+
+
+{% block extra_javascript %}
+{{ block.super }}
+<script>
+$(document).ready(function() {
+    var application = new app.ShiftGridApplication({
+        el: $('my-shifts-grid'),
+        rows: {{ user.shifts|as_grid|json }}
+    });
+    window.application = application;
+});
+</script>
 {% endblock %}

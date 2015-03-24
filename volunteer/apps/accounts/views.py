@@ -100,7 +100,7 @@ class RegisterConfirmView(AnonymousRequiredMixin, CreateView):
 class DashboardView(LoginRequiredMixin, DetailView):
     template_name = 'accounts/dashboard.html'
 
-    def get_object(self):
+    def get_object(self, *args, **kwargs):
         return self.request.user
 
 
@@ -109,5 +109,5 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     form_class = ProfileForm
     success_url = reverse_lazy('dashboard')
 
-    def get_object(self):
+    def get_object(self, *args, **kwargs):
         return self.request.user.profile

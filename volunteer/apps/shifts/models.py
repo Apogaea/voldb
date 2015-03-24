@@ -105,7 +105,7 @@ class Shift(Timestamped):
 @python_2_unicode_compatible
 class ShiftSlot(Timestamped):
     shift = models.ForeignKey('Shift', related_name='slots')
-    volunteer = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='shifts')
+    volunteer = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='shift_slots')
 
     cancelled_at = models.DateTimeField(null=True)
 

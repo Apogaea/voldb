@@ -1,6 +1,8 @@
 import datetime
 import factory
 
+from django.utils import timezone
+
 from volunteer.apps.shifts.models import (
     Shift,
     Role,
@@ -54,3 +56,7 @@ class ShiftSlotFactory(factory.DjangoModelFactory):
 
     class Meta:
         model = ShiftSlot
+
+
+class CancelledShiftSlotFactory(ShiftSlotFactory):
+    cancelled_at = factory.LazyAttribute(lambda x: timezone.now())

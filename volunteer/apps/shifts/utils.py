@@ -240,9 +240,19 @@ def shifts_as_grid(shifts):
         )
     )
 
-    shift_data = shifts.values(
-        'id', 'start_time', 'shift_length', 'role_id',
-    )
+    try:
+        shift_data = shifts.values(
+            'id', 'start_time', 'shift_length', 'role_id',
+        )
+    except AttributeError:
+        shift_data = [
+            {
+                'id': shift.pk,
+                'start_time': shift.start_time,
+                'shift_length': shift.shift_length,
+                'role_id': shift.role_id,
+            } for shift in shifts
+        ]
 
     def shift_intersects_date(date, shift):
         end_time = shift['start_time'] + datetime.timedelta(hours=shift['shift_length'])
