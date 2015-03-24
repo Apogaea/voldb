@@ -22,6 +22,14 @@ class User(AbstractEmailUser):
             from volunteer.apps.profiles.models import Profile
             return Profile.objects.get_or_create(user=self)[0]
 
+    @property
+    def shifts(self):
+        return tuple(set((
+            shift_slot.shift
+            for shift_slot
+            in self.shift_slots.filter(cancelled_at__isnull=True).select_related('shift')
+        )))
+
     def __str__(self):
         if self.pk is None:
             return "Unsaved User"
