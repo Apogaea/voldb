@@ -24,10 +24,20 @@ $(function(){
 
     var GridRows = Backbone.Collection.extend({
         model: app.GridRow,
-        comparator: "date",
+        comparator: function(a, b) {
+            if ( a.get("date") < b.get("date") ) {
+                return -1;
+            } else if ( a.get("date") > b.get("date") ) {
+                return 1;
+            } else {
+                return 0;
+            }
+        },
         getPageInfo: function() {
             return {
-                dates: _.uniq(this.pluck('date'))
+                dates: _.uniq(this.pluck('date'), true, function(date) {
+                    return date.toString();
+                })
             };
         }
     });

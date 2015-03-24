@@ -20,5 +20,3 @@ describe("Role.isHydrated", function() {
     expect(role.isHydrated()).toBe(true);
   });
 });
-
-

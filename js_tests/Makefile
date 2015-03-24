@@ -22,3 +22,4 @@ compile-handlebars:
 
 lint:
 	jshint ../volunteer/static/js/shift-grid/
+	jshint spec/javascripts/

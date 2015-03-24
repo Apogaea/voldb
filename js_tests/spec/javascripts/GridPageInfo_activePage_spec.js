@@ -13,25 +13,25 @@ describe("Role.isHydrated", function() {
 
   it("should start be on page 1 if first date selected", function() {
     var pageInfo = new app.GridPageInfo({dates: dates});
-    pageInfo.set("selectedDate", d1)
+    pageInfo.set("selectedDate", d1);
     expect(pageInfo.activePage()).toEqual(1);
   });
 
   it("should start be on page 2 if second date selected", function() {
     var pageInfo = new app.GridPageInfo({dates: dates});
-    pageInfo.set("selectedDate", d2)
+    pageInfo.set("selectedDate", d2);
     expect(pageInfo.activePage()).toEqual(2);
   });
 
   it("should start be on page 3 if third date selected", function() {
     var pageInfo = new app.GridPageInfo({dates: dates});
-    pageInfo.set("selectedDate", d3)
+    pageInfo.set("selectedDate", d3);
     expect(pageInfo.activePage()).toEqual(3);
   });
 
   it("should start be on page 4 if fourth date selected", function() {
     var pageInfo = new app.GridPageInfo({dates: dates});
-    pageInfo.set("selectedDate", d4)
+    pageInfo.set("selectedDate", d4);
     expect(pageInfo.activePage()).toEqual(4);
   });
 });
