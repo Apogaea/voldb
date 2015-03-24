@@ -23,7 +23,13 @@ $(function(){
     });
 
     var GridRows = Backbone.Collection.extend({
-        model: app.GridRow
+        model: app.GridRow,
+        comparator: "date",
+        getPageInfo: function() {
+            return {
+                dates: _.uniq(this.pluck('date'))
+            };
+        }
     });
 
     app.Roles = Roles;

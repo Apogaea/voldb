@@ -8,7 +8,7 @@ from django.utils.encoding import python_2_unicode_compatible
 @python_2_unicode_compatible
 class Department(models.Model):
     name = models.CharField(max_length=200)
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True)
     active_lead = models.ForeignKey(
         settings.AUTH_USER_MODEL, blank=True, null=True, related_name='lead',
     )
@@ -18,3 +18,6 @@ class Department(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ('name',)

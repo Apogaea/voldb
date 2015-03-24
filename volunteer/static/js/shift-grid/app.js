@@ -7,11 +7,19 @@ $(function(){
         initialize: function(options) {
             this.shiftData = new app.GridRows(options.rows);
             this.shiftLayout = this.initializeLayout(options.el);
+            // Shift Grid
             var gridView = new app.GridView({
                 collection: this.shiftData
             });
             this.shiftLayout.grid.show(gridView);
             this.listenTo(gridView, "cell:click", this.initializeModal);
+
+            // Pagination
+            var paginationView = new app.GridPaginationView({
+                model: new app.GridPageInfo(this.shiftData.getPageInfo())
+            });
+            this.shiftLayout.pagination.show(paginationView);
+            gridView.listenTo(paginationView.model, "change:selectedDate", gridView.changeDate);
         },
         initializeModal: function(cellView) {
             /*

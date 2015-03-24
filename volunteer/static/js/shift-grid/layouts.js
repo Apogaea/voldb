@@ -5,9 +5,10 @@ $(function(){
 
     var ShiftGridLayout = Backbone.Marionette.LayoutView.extend({
         regions: {
-            grid: ".shift-grid",
-            cell_modal: ".cell-modal",
-        },
+            pagination: ".shift-grid-pagination",
+            grid: ".shift-grid-table",
+            cell_modal: ".cell-modal"
+        }
     });
 
     app.ShiftGridLayout = ShiftGridLayout;

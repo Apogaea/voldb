@@ -3,12 +3,14 @@ var app = app || {};
 $(function(){
     "use-strict";
 
+    /*
+     *  Models that are backed by database tables.
+     */
     var Role = Backbone.Model.extend({
         initialize: function(options) {
-            if ( _.isArray(options.shifts) ) {
+            if ( _.isArray((options || {}).shifts) ) {
                 var shifts = new app.Shifts(options.shifts);
                 this.set("shifts", shifts);
-                delete options.shifts;
             }
         },
         urlRoot: "/api/v2/roles/",
@@ -106,6 +108,9 @@ $(function(){
         }
     });
 
+    /*
+     *  Meta models that are used for the shift grid views
+     */
     var GridCell = Backbone.Model.extend({
         initialize: function(options) {
             // Setup shift collection
@@ -146,10 +151,66 @@ $(function(){
     var GridRow = Backbone.Model.extend({
         initialize: function(options) {
             this.set("cells", new app.GridCells(options.cells));
-            delete options.cells;
+            this.set("date", moment(options.date));
         }
     });
 
+    var GridPageInfo = Backbone.Model.extend({
+        defaults: {
+            selectedDate: null
+        },
+        selectPage: function(pageNumber) {
+            var dates = this.get("dates");
+            var selectedPage = _.min([
+                _.max([
+                    Number(pageNumber) - 1,
+                    0
+                ]),
+                this.totalPages() - 1
+            ]);
+            this.set("selectedDate", dates[selectedPage]);
+        },
+        /*
+         *  Template and View Helpers
+         */
+        exportable: [
+            "totalPages",
+            "activePage",
+            "hasPreviousPage",
+            "hasNextPage",
+            "pages",
+        ],
+        totalPages: function() {
+            return this.get("dates").length;
+        },
+        activePage: function() {
+            if ( _.isNull(this.get("selectedDate")) ) {
+                return 1;
+            } else {
+                return _.indexOf(this.get("dates"), this.get("selectedDate")) + 1;
+            }
+        },
+        hasPreviousPage: function() {
+            return this.activePage() > 1;
+        },
+        hasNextPage: function() {
+            return this.activePage() < this.totalPages();
+        },
+        pages: function() {
+            var dates = this.get("dates");
+            var activePage = this.activePage();
+            return _.map(this.get("dates"), function(date) {
+                var pageNumber = _.indexOf(dates, date) + 1;
+                return {
+                    pageNumber: pageNumber,
+                    isActive: pageNumber === activePage,
+                    dateDisplay: date.format("ddd (Do)")
+                };
+            });
+        }
+    });
+
+    app.GridPageInfo = GridPageInfo;
     app.Role = Role;
     app.Shift = Shift;
     app.Slot = Slot;

@@ -2,7 +2,13 @@ var app = app || {};
 
 $(function(){
     "use-strict";
+
     var NestedCollectionCompositeView = Backbone.Marionette.CompositeView.extend({
+        /*
+         *  This view class instantiates a childview that is also a composite
+         *  view, using a property of the child model as the collection value
+         *  for the child view.
+         */
         buildChildView: function(child, ChildViewClass, childViewOptions){
             // build the final list of options for the childView class
             if ( _.isUndefined(this.childCollectionProperty) ) {
@@ -18,8 +24,45 @@ $(function(){
             return view;
         },
     });
+    /*
+     *  Pagination views
+     */
+    var GridPaginationView = Backbone.Marionette.ItemView.extend({
+        initialize: function(options) {
+            this.listenTo(this.model, "change", this.render);
+        },
+        tagName: "div",
+        attributes: {
+            class: "text-center"
+        },
+        template: Handlebars.templates.grid_pagination_template,
+        events: {
+            "click ul.pages li": "selectPage",
+            "click a.previous-page": "decrementPage",
+            "click a.next-page": "incrementPage",
+        },
+        selectPage: function(event) {
+            event.preventDefault();
+            var selectedPage = event.currentTarget.dataset.index;
+            this.model.selectPage(selectedPage);
+        },
+        decrementPage: function(event) {
+            event.preventDefault();
+            this.model.selectPage(this.model.activePage() - 1);
+        },
+        incrementPage: function(event) {
+            event.preventDefault();
+            this.model.selectPage(this.model.activePage() + 1);
+        }
+    });
 
+    /*
+     *  shift grid table views
+     */
     var GridCellView = Backbone.Marionette.ItemView.extend({
+        /*
+         *  View for a single cell in the shift grid.
+         */
         tagName: "td",
         attributes: function() {
             var classes = [];
@@ -38,6 +81,9 @@ $(function(){
     });
 
     var GridRowView = NestedCollectionCompositeView.extend({
+        /*
+         *  View for a single row in the shift grid.
+         */
         tagName: "tr",
         childView: GridCellView,
         childCollectionProperty: "shifts",
@@ -50,6 +96,12 @@ $(function(){
     });
 
     var GridView = NestedCollectionCompositeView.extend({
+        /*
+         *  View for the full table of the shift grid.
+         */
+        initialize: function(options) {
+            this.selectedDate = this.collection.first().get("date");
+        },
         tagName: "table",
         attributes: {
             class: "table table-bordered shift-grid"
@@ -61,7 +113,14 @@ $(function(){
                 this.trigger("cell:click", cellView);
             }
         },
-        template: Handlebars.templates.shift_grid_template
+        template: Handlebars.templates.shift_grid_template,
+        filter: function(child, index, collection) {
+            return child.get("date") === this.selectedDate;
+        },
+        changeDate: function(model, value, options) {
+            this.selectedDate = value;
+            this.render();
+        }
     });
 
     /*
@@ -133,6 +192,7 @@ $(function(){
         template: Handlebars.templates.cell_modal_template
     });
 
+    app.GridPaginationView = GridPaginationView;
     app.GridView = GridView;
     app.ModalCellView = ModalCellView;
 });
