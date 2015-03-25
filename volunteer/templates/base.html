@@ -26,10 +26,13 @@
                 <ul class="nav navbar-nav pull-right">
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% comment %}
+                    {# No admin so this url borks #}
                     {% if user.is_admin %}
                         <li><p class="navbar-text">|</p></li>
                         <li><a href="{% url 'admin:index' %}">Admin</a></li>
                     {% endif %}
+                    {% endcomment %}
                     {% else %}
                         <li><a href="{% url 'login' %}">Login</a></li>
                         <li><a href="{% url 'register' %}">Register</a></li>
