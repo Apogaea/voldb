@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'emailtools',
     'rest_framework',
     'pipeline',
+    's3_folder_storage',
     'bootstrap3',
     'argonauts',
     'raven.contrib.django.raven_compat',
