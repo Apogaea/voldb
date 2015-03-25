@@ -37,9 +37,8 @@ class RoleFactory(factory.DjangoModelFactory):
 
 def get_default_event(*args, **kwargs):
     from volunteer.apps.events.models import Event
-    try:
-        return Event.objects.get_current()
-    except IndexError:
+    current_event = Event.objects.get_current()
+    if current_event is None:
         open_at = timezone.now().replace(
             year=2014, month=3, day=1, hour=0, minute=0, second=0, microsecond=0,
         )
@@ -47,11 +46,12 @@ def get_default_event(*args, **kwargs):
             year=2014, month=5, day=1, hour=0, minute=0, second=0, microsecond=0,
         )
 
-        return Event.objects.create(
+        current_event = Event.objects.create(
             name="Apogaea 2014",
             registration_open_at=open_at,
             registration_close_at=close_at,
         )
+    return current_event
 
 
 class ShiftFactory(factory.DjangoModelFactory):
