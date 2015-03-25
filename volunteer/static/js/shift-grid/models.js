@@ -167,8 +167,8 @@ $(function(){
 
             endAtFormat += "A";
 
-            if ( !(startAt.format("A") === endAt.format("A")) ) {
-                startAtFormat += "A"
+            if ( (startAt.format("A") !== endAt.format("A")) ) {
+                startAtFormat += "A";
             }
             return startAt.format(startAtFormat) + "-" + endAt.format(endAtFormat);
         },
