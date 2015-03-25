@@ -9,7 +9,7 @@ from volunteer.core.models import Timestamped
 class EventQuerySet(models.QuerySet):
     def get_current(self):
         if settings.CURRENT_EVENT_ID is None:
-            return self[0]
+            return self.first()
         else:
             return self.get(pk=settings.CURRENT_EVENT_ID)
 

@@ -30,7 +30,10 @@ class ShiftQuerySet(models.QuerySet):
     def filter_to_current_event(self):
         from volunteer.apps.events.models import Event
         current_event = Event.objects.get_current()
-        return self.filter(event=current_event)
+        if current_event is None:
+            return self
+        else:
+            return self.filter(event=current_event)
 
 
 @python_2_unicode_compatible
