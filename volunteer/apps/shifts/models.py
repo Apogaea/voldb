@@ -24,6 +24,15 @@ class Role(Timestamped):
         return self.name
 
 
+class ShiftQuerySet(models.QuerySet):
+    use_for_related_fields = True
+
+    def filter_to_current_event(self):
+        from volunteer.apps.events.models import Event
+        current_event = Event.objects.get_current()
+        return self.filter(event=current_event)
+
+
 @python_2_unicode_compatible
 class Shift(Timestamped):
     event = models.ForeignKey(
@@ -37,6 +46,8 @@ class Shift(Timestamped):
     num_slots = models.PositiveSmallIntegerField(default=1)
 
     code = models.CharField(max_length=20, blank=True)
+
+    objects = ShiftQuerySet.as_manager()
 
     def __str__(self):
         return self.get_start_time_display()

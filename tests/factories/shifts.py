@@ -35,8 +35,27 @@ class RoleFactory(factory.DjangoModelFactory):
         model = Role
 
 
+def get_default_event(*args, **kwargs):
+    from volunteer.apps.events.models import Event
+    try:
+        return Event.objects.get_current()
+    except IndexError:
+        open_at = timezone.now().replace(
+            year=2014, month=3, day=1, hour=0, minute=0, second=0, microsecond=0,
+        )
+        close_at = timezone.now().replace(
+            year=2014, month=5, day=1, hour=0, minute=0, second=0, microsecond=0,
+        )
+
+        return Event.objects.create(
+            name="Apogaea 2014",
+            registration_open_at=open_at,
+            registration_close_at=close_at,
+        )
+
+
 class ShiftFactory(factory.DjangoModelFactory):
-    event = factory.SubFactory('tests.factories.events.EventFactory')
+    event = factory.LazyAttribute(get_default_event)
     role = factory.SubFactory(RoleFactory)
     start_time = factory.LazyAttribute(
         lambda x: today_at_hour(9)
