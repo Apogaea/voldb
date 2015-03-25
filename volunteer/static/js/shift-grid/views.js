@@ -127,7 +127,7 @@ $(function(){
         templateHelpers: function() {
             return {
                 gridDateDisplay: this.gridDateDisplay(),
-            }
+            };
         },
         gridDateDisplay: function() {
             return this.selectedDate.format("dddd, MMMM Do YYYY");
