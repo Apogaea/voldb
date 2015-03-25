@@ -465,13 +465,13 @@ def test_complex_grouping_with_shifts_spanning_midnight(factories):
     data_0, data_1, data_2 = data
 
     assert data_0['date'] == yesterday
-    assert len(data_0['cells']) == 3  # this is the tabular data, dunno what to assert.
+    assert len(data_0['cells']) == 2  # this is the tabular data, dunno what to assert.
 
     assert data_1['date'] == today
-    assert len(data_1['cells']) == 3  # this is the tabular data, dunno what to assert.
+    assert len(data_1['cells']) == 2  # this is the tabular data, dunno what to assert.
 
     assert data_2['date'] == tomorrow
-    assert len(data_2['cells']) == 3  # this is the tabular data, dunno what to assert.
+    assert len(data_2['cells']) == 2  # this is the tabular data, dunno what to assert.
 
 
 @pytest.mark.django_db
@@ -494,7 +494,7 @@ def test_shifts_ending_at_midnight_do_not_overlap(factories):
     assert len(data_0['cells']) == 2  # this is the tabular data, dunno what to assert.
 
     assert data_1['date'] == today
-    assert len(data_1['cells']) == 2  # this is the tabular data, dunno what to assert.
+    assert len(data_1['cells']) == 3  # this is the tabular data, dunno what to assert.
 
 
 #
