@@ -1,8 +1,7 @@
-def test_get_current_event_when_setting_not_set(settings, models):
+def test_get_current_event_when_setting_not_set(settings, models, factories):
     settings.CURRENT_EVENT_ID = None
-    # sanity
-    assert models.Event.objects.exists()
-    latest_event = models.Event.objects.last()
+    factories.FutureEventFactory()
+    latest_event = models.Event.objects.first()
     event = models.Event.objects.get_current()
     assert latest_event == event
 
