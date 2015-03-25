@@ -120,6 +120,17 @@ $(function(){
         changeDate: function(model, value, options) {
             this.selectedDate = value;
             this.render();
+        },
+        /*
+         *  Template Helpers
+         */
+        templateHelpers: function() {
+            return {
+                gridDateDisplay: this.gridDateDisplay(),
+            }
+        },
+        gridDateDisplay: function() {
+            return this.selectedDate.format("dddd, MMMM Do YYYY");
         }
     });
 
