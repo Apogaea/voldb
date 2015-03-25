@@ -38,16 +38,12 @@ class RoleFactory(factory.DjangoModelFactory):
 def get_default_event(*args, **kwargs):
     from volunteer.apps.events.models import Event
     current_event = Event.objects.get_current()
-    if current_event is None:
-        open_at = timezone.now().replace(
-            year=2014, month=3, day=1, hour=0, minute=0, second=0, microsecond=0,
-        )
-        close_at = timezone.now().replace(
-            year=2014, month=5, day=1, hour=0, minute=0, second=0, microsecond=0,
-        )
+    if current_event is None or not current_event.is_registration_open:
+        open_at = timezone.now() - timezone.timedelta(10)
+        close_at = timezone.now() + timezone.timedelta(10)
 
         current_event = Event.objects.create(
-            name="Apogaea 2014",
+            name="Apogaea",
             registration_open_at=open_at,
             registration_close_at=close_at,
         )
