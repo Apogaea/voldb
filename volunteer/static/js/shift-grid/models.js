@@ -50,13 +50,14 @@ $(function(){
             return this.url() + "claim/";
         },
         claimSlot: function(options) {
-            return Backbone.sync("create", new app.Slot(), {
+            return Backbone.sync("create", new app.Slot(), _.extend(options, {
                 url: this.claimUrl(),
-                success: _.bind(this.cliamSlotSuccess, this)
-            });
+                success: _.bind(this.claimSlotSuccess, this)
+            }));
         },
-        cliamSlotSuccess: function(slotData) {
+        claimSlotSuccess: function(slotData) {
             this.get("claimed_slots").add(slotData);
+            this.set("claimErrors", []);
         },
         /*
          *  Template and View Helpers
@@ -66,6 +67,8 @@ $(function(){
             "alreadyClaimedByUser",
             "hasOpenSlots",
             "isClaimable",
+            "hasErrors",
+            "errors",
         ],
         shiftIcon: function() {
             if ( this.get("is_locked") ) {
@@ -90,6 +93,16 @@ $(function(){
             }
             return true;
         },
+        hasErrors: function() {
+            return !_.isEmpty(this.get("claimErrors"));
+        },
+        errors: function() {
+            return _.map(this.get("claimErrors") || [], function(error) {
+                return {
+                    errorMessage: error
+                };
+            });
+        }
     });
 
     var Slot = Backbone.Model.extend({
