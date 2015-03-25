@@ -65,13 +65,13 @@ $(function(){
          */
         tagName: "td",
         attributes: function() {
-            var classes = [];
+            var classes = ["panel", "panel-default"];
             if ( this.model.get("is_empty") ) { classes.push("empty"); }
             if ( this.model.get("open_on_left") ) { classes.push("open-left"); }
             if ( this.model.get("open_on_right") ) { classes.push("open-right"); }
             return {
                 colspan: this.model.get("columns"),
-                classes: classes.join(" ")
+                class: classes.join(" ")
             };
         },
         triggers: {

@@ -65,6 +65,7 @@ $(function(){
         exportable: [
             "shiftIcon",
             "alreadyClaimedByUser",
+            "pluralOpenSlots",
             "hasOpenSlots",
             "isClaimable",
             "hasErrors",
@@ -78,6 +79,9 @@ $(function(){
             } else {
                 return "minus-sign";
             }
+        },
+        pluralOpenSlots: function() {
+            return this.get("open_slot_count") > 1;
         },
         hasOpenSlots: function() {
             return Boolean(this.get("open_slot_count"));
@@ -150,19 +154,38 @@ $(function(){
         exportable: [
             "cellTitleShort",
             "cellTitleLong",
+            "pluralOpenSlots",
+            "hasUserShifts"
         ],
         cellTitleShort: function() {
             var startAt = this.get("start_time");
             var endAt = this.get("end_time");
-            if ( startAt.format("A") === endAt.format("A") ) {
-                return startAt.format("h:mm") + "-" + endAt.format("h:mm A");
-            } else {
-                return startAt.format("h:mm A") + "-" + endAt.format("h:mm A");
+            var startAtFormat = "h";
+            var endAtFormat = "h";
+            if ( startAt.minutes() > 0 ) { startAtFormat += ":mm"; }
+            if ( endAt.minutes() > 0 ) { endAtFormat += ":mm"; }
+
+            endAtFormat += "A";
+
+            if ( !(startAt.format("A") === endAt.format("A")) ) {
+                startAtFormat += "A"
             }
+            return startAt.format(startAtFormat) + "-" + endAt.format(endAtFormat);
         },
         cellTitleLong: function() {
             var startAt = this.get("start_time");
             return this.cellTitleShort() + " " + startAt.format("dddd, MMMM Do YYYY");
+        },
+        pluralOpenSlots: function() {
+            return this.get("open_slot_count") > 1;
+        },
+        hasUserShifts: function() {
+            if ( this.get("is_empty") ) {
+                return false;
+            }
+            var userShiftIds = window.django_user.get("shifts");
+            var cellShiftIds = this.get("shifts").pluck("id");
+            return !_.isEmpty(_.intersection(userShiftIds, cellShiftIds));
         }
     });
 
