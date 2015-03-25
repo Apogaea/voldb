@@ -2,6 +2,7 @@ import datetime
 import factory
 
 from django.utils import timezone
+from django.conf import settings
 
 from volunteer.apps.shifts.models import (
     Shift,
@@ -38,7 +39,9 @@ class RoleFactory(factory.DjangoModelFactory):
 def get_default_event(*args, **kwargs):
     from volunteer.apps.events.models import Event
     current_event = Event.objects.get_current()
-    if current_event is None or not current_event.is_registration_open:
+    if current_event is None or (
+        not current_event.is_registration_open and settings.CURRENT_EVENT_ID is None
+    ):
         open_at = timezone.now() - timezone.timedelta(10)
         close_at = timezone.now() + timezone.timedelta(10)
 
