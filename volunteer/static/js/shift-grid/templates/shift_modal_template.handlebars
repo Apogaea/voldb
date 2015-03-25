@@ -11,7 +11,31 @@
     {{/if}}
     {{#if isClaimable }}
         <div class="claim-slot">
-            <button type="button" class="btn btn-primary claim-slot">Claim a slot</button>
+            {{#if is_protected }}
+                {{#if hasErrors }}
+                    {{#each errors }}
+                        <div class="alert alert-danger alert-dismissable alert-link">
+                            <button class="close" type="button" data-dismiss="alert" aria-hidden="true">x</button>
+
+                            {{ errorMessage }}
+
+                        </div>
+                    {{/each}}
+                {{/if}}
+                <div class="form-group col-3-md">
+                    <div class="input-group{{#if hasErrors }} has-error{{/if}}">
+                        <span class="input-group-addon" id="unlock_code-addon">Code:</span>
+                        <input type="text" class="form-control" name="unlock_code"
+                               placeholder="Pass Code"
+                               aria-describedby="unlock_code-addon">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary claim-slot" type="button">Cliam a slot</button>
+                        </span>
+                    </div>
+                </div>
+            {{else}}
+                <button type="button" class="btn btn-primary claim-slot">Claim a slot</button>
+            {{/if}}
         </div>
     {{/if}}
 </div>

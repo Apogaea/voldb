@@ -71,7 +71,8 @@ class Shift(Timestamped):
             return False
         return True
 
-    def requires_code(self):
+    @property
+    def is_protected(self):
         return bool(self.code)
 
     @property

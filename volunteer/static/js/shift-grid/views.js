@@ -160,7 +160,19 @@ $(function(){
          */
         claimSlot: function(event) {
             event.preventDefault();
-            this.model.claimSlot();
+            var options = {
+                error: _.bind(this.claimSlotError, this)
+            };
+            if ( this.model.get("is_protected") ) {
+                options.attrs = {
+                    unlock_code: this.$el.find("input[name='unlock_code']").val()
+                };
+            }
+            this.model.claimSlot(options);
+        },
+        claimSlotError: function(jqXHR, textStatus, errorThrown) {
+            this.model.set("claimErrors", jqXHR.responseJSON.non_field_errors);
+            this.render();
         }
     });
 
