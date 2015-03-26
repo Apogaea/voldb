@@ -15,8 +15,6 @@ urlpatterns = patterns(
     ),
     # Site Home Page
     url(r'^$', views.SiteIndexView.as_view(), name='site-index'),
-    # tmp
-    url(r'^shift-grid/$', views.ShiftGridView.as_view(), name='shift-grid'),
 
     # App Views
     # url(r'^admin/', include('volunteer.core.admin.urls', namespace='admin')),

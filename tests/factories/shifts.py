@@ -2,6 +2,7 @@ import datetime
 import factory
 
 from django.utils import timezone
+from django.conf import settings
 
 from volunteer.apps.shifts.models import (
     Shift,
@@ -35,8 +36,25 @@ class RoleFactory(factory.DjangoModelFactory):
         model = Role
 
 
+def get_default_event(*args, **kwargs):
+    from volunteer.apps.events.models import Event
+    current_event = Event.objects.get_current()
+    if current_event is None or (
+        not current_event.is_registration_open and settings.CURRENT_EVENT_ID is None
+    ):
+        open_at = timezone.now() - timezone.timedelta(10)
+        close_at = timezone.now() + timezone.timedelta(10)
+
+        current_event = Event.objects.create(
+            name="Apogaea",
+            registration_open_at=open_at,
+            registration_close_at=close_at,
+        )
+    return current_event
+
+
 class ShiftFactory(factory.DjangoModelFactory):
-    event = factory.SubFactory('tests.factories.events.EventFactory')
+    event = factory.LazyAttribute(get_default_event)
     role = factory.SubFactory(RoleFactory)
     start_time = factory.LazyAttribute(
         lambda x: today_at_hour(9)

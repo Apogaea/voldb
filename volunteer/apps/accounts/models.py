@@ -24,10 +24,15 @@ class User(AbstractEmailUser):
 
     @property
     def shifts(self):
+        from volunteer.apps.events.models import Event
+        current_event = Event.objects.get_current()
+        slots = self.shift_slots.filter(
+            cancelled_at__isnull=True,
+        ).select_related('shift')
+        if current_event is not None:
+            slots = slots.filter(shift__event=current_event)
         return tuple(set((
-            shift_slot.shift
-            for shift_slot
-            in self.shift_slots.filter(cancelled_at__isnull=True).select_related('shift')
+            shift_slot.shift for shift_slot in slots
         )))
 
     def __str__(self):

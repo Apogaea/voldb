@@ -250,6 +250,10 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # `django.contrib.sites` settings
 SITE_ID = excavator.env_int('DJANGO_SITE_ID', default=1)
 
+# Event ID
+# - Designates the ID of the `active` event.
+CURRENT_EVENT_ID = excavator.env_int("CURRENT_EVENT_ID", default=0) or None
+
 # django-rest-framework
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
