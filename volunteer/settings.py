@@ -95,7 +95,7 @@ DATABASES['default'].setdefault('ATOMIC_REQUESTS', True)
 # https://docs.djangoproject.com/en/dev/topics/i18n/
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'MST'
+TIME_ZONE = 'MST7MDT'
 
 USE_I18N = True
 
