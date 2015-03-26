@@ -59,7 +59,7 @@ class ShiftFactory(factory.DjangoModelFactory):
     start_time = factory.LazyAttribute(
         lambda x: today_at_hour(9)
     )
-    shift_length = 3
+    shift_minutes = 3 * 60
     code = ''
 
     class Meta:

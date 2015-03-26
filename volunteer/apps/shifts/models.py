@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 import datetime
 
 from django.db import models
+from django.core.validators import MaxValueValidator
 from django.conf import settings
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
@@ -44,7 +45,12 @@ class Shift(Timestamped):
     role = models.ForeignKey('Role', related_name='shifts', on_delete=models.PROTECT)
 
     start_time = models.DateTimeField('shift begins')
-    shift_length = models.PositiveSmallIntegerField(default=3)
+    SHIFT_MINUTES_CHOICES = tuple((
+        (i * 5, str(i * 5)) for i in range(1, 24 * 12 + 1)
+    ))
+    shift_minutes = models.PositiveSmallIntegerField(
+        validators=[MaxValueValidator(1440)], choices=SHIFT_MINUTES_CHOICES,
+    )
 
     num_slots = models.PositiveSmallIntegerField(default=1)
 
@@ -76,7 +82,7 @@ class Shift(Timestamped):
 
     @property
     def end_time(self):
-        return self.start_time + datetime.timedelta(hours=self.shift_length)
+        return self.start_time + datetime.timedelta(minutes=self.shift_minutes)
 
     def overlaps_with(self, other):
         if self.end_time <= other.start_time:
@@ -95,7 +101,7 @@ class Shift(Timestamped):
 
     @property
     def is_midnight_spanning(self):
-        if self.shift_length > 24:
+        if self.shift_minutes > 24 * 60:
             return True
         start_hour = self.start_time.astimezone(DENVER_TIMEZONE).hour
         end_hour = self.end_time.astimezone(DENVER_TIMEZONE).hour
