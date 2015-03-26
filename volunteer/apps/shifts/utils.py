@@ -53,6 +53,7 @@ def build_empty_column(start_time, hours=1):
         'shifts': [],
         'roles': [],
         'is_empty': True,
+        'open_slot_count': 0,
     }
 
 
@@ -95,6 +96,7 @@ def build_shift_column(shifts, shift_date):
             for role_id, role_shifts
             in itertools.groupby(shifts_by_role, key=operator.itemgetter('role_id'))
         ],
+        'open_slot_count': sum(s['open_slot_count'] for s in shifts),
         'is_empty': False,
     }
 
@@ -240,19 +242,15 @@ def shifts_as_grid(shifts):
         )
     )
 
-    try:
-        shift_data = shifts.values(
-            'id', 'start_time', 'shift_length', 'role_id',
-        )
-    except AttributeError:
-        shift_data = [
-            {
-                'id': shift.pk,
-                'start_time': shift.start_time,
-                'shift_length': shift.shift_length,
-                'role_id': shift.role_id,
-            } for shift in shifts
-        ]
+    shift_data = [
+        {
+            'id': shift.pk,
+            'start_time': shift.start_time,
+            'shift_length': shift.shift_length,
+            'role_id': shift.role_id,
+            'open_slot_count': shift.open_slot_count,
+        } for shift in shifts
+    ]
 
     def shift_intersects_date(date, shift):
         end_time = shift['start_time'] + datetime.timedelta(hours=shift['shift_length'])

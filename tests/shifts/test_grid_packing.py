@@ -37,6 +37,7 @@ def shift_to_dict(shift):
         'end_time': shift.end_time.astimezone(timezone.get_default_timezone()),
         'is_empty': False,
         'columns': shift.shift_length,
+        'open_slot_count': shift.open_slot_count,
     }
 
 
