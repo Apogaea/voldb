@@ -19,7 +19,23 @@ $(function(){
     });
 
     var GridCells = Backbone.Collection.extend({
-        model: app.GridCell
+        model: app.GridCell,
+        getDenominators: function(value) {
+            var denominators = [];
+            for (var i = 0; i <= Math.floor(Math.sqrt(value)); i++) {
+                if ( value % i === 0 ) {
+                    denominators.push(i, value / i);
+                }
+            }
+            return denominators;
+        },
+        columnDenominators: function() {
+            return _.chain(this.pluck("columns"))
+                .uniq()
+                .map(this.getDenominators)
+                .applyIntesection()
+                .value();
+        }
     });
 
     var GridRows = Backbone.Collection.extend({

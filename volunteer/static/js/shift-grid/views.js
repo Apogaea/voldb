@@ -70,7 +70,7 @@ $(function(){
             if ( this.model.get("open_on_left") ) { classes.push("open-left"); }
             if ( this.model.get("open_on_right") ) { classes.push("open-right"); }
             return {
-                colspan: this.model.get("columns"),
+                colspan: this.model.get("columns") / this.getOption("getColumnDenominator")(),
                 class: classes.join(" ")
             };
         },
@@ -91,6 +91,11 @@ $(function(){
             "cell:click": function(cellView) {
                 this.trigger("cell:click", cellView);
             }
+        },
+        childViewOptions: function() {
+            return {
+                getColumnDenominator: this.getOption("getColumnDenominator")
+            };
         },
         template: Handlebars.templates.grid_row_template
     });
@@ -113,9 +118,14 @@ $(function(){
                 this.trigger("cell:click", cellView);
             }
         },
+        childViewOptions: function() {
+            return {
+                getColumnDenominator: _.bind(this.getColumnDenominator, this)
+            };
+        },
         template: Handlebars.templates.shift_grid_template,
         filter: function(child, index, collection) {
-            return child.get("date") === this.selectedDate;
+            return child.get("date").isSame(this.selectedDate);
         },
         changeDate: function(model, value, options) {
             this.selectedDate = value;
@@ -125,13 +135,24 @@ $(function(){
          *  Template Helpers
          */
         templateHelpers: function() {
+            var columnDenominator = this.getColumnDenominator();
             return {
                 gridDateDisplay: this.gridDateDisplay(),
+                colspan24Hour: 1440 / columnDenominator,
+                colspan1Hour: 60 / columnDenominator
             };
         },
         gridDateDisplay: function() {
             return this.selectedDate.format("dddd, MMMM Do YYYY");
-        }
+        },
+        getColumnDenominator: function() {
+            var denominator = _.chain(this._filteredSortedModels())
+                .map(function(gridRow) { return gridRow.get("cells").columnDenominators(); })
+                .applyIntesection()
+                .max()
+                .value();
+            return _.min([denominator, 60]);
+        },
     });
 
     /*

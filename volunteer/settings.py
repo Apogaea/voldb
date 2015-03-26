@@ -168,6 +168,7 @@ PIPELINE_JS = {
             "js/bootstrap.js",
             "js/json2.js",
             "js/underscore.js",
+            "js/underscore.mixins.js",
             "js/handlebars.js",
             "js/backbone.js",
             "js/backbone.wreqr.js",

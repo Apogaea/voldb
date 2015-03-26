@@ -17,6 +17,7 @@ src_files:
    - "volunteer/static/js/bootstrap.js"
    - "volunteer/static/js/json2.js"
    - "volunteer/static/js/underscore.js"
+   - "volunteer/static/js/underscore.mixins.js"
    - "volunteer/static/js/handlebars.js"
    - "volunteer/static/js/backbone.js"
    - "volunteer/static/js/backbone.wreqr.js"
