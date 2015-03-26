@@ -160,7 +160,9 @@ def shifts_to_tabular_data(grouped_shifts, date):
         shift = shift_group[0]
         if shift['start_time'].astimezone(DENVER_TIMEZONE).date() == date:
             current_minute = get_num_columns(data)
-            for i in range(current_minute, shift['start_time'].astimezone(DENVER_TIMEZONE).hour * 60 + shift['start_time'].astimezone(DENVER_TIMEZONE).minute):
+            start_at = shift['start_time'].astimezone(DENVER_TIMEZONE)
+
+            for i in range(current_minute, start_at.hour * 60 + start_at.minute):
                 data.append(build_empty_column(datetime.datetime(
                     year=date.year,
                     month=date.month,

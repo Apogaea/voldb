@@ -242,7 +242,8 @@ def assert_columns_all_at_correct_location(data):
     for index, column in enumerate(data):
         if column['open_on_left']:
             continue
-        assert get_num_columns(data[:index]) == column['start_time'].hour * HOUR + column['start_time'].minute
+        column_minutes = column['start_time'].hour * HOUR + column['start_time'].minute
+        assert get_num_columns(data[:index]) == column_minutes
 
 
 #
