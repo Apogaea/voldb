@@ -26,6 +26,7 @@ class ShiftSlotSerializer(serializers.ModelSerializer):
             'volunteer',
             'volunteer_display_name',
             'is_cancelled',
+            'is_locked',
         )
         read_only_fields = (
             'id',
