@@ -8,6 +8,8 @@ from django.utils.datastructures import OrderedDict
 
 DENVER_TIMEZONE = timezone.get_default_timezone()
 
+ONE_DAY = 24 * 60
+
 
 def pairwise(iterable):
     """
@@ -22,8 +24,8 @@ def pairwise(iterable):
 
 
 def check_if_overlap(left, right):
-    left_end_time = left['start_time'] + datetime.timedelta(hours=left['shift_length'])
-    right_end_time = right['start_time'] + datetime.timedelta(hours=right['shift_length'])
+    left_end_time = left['start_time'] + datetime.timedelta(minutes=left['shift_minutes'])
+    right_end_time = right['start_time'] + datetime.timedelta(minutes=right['shift_minutes'])
 
     if left_end_time <= right['start_time']:
         return False
@@ -33,23 +35,23 @@ def check_if_overlap(left, right):
 
 
 def check_if_midnight_spanning(shift):
-    if shift['shift_length'] > 24:
+    if shift['shift_minutes'] > ONE_DAY:
         return True
     start_hour = shift['start_time'].astimezone(DENVER_TIMEZONE).hour
-    end_time = shift['start_time'] + datetime.timedelta(hours=shift['shift_length'])
+    end_time = shift['start_time'] + datetime.timedelta(minutes=shift['shift_minutes'])
     end_hour = end_time.astimezone(DENVER_TIMEZONE).hour
     return bool(end_hour) and start_hour > end_hour
 
 
-def build_empty_column(start_time, hours=1):
-    end_time = start_time + datetime.timedelta(hours=hours)
+def build_empty_column(start_time, minutes=1):
+    end_time = start_time + datetime.timedelta(minutes=minutes)
     return {
-        'columns': hours,
+        'columns': minutes,
         'open_on_left': False,
         'open_on_right': False,
         'start_time': start_time,
         'end_time': end_time,
-        'shift_length': 1,
+        'shift_minutes': minutes,
         'shifts': [],
         'roles': [],
         'is_empty': True,
@@ -60,26 +62,26 @@ def build_empty_column(start_time, hours=1):
 def build_shift_column(shifts, shift_date):
     is_midnight_spanning = check_if_midnight_spanning(shifts[0])
     start_time = shifts[0]['start_time']
-    shift_length = shifts[0]['shift_length']
-    end_time = start_time + datetime.timedelta(hours=shift_length)
+    shift_minutes = shifts[0]['shift_minutes']
+    end_time = start_time + datetime.timedelta(minutes=shift_minutes)
     open_on_left = False
     open_on_right = False
 
+    start_time_tz = start_time.astimezone(DENVER_TIMEZONE)
+    end_time_tz = end_time.astimezone(DENVER_TIMEZONE)
+
     if is_midnight_spanning:
-        if start_time.astimezone(DENVER_TIMEZONE).date() == shift_date:
+        if start_time_tz.date() == shift_date:
             open_on_right = True
-            columns = 24 - start_time.astimezone(DENVER_TIMEZONE).hour
-        elif end_time.astimezone(DENVER_TIMEZONE).date() == shift_date:
+            columns = ONE_DAY - start_time_tz.hour * 60 - start_time_tz.minute
+        elif end_time_tz.date() == shift_date:
             open_on_left = True
-            columns = end_time.astimezone(DENVER_TIMEZONE).hour
+            columns = end_time_tz.hour * 60 + end_time_tz.minute
         else:
             raise ValueError('Shift does not appear to start or end on the '
                              'provided date')
     else:
-        columns = shift_length
-
-    start_at = start_time.astimezone(DENVER_TIMEZONE)
-    end_at = end_time.astimezone(DENVER_TIMEZONE)
+        columns = shift_minutes
 
     shifts_by_role = sorted(shifts, key=lambda s: s['role_id'])
 
@@ -87,9 +89,9 @@ def build_shift_column(shifts, shift_date):
         'columns': columns,
         'open_on_left': open_on_left,
         'open_on_right': open_on_right,
-        'start_time': start_at,
-        'end_time': end_at,
-        'shift_length': shift_length,
+        'start_time': start_time_tz,
+        'end_time': end_time_tz,
+        'shift_minutes': shift_minutes,
         'shifts': [shift['id'] for shift in shifts],
         'roles': [
             {'id': role_id, 'shifts': [{'id': s['id']} for s in list(role_shifts)]}
@@ -125,7 +127,7 @@ def shifts_to_non_overlapping_rows(shifts):
                 yield anchor
 
         yield list(
-            flattened_shifts[(s['start_time'], s['shift_length'])]
+            flattened_shifts[(s['start_time'], s['shift_minutes'])]
             for s in extract_non_overlappers(shifts)
         )
 
@@ -137,7 +139,7 @@ def flatten_identical_shifts(shifts):
     grouped = OrderedDict()
 
     for shift in shifts:
-        key = (shift['start_time'], shift['shift_length'])
+        key = (shift['start_time'], shift['shift_minutes'])
         if key in grouped:
             grouped[key].append(shift)
         else:
@@ -157,14 +159,16 @@ def shifts_to_tabular_data(grouped_shifts, date):
         # grab a representitive shift.
         shift = shift_group[0]
         if shift['start_time'].astimezone(DENVER_TIMEZONE).date() == date:
-            current_hour = get_num_columns(data)
-            for i in range(current_hour, shift['start_time'].astimezone(DENVER_TIMEZONE).hour):
+            current_minute = get_num_columns(data)
+            start_at = shift['start_time'].astimezone(DENVER_TIMEZONE)
+
+            for i in range(current_minute, start_at.hour * 60 + start_at.minute):
                 data.append(build_empty_column(datetime.datetime(
                     year=date.year,
                     month=date.month,
                     day=date.day,
-                    hour=i,
-                    minute=0,
+                    hour=int(i / 60),
+                    minute=i % 60,
                     second=0,
                     microsecond=0
                 )))
@@ -172,19 +176,19 @@ def shifts_to_tabular_data(grouped_shifts, date):
             shifts=shift_group,
             shift_date=date,
         )
-        if get_num_columns(data) != column['start_time'].hour:
+        if get_num_columns(data) != column['start_time'].hour * 60 + column['start_time'].minute:
             if not column['open_on_left']:
                 raise ValueError("Misplaced Shift")
 
         data.append(column)
 
-    while get_num_columns(data) < 24:
+    while get_num_columns(data) < ONE_DAY:
         start_time = datetime.datetime(
             year=date.year,
             month=date.month,
             day=date.day,
-            hour=get_num_columns(data),
-            minute=0,
+            hour=int(get_num_columns(data) / 60),
+            minute=get_num_columns(data) % 60,
             second=0,
             microsecond=0,
         )
@@ -200,7 +204,7 @@ def merge_columns(*columns):
         'open_on_right': columns[-1]['open_on_right'],
         'start_time': columns[0]['start_time'],
         'end_time': columns[-1]['end_time'],
-        'shift_length': sum(map(operator.itemgetter('shift_length'), columns)),
+        'shift_minutes': sum(map(operator.itemgetter('shift_minutes'), columns)),
         'shifts': list(
             itertools.chain.from_iterable(map(operator.itemgetter('shifts'), columns))
         ),
@@ -227,10 +231,10 @@ def shifts_as_grid(shifts):
 
     date -> department -> role > length -> start time
     """
-    length_getter = operator.itemgetter('shift_length')
+    length_getter = operator.itemgetter('shift_minutes')
 
     overall_sort_key = lambda s: (
-        s['shift_length'],
+        s['shift_minutes'],
         s['start_time'].astimezone(DENVER_TIMEZONE),
     )
 
@@ -246,14 +250,14 @@ def shifts_as_grid(shifts):
         {
             'id': shift.pk,
             'start_time': shift.start_time,
-            'shift_length': shift.shift_length,
+            'shift_minutes': shift.shift_minutes,
             'role_id': shift.role_id,
             'open_slot_count': shift.open_slot_count,
         } for shift in shifts
     ]
 
     def shift_intersects_date(date, shift):
-        end_time = shift['start_time'] + datetime.timedelta(hours=shift['shift_length'])
+        end_time = shift['start_time'] + datetime.timedelta(minutes=shift['shift_minutes'])
         if shift['start_time'].astimezone(DENVER_TIMEZONE).date() == date:
             return True
         if end_time.astimezone(DENVER_TIMEZONE).date() == date:

@@ -48,7 +48,7 @@ class ShiftSerializer(serializers.ModelSerializer):
             'event',
             'role',
             'start_time',
-            'shift_length',
+            'shift_minutes',
             'num_slots',
             'open_slot_count',
             'filled_slot_count',
