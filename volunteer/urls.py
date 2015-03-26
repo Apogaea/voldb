@@ -17,7 +17,7 @@ urlpatterns = patterns(
     url(r'^$', views.SiteIndexView.as_view(), name='site-index'),
 
     # App Views
-    # url(r'^admin/', include('volunteer.core.admin.urls', namespace='admin')),
+    url(r'^admin/', include('volunteer.core.admin.urls', namespace='admin')),
     url(r'^departments/', include('volunteer.apps.departments.urls')),
     url(r'^accounts/', include('volunteer.apps.accounts.urls')),
 
