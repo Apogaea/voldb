@@ -2,7 +2,7 @@ describe("GridRows.getPageInfo", function() {
     var rows = [
         {
             "date": "2014-06-05",
-            "length": 24,
+            "length": 1440,
             "cells": [
                 {
                     "shifts": [],
@@ -12,14 +12,14 @@ describe("GridRows.getPageInfo", function() {
                     "roles": [],
                     "start_time": "2014-06-06T00:00:00",
                     "is_empty": true,
-                    "columns": 24,
-                    "shift_length": 24
+                    "columns": 1440,
+                    "shift_minutes": 1440
                 }
             ]
         },
         {
             "date": "2014-06-06",
-            "length": 24,
+            "length": 1440,
             "cells": [
                 {
                     "shifts": [],
@@ -29,14 +29,14 @@ describe("GridRows.getPageInfo", function() {
                     "roles": [],
                     "start_time": "2014-06-07T00:00:00",
                     "is_empty": true,
-                    "columns": 24,
-                    "shift_length": 24
+                    "columns": 1440,
+                    "shift_minutes": 1440
                 }
             ]
         },
         {
             "date": "2014-06-07",
-            "length": 24,
+            "length": 1440,
             "cells": [
                 {
                     "shifts": [],
@@ -46,14 +46,14 @@ describe("GridRows.getPageInfo", function() {
                     "roles": [],
                     "start_time": "2014-06-08T00:00:00",
                     "is_empty": true,
-                    "columns": 24,
-                    "shift_length": 24
+                    "columns": 1440,
+                    "shift_minutes": 1440
                 }
             ]
         },
         {
             "date": "2014-06-06",
-            "length": 24,
+            "length": 1440,
             "cells": [
                 {
                     "shifts": [],
@@ -63,14 +63,14 @@ describe("GridRows.getPageInfo", function() {
                     "roles": [],
                     "start_time": "2014-06-07T00:00:00",
                     "is_empty": true,
-                    "columns": 24,
-                    "shift_length": 24
+                    "columns": 1440,
+                    "shift_minutes": 1440
                 }
             ]
         },
         {
             "date": "2014-06-09",
-            "length": 24,
+            "length": 1440,
             "cells": [
                 {
                     "shifts": [],
@@ -80,8 +80,8 @@ describe("GridRows.getPageInfo", function() {
                     "roles": [],
                     "start_time": "2014-06-10T00:00:00",
                     "is_empty": true,
-                    "columns": 24,
-                    "shift_length": 24
+                    "columns": 1440,
+                    "shift_minutes": 1440
                 }
             ]
         }
