@@ -148,9 +148,10 @@ $(function(){
          *  Template and View Helpers
          */
         exportable: [
-            "cellTitle",
+            "cellTitleShort",
+            "cellTitleLong",
         ],
-        cellTitle: function() {
+        cellTitleShort: function() {
             var startAt = this.get("start_time");
             var endAt = this.get("end_time");
             if ( startAt.format("A") === endAt.format("A") ) {
@@ -158,6 +159,10 @@ $(function(){
             } else {
                 return startAt.format("h:mm A") + "-" + endAt.format("h:mm A");
             }
+        },
+        cellTitleLong: function() {
+            var startAt = this.get("start_time");
+            return this.cellTitleShort() + " " + startAt.format("dddd, MMMM Do YYYY");
         }
     });
 
