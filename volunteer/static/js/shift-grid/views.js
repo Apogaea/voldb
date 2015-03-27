@@ -105,7 +105,9 @@ $(function(){
          *  View for the full table of the shift grid.
          */
         initialize: function(options) {
-            this.selectedDate = this.collection.first().get("date");
+            if ( this.collection.length ) {
+                this.selectedDate = this.collection.first().get("date");
+            }
         },
         tagName: "table",
         attributes: {
@@ -139,10 +141,14 @@ $(function(){
             return {
                 gridDateDisplay: this.gridDateDisplay(),
                 colspan24Hour: 1440 / columnDenominator,
-                colspan1Hour: 60 / columnDenominator
+                colspan1Hour: 60 / columnDenominator,
+                isEmpty: !Boolean(this.collection.length)
             };
         },
         gridDateDisplay: function() {
+            if ( _.isEmpty(this.selectedDate) ) {
+                return undefined;
+            }
             return this.selectedDate.format("dddd, MMMM Do YYYY");
         },
         getColumnDenominator: function() {
@@ -151,7 +157,7 @@ $(function(){
                 .applyIntesection()
                 .max()
                 .value();
-            return _.min([denominator, 60]);
+            return _.max([_.min([denominator, 60]), 1]);
         },
     });
 

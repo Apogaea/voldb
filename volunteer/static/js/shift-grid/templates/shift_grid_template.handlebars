@@ -1,7 +1,9 @@
 <thead>
-    <tr>
-        <th colspan="{{ colspan24Hour }}" class="text-center">{{ gridDateDisplay }}</th>
-    </tr>
+    {{#unless isEmpty }}
+        <tr>
+            <th colspan="{{ colspan24Hour }}" class="text-center">{{ gridDateDisplay }}</th>
+        </tr>
+    {{/unless}}
     <tr>
         <th colspan="{{ colspan1Hour }}">12AM</th>
         <th colspan="{{ colspan1Hour }}">1AM</th>
@@ -30,5 +32,12 @@
     </tr>
 </thead>
 <tbody class="shift-grid">
+    {{#if isEmpty }}
+        <tr>
+            <td colspan="{{ colspan24Hour }}" class="text-center">
+                No Shifts
+            </td>
+        </tr>
+    {{/if}}
     <!-- ShiftGridView -->
 </tbody>
