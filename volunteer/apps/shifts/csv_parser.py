@@ -5,7 +5,6 @@ from django.db import transaction
 
 from volunteer.apps.shifts.models import (
     Shift,
-    Role,
 )
 from volunteer.apps.departments.models import (
     Department,
@@ -26,7 +25,7 @@ headers = (
 def load_shift_csv(location='tmp/shift-data.csv'):
     with open(location, 'r') as shift_csv:
         reader = csv.DictReader(shift_csv, fieldnames=headers)
-        _ = reader.next()
+        reader.next()
         return [row for row in reader]
 
 
@@ -37,8 +36,8 @@ def parse_shift_data(shift_data):
             continue
         try:
             parse_shift_row(row, event)
-        except Exception as e:
-            import ipdb; ipdb.set_trace()
+        except Exception as e:  # NOQA
+            # import ipdb; ipdb.set_trace()  # NOQA
             raise
 
 
@@ -48,7 +47,8 @@ HOUR = 60
 def parse_shift_row(row, event):
     missing_fields = set(headers).symmetric_difference(row.keys())
     if missing_fields:
-        import ipdb; ipdb.set_trace()
+        pass
+        # import ipdb; ipdb.set_trace()  # NOQA
     dept, _ = Department.objects.get_or_create(name=row['dept'])
     start_time = parser.parse(row['date'])
     shift_minutes = HOUR * int(row['duration'])
@@ -63,7 +63,7 @@ def parse_shift_row(row, event):
     )
 
 
-def doit():
+def orchestrate():
     with transaction.atomic():
         data = load_shift_csv()
         parse_shift_data(data)
