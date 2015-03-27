@@ -220,9 +220,13 @@ $(function(){
             "hasPreviousPage",
             "hasNextPage",
             "pages",
+            "hasPages"
         ],
         totalPages: function() {
             return this.get("dates").length;
+        },
+        hasPages: function() {
+            return Boolean(this.totalPages());
         },
         activePage: function() {
             if ( _.isNull(this.get("selectedDate")) ) {
