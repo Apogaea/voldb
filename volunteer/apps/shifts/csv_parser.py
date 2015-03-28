@@ -19,6 +19,7 @@ headers = (
     'date',
     'duration',
     'code',
+    'count',
 )
 
 
@@ -53,6 +54,7 @@ def parse_shift_row(row, event):
     start_time = parser.parse(row['date'])
     shift_minutes = HOUR * int(row['duration'])
     code = row['code'].strip()
+    num_slots = int(row['count'])
     role, _ = dept.roles.get_or_create(name=row['Role'])
     return Shift.objects.create(
         event=event,
@@ -60,6 +62,7 @@ def parse_shift_row(row, event):
         shift_minutes=shift_minutes,
         code=code,
         role=role,
+        num_slots=num_slots,
     )
 
 
