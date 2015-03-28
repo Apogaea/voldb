@@ -18,6 +18,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = excavator.env_string('DJANGO_SECRET_KEY', required=True)
 
+
+ADMINS = (
+    ('Piper', 'piper@apogaea.com.com'),
+)
+
+DEFAULT_FROM_EMAIL = excavator.env_string(
+    'DJANGO_DEFAULT_FROM_EMAIL', default='volunteers@apogaea.com',
+)
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = excavator.env_bool('DJANGO_DEBUG', default=False)
 
