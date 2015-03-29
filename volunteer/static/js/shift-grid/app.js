@@ -30,6 +30,7 @@ $(function(){
                 model: cellView.model,
                 collection: cellView.model.get("roles"),
             });
+            cellView.listenToOnce(cellModal, "dismiss", cellView.render);
             this.shiftLayout.cell_modal.show(cellModal);
             cellModal.$el.modal("show");
         },
