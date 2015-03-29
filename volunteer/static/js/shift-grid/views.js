@@ -66,9 +66,6 @@ $(function(){
         initialize: function(options) {
             this.listenTo(window.django_user, "change:shifts", this.render);
         },
-        foo: function() {
-            debugger;
-        },
         tagName: "td",
         attributes: function() {
             var classes = ["panel", "panel-default"];

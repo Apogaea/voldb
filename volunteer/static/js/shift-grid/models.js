@@ -194,11 +194,11 @@ $(function(){
         },
         openSlotCount: function() {
             if ( this.get("roles").allShiftsHydrated() ) {
-                return arst = _.chain(this.get("roles").pluck("shifts"))
+                return _.chain(this.get("roles").pluck("shifts"))
                     .map(function(s) { return s.pluck("open_slot_count"); })
                     .map(function(counts) { return _.reduce(counts, function(a, b) { return a + b;});})
                     .reduce(function(a, b) { return a + b; })
-                    .value()
+                    .value();
             } else {
                 return this.get("open_slot_count");
             }
