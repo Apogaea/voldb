@@ -5,12 +5,26 @@ $(function(){
 
     var Roles = Backbone.Collection.extend({
         model: app.Role,
-        url: "/api/v2/roles/"
+        url: "/api/v2/roles/",
+        allShiftsHydrated: function() {
+            if ( this.length === 0 ) {
+                return false;
+            } else {
+                return this.all(function(role) {
+                    return role.get("shifts").isHydrated();
+                });
+            }
+        }
     });
 
     var Shifts = Backbone.Collection.extend({
         model: app.Shift,
-        url: "/api/v2/roles/"
+        url: "/api/v2/roles/",
+        isHydrated: function() {
+            return this.all(function(shift) {
+                return shift.isHydrated();
+            });
+        }
     });
 
     var Slots = Backbone.Collection.extend({

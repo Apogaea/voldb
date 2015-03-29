@@ -63,6 +63,9 @@ $(function(){
         /*
          *  View for a single cell in the shift grid.
          */
+        initialize: function(options) {
+            this.listenTo(window.django_user, "change:shifts", this.render);
+        },
         tagName: "td",
         attributes: function() {
             var classes = ["panel", "panel-default"];
@@ -180,6 +183,10 @@ $(function(){
         },
         releaseSlotSuccess: function(model, response, options) {
             model.collection.remove(model);
+            window.django_user.set(
+                "shifts",
+                _.without(window.django_user.get("shifts"), this.model.get("shift"))
+            );
         }
     });
 
@@ -239,7 +246,11 @@ $(function(){
         childView: ModalRoleView,
         childViewContainer: ".roles",
         childCollectionProperty: "shifts",
-        template: Handlebars.templates.cell_modal_template
+        template: Handlebars.templates.cell_modal_template,
+        triggers: {
+            "click button.dismiss": "dismiss",
+            "click div.modal-backdrop": "dismiss"
+        }
     });
 
     app.GridPaginationView = GridPaginationView;

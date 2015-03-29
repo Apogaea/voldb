@@ -58,6 +58,10 @@ $(function(){
         claimSlotSuccess: function(slotData) {
             this.get("claimed_slots").add(slotData);
             this.set("claimErrors", []);
+            window.django_user.get("shifts").push(this.id);
+            // since we push the item onto the shifts array, we have to
+            // manually fire the change event.
+            window.django_user.trigger("change:shifts");
         },
         /*
          *  Template and View Helpers
@@ -155,7 +159,8 @@ $(function(){
             "cellTitleShort",
             "cellTitleLong",
             "pluralOpenSlots",
-            "hasUserShifts"
+            "hasUserShifts",
+            "openSlotCount"
         ],
         cellTitleShort: function() {
             var startAt = this.get("start_time");
@@ -177,7 +182,7 @@ $(function(){
             return this.cellTitleShort() + " " + startAt.format("dddd, MMMM Do YYYY");
         },
         pluralOpenSlots: function() {
-            return this.get("open_slot_count") > 1;
+            return this.openSlotCount() > 1;
         },
         hasUserShifts: function() {
             if ( this.get("is_empty") ) {
@@ -186,6 +191,17 @@ $(function(){
             var userShiftIds = window.django_user.get("shifts");
             var cellShiftIds = this.get("shifts").pluck("id");
             return !_.isEmpty(_.intersection(userShiftIds, cellShiftIds));
+        },
+        openSlotCount: function() {
+            if ( this.get("roles").allShiftsHydrated() ) {
+                return _.chain(this.get("roles").pluck("shifts"))
+                    .map(function(s) { return s.pluck("open_slot_count"); })
+                    .map(function(counts) { return _.reduce(counts, function(a, b) { return a + b;});})
+                    .reduce(function(a, b) { return a + b; })
+                    .value();
+            } else {
+                return this.get("open_slot_count");
+            }
         }
     });
 
