@@ -1,3 +1,6 @@
+/*
+ *  Shift Grid
+ */
 div.shift-grid .table td.panel {
     padding: 0px;
 }
@@ -10,4 +13,16 @@ div.shift-grid .table td.panel div.panel-heading {
 }
 div.shift-grid .table td.panel.empty:hover {
     background-color: #fff;
+}
+
+
+/*
+ *  Department Detail Page
+ */
+div.role h4 a.role-quicklink {
+    display: none;
+    font-size: 12px;
+}
+div.role h4:hover a.role-quicklink {
+    display: inline;
 }
