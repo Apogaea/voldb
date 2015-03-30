@@ -1,0 +1,6 @@
+{% if field.help_text %}
+    <p class="help-block text-muted">{{ field.help_text }}</p>
+{% endif %}
+{% if field.errors %}
+    {{ field.errors }}
+{% endif %}

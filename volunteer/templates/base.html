@@ -1,86 +1,55 @@
-{% load staticfiles %}<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!DOCTYPE html>
+{% load static pipeline user_utils argonauts %}
+<html>
     <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-        <title>{% block page_title %}{% endblock %}</title>
-        
-        <meta name="description" content="{% block meta_description %}{% endblock %}" />
-        <meta name="author" content="{% block meta_author %}{% endblock %}" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
-        <link rel="stylesheet" href="{% static 'css/main.css' %}" />
-        {% block css %}{% endblock %}
-        
-        <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
-        <link href='//fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
-        <link href='//fonts.googleapis.com/css?family=Michroma|Poiret+One|Montserrat+Alternates:400,700|Nova+Square|Varela|Comfortaa:400,700' rel='stylesheet' type='text/css'>
+        <meta charset="UTF-8">
+        <title>{% block title %}Apogaea Volunteer Database{% endblock %}</title>
+        <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
 
-        {% block javascript %}
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.2/handlebars.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/simplemodal/1.4.4/jquery.simplemodal.min.js"></script>
-        <script src="{% static 'js/plugins.js' %}"></script>
-        <script src="{% static 'js/main.js' %}"></script>
-        <script>
-          {% if user.is_authenticated %}window.user = {{ user.pk }};{% endif %}
-        </script>
-        {% endblock javascript %}
+        {% stylesheet 'base' %}
+
+        {% block extra_css %}
+        {% endblock %}
     </head>
 
-    <body class="{% block body_class %}{% endblock %}">
+    <body>
     {% block body %}
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-        <![endif]-->
-        <nav id="primarynav">
-            <span id="accntnav">
-                {% if user.is_authenticated %}
-                    {% if user.is_admin %}
-                      <a href="/admin">Admin</a>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'site-index' %}">Volunteer Database</a>
+                <ul class="nav navbar-nav">
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'department-list' %}">Departments</a></li>
+                        <li><a href="{% url 'dashboard' %}">My Stuff</a></li>
                     {% endif %}
-                    <a href="{% url 'profile' %}">Profile</a>             
-                    <a href="{% url 'logout' %}">logout <span class="above500">{{ user.get_full_name }}</span></a>
-                {% else %}
-                <a href="{% url 'register' %}">Register</a>
-                <a href="{% url 'login' %}">Login</a>
-                {% endif %}
-            </span>
-            <a href="{% url 'home' %}"><span class="above500"><span class="above1000">Super Hero</span> Flaming</span> Art</a> 
-            {% if user.is_authenticated %}
-                <a href="{% url 'shifts' %}">ALL Shifts</a> 
-                <a href="{% url 'department_list' %}">Departments</a> 
-                <a href="{% url 'leaderboard' %}">Leader Board</a> 
-            {% endif %}
-        </nav>        
-        {% block content %}
-        {% endblock content %}
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% if user.is_admin %}
+                        <li><p class="navbar-text">|</p></li>
+                        <li><a href="{% url 'admin:index' %}">Admin</a></li>
+                    {% endif %}
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        {% block content_wrapper %}
+        {% endblock content_wrapper %}
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
+        {% javascript 'base' %}
+        {% javascript 'shift-grid' %}
+<script type="text/javascript">
+$(document).ready(function() {
+    window.django_user = new Backbone.Model({{ user|serialized_user|json }});
+})
+</script>
+
+        {% block extra_javascript %}
+        {% endblock %}
     {% endblock body %}
-
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-2432342-11', 'auto', {
-           'allowLinker': true
-        });
-        ga('send', 'pageview');
-
-    </script>
-
     </body>
 </html>

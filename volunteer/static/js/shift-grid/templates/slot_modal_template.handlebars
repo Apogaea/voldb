@@ -1,0 +1,6 @@
+<strong>{{ volunteer_display_name }}</strong>
+{{#if isClaimedByUser }}
+    {{#unless is_locked }}
+        <button type="button" class="btn btn-warning btn-sm release-slot">Release Slot</button>
+    {{/unless}}
+{{/if}}

@@ -1,0 +1,17 @@
+{% extends "layout_full.html" %}
+
+{% block content %}
+    <h1>Department Index</h1>
+    {% for department in departments %}
+        <section class="departments well" id="department-{{ department.pk }}">
+            <h3>
+                {{ department }}
+                <a href="#department-{{ department.pk }}" class="text-muted">
+                    <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                </a>
+            </h3>
+            <p class="lead">{{ department.description|linebreaksbr }}</p>
+            <a class="btn btn-default" href="{% url 'department-detail' pk=department.pk %}">View available shifts</a>
+        </section>
+    {% endfor %}
+{% endblock %}

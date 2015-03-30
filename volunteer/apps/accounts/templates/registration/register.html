@@ -1,0 +1,28 @@
+{% extends "layout_skinny.html" %}
+
+{% block content %}
+    <section>
+        <form action="." method="post">
+            <h1>1. Submit email address</h1>
+            <p>
+              <ul>
+                  <li class="text-info">
+                      <span class="glyphicon glyphicon-log-in"></span>
+                      &nbsp;- 1. Submit email address
+                  </li>
+                  <li class="text-muted">
+                      <span class="glyphicon glyphicon-unchecked"></span>
+                      &nbsp;- 2. Confirm email address
+                  </li>
+                  <li class="text-muted">
+                      <span class="glyphicon glyphicon-unchecked"></span>
+                      &nbsp;- 3. Create account
+                  </li>
+              </ul>
+            </p>
+            {% include 'partials/form_as_fieldsets.html' %}
+            <button class="btn btn-default" type="submit">Submit</button>
+        </form>
+
+	</section>
+{% endblock %}
