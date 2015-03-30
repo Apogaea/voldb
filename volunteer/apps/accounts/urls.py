@@ -37,6 +37,10 @@ urlpatterns += patterns(
         name='password-reset-done',
     ),
     url(
+        r'^password-reset-done/$', 'password_reset_done',
+        name='password_reset_done',  # authtools uses underscore view names.
+    ),
+    url(
         r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         'password_reset_confirm_and_login',
         name='password-reset-confirm',
@@ -44,5 +48,9 @@ urlpatterns += patterns(
     url(
         r'^password-reset-complete/$', 'password_reset_complete',
         name='password-reset-complete',
+    ),
+    url(
+        r'^password-reset-complete/$', 'password_reset_complete',
+        name='password_reset_complete',  # authtools uses underscore view names.
     ),
 )
