@@ -38,7 +38,7 @@ TEMPLATE_DEBUG = DEBUG
 ALLOWED_HOSTS = excavator.env_list('DJANGO_ALLOWED_HOSTS', required=not DEBUG)
 
 # Application definition
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -65,7 +65,7 @@ INSTALLED_APPS = (
     'bootstrap3',
     'argonauts',
     'raven.contrib.django.raven_compat',
-)
+]
 
 if DEBUG:
     try:
