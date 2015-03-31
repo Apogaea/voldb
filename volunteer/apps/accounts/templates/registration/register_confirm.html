@@ -1,23 +1,42 @@
 {% extends "layout_skinny.html" %}
 
 {% block content %}
-    <h1><span>Register</span></h1>
     <section>
         {% if bad_signature %}
+            <h1>Bad Registration Link</h1>
             <p>The link you are using appears to be invalid.  If you think you have
             reached this page in error, please contact 
-            <a href="TODO@apogaea.com" target="_top"> for further assistance.</p>
+            <a href="volunteers@apogaea.com" target="_top"> for further assistance.</p>
         {% elif signature_expired %}
+            <h1>Expired Registration Link</h1>
             <p>The link you are using has expired.  Please 
             <a href="{% url 'register' %}">register</a> again to recieve a new registration
             link</p>
         {% elif email_already_registered %}
+            <h1>Email already registered</h1>
             <p>The email address <b>{{ email }}</b> is already registered. Go <a href="{% url 'login' %}">Login</a></p>
         {% else %}
-            <p>To complete your registration for <b>{{ email }}</b> please complete
-            the form below</p>
-
             <form action="." method="post">
+                <h1>3. Create Account</h1>
+                <p>
+                    <ul>
+                        <li class="text-success">
+                            <span class="glyphicon glyphicon-check"></span>
+                            &nbsp;- 1. Submit email address
+                        </li>
+                        <li class="text-success">
+                            <span class="glyphicon glyphicon-check"></span>
+                            &nbsp;- 2. Confirm email address
+                        </li>
+                        <li class="text-info">
+                            <span class="glyphicon glyphicon-log-in"></span>
+                            &nbsp;- 3. Create account
+                        </li>
+                    </ul>
+                </p>
+                <p>To complete your registration for <b>{{ email }}</b> please complete
+                the form below</p>
+
                 {% include 'partials/form_as_fieldsets.html' %}
                 <button class="btn btn-default" type="submit">Submit</button>
             </form>
