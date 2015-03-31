@@ -1,4 +1,4 @@
-def test_filters_roles_without_current_shifts(factories, models):
+def test_filters_department_to_ones_with_active_shifts_for_current_event(factories, models):
     old_event = factories.PastEventFactory()
     current_event = factories.EventFactory()
 
