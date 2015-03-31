@@ -2,35 +2,37 @@
 {% load shift_utils argonauts %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-md-8">
-            <h2>Department: {{ department }}</h2>
-            <p>{{ department.description|linebreaksbr }}</p>
-        </div>
-        <div class="col-md-4">
-            <h3>Roles</h3>
-            <ul>
-                {% for role in department.roles.all %}
-                    <li><a href="#role-{{ role.pk }}">{{ role }}</a></li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-    </section>
-    {% for role in department.roles.all %}
-        <div class="role" id="role-{{ role.pk }}">
-            <h4>
-                Role: {{ role }}
-                <a href="#role-{{ role.pk }}" class="text-muted role-quicklink">
-                    <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
-                </a>
-            </h4>
-            <p>{{ role.description|linebreaksbr }}</p>
-            <div id="role-{{ role.pk }}-shift-grid-container" class="shift-grid">
-                {% include "shifts/partials/shift_grid.html" %}
+    {% with department.roles.filter_to_current_event as roles %}
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Department: {{ department }}</h2>
+                <p>{{ department.description|linebreaksbr }}</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Roles</h3>
+                <ul>
+                    {% for role in roles %}
+                        <li><a href="#role-{{ role.pk }}">{{ role }}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
-    {% endfor %}
+        </section>
+        {% for role in roles %}
+            <div class="role" id="role-{{ role.pk }}">
+                <h4>
+                    Role: {{ role }}
+                    <a href="#role-{{ role.pk }}" class="text-muted role-quicklink">
+                        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                    </a>
+                </h4>
+                <p>{{ role.description|linebreaksbr }}</p>
+                <div id="role-{{ role.pk }}-shift-grid-container" class="shift-grid">
+                    {% include "shifts/partials/shift_grid.html" %}
+                </div>
+            </div>
+        {% endfor %}
+    {% endwith %}
 {% endblock %}
 
 
