@@ -12,6 +12,18 @@ from volunteer.core.models import Timestamped
 from volunteer.apps.shifts.utils import DENVER_TIMEZONE
 
 
+class RoleQuerySet(models.QuerySet):
+    use_for_related_fields = True
+
+    def filter_to_current_event(self):
+        from volunteer.apps.events.models import Event
+        current_event = Event.objects.get_current()
+        if current_event is None:
+            return self
+        else:
+            return self.filter(shifts__event=current_event).distinct()
+
+
 @python_2_unicode_compatible
 class Role(Timestamped):
     department = models.ForeignKey(
@@ -20,6 +32,8 @@ class Role(Timestamped):
     )
     name = models.CharField(max_length=255)
     description = models.TextField()
+
+    objects = RoleQuerySet.as_manager()
 
     def __str__(self):
         return self.name
