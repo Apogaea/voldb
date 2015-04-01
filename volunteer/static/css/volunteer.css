@@ -32,12 +32,12 @@ div.role h4:hover a.role-quicklink {
  * Background and container backgrounds
  * to compliment bootstra-black.min.css
  */
-body { 
-    margin-top: 240px;   
-    background: #000 url("http://apogaea.com/wp-content/uploads/2015/01/Apogaea_web_2015_flat03.jpg") no-repeat center top;
+body {   
+    background: #000 url("http://apogaea.com/wp-content/uploads/2015/01/Apogaea_web_2015_flat03.jpg") no-repeat center 40px;
 }
 
 .container {
+    margin-top: 220px; 
     background-color: rgba(0,0,0,0.9);     
     border-radius: 15px;
 }
