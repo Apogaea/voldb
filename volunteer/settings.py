@@ -162,7 +162,7 @@ PIPELINE_CSS = {
     'base': {
         'source_filenames': (
             "css/bootstrap.css",
-            "css/bootstrap-black.min.css",
+            "css/bootstrap-black.css",
             "css/volunteer.css",
         ),
         'output_filename': 'css/base.css',
