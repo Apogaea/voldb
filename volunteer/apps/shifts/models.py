@@ -68,7 +68,7 @@ class Shift(Timestamped):
 
     num_slots = models.PositiveSmallIntegerField(default=1)
 
-    code = models.CharField(max_length=20, blank=True)
+    code = models.CharField(max_length=50, blank=True)
 
     objects = ShiftQuerySet.as_manager()
 
