@@ -26,3 +26,18 @@ div.role h4 a.role-quicklink {
 div.role h4:hover a.role-quicklink {
     display: inline;
 }
+
+
+/*
+ * Background and container backgrounds
+ * to compliment bootstra-black.min.css
+ */
+body {   
+    background: #000 url("../img/Apogaea_web_header_2015_voldb.jpg") no-repeat center 40px;
+}
+
+.container {
+    margin-top: 220px; 
+    background-color: rgba(0,0,0,0.9);     
+    border-radius: 15px;
+}
