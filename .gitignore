@@ -1,11 +1,80 @@
-*~
-*.pyc
-db.sqlite3
+# Editor files
+.*.swp
+.#*
+\#*#
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
 env/
-backups/
-venv
-.DS_Store
-.idea
-voldb.iml
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Translations
+*.pot
+
+# Django stuff:
+*.log
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# SQLite
+*.sqlite3
+
+# Static Files
+volunteer/public/**
+!.gitkeep
+!volunteer/public/static
+!volunteer/public/media
+
+# Environmental Configuration
 .env
-.tox
+
+# Whoosh
+**/whoosh_index
+static_assets/static/**
+
+# Node
+node_modules/**
+
+# Handlebars Templates
+js_tests/compiled/*.js

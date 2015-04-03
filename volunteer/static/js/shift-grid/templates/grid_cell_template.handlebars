@@ -1,0 +1,21 @@
+{{#unless is_empty }}
+    <div class="panel-heading text-center">
+        {{#if open_on_left }}
+            <span class="glyphicon glyphicon-chevron-left pull-left" aria-hidden="true"></span>
+        {{/if}}
+        {{#if open_on_right }}
+            <span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span>
+        {{/if}}
+        {{#if hasUserShifts }}
+            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+        {{/if}}
+        {{ cellTitleShort }}
+    </div>
+    <div class="panel-body">
+        {{#if openSlotCount }}
+            {{ openSlotCount }} open shift{{#if pluralOpenSlots }}s{{/if}}
+        {{else}}
+            Full
+        {{/if}}
+    </div>
+{{/unless}}

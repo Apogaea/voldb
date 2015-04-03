@@ -1,0 +1,39 @@
+import factory
+
+from django.utils import timezone
+
+from volunteer.apps.events.models import (
+    Event,
+)
+
+
+class EventFactory(factory.DjangoModelFactory):
+    name = 'Apogaea'
+
+    registration_open_at = factory.LazyAttribute(
+        lambda e: timezone.now() - timezone.timedelta(10)
+    )
+    registration_close_at = factory.LazyAttribute(
+        lambda e: timezone.now() + timezone.timedelta(10)
+    )
+
+    class Meta:
+        model = Event
+
+
+class FutureEventFactory(EventFactory):
+    registration_open_at = factory.LazyAttribute(
+        lambda e: timezone.now() + timezone.timedelta(10)
+    )
+    registration_close_at = factory.LazyAttribute(
+        lambda e: timezone.now() + timezone.timedelta(20)
+    )
+
+
+class PastEventFactory(EventFactory):
+    registration_open_at = factory.LazyAttribute(
+        lambda e: timezone.now() - timezone.timedelta(20)
+    )
+    registration_close_at = factory.LazyAttribute(
+        lambda e: timezone.now() - timezone.timedelta(10)
+    )

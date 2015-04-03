@@ -1,0 +1,95 @@
+
+# src_files
+#
+# Return an array of filepaths relative to src_dir to include before jasmine specs.
+# Default: []
+#
+# EXAMPLE:
+#
+# src_files:
+#   - lib/source1.js
+#   - lib/source2.js
+#   - dist/**/*.js
+#
+src_files:
+   - "volunteer/static/js/jquery.js"
+   - "volunteer/static/js/moment-with-locales.js"
+   - "volunteer/static/js/bootstrap.js"
+   - "volunteer/static/js/json2.js"
+   - "volunteer/static/js/underscore.js"
+   - "volunteer/static/js/underscore.mixins.js"
+   - "volunteer/static/js/handlebars.js"
+   - "volunteer/static/js/backbone.js"
+   - "volunteer/static/js/backbone.wreqr.js"
+   - "volunteer/static/js/backbone.babysitter.js"
+   - "volunteer/static/js/backbone.marionette.js"
+   - "volunteer/static/js/backbone.marionette.export.js"
+   - "volunteer/static/js/volunteer.js"
+   - "js_tests/compiled/templates.js"
+   - "volunteer/static/js/shift-grid/models.js"
+   - "volunteer/static/js/shift-grid/collections.js"
+   - "volunteer/static/js/shift-grid/views.js"
+   - "volunteer/static/js/shift-grid/layouts.js"
+   - "volunteer/static/js/shift-grid/app.js"
+
+# stylesheets
+#
+# Return an array of stylesheet filepaths relative to src_dir to include before jasmine specs.
+# Default: []
+#
+# EXAMPLE:
+#
+# stylesheets:
+#   - css/style.css
+#   - stylesheets/*.css
+#
+stylesheets:
+
+# helpers
+#
+# Return an array of filepaths relative to spec_dir to include before jasmine specs.
+# Default: ["helpers/**/*.js"]
+#
+# EXAMPLE:
+#
+# helpers:
+#   - helpers/**/*.js
+#
+helpers:
+  - "helpers/**/*.js"
+
+# spec_files
+#
+# Return an array of filepaths relative to spec_dir to include.
+# Default: ["**/*[sS]pec.js"]
+#
+# EXAMPLE:
+#
+# spec_files:
+#   - **/*[sS]pec.js
+#
+spec_files:
+  - "**/*[Ss]pec.js"
+
+
+# src_dir
+#
+# Source directory path. Your src_files must be returned relative to this path. Will use root if left blank.
+# Default: project root
+#
+# EXAMPLE:
+#
+# src_dir: public
+#
+src_dir: ../
+
+# spec_dir
+#
+# Spec directory path. Your spec_files must be returned relative to this path.
+# Default: spec/javascripts
+#
+# EXAMPLE:
+#
+# spec_dir: spec/javascripts
+#
+spec_dir: spec/javascripts

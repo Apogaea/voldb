@@ -1,0 +1,16 @@
+{% extends "layout_skinny.html" %}
+
+
+{% block content %}
+    <h1><span>Edit Profile</span></h1>
+    <section id="profile">
+        <h2><span>{{ user }}</span></h2>
+        <div class="solobody">
+            <form action="." method="post">
+                {% include 'partials/form_as_fieldsets.html' %}
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="{% url 'dashboard' %}" class="btn btn-default">Cancel</a>
+            </form>
+        </div>
+	</section>
+{% endblock %}

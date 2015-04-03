@@ -1,0 +1,47 @@
+<div>
+    <h4>
+        Shift #{{ id }} 
+        <span class="glyphicon glyphicon-{{ shiftIcon }}" aria-hidden="true"></span>
+        <span class="badge">
+            {{#if hasOpenSlots }}
+                {{ open_slot_count }} open shift{{#if pluralOpenSlots }}s{{/if}}
+            {{else}}
+                Full
+            {{/if}}
+        </span>
+    </h4>
+    <div class="claimed-slots">
+    </div>
+    {{#if hasOpenSlots }}
+        <p><strong>{{ open_slot_count }}</strong> open slot(s) for this shift.</p>
+    {{/if}}
+    {{#if isClaimable }}
+        <div class="claim-slot">
+            {{#if is_protected }}
+                {{#if hasErrors }}
+                    {{#each errors }}
+                        <div class="alert alert-danger alert-dismissable alert-link">
+                            <button class="close" type="button" data-dismiss="alert" aria-hidden="true">x</button>
+
+                            {{ errorMessage }}
+
+                        </div>
+                    {{/each}}
+                {{/if}}
+                <div class="form-group col-3-md">
+                    <div class="input-group{{#if hasErrors }} has-error{{/if}}">
+                        <span class="input-group-addon" id="unlock_code-addon">Code:</span>
+                        <input type="text" class="form-control" name="unlock_code"
+                               placeholder="Pass Code"
+                               aria-describedby="unlock_code-addon">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary claim-slot" type="button">Claim a slot</button>
+                        </span>
+                    </div>
+                </div>
+            {{else}}
+                <button type="button" class="btn btn-primary claim-slot">Claim a slot</button>
+            {{/if}}
+        </div>
+    {{/if}}
+</div>

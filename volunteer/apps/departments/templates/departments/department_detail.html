@@ -1,0 +1,51 @@
+{% extends "layout_full.html" %}
+{% load shift_utils argonauts %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Department: {{ department }}</h2>
+            <p>{{ department.description|linebreaksbr }}</p>
+        </div>
+        <div class="col-md-4">
+            <h3>Roles</h3>
+            <ul>
+                {% for role in department.roles.filter_to_current_event %}
+                    <li><a href="#role-{{ role.pk }}">{{ role }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    </section>
+    {% for role in department.roles.filter_to_current_event %}
+        <div class="role" id="role-{{ role.pk }}">
+            <h4>
+                Role: {{ role }}
+                <a href="#role-{{ role.pk }}" class="text-muted role-quicklink">
+                    <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                </a>
+            </h4>
+            <p>{{ role.description|linebreaksbr }}</p>
+            <div id="role-{{ role.pk }}-shift-grid-container" class="shift-grid">
+                {% include "shifts/partials/shift_grid.html" %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+
+{% block extra_javascript %}
+{{ block.super }}
+<script>
+$(document).ready(function() {
+    var applications = {};
+    {% for role in department.roles.filter_to_current_event %}applications.role_{{ role.pk }} = new app.ShiftGridApplication({
+        el: $('#role-{{ role.id }}-shift-grid-container'),
+        rows: {{ role.shifts.filter_to_current_event|as_grid|json }}
+    });
+    applications.role_{{ role.pk }}.start();
+    {% endfor %}
+    window.applications = applications;
+});
+</script>
+{% endblock %}

@@ -1,57 +1,13 @@
-{% extends "base.html" %}
-{% load staticfiles %}
-{% load i18n %}
-{% block body_class %}{{ block.super }} home{% endblock %}
+{% extends "layout_full.html" %}
+
 
 {% block content %}
-    <!-- Add your site or application content here -->
-    <h1>Apogaea Volunteer System</h1>
+<h1>Apogaea Volunteer System</h1>
     <section>    	       
-        <div id="FlamingArt">
-            <div class="thoughtBubble">
-
-                {% if user.is_authenticated %}
-                    <p>Welcome Back {{ user }}, it appears you've made it through registration! It's good to see you. Let me give you an update:</p>
-                    <blockquote>Current Status: <b>Open Public Beta</b></blockquote>
-                    <p>The system underwent a significant overhaul since last year and it's far from over. Things may be in some disarray. Should you have any troubles that my guidance can not assist with, please contact: 
-                      <a href="mailto:volunteerdatabase@apogaea.com">volunteerdatabase@apogaea.com</a>.
-                    </p>
-                    <p>Here are some things to go do:
-                        <ul>
-                            <li><a href="{% url 'profile' %}">Edit your profile</a>...</li>
-                            <li><a href="{% url 'department_list' %}">Learn about each department's shift</a>...</li>
-                            <li><a href="{% url 'shifts' %}">Claim some shifts</a>...</li>
-                            <li><a href="{% url 'leaderboard' %}">View the leaderboard</a>...</li>
-                        </ul>
-                    </p>
-                    <p style="text-align: right">Your Superhero,<br />    
-                        Flaming Art</p>
-
-                {% else %}
-
-                    <p>Hi There Lovelie,</p>
-                    <p>Welcome to Apogaea's volunteer network. The webmonkies needed help 
-                        introducing you to the new online database so I volunteered 
-                        to lend a hand. You can thank me later.</p>
-                    <p>Do you want to volunteer for Apogaea 2014: Emergence? If so, I've got the links you'll need to get there.
-                       If you have an account, you just need to <b><a href="{% url 'login' %}">login</a></b>. 
-                       If this is your first time visiting the site this year, you'll need to
-                       <b><a href="{% url 'register' %}">register for an account</a></b>. If you
-                       volunteered last year, your data from last year is still intact and may
-                       be imported into the new system. However, for now, accounts will need
-                       to be re-created.</p>
-                    <p>And remember, if you've forgotten, you can always 
-                        <a href="{% url 'password_reset' %}">reset your password</a>.</p>
-                    <p>Anyhow, it's good to see you here! Remember, feel free to be free.</p>
-                    <p style="text-align: right">Giving You Support,<br />    
-                        Flaming Art</p>
-
-                {% endif %}
-
-            </div>
-            <div class="thoughtBubble above800">&nbsp;&nbsp;&nbsp;<br />&nbsp;</div>
-            <div class="thoughtBubble above800">&nbsp;</div>
-            <img src="{% static 'img/Flaming_Art.png' %}" />
-        </div>
+        {% if user.is_authenticated %}
+            <p>You're logged in</p>
+        {% else %}
+            <p>You should register or log in.</p>
+        {% endif %}
     </section>
 {% endblock %}
