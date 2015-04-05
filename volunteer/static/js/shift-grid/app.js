@@ -31,8 +31,10 @@ $(function(){
                 collection: cellView.model.get("roles"),
             });
             cellView.listenToOnce(cellModal, "dismiss", cellView.render);
+            cellModal.once("show", function() {
+                this.$el.parents(".modal").modal("show");
+            });
             this.shiftLayout.cell_modal.show(cellModal);
-            cellModal.$el.modal("show");
         },
         initializeLayout: function(el) {
             return new app.ShiftGridLayout({

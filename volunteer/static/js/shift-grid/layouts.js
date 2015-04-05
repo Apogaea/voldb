@@ -7,7 +7,7 @@ $(function(){
         regions: {
             pagination: ".shift-grid-pagination",
             grid: ".shift-grid-table",
-            cell_modal: ".cell-modal"
+            cell_modal: ".modal-dialog"
         }
     });
 

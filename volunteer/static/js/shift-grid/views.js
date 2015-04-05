@@ -241,7 +241,7 @@ $(function(){
 
     var ModalCellView = NestedCollectionCompositeView.extend({
         attributes: {
-            class: "modal fade"
+            class: "modal-content"
         },
         childView: ModalRoleView,
         childViewContainer: ".roles",
