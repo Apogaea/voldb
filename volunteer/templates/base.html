@@ -37,8 +37,10 @@
                 </ul>
             </div>
         </nav>
-        {% block content_wrapper %}
-        {% endblock content_wrapper %}
+        <div class="main-content">
+            {% block content_wrapper %}
+            {% endblock content_wrapper %}
+        </div>
 
         {% javascript 'base' %}
         {% javascript 'shift-grid' %}

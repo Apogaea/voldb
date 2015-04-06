@@ -36,7 +36,7 @@ body {
     background: #000 url("../img/Apogaea_web_header_2015_voldb.jpg") no-repeat center 40px;
 }
 
-.container {
+.main-content {
     margin-top: 220px; 
     background-color: rgba(0,0,0,0.9);     
     border-radius: 15px;
