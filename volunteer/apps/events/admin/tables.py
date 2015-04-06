@@ -10,7 +10,7 @@ from volunteer.apps.events.models import Event
 
 class EventTable(BootstrapTable):
     name = tables.LinkColumn(
-        'admin:user-detail',
+        'admin:event-detail',
         kwargs={'pk': A('pk')},
     )
 

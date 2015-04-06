@@ -1,6 +1,10 @@
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import (
+    reverse,
+    reverse_lazy,
+)
 from django.views.generic import (
     ListView,
+    UpdateView,
     CreateView,
 )
 
@@ -22,6 +26,15 @@ class AdminEventListView(AdminRequiredMixin, SingleTableMixin, ListView):
     model = Event
     table_class = EventTable
     table_pagination = {'per_page': 20}
+
+
+class AdminEventDetailView(AdminRequiredMixin, UpdateView):
+    model = Event
+    template_name = 'admin/events/event_detail.html'
+    form_class = AdminEventForm
+
+    def get_success_url(self):
+        return reverse('admin:event-detail', kwargs=self.kwargs)
 
 
 class AdminEventCreateView(AdminRequiredMixin, CreateView):
