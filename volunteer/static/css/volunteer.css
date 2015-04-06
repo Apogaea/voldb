@@ -5,14 +5,14 @@ div.shift-grid .table td.panel {
     padding: 0px;
 }
 div.shift-grid .table td.panel:hover {
-    background-color: #f5f5f5;
+    background-color: #333333;
 }
 div.shift-grid .table td.panel div.panel-heading {
     font-size: 12px;
-    background-color: #f5f5f5;
+    background-color: #333333;
 }
 div.shift-grid .table td.panel.empty:hover {
-    background-color: #fff;
+    background-color: #222222;
 }
 
 
