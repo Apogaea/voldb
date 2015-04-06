@@ -5,10 +5,12 @@ from django_tables2 import (
     A,
 )
 
+from volunteer.tables import BootstrapTable
+
 User = get_user_model()
 
 
-class UserTable(tables.Table):
+class UserTable(BootstrapTable):
     display_name = tables.LinkColumn(
         'admin:user-detail',
         kwargs={'pk': A('pk')},
@@ -16,9 +18,8 @@ class UserTable(tables.Table):
     )
     is_admin = tables.BooleanColumn()
 
-    class Meta:
+    class Meta(BootstrapTable.Meta):
         model = User
-        template = 'admin/partials/table.html'
         fields = (
             'id',
             'display_name',
@@ -31,6 +32,3 @@ class UserTable(tables.Table):
             'date_joined',
             'last_login',
         )
-        attrs = {
-            'class': 'table table-striped table-bordered',
-        }

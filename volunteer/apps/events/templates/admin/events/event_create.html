@@ -1,0 +1,12 @@
+{% extends "admin/admin_layout.html" %}
+
+
+{% block content %}
+    <h1>Create Event</h1>
+    <section>    	       
+        <form action="." method="post" class="well">
+            {% include 'partials/form_as_fieldsets.html' %}
+            <button class="btn btn-primary" type="submit">Save</button>
+        </form>
+    </section>
+{% endblock %}

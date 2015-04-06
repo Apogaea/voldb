@@ -32,6 +32,10 @@ class Event(Timestamped):
     def is_registration_open(self):
         return self.registration_open_at <= timezone.now() <= self.registration_close_at
 
+    @property
+    def is_current(self):
+        return self == Event.objects.get_current()
+
     class Meta:
         ordering = (
             '-registration_open_at', '-registration_close_at', 'name',

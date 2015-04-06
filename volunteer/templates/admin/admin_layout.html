@@ -12,6 +12,9 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{% url 'admin:user-list' %}">Users</a></li>
                 </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'admin:event-list' %}">Events</a></li>
+                </ul>
             </nav>
             {% block content %}
             {% endblock %}
