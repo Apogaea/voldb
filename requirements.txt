@@ -23,3 +23,4 @@ pylibmc==1.2.3
 python-dotenv==0.1.0
 pytz==2013.9
 raven==4.1.1
+readline==6.2.4.1
