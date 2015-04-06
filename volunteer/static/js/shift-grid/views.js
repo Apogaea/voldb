@@ -247,9 +247,11 @@ $(function(){
         childViewContainer: ".roles",
         childCollectionProperty: "shifts",
         template: Handlebars.templates.cell_modal_template,
-        triggers: {
-            "click button.dismiss": "dismiss",
-            "click div.modal-backdrop": "dismiss"
+        dismissModal: function(event) {
+            this.trigger("dismiss");
+        },
+        events: {
+            "click button.dismiss": "dismissModal",
         }
     });
 
