@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'emailtools',
     'rest_framework',
     'pipeline',
+    'manifesto',
     's3_folder_storage',
     'bootstrap3',
     'argonauts',
