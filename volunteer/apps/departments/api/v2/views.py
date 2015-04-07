@@ -4,9 +4,15 @@ from rest_framework import generics
 from rest_framework import pagination
 from rest_framework.compat import OrderedDict
 
-from volunteer.apps.departments.models import Department
+from volunteer.apps.departments.models import (
+    Department,
+    Role,
+)
 
-from volunteer.apps.departments.api.v2.serializers import DepartmentSerializer
+from volunteer.apps.departments.api.v2.serializers import (
+    RoleSerializer,
+    DepartmentSerializer,
+)
 
 
 class PassThroughPaginator(pagination.BasePagination):
@@ -27,3 +33,10 @@ class DepartmentViewSet(generics.ListAPIView,
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
     pagination_class = PassThroughPaginator
+
+
+class RoleViewSet(generics.ListAPIView,
+                  generics.RetrieveAPIView,
+                  viewsets.GenericViewSet):
+    queryset = Role.objects.all()
+    serializer_class = RoleSerializer

@@ -4,6 +4,8 @@ from django.db import models
 from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
 
+from volunteer.core.models import Timestamped
+
 
 class DepartmentQuerySet(models.QuerySet):
     use_for_related_fields = True
@@ -35,3 +37,30 @@ class Department(models.Model):
 
     class Meta:
         ordering = ('name',)
+
+
+class RoleQuerySet(models.QuerySet):
+    use_for_related_fields = True
+
+    def filter_to_current_event(self):
+        from volunteer.apps.events.models import Event
+        current_event = Event.objects.get_current()
+        if current_event is None:
+            return self
+        else:
+            return self.filter(shifts__event=current_event).distinct()
+
+
+@python_2_unicode_compatible
+class Role(Timestamped):
+    department = models.ForeignKey(
+        'departments.Department', related_name='roles',
+        on_delete=models.PROTECT,
+    )
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+
+    objects = RoleQuerySet.as_manager()
+
+    def __str__(self):
+        return self.name

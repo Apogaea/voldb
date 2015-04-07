@@ -1,0 +1,18 @@
+{% extends "admin/admin_layout.html" %}
+
+
+{% block content %}
+    <h1>Create New Deparment</h1>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <form action="." method="post" class="well">
+                        {% include 'partials/form_as_fieldsets.html' %}
+                        <button class="btn btn-primary" type="submit">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

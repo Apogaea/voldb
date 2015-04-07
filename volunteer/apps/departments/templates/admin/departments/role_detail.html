@@ -4,7 +4,7 @@
 
 
 {% block content %}
-    <h1>Deparment #{{ department.pk }}: {{ department.name }}</h1>
+    <h1>Role #{{ role.pk }}: {{ role.name }}</h1>
     <section>
         <div class="container">
             <div class="row">
@@ -12,11 +12,11 @@
                     <h2>Details</h2>
                     <dl class="dl-horizontal">
                         <dt>Id:</dt>
-                        <dd>{{ department.pk }}</dd>
+                        <dd>{{ role.pk }}</dd>
                         <dt>Name:</dt>
-                        <dd>{{ department.name }}</dd>
+                        <dd>{{ role.name }}</dd>
                         <dt>Description:</dt>
-                        <dd>{{ department.description|linebreaksbr }}</dd>
+                        <dd>{{ role.description|linebreaksbr }}</dd>
                     </dl>
                 </div>
                 <div class="col-sm-6">
@@ -30,7 +30,8 @@
         </div>
     </section>
     <section>
-        <h2>Roles</h2>
-        {% render_table table %}
+        <h2>Shifts</h2>
+        <p>#TODO</p>
+        {#{% render_table table %}#}
     </section>
 {% endblock %}
