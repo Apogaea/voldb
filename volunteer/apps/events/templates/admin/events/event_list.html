@@ -1,0 +1,15 @@
+{% extends "admin/admin_layout.html" %}
+{% load render_table from django_tables2 %}
+
+
+{% block content %}
+    <h1>
+        Events
+        <p class="pull-right">
+        <small><a href="{% url 'admin:event-create' %}" class="btn btn-success">Create Event</small></a>
+        </p>
+    </h1>
+    <section>    	       
+        {% render_table table %}
+    </section>
+{% endblock %}

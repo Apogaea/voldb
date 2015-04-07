@@ -1,0 +1,46 @@
+{% extends "admin/admin_layout.html" %}
+{% load humanize %}
+
+
+{% block content %}
+    <h1>User #{{ voldb_user.pk }}: {{ voldb_user.profile.display_name }}</h1>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Details</h2>
+                    <dl class="dl-horizontal">
+                        <dt>Id:</dt>
+                        <dd>{{ voldb_user.pk }}</dd>
+                        <dt>Full Name:</dt>
+                        <dd>{{ voldb_user.profile.full_name }}</dd>
+                        <dt>Display Name:</dt>
+                        <dd>{{ voldb_user.profile.display_name }}</dd>
+                        <dt>Email:</dt>
+                        <dd>{{ voldb_user.email|urlize }}</dd>
+                        <dt>Phone Number:</dt>
+                        <dd>{{ voldb_user.profile.phone }}</dd>
+                        <dt>Has Ticket:</dt>
+                        <dd>{{ voldb_user.profile.has_ticket|yesno:"Yes,No" }}</dd>
+                        <dt>Date Joined:</dt>
+                        <dd>{{ voldb_user.date_joined }}</dd>
+                        <dt>Last Login:</dt>
+                        <dd>{{ voldb_user.last_login|naturaltime }}</dd>
+                    </dl>
+                </div>
+                <div class="col-sm-6">
+                    <form action="." method="post" class="well">
+                        <h2>Edit</h2>
+                        {% include 'partials/form_as_fieldsets.html' %}
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h2>Shifts</h2>
+        <p>TODO</p>
+    </section>
+{% endblock %}
+

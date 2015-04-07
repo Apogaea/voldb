@@ -42,3 +42,6 @@ class User(AbstractEmailUser):
             return self.profile.display_name
         else:
             return obfuscate_email(self.email)
+
+    class Meta(AbstractEmailUser.Meta):
+        ordering = ('email',)

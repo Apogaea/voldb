@@ -1,9 +1,10 @@
 {% extends "admin/admin_layout.html" %}
+{% load render_table from django_tables2 %}
 
 
 {% block content %}
-<h1>Volunteer Database Admin</h1>
+<h1>Users</h1>
     <section>    	       
-        <p>This is a sub page for the site admin that doesn't exist yet</p>
+        {% render_table table %}
     </section>
 {% endblock %}

@@ -33,6 +33,17 @@ DEBUG = excavator.env_bool('DJANGO_DEBUG', default=False)
 
 TEMPLATE_DEBUG = DEBUG
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.request',
+)
+
 # Allowed Hosts
 # https://docs.djangoproject.com/en/1.7/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = excavator.env_list('DJANGO_ALLOWED_HOSTS', required=not DEBUG)
@@ -45,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.humanize',
     # local project
     'volunteer.core',
     # local apps
@@ -65,6 +77,7 @@ INSTALLED_APPS = [
     's3_folder_storage',
     'bootstrap3',
     'argonauts',
+    'django_tables2',
     'raven.contrib.django.raven_compat',
 ]
 
