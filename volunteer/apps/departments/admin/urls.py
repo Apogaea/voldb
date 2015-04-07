@@ -1,10 +1,10 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
 
 from volunteer.apps.departments.admin import views
 
 
 urlpatterns = patterns(
-    '',  # NOQA
+    '',
     url(
         r'^departments/$', views.AdminDepartmentListView.as_view(),
         name='department-list',
@@ -16,5 +16,9 @@ urlpatterns = patterns(
     url(
         r'^departments/(?P<pk>\d+)/$',
         views.AdminDepartmentDetailView.as_view(), name='department-detail',
+    ),
+    url(
+        r'^departments/(?P<department_pk>\d+)/',
+        include('volunteer.apps.shifts.admin.urls'),
     ),
 )
