@@ -13,6 +13,12 @@ class EventTable(BootstrapTable):
         'admin:event-detail',
         kwargs={'pk': A('pk')},
     )
+    is_current = tables.BooleanColumn(
+        orderable=False,
+    )
+    is_registration_open = tables.BooleanColumn(
+        orderable=False,
+    )
 
     class Meta(BootstrapTable.Meta):
         model = Event
