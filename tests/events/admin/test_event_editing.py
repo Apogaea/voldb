@@ -28,5 +28,5 @@ def test_event_list_page(admin_webtest_client, models, factories):
     assert form_response.status_code == 302
 
     updated_event = models.Event.objects.get(name='New Test Event Name')
-    assert updated_event.registration_open_at == new_open_at
-    assert updated_event.registration_close_at == new_close_at
+    assert to_current_timezone(updated_event.registration_open_at) == new_open_at
+    assert to_current_timezone(updated_event.registration_close_at) == new_close_at
