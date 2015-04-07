@@ -78,29 +78,60 @@ INSTALLED_APPS = [
     'bootstrap3',
     'argonauts',
     'django_tables2',
-    'raven.contrib.django.raven_compat',
 ]
 
+try:
+    # Error reporting client for Sentry
+    import raven  # NOQA
+    INSTALLED_APPS.append('raven.contrib.django.raven_compat')
+
+    RAVEN_CONFIG = {
+        'dsn': excavator.env_string('SENTRY_DSN', default=None)
+    }
+except ImportError:
+    pass
+
+
 if DEBUG:
+    # Django Extensions
+    # Provides useful tools for develpoment.
     try:
         import django_extensions  # NOQA
         INSTALLED_APPS.append('django_extensions')
     except ImportError:
         pass
+    # Django Debug Toolbar
+    # Provides useful tools for debugging sites either in development or
+    # production.
     try:
         import debug_toolbar  # NOQA
         INSTALLED_APPS.append('debug_toolbar')
     except ImportError:
         pass
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+]
+
+# Rollbar
+# https://rollbar.com/
+try:
+    import rollbar  # NOQA
+    MIDDLEWARE_CLASSES.append('rollbar.contrib.django.middleware.RollbarNotifierMiddleware')
+
+    ROLLBAR = {
+        'access_token': excavator.env_string('ROLLBAR_ACCESS_TOKEN', default=None),
+        'environment': excavator.env_string('ROLLBAR_ENVIRONMENT', default='development'),
+        'branch': excavator.env_string('ROLLBAR_GIT_BRANCH', default='master'),
+        'root': BASE_DIR,
+    }
+except ImportError:
+    pass
 
 ROOT_URLCONF = 'volunteer.urls'
 
@@ -257,11 +288,6 @@ AWS_IS_GZIPPED = False
 AWS_PRELOAD_METADATA = True
 AWS_HEADERS = {
     "Cache-Control": "public, max-age=86400",
-}
-
-# Sentry error reporting
-RAVEN_CONFIG = {
-    'dsn': excavator.env_string('SENTRY_DSN', default=None)
 }
 
 # Cache setup
