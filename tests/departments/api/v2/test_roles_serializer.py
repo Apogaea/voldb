@@ -1,4 +1,4 @@
-from volunteer.apps.shifts.api.v2.serializers import RoleSerializer
+from volunteer.apps.departments.api.v2.serializers import RoleSerializer
 
 
 def test_role_serialization(factories):
