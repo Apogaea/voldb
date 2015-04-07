@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
 
 from volunteer.apps.departments.admin import views
 
@@ -26,5 +26,10 @@ urlpatterns = patterns(
         r'^departments/(?P<department_pk>\d+)/roles/(?P<pk>\d+)/$',
         views.AdminRoleDetailView.as_view(),
         name='role-detail',
+    ),
+    # Shifts admin
+    url(
+        r'^departments/(?P<department_pk>\d+)/roles/(?P<role_pk>\d+)/',
+        include('volunteer.apps.shifts.admin.urls'),
     ),
 )

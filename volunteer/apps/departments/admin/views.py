@@ -14,6 +14,10 @@ from django_tables2 import (
 
 from volunteer.decorators import AdminRequiredMixin
 
+from volunteer.apps.shifts.admin.tables import (
+    ShiftTable,
+)
+
 from volunteer.apps.departments.models import (
     Department,
     Role,
@@ -62,9 +66,6 @@ class AdminRoleCreateView(AdminRequiredMixin, CreateView):
     template_name = 'admin/departments/role_create.html'
     form_class = AdminRoleForm
 
-    def get_queryset(self):
-        return Role.objects.filter(department_id=self.kwargs['department_pk'])
-
     def form_valid(self, form):
         form.instance.department_id = self.kwargs['department_pk']
         return super(AdminRoleCreateView, self).form_valid(form)
@@ -76,13 +77,17 @@ class AdminRoleCreateView(AdminRequiredMixin, CreateView):
         )
 
 
-class AdminRoleDetailView(AdminRequiredMixin, UpdateView):
+class AdminRoleDetailView(AdminRequiredMixin, SingleTableMixin, UpdateView):
     model = Role
     template_name = 'admin/departments/role_detail.html'
     form_class = AdminRoleForm
+    table_class = ShiftTable
 
     def get_queryset(self):
         return Role.objects.filter(department_id=self.kwargs['department_pk'])
+
+    def get_table_data(self):
+        return self.object.shifts.filter_to_current_event()
 
     def get_success_url(self):
         return reverse(

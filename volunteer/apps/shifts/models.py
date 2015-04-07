@@ -111,6 +111,10 @@ class Shift(Timestamped):
             return False
         return True
 
+    @property
+    def duration(self):
+        return timezone.timedelta(minutes=self.shift_minutes)
+
 
 @python_2_unicode_compatible
 class ShiftSlot(Timestamped):
