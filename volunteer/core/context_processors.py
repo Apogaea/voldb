@@ -1,7 +1,7 @@
 from django.conf import settings
 
 
-def rollbar():
+def rollbar(request):
     if hasattr(settings, 'ROLLBAR'):
         return {
             'ROLLBAR_CONFIG': {
