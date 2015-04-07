@@ -25,11 +25,6 @@ class AdminUserListView(AdminRequiredMixin, SingleTableMixin, ListView):
     table_class = UserTable
     table_pagination = {'per_page': 20}
 
-    def get_context_data(self, **kwargs):
-        context = super(AdminUserListView, self).get_context_data(**kwargs)
-        #import ipdb; ipdb.set_trace()
-        return context
-
 
 class AdminUserDetailView(AdminRequiredMixin, UpdateView):
     model = User
