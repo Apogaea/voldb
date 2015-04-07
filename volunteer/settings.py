@@ -233,7 +233,13 @@ PIPELINE_JS = {
             "js/backbone.marionette.export.js",
             "js/volunteer.js",
         ),
-        'output_filename': 'base.js',
+        'output_filename': 'js/base.js',
+    },
+    'rollbar': {
+        'source_filenames': (
+            "js/rollbar.js",
+        ),
+        'output_filename': 'js/rollbar.js',
     },
     'shift-grid': {
         'source_filenames': (
