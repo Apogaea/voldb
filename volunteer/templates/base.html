@@ -5,6 +5,10 @@
         <meta charset="UTF-8">
         <title>{% block title %}Apogaea Volunteer Database{% endblock %}</title>
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
+        {% if ROLLBAR_CONFIG %}
+            <script type="text/javascript">var _rollbarConfig = {{ ROLLBAR_CONFIG|json }};</script>
+            <script src="{% static 'js/rollbar.js' %}" type="text/javascript"></script>
+        {% endif %}
 
         {% stylesheet 'base' %}
 

@@ -42,6 +42,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
+    'volunteer.coor.context_processors.rollbar',
 )
 
 # Allowed Hosts
