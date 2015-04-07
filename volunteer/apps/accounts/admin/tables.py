@@ -16,7 +16,7 @@ class UserTable(BootstrapTable):
         kwargs={'pk': A('pk')},
         accessor=A('profile.display_name'),
     )
-    is_admin = tables.BooleanColumn()
+    is_admin = tables.BooleanColumn(order_by=('-is_superuser', '-is_staff'))
 
     class Meta(BootstrapTable.Meta):
         model = User
