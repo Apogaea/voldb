@@ -13,5 +13,5 @@ urlpatterns = patterns(
     url(r'^', include('volunteer.apps.accounts.admin.urls')),
     url(r'^', include('volunteer.apps.events.admin.urls')),
     url(r'^', include('volunteer.apps.departments.admin.urls')),
-    # url(r'^', include('volunteer.apps.shifts.admin.urls')),
+    url(r'^', include('volunteer.apps.shifts.admin.urls')),
 )

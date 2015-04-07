@@ -6,7 +6,6 @@ from django.conf import settings
 
 from volunteer.apps.shifts.models import (
     Shift,
-    Role,
     ShiftSlot,
 )
 from volunteer.apps.shifts.utils import DENVER_TIMEZONE
@@ -25,15 +24,6 @@ def yesterday_at_hour(hour):
 
 def tomorrow_at_hour(hour):
     return today_at_hour(hour) + datetime.timedelta(1)
-
-
-class RoleFactory(factory.DjangoModelFactory):
-    name = factory.Sequence("role-{0}".format)
-    description = "Role Description"
-    department = factory.SubFactory('tests.factories.departments.DepartmentFactory')
-
-    class Meta:
-        model = Role
 
 
 def get_default_event(*args, **kwargs):
@@ -55,7 +45,7 @@ def get_default_event(*args, **kwargs):
 
 class ShiftFactory(factory.DjangoModelFactory):
     event = factory.LazyAttribute(get_default_event)
-    role = factory.SubFactory(RoleFactory)
+    role = factory.SubFactory('tests.factories.departments.RoleFactory')
     start_time = factory.LazyAttribute(
         lambda x: today_at_hour(9)
     )

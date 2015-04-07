@@ -3,12 +3,7 @@ from django.utils.crypto import (
 )
 from rest_framework import serializers
 
-from volunteer.apps.departments.api.v2.serializers import (
-    DepartmentSerializer,
-)
-
 from volunteer.apps.shifts.models import (
-    Role,
     Shift,
     ShiftSlot,
 )
@@ -76,16 +71,3 @@ class ClaimShiftSerializer(serializers.ModelSerializer):
                     return data
             raise serializers.ValidationError("Invalid Unlock Code")
         return data
-
-
-class RoleSerializer(serializers.ModelSerializer):
-    department = DepartmentSerializer(read_only=True)
-
-    class Meta:
-        model = Role
-        fields = (
-            'id',
-            'department',
-            'name',
-            'description',
-        )
