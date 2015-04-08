@@ -6,6 +6,8 @@ div.shift-grid .table td.panel {
 }
 div.shift-grid .table td.panel:hover {
     background-color: #333333;
+    cursor: pointer;
+    cursor: hand;
 }
 div.shift-grid .table td.panel div.panel-heading {
     font-size: 12px;
