@@ -29,7 +29,9 @@ from .tables import (
 )
 from .forms import (
     AdminDepartmentForm,
+    AdminDepartmentMergeForm,
     AdminRoleForm,
+    AdminRoleMergeForm,
 )
 
 
@@ -59,6 +61,15 @@ class AdminDepartmentDetailView(AdminRequiredMixin, SingleTableMixin, UpdateView
 
     def get_success_url(self):
         return reverse('admin:department-detail', kwargs=self.kwargs)
+
+
+class AdminDepartmentMergeView(AdminRequiredMixin, UpdateView):
+    model = Department
+    template_name = 'admin/departments/department_merge.html'
+    form_class = AdminDepartmentMergeForm
+
+    def get_success_url(self):
+        return reverse('admin:department-detail', kwargs={'pk': self.object.pk})
 
 
 class AdminRoleCreateView(AdminRequiredMixin, CreateView):
@@ -100,4 +111,22 @@ class AdminRoleDetailView(AdminRequiredMixin, SingleTableMixin, UpdateView):
         return reverse(
             'admin:department-detail',
             kwargs={'pk': self.object.department_id},
+        )
+
+
+class AdminRoleMergeView(AdminRequiredMixin, UpdateView):
+    model = Role
+    template_name = 'admin/departments/role_merge.html'
+    form_class = AdminRoleMergeForm
+
+    def get_queryset(self):
+        return Role.objects.filter(department_id=self.kwargs['department_pk'])
+
+    def get_success_url(self):
+        return reverse(
+            'admin:role-detail',
+            kwargs={
+                'department_pk': self.object.department_id,
+                'pk': self.object.pk,
+            },
         )

@@ -12,7 +12,12 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Deparment #{{ department.pk }}: {{ department.name }}</h1>
+    <h1>
+        Deparment #{{ department.pk }}: {{ department.name }}
+        <p class="pull-right">
+        <small><a href="{% url 'admin:department-merge' pk=department.pk %}" class="btn btn-warning">Merge with another department</small></a>
+        </p>
+    </h1>
     <section>
         <div class="container">
             <div class="row">
@@ -41,7 +46,7 @@
         <h2>
             Roles
             <p class="pull-right">
-            <small><a href="{% url 'admin:role-create' department_pk=department.pk %}" class="btn btn-success">Create Role</small></a>
+            <small><a href="{% url 'admin:role-create' department_pk=department.pk %}" class="btn btn-success">Create New Role</small></a>
             </p>
         </h2>
         {% render_table table %}
