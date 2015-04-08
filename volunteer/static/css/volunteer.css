@@ -19,11 +19,13 @@ div.shift-grid .table td.panel.empty:hover {
 /*
  *  Department Detail Page
  */
-div.role h4 a.role-quicklink {
+h3 a.text-muted.quicklink,
+h4 a.text-muted.quicklink {
     display: none;
-    font-size: 12px;
+    font-size: 70%;
 }
-div.role h4:hover a.role-quicklink {
+h4:hover a.text-muted.quicklink,
+h3:hover a.text-muted.quicklink {
     display: inline;
 }
 
