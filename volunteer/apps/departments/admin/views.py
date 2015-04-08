@@ -66,6 +66,11 @@ class AdminRoleCreateView(AdminRequiredMixin, CreateView):
     template_name = 'admin/departments/role_create.html'
     form_class = AdminRoleForm
 
+    def get_context_data(self, **kwargs):
+        context = super(AdminRoleCreateView, self).get_context_data(**kwargs)
+        context['department'] = Department.objects.get(pk=self.kwargs['department_pk'])
+        return context
+
     def form_valid(self, form):
         form.instance.department_id = self.kwargs['department_pk']
         return super(AdminRoleCreateView, self).form_valid(form)
@@ -87,7 +92,9 @@ class AdminRoleDetailView(AdminRequiredMixin, SingleTableMixin, UpdateView):
         return Role.objects.filter(department_id=self.kwargs['department_pk'])
 
     def get_table_data(self):
-        return self.object.shifts.filter_to_current_event()
+        return self.object.shifts.filter_to_current_event().order_by(
+            'start_time', 'shift_minutes',
+        )
 
     def get_success_url(self):
         return reverse(

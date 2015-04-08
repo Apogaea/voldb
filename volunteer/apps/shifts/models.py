@@ -5,6 +5,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator
 from django.conf import settings
 from django.utils import timezone
+from django.utils import timesince
 from django.utils.encoding import python_2_unicode_compatible
 
 from volunteer.core.models import Timestamped
@@ -24,6 +25,11 @@ class ShiftQuerySet(models.QuerySet):
             return self.filter(event=current_event)
 
 
+def human_readable_minutes(minutes):
+    now = timezone.now()
+    return timesince.timeuntil(now + timezone.timedelta(minutes=minutes), now)
+
+
 @python_2_unicode_compatible
 class Shift(Timestamped):
     event = models.ForeignKey(
@@ -33,17 +39,31 @@ class Shift(Timestamped):
         'departments.Role', related_name='shifts', on_delete=models.PROTECT,
     )
 
-    start_time = models.DateTimeField('shift begins')
+    start_time = models.DateTimeField(
+        'shift begins',
+        help_text=(
+            "Format: `YYYY-MM-DD HH:MM` with the hours in 24-hour (military) "
+            "format.  (eg, 2pm is 14:00)."
+        ),
+    )
     SHIFT_MINUTES_CHOICES = tuple((
-        (i * 5, str(i * 5)) for i in range(1, 24 * 12 + 1)
+        (i * 5, human_readable_minutes(i * 5)) for i in range(1, 24 * 12 + 1)
     ))
     shift_minutes = models.PositiveSmallIntegerField(
+        "shift length",
         validators=[MaxValueValidator(1440)], choices=SHIFT_MINUTES_CHOICES,
+        help_text="The length of the shift",
     )
 
-    num_slots = models.PositiveSmallIntegerField(default=1)
+    num_slots = models.PositiveSmallIntegerField(
+        default=1,
+        help_text="How many slots does this shift have",
+    )
 
-    code = models.CharField(max_length=50, blank=True)
+    code = models.CharField(
+        max_length=50, blank=True,
+        help_text="Leave blank if this shift can be claimed by anyone.",
+    )
 
     objects = ShiftQuerySet.as_manager()
 

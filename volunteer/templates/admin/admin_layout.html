@@ -19,6 +19,13 @@
                     <li><a href="{% url 'admin:department-list' %}">Departments</a></li>
                 </ul>
             </nav>
+            <ol class="breadcrumb">
+                {% block bread %}
+                    <li><a href="{% url 'admin:index' %}">Admin Home</a></li>
+                {% endblock %}
+                {% block crumbs %}
+                {% endblock %}
+            </ol>
             {% block content %}
             {% endblock %}
         </div>

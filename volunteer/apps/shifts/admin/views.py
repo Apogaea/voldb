@@ -1,6 +1,5 @@
 from django.core.urlresolvers import (
     reverse,
-    reverse_lazy,
 )
 from django.views.generic import (
     UpdateView,
@@ -10,6 +9,8 @@ from django.views.generic import (
 from volunteer.decorators import AdminRequiredMixin
 
 from volunteer.apps.events.models import Event
+
+from volunteer.apps.departments.models import Role
 
 from volunteer.apps.shifts.models import (
     Shift,
@@ -25,6 +26,14 @@ class AdminShiftCreateView(AdminRequiredMixin, CreateView):
     model = Shift
     template_name = 'admin/shifts/shift_create.html'
     form_class = AdminShiftCreateForm
+
+    def get_context_data(self, **kwargs):
+        context = super(AdminShiftCreateView, self).get_context_data(**kwargs)
+        context['role'] = Role.objects.get(
+            department_id=self.kwargs['department_pk'],
+            id=self.kwargs['role_pk'],
+        )
+        return context
 
     def form_valid(self, form):
         form.instance.role_id = self.kwargs['role_pk']

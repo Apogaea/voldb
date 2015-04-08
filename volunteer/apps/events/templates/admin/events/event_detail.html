@@ -1,6 +1,14 @@
 {% extends "admin/admin_layout.html" %}
 {% load humanize %}
 
+{% block bread %}
+    {{ block.super }}
+    <li><a href="{% url 'admin:event-list' %}">Events</a></li>
+{% endblock %}
+
+{% block crumbs %}
+    <li>Event #{{ event.pk }}</li>
+{% endblock %}
 
 {% block content %}
     <h1>Event #{{ event.pk }}: {{ event.name }}</h1>

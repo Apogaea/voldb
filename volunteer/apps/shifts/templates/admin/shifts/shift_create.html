@@ -1,16 +1,18 @@
-{% extends "admin/admin_layout.html" %}
+{% extends "admin/departments/role_detail.html" %}
 
 {% block bread %}
-    {{ block.super }}
-    <li><a href="{% url 'admin:department-list' %}">Departments</a></li>
+    {% with department=role.department %}
+        {{ block.super }}
+        <li><a href="{% url 'admin:role-detail' department_pk=role.department_id pk=role.pk %}">Role #{{ role.pk }}: {{ role.name }}</a></li>
+    {% endwith %}
 {% endblock %}
 
 {% block crumbs %}
-    <li>Create New Department</li>
+    <li>Create New Shift</li>
 {% endblock %}
 
 {% block content %}
-    <h1>Create New Deparment</h1>
+    <h1>Create New Shift</h1>
     <section>
         <div class="container">
             <div class="row">

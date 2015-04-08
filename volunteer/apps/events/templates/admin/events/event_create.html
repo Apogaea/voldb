@@ -1,12 +1,20 @@
 {% extends "admin/admin_layout.html" %}
 
+{% block bread %}
+    {{ block.super }}
+    <li><a href="{% url 'admin:event-list' %}">Events</a></li>
+{% endblock %}
+
+{% block crumbs %}
+    <li>Create New Event</li>
+{% endblock %}
 
 {% block content %}
-    <h1>Create Event</h1>
+    <h1>Create New Event</h1>
     <section>    	       
         <form action="." method="post" class="well">
             {% include 'partials/form_as_fieldsets.html' %}
-            <button class="btn btn-primary" type="submit">Save</button>
+            <button class="btn btn-primary" type="submit">Create</button>
         </form>
     </section>
 {% endblock %}

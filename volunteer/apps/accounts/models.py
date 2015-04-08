@@ -10,6 +10,9 @@ from volunteer.apps.accounts.utils import obfuscate_email
 
 @python_2_unicode_compatible
 class User(AbstractEmailUser):
+    class Meta(AbstractEmailUser.Meta):
+        ordering = ('email',)
+
     @property
     def is_admin(self):
         return self.is_staff or self.is_superuser
@@ -42,6 +45,3 @@ class User(AbstractEmailUser):
             return self.profile.display_name
         else:
             return obfuscate_email(self.email)
-
-    class Meta(AbstractEmailUser.Meta):
-        ordering = ('email',)
