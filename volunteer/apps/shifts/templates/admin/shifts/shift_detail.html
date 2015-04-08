@@ -14,7 +14,12 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Shift #{{ shift.pk }}: {{ shift.start_time }}</h1>
+    <h1>
+        Shift #{{ shift.pk }}: {{ shift.start_time }}
+        <p class="pull-right">
+        <small><a href="{% url 'admin:shift-delete' department_pk=shift.role.department_id role_pk=shift.role_id pk=shift.pk %}" class="btn btn-danger">Delete</small></a>
+        </p>
+    </h1>
     <section>
         <div class="container">
             <div class="row">

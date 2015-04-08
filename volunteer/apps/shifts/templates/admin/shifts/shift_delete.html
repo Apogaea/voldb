@@ -1,0 +1,42 @@
+{% extends "admin/shifts/shift_detail.html" %}
+
+{% block bread %}
+    {% with department=shift.role.department role=shift.role %}
+        {{ block.super }}
+        <li><a href="{% url 'admin:shift-detail' department_pk=department.pk role_pk=role.pk pk=shift.pk %}">Shift #{{ shift.pk }}: {{ shift.start_time }}</a></li>
+    {% endwith %}
+{% endblock %}
+
+{% block crumbs %}
+    <li>Delete Shift</li>
+{% endblock %}
+
+{% block content %}
+    <h1>Delete Shift</h1>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    {% if shift.claimed_slots.exists %}
+                        <div class="well">
+                            <p class="text-primary">This shift currently has actively
+                            claimed slots.  Prior to deleting a shift, all volunteers
+                            must be removed from the shift.</p>
+                            <a class="btn btn-primary" href="{% url 'admin:shift-detail' department_pk=shift.role.department.pk role_pk=shift.role_id pk=shift.pk %}">Back to Shift</a>
+                        </div>
+                    {% else %}
+                        <form action="." method="post" class="well">
+                            <h4 class="text-danger">Warning!</h4>
+                            <p class="text-danger">This action is destructive
+                            and cannot be undone.  This shift will be
+                            <strong>deleted</strong>.</p>
+                            <a class="btn btn-primary" href="{% url 'admin:shift-detail' department_pk=shift.role.department.pk role_pk=shift.role_id pk=shift.pk %}">Nevermind, go back</a>
+                            <button class="btn btn-danger pull-right" type="submit">Delete</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
