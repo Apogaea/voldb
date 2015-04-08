@@ -1,0 +1,30 @@
+{% extends "admin/departments/role_detail.html" %}
+
+{% block bread %}
+    {% with department=role.department %}
+        {{ block.super }}
+        <li><a href="{% url 'admin:role-detail' department_pk=role.department_id pk=role.pk %}">Role #{{ role.pk }}: {{ role.name }}</a></li>
+    {% endwith %}
+{% endblock %}
+
+{% block crumbs %}
+    <li>Merge with other role</li>
+{% endblock %}
+
+{% block content %}
+    <h1>Merge with other role</h1>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <form action="." method="post" class="well">
+                        <h4 class="text-danger">Warning!</h4>
+                        <p class="text-danger">This action is destructive and cannot be undone.  All shifts belonging to this role will be assigned to the selected role and this role will be <strong>deleted</strong>.  </p>
+                        {% include 'partials/form_as_fieldsets.html' %}
+                        <button class="btn btn-warning" type="submit">Merge</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

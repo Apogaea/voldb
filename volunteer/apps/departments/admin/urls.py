@@ -18,6 +18,10 @@ urlpatterns = patterns(
         views.AdminDepartmentDetailView.as_view(), name='department-detail',
     ),
     url(
+        r'^departments/(?P<pk>\d+)/merge-with-other-department/$',
+        views.AdminDepartmentMergeView.as_view(), name='department-merge',
+    ),
+    url(
         r'^departments/(?P<department_pk>\d+)/roles/create-new/$',
         views.AdminRoleCreateView.as_view(),
         name='role-create',
@@ -26,6 +30,11 @@ urlpatterns = patterns(
         r'^departments/(?P<department_pk>\d+)/roles/(?P<pk>\d+)/$',
         views.AdminRoleDetailView.as_view(),
         name='role-detail',
+    ),
+    url(
+        r'^departments/(?P<department_pk>\d+)/roles/(?P<pk>\d+)/merge-with-other-role/$',
+        views.AdminRoleMergeView.as_view(),
+        name='role-merge',
     ),
     # Shifts admin
     url(
