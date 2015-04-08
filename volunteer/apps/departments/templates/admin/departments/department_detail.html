@@ -1,7 +1,15 @@
-{% extends "admin/admin_layout.html" %}
+{% extends "admin/departments/department_list.html" %}
 {% load render_table from django_tables2 %}
 {% load humanize %}
 
+{% block bread %}
+    {{ block.super }}
+    <li><a href="{% url 'admin:department-list' %}">Departments</a></li>
+{% endblock %}
+
+{% block crumbs %}
+    <li>Department #{{ department.pk }}: {{ department.name }}</li>
+{% endblock %}
 
 {% block content %}
     <h1>Deparment #{{ department.pk }}: {{ department.name }}</h1>
@@ -30,7 +38,12 @@
         </div>
     </section>
     <section>
-        <h2>Roles</h2>
+        <h2>
+            Roles
+            <p class="pull-right">
+            <small><a href="{% url 'admin:role-create' department_pk=department.pk %}" class="btn btn-success">Create Role</small></a>
+            </p>
+        </h2>
         {% render_table table %}
     </section>
 {% endblock %}

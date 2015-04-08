@@ -1,6 +1,10 @@
 {% extends "admin/admin_layout.html" %}
 {% load render_table from django_tables2 %}
 
+{% block crumbs %}
+    <li>Users</li>
+{% endblock %}
+
 
 {% block content %}
 <h1>Users</h1>

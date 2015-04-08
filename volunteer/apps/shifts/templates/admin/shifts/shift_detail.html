@@ -1,0 +1,60 @@
+{% extends "admin/departments/role_detail.html" %}
+{% load render_table from django_tables2 %}
+{% load humanize %}
+
+{% block bread %}
+    {% with role=shift.role department=shift.role.department %}
+        {{ block.super }}
+        <li><a href="{% url 'admin:role-detail' department_pk=shift.role.department_id pk=shift.role_id %}">Role #{{ shift.role_id }}: {{ shift.role.name }}</a></li>
+    {% endwith %}
+{% endblock %}
+
+{% block crumbs %}
+    <li>Shift #{{ shift.pk }}: {{ shift.name }}</li>
+{% endblock %}
+
+{% block content %}
+    <h1>Shift #{{ shift.pk }}: {{ shift.start_time }}</h1>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Details</h2>
+                    <dl class="dl-horizontal">
+                        <dt>Id:</dt>
+                        <dd>{{ shift.pk }}</dd>
+                        <dt>Shift Begins:</dt>
+                        <dd>{{ shift.start_time }}</dd>
+                        <dt>Shift Ends:</dt>
+                        <dd>{{ shift.end_time }}</dd>
+                        <dt>Shift Duration:</dt>
+                        <dd>{{ shift.duration }}</dd>
+                        <dt>Num Slots:</dt>
+                        <dd>{{ shift.num_slots }}</dd>
+                        <dt>Code:</dt>
+                        <dd>{{ shift.code|default:"N/A" }}</dd>
+                    </dl>
+                </div>
+                <div class="col-sm-6">
+                    <form action="." method="post" class="well">
+                        <h2>Edit</h2>
+                        {% include 'partials/form_as_fieldsets.html' %}
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h2>Claimed Slots</h2>
+        {% if shift.claimed_slots.exists %}
+            <ol>
+                {% for slot in shift.claimed_slots %}
+                    <li><a href="{% url 'admin:user-detail' pk=slot.volunteer.pk %}">{{ slot.volunteer }}</a></li>
+                {% endfor %}
+            </ol>
+        {% else %}
+            <p>No slots for this shift have been claimed</p>
+        {% endif %}
+    </section>
+{% endblock %}
