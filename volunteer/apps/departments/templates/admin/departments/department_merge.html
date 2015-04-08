@@ -19,7 +19,8 @@
                         <h4 class="text-danger">Warning!</h4>
                         <p class="text-danger">This action is destructive and cannot be undone.  All roles belonging to this department will be assigned to the selected department and this department will be <strong>deleted</strong>.  </p>
                         {% include 'partials/form_as_fieldsets.html' %}
-                        <button class="btn btn-warning" type="submit">Merge</button>
+                        <a class="btn btn-primary" href="{% url 'admin:department-detail' pk=department.pk %}">Nevermind, go back</a>
+                        <button class="btn btn-warning pull-right" type="submit">Merge</button>
                     </form>
                 </div>
             </div>

@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block crumbs %}
-    <li>Shift #{{ shift.pk }}: {{ shift.name }}</li>
+    <li>Shift #{{ shift.pk }}: {{ shift.start_time }}</li>
 {% endblock %}
 
 {% block content %}
@@ -50,7 +50,10 @@
         {% if shift.claimed_slots.exists %}
             <ol>
                 {% for slot in shift.claimed_slots %}
-                    <li><a href="{% url 'admin:user-detail' pk=slot.volunteer.pk %}">{{ slot.volunteer }}</a></li>
+                <li>
+                    <a href="{% url 'admin:user-detail' pk=slot.volunteer.pk %}">{{ slot.volunteer }}</a>: 
+                    <a class="btn btn-sm btn-warning" href="{% url 'admin:shift-slot-cancel' department_pk=shift.role.department_id role_pk=shift.role_id shift_pk=shift.pk pk=slot.pk %}">Kick</a>
+                </li>
                 {% endfor %}
             </ol>
         {% else %}

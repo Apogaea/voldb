@@ -39,6 +39,13 @@ class Shift(Timestamped):
         'departments.Role', related_name='shifts', on_delete=models.PROTECT,
     )
 
+    is_closed = models.BooleanField(
+        blank=True, default=False,
+        help_text=(
+            "This will restrict anyone from claiming slots on this shift."
+        ),
+    )
+
     start_time = models.DateTimeField(
         'shift begins',
         help_text=(
@@ -106,7 +113,7 @@ class Shift(Timestamped):
 
     @property
     def is_locked(self):
-        return not self.event.is_registration_open
+        return self.is_closed or not self.event.is_registration_open
 
     @property
     def is_midnight_spanning(self):
@@ -165,7 +172,7 @@ class ShiftSlot(Timestamped):
 
     @property
     def is_locked(self):
-        return self.shift.is_locked
+        return not self.shift.event.is_registration_open
 
     #
     # Permissions Methods

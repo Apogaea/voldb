@@ -1,0 +1,31 @@
+{% extends "admin/shifts/shift_detail.html" %}
+
+{% block bread %}
+    {% with department=shift_slot.shift.role.department role=shift_slot.shift.role shift=shift_slot.shift %}
+        {{ block.super }}
+        <li><a href="{% url 'admin:shift-detail' department_pk=department.pk role_pk=role.pk pk=shift.pk %}">Shift #{{ shift.pk }}: {{ shift.start_time }}</a></li>
+    {% endwith %}
+{% endblock %}
+
+{% block crumbs %}
+    <li>Cancel Slot #{{ shift_slot.pk }}: {{ shift_slot.volunteer }}</li>
+{% endblock %}
+
+{% block content %}
+    <h1>Cancel Shift Slot #{{ shift_slot.pk }}: {{ shift_slot.volunteer }}</h1>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <form action="." method="post" class="well">
+                        <h4 class="text-danger">Warning!</h4>
+                        <p class="text-danger">This action is destructive and cannot be undone.  The volunteer <em><a href="{% url 'admin:user-detail' pk=shift_slot.volunteer_id %}">{{ shift_slot.volunteer }}</a></em> will be removed from this shift.</p>
+                        {% include 'partials/form_as_fieldsets.html' %}
+                        <a class="btn btn-primary" href="{% url 'admin:shift-detail' department_pk=shift_slot.shift.role.department.pk role_pk=shift_slot.shift.role_id pk=shift_slot.shift_id %}">Nevermind, go back</a>
+                        <button class="btn btn-warning pull-right" type="submit">Kick {{ shift_slot.volunteer }} out of this slot</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
