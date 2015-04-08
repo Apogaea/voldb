@@ -14,6 +14,10 @@ urlpatterns = patterns(
         name='shift-detail',
     ),
     url(
+        r'^shifts/(?P<pk>\d+)/delete/$', views.AdminShiftDeleteView.as_view(),
+        name='shift-delete',
+    ),
+    url(
         r'^shifts/(?P<shift_pk>\d+)/slots/(?P<pk>\d+)/$',
         views.AdminShiftSlotCancelView.as_view(),
         name='shift-slot-cancel',

@@ -1,10 +1,12 @@
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 from django.core.urlresolvers import (
     reverse,
 )
 from django.views.generic import (
     UpdateView,
     CreateView,
+    DeleteView,
 )
 
 from volunteer.decorators import AdminRequiredMixin
@@ -70,6 +72,35 @@ class AdminShiftDetailView(AdminRequiredMixin, UpdateView):
         return reverse(
             'admin:shift-detail',
             kwargs=self.kwargs,
+        )
+
+
+class AdminShiftDeleteView(AdminRequiredMixin, DeleteView):
+    model = Shift
+    template_name = 'admin/shifts/shift_delete.html'
+    context_object_name = 'shift'
+
+    def get_queryset(self):
+        return Shift.objects.filter(
+            role__department_id=self.kwargs['department_pk'],
+            role_id=self.kwargs['role_pk'],
+        ).filter_to_current_event()
+
+    def delete(self, *args, **kwargs):
+        if self.get_object().claimed_slots.exists():
+            messages.info(self.request, (
+                'You must remove all volunteers from this shift prior to deletion'
+            ))
+            return self.get(*args, **kwargs)
+        return super(AdminShiftDeleteView, self).delete(*args, **kwargs)
+
+    def get_success_url(self):
+        return reverse(
+            'admin:role-detail',
+            kwargs={
+                'department_pk': self.kwargs['department_pk'],
+                'pk': self.kwargs['role_pk'],
+            },
         )
 
 

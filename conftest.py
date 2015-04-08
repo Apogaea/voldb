@@ -141,14 +141,14 @@ def user(factories, User):
 
 @pytest.fixture()
 def user_client(user, client):
-    assert client.login(username=user.email, password='secret')
+    assert client.login(username=user.email, password='password')
     client.user = user
     return client
 
 
 @pytest.fixture()
 def admin_client(admin_user, client):
-    assert client.login(username=admin_user.email, password='secret')
+    assert client.login(username=admin_user.email, password='password')
     client.user = admin_user
     return client
 
