@@ -165,7 +165,6 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'volunteer', 'templates'),
 )
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 DEFAULT_FILE_STORAGE = excavator.env_string(

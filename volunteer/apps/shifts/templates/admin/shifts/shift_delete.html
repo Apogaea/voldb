@@ -26,6 +26,7 @@
                         </div>
                     {% else %}
                         <form action="." method="post" class="well">
+                            {% csrf_token %}
                             <h4 class="text-danger">Warning!</h4>
                             <p class="text-danger">This action is destructive
                             and cannot be undone.  This shift will be
