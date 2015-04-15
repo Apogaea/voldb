@@ -14,4 +14,3 @@ def test_profile_display(user_webtest_client, user):
 
     assert user.profile.full_name in response.content
     assert user.profile.display_name in response.content
-    assert user.profile.phone in response.content
