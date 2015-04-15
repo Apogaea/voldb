@@ -3,11 +3,27 @@
 
 {% block content %}
 <h1>Apogaea Volunteer System</h1>
-    <section>    	       
+    <section id="home">    	       
         {% if user.is_authenticated %}
-            <p>You're logged in</p>
-        {% else %}
-            <p>You should register or log in.</p>
+            <p class="lead text-info">Welcome back <em>{{ user }}</em>.</p>
         {% endif %}
+        <div class="well">
+            <p class="lead">Welcome to the <strong>{{ current_event.name }}</strong> volunteer database.</p>
+            {% if user.is_authenticated %}
+                <p>Here are a few things that you can do:</p>
+                <ul>
+                    <li>You can browse and claim available shifts organized by <a href="{% url "department-list" %}">department</a>.</li>
+                    <li>You can see the shifts you've signed up for on the <a href="{% url "dashboard" %}">My Stuff</a> page.</li>
+                </ul>
+                <p>Feel free to send an email to {{ support_email|urlize }} if you're having problems, have a question, or want to share a cute animal picture</p>
+            {% else %}
+                <p class="lead">Since you are not currently logged in, you should start by <a href="{% url 'register' %}">registering</a> or <a href="{% url 'login' %}">logging in.</a></p>
+                <ul>
+                    <li>If you had an account last year, the same email address and password should work just fine.</li>
+                    <li>If you are having trouble remembering your password, you can <a href="{% url 'password-reset' %}">sent yourself a password reset email</a></li>
+                    <li>Feel free to send an email to {{ support_email|urlize }} if you're still having problems, have a question, or a cute animal picture you'd like to share.</li>
+                </ul>
+            {% endif %}
+        </div>
     </section>
 {% endblock %}
