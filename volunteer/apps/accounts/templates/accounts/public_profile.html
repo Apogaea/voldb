@@ -1,0 +1,26 @@
+{% extends "layout_full.html" %}
+{% load shift_utils argonauts %}
+
+{% block content %}
+    <h1>{{ voldb_user }}</h1>
+    <section>        
+        <h3>Shifts that {{ voldb_user }} is signed up for</h3>
+        <div id="profile-shifts-grid" class="shift-grid">
+            {% include "shifts/partials/shift_grid.html" %}
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block extra_javascript %}
+{{ block.super }}
+<script>
+$(document).ready(function() {
+    var application = new app.ShiftGridApplication({
+        el: $('#profile-shifts-grid'),
+        rows: {{ voldb_user.shifts|as_grid|json }}
+    });
+    window.application = application;
+});
+</script>
+{% endblock %}

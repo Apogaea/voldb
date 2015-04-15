@@ -111,3 +111,14 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, *args, **kwargs):
         return self.request.user.profile
+
+
+class PublicProfileView(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = 'accounts/public_profile.html'
+    context_object_name = 'voldb_user'
+
+    def get_queryset(self):
+        return User.objects.all()
+        # TODO: schema change.
+        #return User.objects.filter(_profile__is_public=True)

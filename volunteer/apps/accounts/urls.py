@@ -9,6 +9,7 @@ from volunteer.apps.accounts import views
 urlpatterns = patterns(
     '',
     url(r'^$', views.DashboardView.as_view(), name='dashboard'),
+    url(r'^(?P<pk>\d+)/$', views.PublicProfileView.as_view(), name='public-profile'),
     url(r'^edit/$', views.ProfileUpdateView.as_view(), name='profile-edit'),
     url(r'^register/$', views.RegisterView.as_view(), name='register'),
     url(
