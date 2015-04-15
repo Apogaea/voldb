@@ -11,7 +11,7 @@ class Profile(models.Model):
         ),
     )
     display_name = models.CharField(
-        max_length=64, unique=True, help_text=(
+        max_length=64, unique=True, null=True, help_text=(
             "This will be the name that is publicly displayed to other users "
             "when browsing shifts"
         ),
