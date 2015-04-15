@@ -1,6 +1,14 @@
 /*
  *  Shift Grid
  */
+section#home {
+    font-size: 2em;
+}
+
+
+/*
+ *  Shift Grid
+ */
 div.shift-grid .table td.panel {
     padding: 0px;
 }
