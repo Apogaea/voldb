@@ -6,13 +6,22 @@
     <section id="profile">        
         <h2>{{ user }}</h2>
         <div>
-            <p><b>{{ user.profile.full_name }}</b></p>
-            <p>Display Name: {{ user }}<br />
-               {{ user.email }}<br />
-               {{ user.profile.phone }}
-            </p>
+            <dl class="dl-horizontal">
+                <dt>Full Name</dt>
+                <dd>{{ user.profile.full_name }}</dd>
+                <dt>Display Name</dt>
+                <dd>{{ user.profile.display_name }}</dd>
+                <dt>Email</dt>
+                <dd>{{ user.email }}</dd>
+                <dt>Phone Number</dt>
+                <dd>{{ user.profile.phone }}</dd>
+                <dt>Has Ticket?</dt>
+                <dd>{{ user.profile.has_ticket|yesno:"Yes,No" }}</dd>
+            </dl>
             <a href="{% url 'password-change' %}" class="btn btn-default">Change Password</a>
             <a href="{% url 'profile-edit' %}" class="btn btn-default">Edit Profile</a>
+            <a href="{% url 'public-profile' pk=user.pk %}" class="btn btn-primary">View Your Public Profile</a>
+            <p class="lead">You can share the following link with others so that they can see what shifts you are signed up for.  <code>{{ request.is_secure|yesno:"https,http" }}://{{ request.get_host }}{% url 'public-profile' pk=user.pk %}</code></p>
         </div>            
     </section>
     <h1>Your Schedule</h1>
