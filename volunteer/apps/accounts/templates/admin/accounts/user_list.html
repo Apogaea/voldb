@@ -8,6 +8,21 @@
 
 {% block content %}
 <h1>Users</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-7 pull-right">
+                <form action="." method="get">
+                    <div class="input-group">
+                        <input type="text" name='q' value='{{ request.GET.q }}' class="form-control" placeholder="Search across [email, full_name, display_name]">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Search</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
     <section>    	       
         {% render_table table %}
     </section>

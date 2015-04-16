@@ -1,7 +1,11 @@
 from django.contrib.auth import get_user_model
+from django.core.validators import MinLengthValidator
 from django import forms
 
-from betterforms.forms import BetterModelForm
+from betterforms.forms import (
+    BetterForm,
+    BetterModelForm,
+)
 
 
 User = get_user_model()
@@ -51,3 +55,7 @@ class AdminUserChangeForm(BetterModelForm):
         user.profile.has_ticket = self.cleaned_data['has_ticket']
         user.profile.save()
         return user
+
+
+class AdminUserSearchForm(BetterForm):
+    q = forms.CharField(validators=[MinLengthValidator(3)], required=False)
