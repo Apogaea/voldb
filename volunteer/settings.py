@@ -302,6 +302,7 @@ if 'MEMCACHIER_SERVERS' in os.environ:
     # Special case for memcachier on heroku.
     os.environ.setdefault('MEMCACHE_USERNAME', os.environ.get('MEMCACHIER_USERNAME'))
     os.environ.setdefault('MEMCACHE_PASSWORD', os.environ.get('MEMCACHIER_PASSWORD'))
+    os.environ.setdefault('MEMCACHE_SERVERS', os.environ.get('MEMCACHIER_SERVERS'))
     os.environ.setdefault(
         'CACHE_URL',
         'djangopylibmc://{0}'.format(os.environ['MEMCACHIER_SERVERS']),
