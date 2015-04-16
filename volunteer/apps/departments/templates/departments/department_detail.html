@@ -1,5 +1,5 @@
 {% extends "layout_full.html" %}
-{% load shift_utils argonauts %}
+{% load cache shift_utils argonauts %}
 
 {% block content %}
     <div class="row">
@@ -36,6 +36,7 @@
 
 {% block extra_javascript %}
 {{ block.super }}
+{% cache 30 shift_grid_javascript department.pk %}
 <script>
 $(document).ready(function() {
     var applications = {};
@@ -47,5 +48,6 @@ $(document).ready(function() {
     {% endfor %}
     window.applications = applications;
 });
+{% endcache %}
 </script>
 {% endblock %}
