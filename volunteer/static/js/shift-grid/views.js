@@ -43,7 +43,7 @@ $(function(){
         },
         selectPage: function(event) {
             event.preventDefault();
-            var selectedPage = event.currentTarget.dataset.index;
+            var selectedPage = $(event.currentTarget).data('index');
             this.model.selectPage(selectedPage);
         },
         decrementPage: function(event) {
