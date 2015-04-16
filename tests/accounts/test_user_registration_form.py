@@ -1,6 +1,8 @@
 import pytest
 
-from volunteer.apps.accounts.forms import UserRegistrationForm
+from volunteer.apps.accounts.forms import (
+    UserRegistrationForm,
+)
 
 
 def test_enforces_email_uniqueness(factories):

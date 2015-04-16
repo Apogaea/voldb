@@ -44,6 +44,17 @@ class UserRegistrationConfirmForm(BetterModelForm):
             user.save()
         return user
 
+    def clean_display_name(self):
+        display_name = self.cleaned_data['display_name'].strip()
+        try:
+            Profile.objects.get(display_name=display_name)
+        except Profile.DoesNotExist:
+            return display_name
+        else:
+            raise forms.ValidationError(
+                'An account with that display name already exists',
+            )
+
 
 class ProfileForm(BetterModelForm):
     class Meta:
