@@ -312,6 +312,13 @@ CACHES = {
     'default': django_cache_url.config(),
 }
 
+if 'MEMCACHIER_SERVERS' in os.environ:
+    CACHES['default'].setdefault('BINARY', True)
+    CACHES['default'].setdefault('TIMEOUT', 500)
+    CACHES['default'].setdefault('OPTIONS', {})
+    CACHES['default']['OPTIONS'].setdefault('tcp_nodelay', True)
+    CACHES['default']['OPTIONS'].setdefault('ketama', True)
+
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
