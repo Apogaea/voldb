@@ -21,6 +21,8 @@ class AdminShiftUpdateForm(BetterModelForm):
     class Meta:
         model = Shift
         fields = (
+            'start_time',
+            'shift_minutes',
             'num_slots',
             'code',
             'is_closed',
