@@ -1,3 +1,5 @@
+import pytest
+
 import time
 
 from django.core import mail
@@ -56,6 +58,7 @@ def test_registration_confirmation_page(webtest_client):
     assert response.status_code == status.HTTP_200_OK
 
 
+@pytest.mark.django_db
 def test_registration_confirmation_page_with_expired_link(client, mocker):
     now = time.time()
     expire_time = now + REGISTRATION_TOKEN_MAX_AGE + 1
@@ -74,6 +77,7 @@ def test_registration_confirmation_page_with_expired_link(client, mocker):
     assert post_response.context['signature_expired']
 
 
+@pytest.mark.django_db
 def test_registration_confirmation_page_with_bad_token(client):
     url = reverse('register-confirm', kwargs={'token': 'BADTOKEN'})
     get_response = client.get(url)

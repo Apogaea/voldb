@@ -21,6 +21,7 @@
         <div class="role" id="role-{{ role.pk }}">
             <h4>
                 Role: {{ role }}
+                <span class="badge">{{ role.total_filled_shift_slots }} / {{ role.total_shift_slots }} shifts filled</span>
                 <a href="#role-{{ role.pk }}" class="text-muted quicklink">
                     <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
                 </a>
