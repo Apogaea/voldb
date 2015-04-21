@@ -6,6 +6,7 @@
         <section class="departments well" id="department-{{ department.pk }}">
             <h3>
                 {{ department }}
+                <span class="badge">{{ department.total_filled_shift_slots }} / {{ department.total_shift_slots }} shifts filled</span>
                 <a href="#department-{{ department.pk }}" class="text-muted quicklink">
                     <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
                 </a>

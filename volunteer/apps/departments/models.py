@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.db.models import Sum
 from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
 
@@ -37,6 +38,23 @@ class Department(models.Model):
 
     class Meta:
         ordering = ('name',)
+
+    @property
+    def total_shift_slots(self):
+        from volunteer.apps.shifts.models import Shift
+        return Shift.objects.filter_to_current_event().filter(
+            role__department=self,
+        ).aggregate(
+            Sum('num_slots'),
+        )['num_slots__sum']
+
+    @property
+    def total_filled_shift_slots(self):
+        from volunteer.apps.shifts.models import ShiftSlot
+        return ShiftSlot.objects.filter_to_current_event().filter(
+            shift__role__department=self,
+            cancelled_at__isnull=True,
+        ).count()
 
 
 class RoleQuerySet(models.QuerySet):
