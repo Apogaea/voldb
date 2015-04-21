@@ -10,9 +10,7 @@ env:
     - TOX_ENV=flake8
     - TOX_ENV=jshint
     - TOX_ENV=jasmine
-cache:
-  directories:
-    - $HOME/.pip-cache/
+cache: pip
 install:
   - "travis_retry pip install setuptools --upgrade"
   - "pip install tox"
