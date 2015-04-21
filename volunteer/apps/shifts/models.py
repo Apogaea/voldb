@@ -143,12 +143,26 @@ class Shift(Timestamped):
         return timezone.timedelta(minutes=self.shift_minutes)
 
 
+class ShiftSlotQuerySet(models.QuerySet):
+    use_for_related_fields = True
+
+    def filter_to_current_event(self):
+        from volunteer.apps.events.models import Event
+        current_event = Event.objects.get_current()
+        if current_event is None:
+            return self
+        else:
+            return self.filter(shift__event=current_event)
+
+
 @python_2_unicode_compatible
 class ShiftSlot(Timestamped):
     shift = models.ForeignKey('Shift', related_name='slots')
     volunteer = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='shift_slots')
 
     cancelled_at = models.DateTimeField(null=True)
+
+    objects = ShiftSlotQuerySet.as_manager()
 
     def __str__(self):
         return "{s.shift_id}:{s.volunteer_id}".format(s=self)

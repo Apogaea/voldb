@@ -25,7 +25,10 @@
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'department-list' %}">Departments</a></li>
                         <li><a href="{% url 'dashboard' %}">My Stuff</a></li>
+                        <li><p class="navbar-text">|</p></li>
                     {% endif %}
+                    <li><p class="navbar-text">Claimed Shifts: <span class="badge">{{ SHIFT_STATS.total_filled_shift_slot_count }}</span></p></li>
+                    <li><p class="navbar-text">Total Shifts: <span class="badge">{{ SHIFT_STATS.total_shift_slot_count }}</span></p></li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     {% if user.is_authenticated %}
