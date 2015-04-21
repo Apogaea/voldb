@@ -82,3 +82,20 @@ class Role(Timestamped):
 
     def __str__(self):
         return self.name
+
+    @property
+    def total_shift_slots(self):
+        from volunteer.apps.shifts.models import Shift
+        return Shift.objects.filter_to_current_event().filter(
+            role=self,
+        ).aggregate(
+            Sum('num_slots'),
+        )['num_slots__sum']
+
+    @property
+    def total_filled_shift_slots(self):
+        from volunteer.apps.shifts.models import ShiftSlot
+        return ShiftSlot.objects.filter_to_current_event().filter(
+            shift__role=self,
+            cancelled_at__isnull=True,
+        ).count()
