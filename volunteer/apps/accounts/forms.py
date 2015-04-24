@@ -47,12 +47,14 @@ class UserRegistrationConfirmForm(BetterModelForm):
     def clean_display_name(self):
         display_name = self.cleaned_data['display_name'].strip()
         try:
-            Profile.objects.get(display_name=display_name)
+            p = Profile.objects.get(display_name=display_name)
         except Profile.DoesNotExist:
             return display_name
         else:
             raise forms.ValidationError(
-                'An account with that display name already exists',
+                'The name {0} is already taken by an account using the email address {1}'.format(
+                    repr(display_name), repr(p.user.email),
+                )
             )
 
 
