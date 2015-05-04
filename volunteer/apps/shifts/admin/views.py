@@ -1,4 +1,7 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import (
+    get_object_or_404,
+    redirect,
+)
 from django.contrib import messages
 from django.core.urlresolvers import (
     reverse,
@@ -13,7 +16,9 @@ from volunteer.decorators import AdminRequiredMixin
 
 from volunteer.apps.events.models import Event
 
-from volunteer.apps.departments.models import Role
+from volunteer.apps.departments.models import (
+    Role,
+)
 
 from volunteer.apps.shifts.models import (
     Shift,
@@ -24,6 +29,7 @@ from .forms import (
     AdminShiftCreateForm,
     AdminShiftUpdateForm,
     AdminShiftSlotCancelForm,
+    AdminShiftSlotCreateForm,
 )
 
 
@@ -126,5 +132,45 @@ class AdminShiftSlotCancelView(AdminRequiredMixin, UpdateView):
                 'department_pk': self.kwargs['department_pk'],
                 'role_pk': self.kwargs['role_pk'],
                 'pk': self.kwargs['shift_pk'],
+            },
+        )
+
+
+class AdminShiftSlotCreateView(AdminRequiredMixin, CreateView):
+    model = ShiftSlot
+    template_name = 'admin/shifts/shift_slot_create.html'
+    form_class = AdminShiftSlotCreateForm
+
+    def get_context_data(self, **kwargs):
+        context = super(AdminShiftSlotCreateView, self).get_context_data(**kwargs)
+        context['shift'] = self.get_shift()
+        return context
+
+    def get_shift(self):
+        return get_object_or_404(
+            Shift.objects.filter_to_current_event(),
+            role__department_id=self.kwargs['department_pk'],
+            role_id=self.kwargs['role_pk'],
+            pk=self.kwargs['pk'],
+        )
+
+    def form_valid(self, form):
+        shift_slot = form.instance
+        shift_slot.shift = self.get_shift()
+        shift_slot.save()
+        return redirect(self.get_success_url())
+
+    def get_form_kwargs(self):
+        kwargs = super(AdminShiftSlotCreateView, self).get_form_kwargs()
+        kwargs['shift'] = self.get_shift()
+        return kwargs
+
+    def get_success_url(self):
+        return reverse(
+            'admin:shift-detail',
+            kwargs={
+                'department_pk': self.kwargs['department_pk'],
+                'role_pk': self.kwargs['role_pk'],
+                'pk': self.kwargs['pk'],
             },
         )

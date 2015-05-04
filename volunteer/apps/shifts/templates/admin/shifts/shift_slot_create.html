@@ -1,0 +1,34 @@
+{% extends "admin/shifts/shift_detail.html" %}
+
+{% block bread %}
+    {% with department=shift.role.department role=shift.role %}
+        {{ block.super }}
+        <li><a href="{% url 'admin:shift-detail' department_pk=department.pk role_pk=role.pk pk=shift.pk %}">Shift #{{ shift.pk }}: {{ shift.start_time }}</a></li>
+    {% endwith %}
+{% endblock %}
+
+{% block crumbs %}
+<li>Assign Volunteer to Shift #{{ shift.pk }}</li>
+{% endblock %}
+
+{% block content %}
+    <h1>Assign Volunteer to Shift #{{ shift.pk }}</h1>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <form action="." method="post" class="well">
+                        <p class="text-primary">This volunteer will receive
+                        <strong>no</strong> notification that they have been
+                        assigned to this shift.  Please ensure that you contact
+                        them to let them know.</p>
+                        {% include 'partials/form_as_fieldsets.html' %}
+                        <a class="btn btn-primary" href="{% url 'admin:shift-detail' department_pk=shift.role.department.pk role_pk=shift.role_id pk=shift.pk %}">Cancel</a>
+                        <button class="btn btn-warning pull-right" type="submit">Assign Volunteer to Shift</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
