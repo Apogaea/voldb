@@ -51,7 +51,12 @@
         </div>
     </section>
     <section>
-        <h2>Claimed Slots</h2>
+        <h2>
+            Claimed Slots
+            <p class="pull-right">
+            <small><a href="{% url 'admin:shift-slot-create' department_pk=shift.role.department_id role_pk=shift.role_id pk=shift.pk %}" class="btn btn-primary">Assign Volunteer to Shift</small></a>
+            </p>
+        </h2>
         {% if shift.claimed_slots.exists %}
             <ol>
                 {% for slot in shift.claimed_slots %}
