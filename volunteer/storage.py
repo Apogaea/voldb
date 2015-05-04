@@ -1,4 +1,4 @@
-from django.contrib.staticfiles.storage import ManifestfilesMixin
+from django.contrib.staticfiles.storage import ManifestFilesMixin
 
 from pipeline.storage import PipelineMixin
 
