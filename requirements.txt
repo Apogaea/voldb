@@ -27,3 +27,4 @@ python-dotenv==0.1.0
 pytz==2013.9
 readline==6.2.4.1
 rollbar==0.9.8
+unicodecsv==0.12.0

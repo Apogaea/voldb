@@ -32,6 +32,11 @@ urlpatterns = patterns(
         name='role-detail',
     ),
     url(
+        r'^departments/(?P<department_pk>\d+)/roles/(?P<pk>\d+)/shift-report/$',
+        views.AdminRoleShiftSlotReportView.as_view(),
+        name='role-shift-report',
+    ),
+    url(
         r'^departments/(?P<department_pk>\d+)/roles/(?P<pk>\d+)/merge-with-other-role/$',
         views.AdminRoleMergeView.as_view(),
         name='role-merge',

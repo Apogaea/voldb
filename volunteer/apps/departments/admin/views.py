@@ -1,3 +1,6 @@
+from django.shortcuts import (
+    get_object_or_404,
+)
 from django.core.urlresolvers import (
     reverse,
     reverse_lazy,
@@ -16,6 +19,10 @@ from volunteer.decorators import AdminRequiredMixin
 
 from volunteer.apps.shifts.admin.tables import (
     ShiftTable,
+    ShiftSlotReportTable,
+)
+from volunteer.apps.shifts.models import (
+    ShiftSlot,
 )
 
 from volunteer.apps.departments.models import (
@@ -33,6 +40,42 @@ from .forms import (
     AdminRoleForm,
     AdminRoleMergeForm,
 )
+
+
+class ShiftSlotReportView(SingleTableMixin, ListView):
+    context_object_name = 'shifts'
+    model = ShiftSlot
+    table_class = ShiftSlotReportTable
+
+    def order_queryset(self, qs):
+        return qs.order_by(
+            'shift__role__department',
+            'shift__role',
+            'shift__start_time',
+            'shift__shift_minutes',
+            'volunteer___profile__display_name',
+        )
+
+
+class AdminRoleShiftSlotReportView(AdminRequiredMixin, ShiftSlotReportView):
+    template_name = 'admin/departments/role_shift_slot_report.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AdminRoleShiftSlotReportView, self).get_context_data(**kwargs)
+        context['role'] = self.get_role()
+        return context
+
+    def get_role(self):
+        return get_object_or_404(
+            Role.objects.filter(department_id=self.kwargs['department_pk']),
+            pk=self.kwargs['pk'],
+        )
+
+    def get_queryset(self):
+        return self.order_queryset(ShiftSlot.objects.filter(
+            shift__role__id=self.kwargs['pk'],
+            shift__role__department__id=self.kwargs['department_pk'],
+        ).filter_to_current_event())
 
 
 class AdminDepartmentListView(AdminRequiredMixin, SingleTableMixin, ListView):
