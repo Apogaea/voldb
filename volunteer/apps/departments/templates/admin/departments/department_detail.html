@@ -15,6 +15,7 @@
     <h1>
         Deparment #{{ department.pk }}: {{ department.name }}
         <p class="pull-right">
+            <small><a href="{% url 'admin:department-shift-report' pk=department.pk %}" class="btn btn-primary">View Shift Report</small></a>
         <small><a href="{% url 'admin:department-merge' pk=department.pk %}" class="btn btn-warning">Merge with another department</small></a>
         </p>
     </h1>

@@ -55,7 +55,7 @@ class ShiftSlotReportView(SingleTableMixin, ListView):
     table_class = ShiftSlotReportTable
 
     def return_csv_download(self, *args, **kwargs):
-        filename = 'shift-report-for-role-{0}.csv'.format(self.kwargs['pk'])
+        filename = self.get_filename()
 
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="{0}"'.format(filename)
@@ -73,6 +73,9 @@ class ShiftSlotReportView(SingleTableMixin, ListView):
         else:
             return super(ShiftSlotReportView, self).get(*args, **kwargs)
 
+    def get_filename(self):
+        raise NotImplementedError("Must implement")
+
     def get_extra_filters(self):
         raise NotImplementedError("Must be implemented by subclass")
 
@@ -88,27 +91,6 @@ class ShiftSlotReportView(SingleTableMixin, ListView):
             'shift__shift_minutes',
             'volunteer___profile__display_name',
         ).select_related()
-
-
-class AdminRoleShiftSlotReportView(AdminRequiredMixin, ShiftSlotReportView):
-    template_name = 'admin/departments/role_shift_slot_report.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(AdminRoleShiftSlotReportView, self).get_context_data(**kwargs)
-        context['role'] = self.get_role()
-        return context
-
-    def get_role(self):
-        return get_object_or_404(
-            Role.objects.filter(department_id=self.kwargs['department_pk']),
-            pk=self.kwargs['pk'],
-        )
-
-    def get_extra_filters(self):
-        return dict(
-            shift__role__id=self.kwargs['pk'],
-            shift__role__department__id=self.kwargs['department_pk'],
-        )
 
 
 class AdminDepartmentListView(AdminRequiredMixin, SingleTableMixin, ListView):
@@ -137,6 +119,29 @@ class AdminDepartmentDetailView(AdminRequiredMixin, SingleTableMixin, UpdateView
 
     def get_success_url(self):
         return reverse('admin:department-detail', kwargs=self.kwargs)
+
+
+class AdminDepartmentShiftSlotReportView(AdminRequiredMixin, ShiftSlotReportView):
+    template_name = 'admin/departments/department_shift_slot_report.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AdminDepartmentShiftSlotReportView, self).get_context_data(**kwargs)
+        context['department'] = self.get_department()
+        return context
+
+    def get_department(self):
+        return get_object_or_404(
+            Department.objects.filter_to_current_event(),
+            pk=self.kwargs['pk'],
+        )
+
+    def get_filename(self):
+        return 'shift-report-for-department-{0}.csv'.format(self.kwargs['pk'])
+
+    def get_extra_filters(self):
+        return dict(
+            shift__role__department__id=self.kwargs['pk'],
+        )
 
 
 class AdminDepartmentMergeView(AdminRequiredMixin, UpdateView):
@@ -188,6 +193,32 @@ class AdminRoleDetailView(AdminRequiredMixin, SingleTableMixin, UpdateView):
             'admin:department-detail',
             kwargs={'pk': self.object.department_id},
         )
+
+
+class AdminRoleShiftSlotReportView(AdminRequiredMixin, ShiftSlotReportView):
+    template_name = 'admin/departments/role_shift_slot_report.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AdminRoleShiftSlotReportView, self).get_context_data(**kwargs)
+        context['role'] = self.get_role()
+        return context
+
+    def get_role(self):
+        return get_object_or_404(
+            Role.objects.filter(
+                department_id=self.kwargs['department_pk'],
+            ).filter_to_current_event(),
+            pk=self.kwargs['pk'],
+        )
+
+    def get_extra_filters(self):
+        return dict(
+            shift__role__id=self.kwargs['pk'],
+            shift__role__department__id=self.kwargs['department_pk'],
+        )
+
+    def get_filename(self):
+        return 'shift-report-for-role-{0}.csv'.format(self.kwargs['pk'])
 
 
 class AdminRoleMergeView(AdminRequiredMixin, UpdateView):

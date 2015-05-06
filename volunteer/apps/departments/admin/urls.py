@@ -22,6 +22,11 @@ urlpatterns = patterns(
         views.AdminDepartmentMergeView.as_view(), name='department-merge',
     ),
     url(
+        r'^departments/(?P<pk>\d+)/shift-report/$',
+        views.AdminDepartmentShiftSlotReportView.as_view(),
+        name='department-shift-report',
+    ),
+    url(
         r'^departments/(?P<department_pk>\d+)/roles/create-new/$',
         views.AdminRoleCreateView.as_view(),
         name='role-create',
