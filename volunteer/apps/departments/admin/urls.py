@@ -22,6 +22,16 @@ urlpatterns = patterns(
         views.AdminDepartmentMergeView.as_view(), name='department-merge',
     ),
     url(
+        r'^departments/(?P<pk>\d+)/add-lead/$',
+        views.AdminDepartmentAddLead.as_view(),
+        name='department-lead-add',
+    ),
+    url(
+        r'^departments/(?P<pk>\d+)/remove-lead/(?P<lead_pk>\d+)/$',
+        views.AdminDepartmentRemoveLead.as_view(),
+        name='department-lead-remove',
+    ),
+    url(
         r'^departments/(?P<pk>\d+)/shift-report/$',
         views.AdminDepartmentShiftSlotReportView.as_view(),
         name='department-shift-report',

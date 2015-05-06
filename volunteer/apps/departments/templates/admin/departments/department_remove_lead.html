@@ -1,0 +1,29 @@
+{% extends "admin/departments/department_detail.html" %}
+
+{% block bread %}
+    {{ block.super }}
+    <li><a href="{% url 'admin:department-detail' pk=department.pk %}">Department #{{ department.pk }}: {{ department.name }}</a></li>
+{% endblock %}
+
+{% block crumbs %}
+    <li>Remove Department Lead</li>
+{% endblock %}
+
+{% block content %}
+    <h1>Remove lead from Department #{{ department.pk }}: {{ department.name }}</h1>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <form action="." method="post" class="well">
+                        <h4 class="text-warning">Note:</h4>
+                        <p class="text-warning">This will remove {{ lead }} as a lead for this department.</p>
+                        {% include 'partials/form_as_fieldsets.html' %}
+                        <a class="btn btn-primary" href="{% url 'admin:department-detail' pk=department.pk %}">Nevermind, go back</a>
+                        <button class="btn btn-success pull-right" type="submit">Remove {{ lead }} as a lead for this department</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

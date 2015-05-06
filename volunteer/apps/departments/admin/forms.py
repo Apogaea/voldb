@@ -1,11 +1,17 @@
 from django import forms
+from django.contrib.auth import get_user_model
 
-from betterforms.forms import BetterModelForm
+from betterforms.forms import (
+    BetterModelForm,
+)
 
 from volunteer.apps.departments.models import (
     Department,
     Role,
 )
+
+
+User = get_user_model()
 
 
 class AdminDepartmentForm(BetterModelForm):
@@ -51,6 +57,22 @@ class AdminDepartmentMergeForm(BetterModelForm):
         self.instance.roles.update(department=other_department)
         self.instance.delete()
         return other_department
+
+
+class AdminDepartmentAddLeadForm(BetterModelForm):
+    user = forms.ModelChoiceField(
+        queryset=User.objects.select_related('_profile'),
+    )
+
+    class Meta:
+        model = Department
+        fields = tuple()
+
+
+class AdminDepartmentRemoveLeadForm(BetterModelForm):
+    class Meta:
+        model = Department
+        fields = tuple()
 
 
 class AdminRoleForm(BetterModelForm):

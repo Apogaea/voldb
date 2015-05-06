@@ -1,5 +1,6 @@
 from django.shortcuts import (
     get_object_or_404,
+    redirect,
 )
 from django.core.urlresolvers import (
     reverse,
@@ -38,6 +39,8 @@ from .tables import (
 from .forms import (
     AdminDepartmentForm,
     AdminDepartmentMergeForm,
+    AdminDepartmentAddLeadForm,
+    AdminDepartmentRemoveLeadForm,
     AdminRoleForm,
     AdminRoleMergeForm,
 )
@@ -69,6 +72,51 @@ class AdminDepartmentDetailView(AdminRequiredMixin, SingleTableMixin, UpdateView
 
     def get_success_url(self):
         return reverse('admin:department-detail', kwargs=self.kwargs)
+
+
+class AdminDepartmentAddLead(AdminRequiredMixin, UpdateView):
+    model = Department
+    context_object_name = 'department'
+    form_class = AdminDepartmentAddLeadForm
+    template_name = 'admin/departments/department_add_lead.html'
+
+    def form_valid(self, form):
+        form.instance.leads.add(form.cleaned_data['user'])
+        return redirect(reverse('admin:department-detail', kwargs=self.kwargs))
+
+
+class AdminDepartmentRemoveLead(AdminRequiredMixin, UpdateView):
+    model = Department
+    context_object_name = 'department'
+    form_class = AdminDepartmentRemoveLeadForm
+    template_name = 'admin/departments/department_remove_lead.html'
+
+    def dispatch(self, *args, **kwargs):
+        if not self.get_object().leads.filter(pk=self.kwargs['lead_pk']).exists():
+            return redirect(
+                'admin:department-detail',
+                kwargs={'pk': self.kwargs['pk']},
+            )
+        return super(AdminDepartmentRemoveLead, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(AdminDepartmentRemoveLead, self).get_context_data(
+            **kwargs
+        )
+        context['lead'] = self.get_lead()
+        return context
+
+    def get_lead(self):
+        return get_object_or_404(
+            self.object.leads.all(),
+            pk=self.kwargs['lead_pk'],
+        )
+
+    def form_valid(self, form):
+        form.instance.leads.remove(self.get_lead())
+        return redirect(
+            reverse('admin:department-detail', kwargs={'pk': self.kwargs['pk']}),
+        )
 
 
 class AdminDepartmentShiftSlotReportView(AdminRequiredMixin, ShiftSlotReportView):
