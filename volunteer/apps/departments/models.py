@@ -37,6 +37,13 @@ class Department(models.Model):
     class Meta:
         ordering = ('name',)
 
+    def user_can_admin(self, user):
+        if user.is_staff or user.is_superuser:
+            return True
+        elif self.leads.filter(pk=user.pk).exists():
+            return True
+        return False
+
     @property
     def total_shift_slots(self):
         from volunteer.apps.shifts.models import Shift

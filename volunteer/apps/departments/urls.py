@@ -10,4 +10,8 @@ urlpatterns = patterns(
         r'^(?P<pk>\d+)/$', views.DepartmentDetailView.as_view(),
         name='department-detail',
     ),
+    url(
+        r'^(?P<pk>\d+)/report/$', views.DepartmentShiftSlotReportView.as_view(),
+        name='department-shift-report',
+    ),
 )
