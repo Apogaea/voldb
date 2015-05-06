@@ -7,5 +7,5 @@ class AdminIndexView(AdminRequiredMixin, TemplateView):
     template_name = 'admin/index.html'
 
 
-class AdminLoginView(AdminRequiredMixin, TemplateView):
+class AdminLoginView(TemplateView):
     template_name = 'admin/login.html'
