@@ -1,0 +1,15 @@
+{% extends "admin/admin_layout.html" %}
+{% load render_table from django_tables2 %}
+
+
+{% block content %}
+    <section>
+        <h2>
+            Shift Slots
+            <p class="pull-right">
+            <small><a href="{{ request.path }}?download" class="btn btn-primary">Download Report</small></a>
+            </p>
+        </h2>
+        {% render_table table %}
+    </section>
+{% endblock %}

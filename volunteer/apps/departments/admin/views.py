@@ -1,3 +1,8 @@
+import unicodecsv as csv
+
+from django.shortcuts import (
+    get_object_or_404,
+)
 from django.core.urlresolvers import (
     reverse,
     reverse_lazy,
@@ -7,6 +12,7 @@ from django.views.generic import (
     UpdateView,
     CreateView,
 )
+from django.http import HttpResponse
 
 from django_tables2 import (
     SingleTableMixin,
@@ -14,8 +20,16 @@ from django_tables2 import (
 
 from volunteer.decorators import AdminRequiredMixin
 
+from volunteer.apps.shifts.export import (
+    CSV_HEADERS,
+    shift_slot_to_csv_row,
+)
 from volunteer.apps.shifts.admin.tables import (
     ShiftTable,
+    ShiftSlotReportTable,
+)
+from volunteer.apps.shifts.models import (
+    ShiftSlot,
 )
 
 from volunteer.apps.departments.models import (
@@ -33,6 +47,50 @@ from .forms import (
     AdminRoleForm,
     AdminRoleMergeForm,
 )
+
+
+class ShiftSlotReportView(SingleTableMixin, ListView):
+    context_object_name = 'shifts'
+    model = ShiftSlot
+    table_class = ShiftSlotReportTable
+
+    def return_csv_download(self, *args, **kwargs):
+        filename = self.get_filename()
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="{0}"'.format(filename)
+
+        writer = csv.DictWriter(response, fieldnames=CSV_HEADERS)
+        writer.writeheader()
+        for shift_slot in self.get_queryset():
+            row = shift_slot_to_csv_row(shift_slot)
+            writer.writerow(row)
+        return response
+
+    def get(self, *args, **kwargs):
+        if 'download' in self.request.GET:
+            return self.return_csv_download(*args, **kwargs)
+        else:
+            return super(ShiftSlotReportView, self).get(*args, **kwargs)
+
+    def get_filename(self):
+        raise NotImplementedError("Must implement")
+
+    def get_extra_filters(self):
+        raise NotImplementedError("Must be implemented by subclass")
+
+    def get_queryset(self):
+        return ShiftSlot.objects.filter(
+            cancelled_at__isnull=True,
+            **self.get_extra_filters()
+        ).filter_to_current_event(
+        ).order_by(
+            'shift__role__department',
+            'shift__role',
+            'shift__start_time',
+            'shift__shift_minutes',
+            'volunteer___profile__display_name',
+        ).select_related()
 
 
 class AdminDepartmentListView(AdminRequiredMixin, SingleTableMixin, ListView):
@@ -61,6 +119,29 @@ class AdminDepartmentDetailView(AdminRequiredMixin, SingleTableMixin, UpdateView
 
     def get_success_url(self):
         return reverse('admin:department-detail', kwargs=self.kwargs)
+
+
+class AdminDepartmentShiftSlotReportView(AdminRequiredMixin, ShiftSlotReportView):
+    template_name = 'admin/departments/department_shift_slot_report.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AdminDepartmentShiftSlotReportView, self).get_context_data(**kwargs)
+        context['department'] = self.get_department()
+        return context
+
+    def get_department(self):
+        return get_object_or_404(
+            Department.objects.filter_to_current_event(),
+            pk=self.kwargs['pk'],
+        )
+
+    def get_filename(self):
+        return 'shift-report-for-department-{0}.csv'.format(self.kwargs['pk'])
+
+    def get_extra_filters(self):
+        return dict(
+            shift__role__department__id=self.kwargs['pk'],
+        )
 
 
 class AdminDepartmentMergeView(AdminRequiredMixin, UpdateView):
@@ -112,6 +193,32 @@ class AdminRoleDetailView(AdminRequiredMixin, SingleTableMixin, UpdateView):
             'admin:department-detail',
             kwargs={'pk': self.object.department_id},
         )
+
+
+class AdminRoleShiftSlotReportView(AdminRequiredMixin, ShiftSlotReportView):
+    template_name = 'admin/departments/role_shift_slot_report.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AdminRoleShiftSlotReportView, self).get_context_data(**kwargs)
+        context['role'] = self.get_role()
+        return context
+
+    def get_role(self):
+        return get_object_or_404(
+            Role.objects.filter(
+                department_id=self.kwargs['department_pk'],
+            ).filter_to_current_event(),
+            pk=self.kwargs['pk'],
+        )
+
+    def get_extra_filters(self):
+        return dict(
+            shift__role__id=self.kwargs['pk'],
+            shift__role__department__id=self.kwargs['department_pk'],
+        )
+
+    def get_filename(self):
+        return 'shift-report-for-role-{0}.csv'.format(self.kwargs['pk'])
 
 
 class AdminRoleMergeView(AdminRequiredMixin, UpdateView):

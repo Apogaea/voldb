@@ -1,0 +1,11 @@
+{% extends "admin/shifts/shift_slot_report.html" %}
+
+{% block bread %}
+    {{ block.super }}
+    <li><a href="{% url 'admin:department-list' %}">Departments</a></li>
+    <li><a href="{% url 'admin:department-detail' pk=department.pk %}">Department #{{ department.pk }}: {{ department.name }}</a></li>
+{% endblock %}
+
+{% block crumbs %}
+    <li>Shift Report for Department#{{ department.pk }}: {{ department.name }}</li>
+{% endblock %}
