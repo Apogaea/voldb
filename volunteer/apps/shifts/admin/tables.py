@@ -71,7 +71,7 @@ class ShiftSlotReportTable(BootstrapTable):
         verbose_name="Volunteer Full Name", accessor=A('volunteer.profile.full_name'),
     )
     volunteer_phone_number = tables.Column(
-        verbose_name="Volunteer Phone Number", accessor=A('volunteer.profile.phone_number'),
+        verbose_name="Volunteer Phone Number", accessor=A('volunteer.profile.phone'),
     )
     volunteer_email = tables.Column(
         verbose_name="Volunteer Email", accessor=A('volunteer.email'),

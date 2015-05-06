@@ -1,3 +1,5 @@
+import unicodecsv as csv
+
 from django.shortcuts import (
     get_object_or_404,
 )
@@ -10,6 +12,7 @@ from django.views.generic import (
     UpdateView,
     CreateView,
 )
+from django.http import HttpResponse
 
 from django_tables2 import (
     SingleTableMixin,
@@ -17,6 +20,10 @@ from django_tables2 import (
 
 from volunteer.decorators import AdminRequiredMixin
 
+from volunteer.apps.shifts.export import (
+    CSV_HEADERS,
+    shift_slot_to_csv_row,
+)
 from volunteer.apps.shifts.admin.tables import (
     ShiftTable,
     ShiftSlotReportTable,
@@ -47,14 +54,40 @@ class ShiftSlotReportView(SingleTableMixin, ListView):
     model = ShiftSlot
     table_class = ShiftSlotReportTable
 
-    def order_queryset(self, qs):
-        return qs.order_by(
+    def return_csv_download(self, *args, **kwargs):
+        filename = 'shift-report-for-role-{0}.csv'.format(self.kwargs['pk'])
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="{0}"'.format(filename)
+
+        writer = csv.DictWriter(response, fieldnames=CSV_HEADERS)
+        writer.writeheader()
+        for shift_slot in self.get_queryset():
+            row = shift_slot_to_csv_row(shift_slot)
+            writer.writerow(row)
+        return response
+
+    def get(self, *args, **kwargs):
+        if 'download' in self.request.GET:
+            return self.return_csv_download(*args, **kwargs)
+        else:
+            return super(ShiftSlotReportView, self).get(*args, **kwargs)
+
+    def get_extra_filters(self):
+        raise NotImplementedError("Must be implemented by subclass")
+
+    def get_queryset(self):
+        return ShiftSlot.objects.filter(
+            cancelled_at__isnull=True,
+            **self.get_extra_filters()
+        ).filter_to_current_event(
+        ).order_by(
             'shift__role__department',
             'shift__role',
             'shift__start_time',
             'shift__shift_minutes',
             'volunteer___profile__display_name',
-        )
+        ).select_related()
 
 
 class AdminRoleShiftSlotReportView(AdminRequiredMixin, ShiftSlotReportView):
@@ -71,11 +104,11 @@ class AdminRoleShiftSlotReportView(AdminRequiredMixin, ShiftSlotReportView):
             pk=self.kwargs['pk'],
         )
 
-    def get_queryset(self):
-        return self.order_queryset(ShiftSlot.objects.filter(
+    def get_extra_filters(self):
+        return dict(
             shift__role__id=self.kwargs['pk'],
             shift__role__department__id=self.kwargs['department_pk'],
-        ).filter_to_current_event())
+        )
 
 
 class AdminDepartmentListView(AdminRequiredMixin, SingleTableMixin, ListView):
