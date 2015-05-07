@@ -17,8 +17,6 @@ class DepartmentSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'description',
-            'active_lead',
-            'active_liaison',
         )
 
 
