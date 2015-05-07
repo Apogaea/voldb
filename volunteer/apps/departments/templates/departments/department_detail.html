@@ -1,10 +1,17 @@
 {% extends "layout_full.html" %}
-{% load cache shift_utils argonauts %}
+{% load cache shift_utils argonauts user_utils %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-8">
-            <h2>Department: {{ department }}</h2>
+            <h2>
+                Department: {{ department }}
+                {% if user|is_department_admin:department %}
+                    <p class="pull-right">
+                    <small><a href="{% url 'department-shift-report' pk=department.pk %}" class="btn btn-primary">View Department Shift Report</a>
+                    </p>
+                {% endif %}
+            </h2>
             <p>{{ department.description|linebreaksbr }}</p>
         </div>
         <div class="col-md-4">

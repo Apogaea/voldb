@@ -1,7 +1,6 @@
-import unicodecsv as csv
-
 from django.shortcuts import (
     get_object_or_404,
+    redirect,
 )
 from django.core.urlresolvers import (
     reverse,
@@ -12,24 +11,20 @@ from django.views.generic import (
     UpdateView,
     CreateView,
 )
-from django.http import HttpResponse
 
 from django_tables2 import (
     SingleTableMixin,
 )
 
-from volunteer.decorators import AdminRequiredMixin
+from volunteer.decorators import (
+    AdminRequiredMixin,
+)
 
 from volunteer.apps.shifts.export import (
-    CSV_HEADERS,
-    shift_slot_to_csv_row,
+    ShiftSlotReportView,
 )
 from volunteer.apps.shifts.admin.tables import (
     ShiftTable,
-    ShiftSlotReportTable,
-)
-from volunteer.apps.shifts.models import (
-    ShiftSlot,
 )
 
 from volunteer.apps.departments.models import (
@@ -44,53 +39,11 @@ from .tables import (
 from .forms import (
     AdminDepartmentForm,
     AdminDepartmentMergeForm,
+    AdminDepartmentAddLeadForm,
+    AdminDepartmentRemoveLeadForm,
     AdminRoleForm,
     AdminRoleMergeForm,
 )
-
-
-class ShiftSlotReportView(SingleTableMixin, ListView):
-    context_object_name = 'shifts'
-    model = ShiftSlot
-    table_class = ShiftSlotReportTable
-
-    def return_csv_download(self, *args, **kwargs):
-        filename = self.get_filename()
-
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="{0}"'.format(filename)
-
-        writer = csv.DictWriter(response, fieldnames=CSV_HEADERS)
-        writer.writeheader()
-        for shift_slot in self.get_queryset():
-            row = shift_slot_to_csv_row(shift_slot)
-            writer.writerow(row)
-        return response
-
-    def get(self, *args, **kwargs):
-        if 'download' in self.request.GET:
-            return self.return_csv_download(*args, **kwargs)
-        else:
-            return super(ShiftSlotReportView, self).get(*args, **kwargs)
-
-    def get_filename(self):
-        raise NotImplementedError("Must implement")
-
-    def get_extra_filters(self):
-        raise NotImplementedError("Must be implemented by subclass")
-
-    def get_queryset(self):
-        return ShiftSlot.objects.filter(
-            cancelled_at__isnull=True,
-            **self.get_extra_filters()
-        ).filter_to_current_event(
-        ).order_by(
-            'shift__role__department',
-            'shift__role',
-            'shift__start_time',
-            'shift__shift_minutes',
-            'volunteer___profile__display_name',
-        ).select_related()
 
 
 class AdminDepartmentListView(AdminRequiredMixin, SingleTableMixin, ListView):
@@ -119,6 +72,51 @@ class AdminDepartmentDetailView(AdminRequiredMixin, SingleTableMixin, UpdateView
 
     def get_success_url(self):
         return reverse('admin:department-detail', kwargs=self.kwargs)
+
+
+class AdminDepartmentAddLead(AdminRequiredMixin, UpdateView):
+    model = Department
+    context_object_name = 'department'
+    form_class = AdminDepartmentAddLeadForm
+    template_name = 'admin/departments/department_add_lead.html'
+
+    def form_valid(self, form):
+        form.instance.leads.add(form.cleaned_data['user'])
+        return redirect(reverse('admin:department-detail', kwargs=self.kwargs))
+
+
+class AdminDepartmentRemoveLead(AdminRequiredMixin, UpdateView):
+    model = Department
+    context_object_name = 'department'
+    form_class = AdminDepartmentRemoveLeadForm
+    template_name = 'admin/departments/department_remove_lead.html'
+
+    def dispatch(self, *args, **kwargs):
+        if not self.get_object().leads.filter(pk=self.kwargs['lead_pk']).exists():
+            return redirect(
+                'admin:department-detail',
+                kwargs={'pk': self.kwargs['pk']},
+            )
+        return super(AdminDepartmentRemoveLead, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(AdminDepartmentRemoveLead, self).get_context_data(
+            **kwargs
+        )
+        context['lead'] = self.get_lead()
+        return context
+
+    def get_lead(self):
+        return get_object_or_404(
+            self.object.leads.all(),
+            pk=self.kwargs['lead_pk'],
+        )
+
+    def form_valid(self, form):
+        form.instance.leads.remove(self.get_lead())
+        return redirect(
+            reverse('admin:department-detail', kwargs={'pk': self.kwargs['pk']}),
+        )
 
 
 class AdminDepartmentShiftSlotReportView(AdminRequiredMixin, ShiftSlotReportView):

@@ -24,20 +24,25 @@ class DepartmentQuerySet(models.QuerySet):
 class Department(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
-    active_lead = models.ForeignKey(
-        settings.AUTH_USER_MODEL, blank=True, null=True, related_name='lead',
-    )
-    active_liaison = models.ForeignKey(
-        settings.AUTH_USER_MODEL, blank=True, null=True, related_name='liason',
-    )
 
     objects = DepartmentQuerySet.as_manager()
+
+    leads = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, blank=True, related_name='departments'
+    )
 
     def __str__(self):
         return self.name
 
     class Meta:
         ordering = ('name',)
+
+    def user_can_admin(self, user):
+        if user.is_staff or user.is_superuser:
+            return True
+        elif self.leads.filter(pk=user.pk).exists():
+            return True
+        return False
 
     @property
     def total_shift_slots(self):

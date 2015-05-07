@@ -32,6 +32,21 @@
                         <dt>Description:</dt>
                         <dd>{{ department.description|linebreaksbr }}</dd>
                     </dl>
+                    <h4>
+                        Leads
+                        <p class="pull-right">
+                            <small><a href="{% url 'admin:department-lead-add' pk=department.pk %}" class="btn btn-primary btn-sm">Add Lead</a></small>
+                        </p>
+                    </h4>
+                    <ul>
+                        {% for lead in department.leads.all %}
+                          <li>
+                              <a href="{% url 'admin:user-detail' pk=lead.pk %}">{{ lead }}</a> - <a class="btn btn-warning btn-sm" href="{% url 'admin:department-lead-remove' pk=department.pk lead_pk=lead.pk %}">Remove As Lead</a>
+                          </li>
+                        {% empty %}
+                          <li>Department has no leads specified</li>
+                        {% endfor %}
+                    </ul>
                 </div>
                 <div class="col-sm-6">
                     <form action="." method="post" class="well">
