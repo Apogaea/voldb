@@ -27,7 +27,7 @@ CSV_HEADERS = (
     "Department Name",
     "Role ID",
     "Role Name",
-    "Shift ID"
+    "Shift ID",
     "Shift Start Time",
     "Shift End Time",
     "Volunteer ID",
