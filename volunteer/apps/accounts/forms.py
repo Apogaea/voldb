@@ -24,9 +24,9 @@ class UserRegistrationForm(BetterForm):
 
 
 class UserRegistrationConfirmForm(BetterModelForm):
-    full_name = forms.CharField(required=False)
-    display_name = forms.CharField(required=False)
-    phone = forms.CharField(required=False)
+    full_name = forms.CharField(required=False, max_length=100)
+    display_name = forms.CharField(required=False, max_length=64)
+    phone = forms.CharField(required=False, max_length=16)
 
     has_ticket = forms.BooleanField(label='I have a ticket', required=False)
 
