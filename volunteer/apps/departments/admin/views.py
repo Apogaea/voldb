@@ -53,6 +53,9 @@ class AdminDepartmentListView(AdminRequiredMixin, SingleTableMixin, ListView):
     table_class = DepartmentTable
     table_pagination = {'per_page': 20}
 
+    def get_queryset(self):
+        return super(AdminDepartmentListView, self).get_queryset().prefetch_related('leads')
+
 
 class AdminDepartmentCreateView(AdminRequiredMixin, CreateView):
     model = Department

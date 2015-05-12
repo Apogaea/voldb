@@ -1,17 +1,15 @@
 from django import forms
-from django.contrib.auth import get_user_model
 
 from betterforms.forms import (
     BetterModelForm,
 )
 
+from volunteer.apps.accounts.models import VerboseUser
+
 from volunteer.apps.departments.models import (
     Department,
     Role,
 )
-
-
-User = get_user_model()
 
 
 class AdminDepartmentForm(BetterModelForm):
@@ -61,7 +59,9 @@ class AdminDepartmentMergeForm(BetterModelForm):
 
 class AdminDepartmentAddLeadForm(BetterModelForm):
     user = forms.ModelChoiceField(
-        queryset=User.objects.select_related('_profile'),
+        queryset=VerboseUser.objects.order_by(
+            '_profile__full_name', '_profile__display_name', 'email',
+        ).select_related('_profile'),
     )
 
     class Meta:

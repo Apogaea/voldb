@@ -45,3 +45,17 @@ class User(AbstractEmailUser):
             return self.profile.display_name
         else:
             return obfuscate_email(self.email)
+
+
+@python_2_unicode_compatible
+class VerboseUser(User):
+    class Meta:
+        proxy = True
+
+    def __str__(self):
+        if self.pk is None:
+            return "Unsaved User"
+        return "{p.full_name} ({p.display_name}) <{s.email}>".format(
+            p=self.profile,
+            s=self,
+        )
