@@ -1,0 +1,5 @@
+{% for lead in record.leads.all %}
+<a href="{% url 'admin:user-detail' pk=lead.pk %}">{{ lead }}</a>{% if not forloop.last %},{% endif %}
+{% empty %}
+--
+{% endfor %}

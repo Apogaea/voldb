@@ -20,12 +20,16 @@ class DepartmentTable(BootstrapTable):
         'admin:department-detail',
         kwargs={'pk': A('pk')},
     )
+    leads = tables.TemplateColumn(
+        template_name='admin/departments/partials/department_leads.html',
+    )
 
     class Meta(BootstrapTable.Meta):
         model = Department
         fields = (
             'id',
             'name',
+            'leads',
         )
 
 
