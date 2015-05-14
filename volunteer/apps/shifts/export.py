@@ -43,7 +43,7 @@ CSV_HEADERS = (
 def dt_to_gdocs_date(when):
     return when.astimezone(
         DENVER_TIMEZONE,
-    ).strftime("%Y/%d/%m")
+    ).strftime("%m/%s/%Y")
 
 
 def dt_to_gdocs_time(when):
