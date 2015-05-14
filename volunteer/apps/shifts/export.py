@@ -28,7 +28,9 @@ CSV_HEADERS = (
     "Role ID",
     "Role Name",
     "Shift ID",
+    "Shift Start Date",
     "Shift Start Time",
+    "Shift End Date",
     "Shift End Time",
     "Volunteer ID",
     "Volunteer Display Name",
@@ -36,6 +38,18 @@ CSV_HEADERS = (
     "Volunteer Phone Number",
     "Volunteer Email",
 )
+
+
+def dt_to_gdocs_date(when):
+    return when.astimezone(
+        DENVER_TIMEZONE,
+    ).strftime("%Y/%d/%m")
+
+
+def dt_to_gdocs_time(when):
+    return when.astimezone(
+        DENVER_TIMEZONE,
+    ).strftime("%H:%M")
 
 
 def shift_slot_to_csv_row(shift_slot):
@@ -46,14 +60,18 @@ def shift_slot_to_csv_row(shift_slot):
         six.text_type(shift_slot.shift.role.pk),
         six.text_type(shift_slot.shift.role.name),
         six.text_type(shift_slot.shift.pk),
-        six.text_type(shift_slot.shift.start_time.astimezone(DENVER_TIMEZONE)),
-        six.text_type(shift_slot.shift.end_time.astimezone(DENVER_TIMEZONE)),
+        six.text_type(dt_to_gdocs_date(shift_slot.shift.start_time)),
+        six.text_type(dt_to_gdocs_time(shift_slot.shift.start_time)),
+        six.text_type(dt_to_gdocs_date(shift_slot.shift.end_time)),
+        six.text_type(dt_to_gdocs_time(shift_slot.shift.end_time)),
         six.text_type(shift_slot.volunteer.pk),
         six.text_type(shift_slot.volunteer.profile.display_name),
         six.text_type(shift_slot.volunteer.profile.full_name),
         six.text_type(shift_slot.volunteer.profile.phone),
         six.text_type(shift_slot.volunteer.email),
     )
+    if len(values) != len(CSV_HEADERS):
+        raise ValueError("Length mismatch between data and expected headers")
     return dict(zip(CSV_HEADERS, values))
 
 
