@@ -21,7 +21,7 @@ This will use virtualenv to manage a Django v1.7 project.
 
   ```bash
   $ brew install postgresql memcached libmemcached  # Mac
-  $ sudo apt-get install -y postgresql python-memcache memcached libmemcached-dev zlib1g-dev libssl-dev python-dev build-essential git # Ubuntu/Linux
+  $ sudo apt-get install -y postgresql python-memcache memcached postgresql-server-dev-all libncurses5-dev libmemcached-dev zlib1g-dev libssl-dev python-dev build-essential git # Ubuntu/Linux
 
   ```
  
