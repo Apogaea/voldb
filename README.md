@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/Apogaea/voldb.png)](https://travis-ci.org/Apogaea/voldb)
 
+### Schema
+
+![Build Status](schema.png)
+
 ### Contributing
 
 See the [Contribution Guide](CONTRIBUTING.md)
