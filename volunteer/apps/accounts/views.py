@@ -14,7 +14,9 @@ from django.contrib.auth import (
     authenticate,
 )
 
-from authtools.views import LoginRequiredMixin
+from authtools.views import (
+    LoginRequiredMixin,
+)
 
 from volunteer.decorators import (
     AnonymousRequiredMixin,

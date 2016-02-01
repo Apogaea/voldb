@@ -201,65 +201,66 @@ STATICFILES_FINDERS = (
 )
 
 # Django Pipeline Settings
-PIPELINE_DISABLE_WRAPPER = excavator.env_bool(
-    'DJANGO_PIPELINE_DISABLE_WRAPPER', default=True,
-)
-PIPELINE_ENABLED = excavator.env_bool('DJANGO_PIPELINE_ENABLED', not DEBUG)
-PIPELINE_CSS = {
-    'base': {
-        'source_filenames': (
-            "css/bootstrap.css",
-            "css/bootstrap-black.css",
-            "css/volunteer.css",
-        ),
-        'output_filename': 'css/base.css',
+PIPELINE = {
+    'PIPELINE_ENABLED': excavator.env_bool('DJANGO_PIPELINE_ENABLED', not DEBUG),
+    'DISABLE_WRAPPER': excavator.env_bool(
+        'DJANGO_PIPELINE_DISABLE_WRAPPER', default=True,
+    ),
+    'TEMPLATE_EXT': '.handlebars',
+    'TEMPLATE_FUNC': 'Handlebars.compile',
+    'TEMPLATE_NAMESPACE': 'Handlebars.templates',
+    'CSS_COMPRESSOR': 'pipeline.compressors.NoopCompressor',
+    'JS_COMPRESSOR': 'pipeline.compressors.NoopCompressor',
+    'JAVASCRIPT': {
+        'base': {
+            'source_filenames': (
+                "js/jquery.js",
+                "js/jquery.djangoCSRF.js",
+                "js/moment-with-locales.js",
+                "js/bootstrap.js",
+                "js/json2.js",
+                "js/underscore.js",
+                "js/underscore.mixins.js",
+                "js/handlebars.js",
+                "js/backbone.js",
+                "js/backbone.wreqr.js",
+                "js/backbone.babysitter.js",
+                "js/backbone.marionette.js",
+                "js/backbone.marionette.export.js",
+                "js/volunteer.js",
+            ),
+            'output_filename': 'js/base.js',
+        },
+        'rollbar': {
+            'source_filenames': (
+                "js/rollbar.js",
+            ),
+            'output_filename': 'js/rollbar.js',
+        },
+        'shift-grid': {
+            'source_filenames': (
+                "js/shift-grid/templates/**.handlebars",
+                "js/shift-grid/models.js",
+                "js/shift-grid/collections.js",
+                "js/shift-grid/views.js",
+                "js/shift-grid/layouts.js",
+                "js/shift-grid/app.js",
+            ),
+            'output_filename': 'js/shift-grid.js',
+        },
+    },
+    'STYLESHEETS': {
+        'base': {
+            'source_filenames': (
+                "css/bootstrap.css",
+                "css/bootstrap-black.css",
+                "css/volunteer.css",
+            ),
+            'output_filename': 'css/base.css',
+        },
     },
 }
 
-PIPELINE_JS = {
-    'base': {
-        'source_filenames': (
-            "js/jquery.js",
-            "js/jquery.djangoCSRF.js",
-            "js/moment-with-locales.js",
-            "js/bootstrap.js",
-            "js/json2.js",
-            "js/underscore.js",
-            "js/underscore.mixins.js",
-            "js/handlebars.js",
-            "js/backbone.js",
-            "js/backbone.wreqr.js",
-            "js/backbone.babysitter.js",
-            "js/backbone.marionette.js",
-            "js/backbone.marionette.export.js",
-            "js/volunteer.js",
-        ),
-        'output_filename': 'js/base.js',
-    },
-    'rollbar': {
-        'source_filenames': (
-            "js/rollbar.js",
-        ),
-        'output_filename': 'js/rollbar.js',
-    },
-    'shift-grid': {
-        'source_filenames': (
-            "js/shift-grid/templates/**.handlebars",
-            "js/shift-grid/models.js",
-            "js/shift-grid/collections.js",
-            "js/shift-grid/views.js",
-            "js/shift-grid/layouts.js",
-            "js/shift-grid/app.js",
-        ),
-        'output_filename': 'js/shift-grid.js',
-    },
-}
-PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.NoopCompressor'
-PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.NoopCompressor'
-
-PIPELINE_TEMPLATE_EXT = '.handlebars'
-PIPELINE_TEMPLATE_FUNC = 'Handlebars.compile'
-PIPELINE_TEMPLATE_NAMESPACE = 'Handlebars.templates'
 
 # Custome User Model
 # http://django-authtools.readthedocs.org/en/latest/intro.html#quick-setup
