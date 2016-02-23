@@ -8,32 +8,32 @@ describe("GridPageInfo.hasNextPage and GridPageInfo.hasPreviousPage", function()
   it("should have a next page on pages 1, 2, and 3", function() {
     var pageInfo = new app.GridPageInfo({dates: dates});
     pageInfo.selectPage(1);
-    expect(pageInfo.hasNextPage()).toBe(true);
+    chai.expect(pageInfo.hasNextPage()).to.be.true;
     pageInfo.selectPage(2);
-    expect(pageInfo.hasNextPage()).toBe(true);
+    chai.expect(pageInfo.hasNextPage()).to.be.true;
     pageInfo.selectPage(3);
-    expect(pageInfo.hasNextPage()).toBe(true);
+    chai.expect(pageInfo.hasNextPage()).to.be.true;
   });
 
   it("should not a next page on page 4", function() {
     var pageInfo = new app.GridPageInfo({dates: dates});
     pageInfo.selectPage(4);
-    expect(pageInfo.hasNextPage()).toBe(false);
+    chai.expect(pageInfo.hasNextPage()).to.be.false;
   });
 
   it("should have a previous page on pages 2, 3, and 4", function() {
     var pageInfo = new app.GridPageInfo({dates: dates});
     pageInfo.selectPage(2);
-    expect(pageInfo.hasPreviousPage()).toBe(true);
+    chai.expect(pageInfo.hasPreviousPage()).to.be.true;
     pageInfo.selectPage(3);
-    expect(pageInfo.hasPreviousPage()).toBe(true);
+    chai.expect(pageInfo.hasPreviousPage()).to.be.true;
     pageInfo.selectPage(4);
-    expect(pageInfo.hasPreviousPage()).toBe(true);
+    chai.expect(pageInfo.hasPreviousPage()).to.be.true;
   });
 
   it("should not a previous page on page 1", function() {
     var pageInfo = new app.GridPageInfo({dates: dates});
     pageInfo.selectPage(1);
-    expect(pageInfo.hasPreviousPage()).toBe(false);
+    chai.expect(pageInfo.hasPreviousPage()).to.be.false;
   });
 });

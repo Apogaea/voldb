@@ -1,8 +1,9 @@
+from collections import OrderedDict
+
 from rest_framework import response
 from rest_framework import viewsets
 from rest_framework import generics
 from rest_framework import pagination
-from rest_framework.compat import OrderedDict
 
 from volunteer.apps.departments.models import (
     Department,

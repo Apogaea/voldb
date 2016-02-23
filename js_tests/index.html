@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Voldb tests</title>
+  <link rel="stylesheet" media="all" href="../bower_components/mocha/mocha.css">
+</head>
+<body>
+  <div id="mocha"><p><a href=".">Index</a></p></div>
+  <div id="messages"></div>
+  <div id="fixtures"></div>
+<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js" charset="utf-8"></script>
+<script type="text/javascript" src="../volunteer/static/js/jquery.djangoCSRF.js" charset="utf-8"></script>
+<script type="text/javascript" src="../bower_components/moment/min/moment-with-locales.js" charset="utf-8"></script>
+<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js" charset="utf-8"></script>
+<script type="text/javascript" src="../bower_components/json2/json2.js" charset="utf-8"></script>
+<script type="text/javascript" src="../bower_components/underscore/underscore.js" charset="utf-8"></script>
+<script type="text/javascript" src="../volunteer/static/js/underscore.mixins.js" charset="utf-8"></script>
+<script type="text/javascript" src="../bower_components/handlebars/handlebars.js" charset="utf-8"></script>
+<script type="text/javascript" src="../bower_components/backbone/backbone.js" charset="utf-8"></script>
+<script type="text/javascript" src="../bower_components/backbone.wreqr/lib/backbone.wreqr.js" charset="utf-8"></script>
+<script type="text/javascript" src="../bower_components/backbone.babysitter/lib/backbone.babysitter.js" charset="utf-8"></script>
+<script type="text/javascript" src="../bower_components/backbone.marionette/lib/backbone.marionette.js" charset="utf-8"></script>
+<script type="text/javascript" src="../bower_components/backbone.marionette.export/dist/backbone.marionette.export.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="compiled/templates.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="../volunteer/static/js/shift-grid/models.js" charset="utf-8"></script>
+<script type="text/javascript" src="../volunteer/static/js/shift-grid/collections.js" charset="utf-8"></script>
+<script type="text/javascript" src="../volunteer/static/js/shift-grid/views.js" charset="utf-8"></script>
+<script type="text/javascript" src="../volunteer/static/js/shift-grid/layouts.js" charset="utf-8"></script>
+<script type="text/javascript" src="../volunteer/static/js/shift-grid/app.js" charset="utf-8"></script>
+
+  <script src="../bower_components/mocha/mocha.js"></script>
+  <script src="../bower_components/chai/chai.js"></script>
+  <script>mocha.setup('bdd')</script>
+  <script src="tests/GridPageInfo_activePage_spec.js"></script>
+  <script src="tests/GridPageInfo_hasNextandPreviousPage_spec.js"></script>
+  <script src="tests/GridPageInfo_pages_spec.js"></script>
+  <script src="tests/GridPageInfo_selectPage_spec.js"></script>
+  <script src="tests/GridPageInfo_totalPages_spec.js"></script>
+  <script src="tests/GridRows_columnDenominators_spec.js"></script>
+  <script src="tests/GridRows_getPageInfo_spec.js"></script>
+  <script src="tests/Role_isHydrated_spec.js"></script>
+  <script src="tests/Shift_claimSlotSuccess_spec.js"></script>
+  <script src="tests/Shift_claimUrl_spec.js"></script>
+  <script src="tests/Shift_hasErrors_spec.js"></script>
+  <script src="tests/Shift_isClaimable_spec.js"></script>
+  <script src="tests/Shift_isHydrated_spec.js"></script>
+  <script src="tests/Shift_shiftIcon_spec.js"></script>
+  <script>$(function() { mocha.run(); });</script>
+</body>
+</html>

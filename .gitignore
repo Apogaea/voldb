@@ -78,3 +78,7 @@ node_modules/**
 
 # Handlebars Templates
 js_tests/compiled/*.js
+
+# bower
+bower_components
+js_tests/bower_components

@@ -1,5 +1,3 @@
-import urllib
-
 from volunteer.apps.accounts.utils import (
     generate_registration_token,
     reverse_registration_url,
@@ -11,7 +9,7 @@ def test_url_generation():
     token = generate_registration_token('test@example.com')
     url = reverse_registration_url('test@example.com')
 
-    assert urllib.quote_plus(token) in url
+    assert token in url
 
 
 def test_unsigning_token():

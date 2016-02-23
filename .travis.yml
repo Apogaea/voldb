@@ -1,3 +1,4 @@
+sudo: false
 language: python
 python:
   - "2.7"
@@ -6,10 +7,11 @@ env:
     - PIP_DOWNLOAD_CACHE=$HOME/.pip_cache
     - DJANGO_SECRET_KEY="not-a-real-key"
   matrix:
-    - TOX_ENV=py27-django17
+    - TOX_ENV=py27-django18
+    #- TOX_ENV=py27-django19
     - TOX_ENV=flake8
     - TOX_ENV=jshint
-    - TOX_ENV=jasmine
+    - TOX_ENV=mocha
 cache: pip
 install:
   - "travis_retry pip install setuptools --upgrade"
