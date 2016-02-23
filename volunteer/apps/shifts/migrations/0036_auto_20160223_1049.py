@@ -6,26 +6,29 @@ import datetime
 from django.db import migrations, models
 
 DATE_MAP = {
-    datetime.date(2015, 6, 5): datetime.date(2016, 7, 3),
-    datetime.date(2015, 6, 6): datetime.date(2016, 7, 4),
-    datetime.date(2015, 6, 7): datetime.date(2016, 7, 5),
-    datetime.date(2015, 6, 9): datetime.date(2016, 7, 7),
-    datetime.date(2015, 6, 10): datetime.date(2016, 7, 8),
-    datetime.date(2015, 6, 11): datetime.date(2016, 7, 9),
-    datetime.date(2015, 6, 12): datetime.date(2016, 7, 10),
-    datetime.date(2015, 6, 13): datetime.date(2016, 7, 11),
-    datetime.date(2015, 6, 14): datetime.date(2016, 7, 12),
-    datetime.date(2015, 6, 15): datetime.date(2016, 7, 13),
+    datetime.date(2015, 6, 5): datetime.date(2016, 6, 3),
+    datetime.date(2015, 6, 6): datetime.date(2016, 6, 4),
+    datetime.date(2015, 6, 7): datetime.date(2016, 6, 5),
+    datetime.date(2015, 6, 9): datetime.date(2016, 6, 7),
+    datetime.date(2015, 6, 10): datetime.date(2016, 6, 8),
+    datetime.date(2015, 6, 11): datetime.date(2016, 6, 9),
+    datetime.date(2015, 6, 12): datetime.date(2016, 6, 10),
+    datetime.date(2015, 6, 13): datetime.date(2016, 6, 11),
+    datetime.date(2015, 6, 14): datetime.date(2016, 6, 12),
+    datetime.date(2015, 6, 15): datetime.date(2016, 6, 13),
 }
 
 
 def convert_start_time(start_time):
     date_2016 = DATE_MAP[start_time.date()]
-    return start_time.replace(
+    start_time_2016 = start_time.replace(
         year=date_2016.year,
         month=date_2016.month,
         day=date_2016.day,
     )
+    if start_time.weekday() != start_time_2016.weekday():
+        raise ValueError("Something is wrong")
+    return start_time_2016
 
 
 def populuate_2016_shifts_from_2015_shifts(apps, schema_editor):
