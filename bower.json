@@ -1,0 +1,31 @@
+{
+  "name": "voldb",
+  "homepage": "https://github.com/Apogaea/voldb",
+  "authors": [
+    "Piper Merriam <pipermerriam@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone.marionette.export": "~2.1.4",
+    "backbone.marionette": "~2.4.4",
+    "bootstrap": "~3.3.6",
+    "handlebars": "~4.0.5",
+    "json2": "*",
+    "moment": "~2.11.2",
+    "rollbar": "~1.8.3",
+    "mocha": "~2.4.5",
+    "underscore": "~1.8.3",
+    "chai": "~3.5.0"
+  }
+}

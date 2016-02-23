@@ -8,45 +8,45 @@ describe("Role.isHydrated", function() {
   it("should select the first date when selecting page 1.", function() {
     var pageInfo = new app.GridPageInfo({dates: dates});
     pageInfo.selectPage(1);
-    expect(pageInfo.activePage()).toEqual(1);
-    expect(pageInfo.get("selectedDate")).toEqual(d1);
+    chai.expect(pageInfo.activePage()).to.equal(1);
+    chai.expect(pageInfo.get("selectedDate")).to.equal(d1);
   });
 
   it("should select the second date when selecting page 2.", function() {
     var pageInfo = new app.GridPageInfo({dates: dates});
     pageInfo.selectPage(2);
-    expect(pageInfo.activePage()).toEqual(2);
-    expect(pageInfo.get("selectedDate")).toEqual(d2);
+    chai.expect(pageInfo.activePage()).to.equal(2);
+    chai.expect(pageInfo.get("selectedDate")).to.equal(d2);
   });
 
   it("should select the third date when selecting page 3.", function() {
     var pageInfo = new app.GridPageInfo({dates: dates});
     pageInfo.selectPage(3);
-    expect(pageInfo.activePage()).toEqual(3);
-    expect(pageInfo.get("selectedDate")).toEqual(d3);
+    chai.expect(pageInfo.activePage()).to.equal(3);
+    chai.expect(pageInfo.get("selectedDate")).to.equal(d3);
   });
 
   it("should select the fourth date when selecting page 4.", function() {
     var pageInfo = new app.GridPageInfo({dates: dates});
     pageInfo.selectPage(4);
-    expect(pageInfo.activePage()).toEqual(4);
-    expect(pageInfo.get("selectedDate")).toEqual(d4);
+    chai.expect(pageInfo.activePage()).to.equal(4);
+    chai.expect(pageInfo.get("selectedDate")).to.equal(d4);
   });
 
   it("should gracefully handle selection of dates below the allowed range", function() {
     var pageInfo = new app.GridPageInfo({dates: dates});
     pageInfo.selectPage(0);
-    expect(pageInfo.activePage()).toEqual(1);
-    expect(pageInfo.get("selectedDate")).toEqual(d1);
+    chai.expect(pageInfo.activePage()).to.equal(1);
+    chai.expect(pageInfo.get("selectedDate")).to.equal(d1);
     pageInfo.selectPage(-1);
-    expect(pageInfo.activePage()).toEqual(1);
-    expect(pageInfo.get("selectedDate")).toEqual(d1);
+    chai.expect(pageInfo.activePage()).to.equal(1);
+    chai.expect(pageInfo.get("selectedDate")).to.equal(d1);
   });
 
   it("should gracefully handle selection of dates above the allowed range", function() {
     var pageInfo = new app.GridPageInfo({dates: dates});
     pageInfo.selectPage(20);
-    expect(pageInfo.activePage()).toEqual(4);
-    expect(pageInfo.get("selectedDate")).toEqual(d4);
+    chai.expect(pageInfo.activePage()).to.equal(4);
+    chai.expect(pageInfo.get("selectedDate")).to.equal(d4);
   });
 });

@@ -7,6 +7,6 @@ describe("GridPageInfo.totalPages", function() {
 
   it("should start on page 1.", function() {
     var pageInfo = new app.GridPageInfo({dates: dates});
-    expect(pageInfo.totalPages()).toEqual(4);
+    chai.expect(pageInfo.totalPages()).to.equal(4);
   });
 });

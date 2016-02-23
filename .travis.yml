@@ -11,7 +11,7 @@ env:
     #- TOX_ENV=py27-django19
     - TOX_ENV=flake8
     - TOX_ENV=jshint
-    - TOX_ENV=jasmine
+    - TOX_ENV=mocha
 cache: pip
 install:
   - "travis_retry pip install setuptools --upgrade"

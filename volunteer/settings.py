@@ -189,6 +189,7 @@ STATIC_URL = excavator.env_string('DJANGO_STATIC_URL', default='/static/')
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(BASE_DIR, 'bower_components'),
     os.path.join(BASE_DIR, 'volunteer', 'static'),
 )
 
@@ -212,30 +213,35 @@ PIPELINE = {
     'CSS_COMPRESSOR': 'pipeline.compressors.NoopCompressor',
     'JS_COMPRESSOR': 'pipeline.compressors.NoopCompressor',
     'JAVASCRIPT': {
-        'base': {
+        'dependencies': {
             'source_filenames': (
-                "js/jquery.js",
+                "jquery/dist/jquery.js",
                 "js/jquery.djangoCSRF.js",
-                "js/moment-with-locales.js",
-                "js/bootstrap.js",
-                "js/json2.js",
-                "js/underscore.js",
+                "moment/min/moment-with-locales.js",
+                "bootstrap/dist/js/bootstrap.js",
+                "json2/json2.js",
+                "underscore/underscore.js",
+                "handlebars/handlebars.js",
+                "backbone/backbone.js",
+                "backbone.wreqr/lib/backbone.wreqr.js",
+                "backbone.babysitter/lib/backbone.babysitter.js",
+                "backbone.marionette/lib/backbone.marionette.js",
+                "backbone.marionette.export/dist/backbone.marionette.export.js",
+            ),
+            'output_filename': 'js-compiled/dependencies.js',
+        },
+        'project': {
+            'source_filenames': (
                 "js/underscore.mixins.js",
-                "js/handlebars.js",
-                "js/backbone.js",
-                "js/backbone.wreqr.js",
-                "js/backbone.babysitter.js",
-                "js/backbone.marionette.js",
-                "js/backbone.marionette.export.js",
                 "js/volunteer.js",
             ),
-            'output_filename': 'js/base.js',
+            'output_filename': 'js-compiled/project.js',
         },
         'rollbar': {
             'source_filenames': (
-                "js/rollbar.js",
+                "rollbar/dist/rollbar.js",
             ),
-            'output_filename': 'js/rollbar.js',
+            'output_filename': 'js-compiled/rollbar.js',
         },
         'shift-grid': {
             'source_filenames': (
@@ -246,17 +252,22 @@ PIPELINE = {
                 "js/shift-grid/layouts.js",
                 "js/shift-grid/app.js",
             ),
-            'output_filename': 'js/shift-grid.js',
+            'output_filename': 'js-compiled/shift-grid.js',
         },
     },
     'STYLESHEETS': {
-        'base': {
+        'dependencies': {
             'source_filenames': (
-                "css/bootstrap.css",
+                "bootstrap/dist/css/bootstrap.css",
                 "css/bootstrap-black.css",
+            ),
+            'output_filename': 'css-compiled/dependencies.css',
+        },
+        'project': {
+            'source_filenames': (
                 "css/volunteer.css",
             ),
-            'output_filename': 'css/base.css',
+            'output_filename': 'css-compiled/project.css',
         },
     },
 }

@@ -10,7 +10,8 @@
             {% javascript 'rollbar' %}
         {% endif %}
 
-        {% stylesheet 'base' %}
+        {% stylesheet 'dependencies' %}
+        {% stylesheet 'project' %}
 
         {% block extra_css %}
         {% endblock %}
@@ -50,7 +51,8 @@
             {% endblock content_wrapper %}
         </div>
 
-        {% javascript 'base' %}
+        {% javascript 'dependencies' %}
+        {% javascript 'project' %}
         {% javascript 'shift-grid' %}
 <script type="text/javascript">
 $(document).ready(function() {
