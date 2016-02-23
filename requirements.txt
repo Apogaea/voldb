@@ -5,10 +5,10 @@ django-argonauts==1.1.4
 django-authtools==1.4.0
 django-backupdb==0.5.5
 django-betterforms==1.1.4
-django-bootstrap3==5.1.1
+django-bootstrap3==6.2.2
 django-cache-url==0.8.0
-django-emailtools==0.2.2
 django-herokuify==1.0.pre3
+django-ogmios==0.9.3
 django-pipeline==1.6.4
 django-pylibmc==0.6.1
 django-s3-folder-storage==0.3

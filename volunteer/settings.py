@@ -72,9 +72,9 @@ INSTALLED_APPS = [
     'authtools',
     'backupdb',
     'betterforms',
-    'emailtools',
     'rest_framework',
     'pipeline',
+    # Waiting on https://github.com/cyberdelia/manifesto/pull/12 for django 1.9
     'manifesto',
     's3_folder_storage',
     'bootstrap3',
