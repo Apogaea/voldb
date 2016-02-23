@@ -19,5 +19,8 @@ def build_absolute_uri(location, domain=None, protocol="http"):
 def send_registration_verification_email(to):
     ogmios.send_email(
         'registration/mail/email_verification.md',
-        {'confirm_email_url': build_absolute_uri(reverse_registration_url(to))},
+        {
+            'confirm_email_url': build_absolute_uri(reverse_registration_url(to)),
+            'to': to,
+        },
     )

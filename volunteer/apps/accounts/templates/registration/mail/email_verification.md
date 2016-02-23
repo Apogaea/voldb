@@ -1,3 +1,4 @@
+to: {to}
 subject: Welcome to the Apogaea Volunteer Database
 content-type: markdown
 ---
