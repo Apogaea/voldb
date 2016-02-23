@@ -8,7 +8,7 @@ class UserFactory(factory.DjangoModelFactory):
 
     password = factory.PostGenerationMethodCall('set_password', 'secret')
 
-    #_profile = factory.RelatedFactory('tests.factories.profiles.ProfileFactory', name="user")
+    _profile = factory.RelatedFactory('tests.factories.profiles.ProfileFactory', factory_related_name="user")
 
     class Meta:
         model = User

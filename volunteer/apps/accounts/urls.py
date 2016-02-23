@@ -33,7 +33,7 @@ urlpatterns = patterns(
 urlpatterns += patterns(
     'authtools.views',
     url(r'^login/$', LoginView.as_view(), name='login'),
-    url(r'^logout/$', LogoutView.as_view(), name='logout'),
+    url(r'^logout/$', LogoutView.as_view(pattern_name='login'), name='logout'),
     url(
         r'^change-password/$', PasswordChangeView.as_view(
             template_name='accounts/change_password.html',

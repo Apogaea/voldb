@@ -152,7 +152,7 @@ DATABASES['default'].setdefault('ATOMIC_REQUESTS', True)
 # https://docs.djangoproject.com/en/dev/topics/i18n/
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'MST7MDT'
+TIME_ZONE = 'MST'
 
 USE_I18N = True
 
@@ -345,9 +345,8 @@ REST_FRAMEWORK = {
     # Make test client always return json
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
     # Pagination
-    'PAGINATE_BY': 100,
-    'MAX_PAGINATE_BY': 100,
-    'PAGINATE_BY_PARAM': 'page_size',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100,
 }
 
 REGISTRATION_OPEN = excavator.env_bool('REGISTRATION_OPEN', default=True)
