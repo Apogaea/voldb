@@ -12,7 +12,7 @@ from volunteer.apps.shifts.models import (
 SHIFT_STATS_CACHE_KEY = "shift-slots-stats"
 
 
-def get_cache_key(latest_changed_slot, latest_changed_shift):
+def get_cache_key(latest_changed_slot, latest_changed_shift, active_event):
     if latest_changed_slot:
         slot_key = latest_changed_slot.updated_at.isoformat()
     else:
@@ -23,20 +23,26 @@ def get_cache_key(latest_changed_slot, latest_changed_shift):
     else:
         shift_key = ''
 
+    if active_event:
+        event_key = active_event.updated_at.isoformat()
+    else:
+        event_key = ''
+
     return ':'.join((
         SHIFT_STATS_CACHE_KEY,
         shift_key,
         slot_key,
+        event_key,
     ))
 
 
 def shift_stats(request):
     latest_changed_slot = ShiftSlot.objects.order_by('-updated_at').first()
     latest_changed_shift = Shift.objects.order_by('-updated_at').first()
-    cache_key = get_cache_key(latest_changed_slot, latest_changed_shift)
+    active_event = get_active_event(request.session)
+    cache_key = get_cache_key(latest_changed_slot, latest_changed_shift, active_event)
     shift_slot_stats = cache.get(cache_key)
     if shift_slot_stats is None:
-        active_event = get_active_event(request.session)
         total_shift_slot_count = Shift.objects.filter_to_active_event(
             active_event,
         ).aggregate(
