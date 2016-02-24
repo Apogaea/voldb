@@ -20,6 +20,8 @@ from volunteer.decorators import (
     AdminRequiredMixin,
 )
 
+from volunteer.apps.events.utils import get_active_event
+
 from volunteer.apps.shifts.export import (
     ShiftSlotReportView,
 )
@@ -131,8 +133,9 @@ class AdminDepartmentShiftSlotReportView(AdminRequiredMixin, ShiftSlotReportView
         return context
 
     def get_department(self):
+        active_event = get_active_event(self.request.session)
         return get_object_or_404(
-            Department.objects.filter_to_current_event(),
+            Department.objects.filter_to_active_event(active_event),
             pk=self.kwargs['pk'],
         )
 
@@ -185,7 +188,8 @@ class AdminRoleDetailView(AdminRequiredMixin, SingleTableMixin, UpdateView):
         return Role.objects.filter(department_id=self.kwargs['department_pk'])
 
     def get_table_data(self):
-        return self.object.shifts.filter_to_current_event().order_by(
+        active_event = get_active_event(self.request.session)
+        return self.object.shifts.filter_to_active_event(active_event).order_by(
             'start_time', 'shift_minutes',
         )
 
@@ -205,10 +209,11 @@ class AdminRoleShiftSlotReportView(AdminRequiredMixin, ShiftSlotReportView):
         return context
 
     def get_role(self):
+        active_event = get_active_event(self.request.session)
         return get_object_or_404(
             Role.objects.filter(
                 department_id=self.kwargs['department_pk'],
-            ).filter_to_current_event(),
+            ).filter_to_active_event(active_event),
             pk=self.kwargs['pk'],
         )
 

@@ -31,12 +31,12 @@ def test_shift_create(admin_webtest_client, factories, models):
     )
 
     response = admin_webtest_client.get(url)
-    response.form['start_time'] = shift_time.strftime('%Y-%m-%d %H:%M:%S')
-    response.form['shift_minutes'] = 120
-    response.form['num_slots'] = 5
-    response.form['code'] = 'test-code'
+    response.forms[1]['start_time'] = shift_time.strftime('%Y-%m-%d %H:%M:%S')
+    response.forms[1]['shift_minutes'] = 120
+    response.forms[1]['num_slots'] = 5
+    response.forms[1]['code'] = 'test-code'
 
-    form_response = response.form.submit()
+    form_response = response.forms[1].submit()
     assert form_response.status_code == 302
 
     shift = models.Shift.objects.get()

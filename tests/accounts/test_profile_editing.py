@@ -17,12 +17,12 @@ def test_editing(user_webtest_client, models, user):
     user.profile.has_ticket = False
     user.profile.save()
 
-    response.form['full_name'] = 'updated-full_name'
-    response.form['display_name'] = 'updated-display_name'
-    response.form['phone'] = 'updated-phone'
-    response.form['has_ticket'] = True
+    response.forms[1]['full_name'] = 'updated-full_name'
+    response.forms[1]['display_name'] = 'updated-display_name'
+    response.forms[1]['phone'] = 'updated-phone'
+    response.forms[1]['has_ticket'] = True
 
-    form_response = response.form.submit()
+    form_response = response.forms[1].submit()
 
     expected_target = reverse('dashboard')
     assert form_response.status_code == status.HTTP_302_FOUND

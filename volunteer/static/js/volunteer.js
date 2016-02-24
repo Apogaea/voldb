@@ -4,7 +4,17 @@ $(function() {
       el: el,
       onChange: function(event) {
         console.log("changed");
-        debugger;
+        var select = event.currentTarget;
+        $.ajax({
+          url: select.form.action,
+          method: select.form.method,
+          data: JSON.stringify({active_event: select.value}),
+          dataType: "json",
+          contentType: "application/json",
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.error(errorThrown);
+          }
+        })
       }
     })
 

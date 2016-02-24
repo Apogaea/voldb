@@ -29,9 +29,9 @@ def test_user_editing(admin_webtest_client, factories, User):
     }
 
     for k, v in new_values.items():
-        response.form[k] = v
+        response.forms[1][k] = v
 
-    form_response = response.form.submit()
+    form_response = response.forms[1].submit()
     assert form_response.status_code == 302
 
     updated_user = User.objects.get(pk=user.pk)

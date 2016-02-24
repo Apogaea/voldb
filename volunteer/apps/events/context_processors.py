@@ -10,9 +10,15 @@ EVENT_CHOICES_CACHE_KEY = 'event-choices'
 
 def get_event_choices(active_event_id):
     latest_changed_event = Event.objects.order_by('-updated_at').first()
+
+    if latest_changed_event is None:
+        last_update = ''
+    else:
+        last_update = latest_changed_event.updated_at.isoformat()
+
     cache_key = ':'.join((
         EVENT_CHOICES_CACHE_KEY,
-        latest_changed_event.updated_at.isoformat(),
+        last_update,
     ))
 
     event_choices = cache.get(cache_key)

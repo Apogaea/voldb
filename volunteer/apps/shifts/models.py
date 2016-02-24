@@ -16,13 +16,14 @@ from volunteer.apps.shifts.utils import DENVER_TIMEZONE
 class ShiftQuerySet(models.QuerySet):
     use_for_related_fields = True
 
-    def filter_to_current_event(self):
-        from volunteer.apps.events.models import Event
-        current_event = Event.objects.get_current()
-        if current_event is None:
+    def filter_to_active_event(self, active_event=None):
+        if active_event is None:
+            from volunteer.apps.events.models import Event
+            active_event = Event.objects.get_current()
+        if active_event is None:
             return self
         else:
-            return self.filter(event=current_event)
+            return self.filter(event=active_event)
 
 
 def human_readable_minutes(minutes):
@@ -146,13 +147,14 @@ class Shift(Timestamped):
 class ShiftSlotQuerySet(models.QuerySet):
     use_for_related_fields = True
 
-    def filter_to_current_event(self):
-        from volunteer.apps.events.models import Event
-        current_event = Event.objects.get_current()
-        if current_event is None:
+    def filter_to_active_event(self, active_event=None):
+        if active_event is None:
+            from volunteer.apps.events.models import Event
+            active_event = Event.objects.get_current()
+        if active_event is None:
             return self
         else:
-            return self.filter(shift__event=current_event)
+            return self.filter(shift__event=active_event)
 
 
 @python_2_unicode_compatible

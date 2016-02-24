@@ -21,10 +21,10 @@ def test_shift_editing(admin_webtest_client, factories, models):
     })
 
     response = admin_webtest_client.get(url)
-    response.form['num_slots'] = 5
-    response.form['code'] = 'test-code-update'
+    response.forms[1]['num_slots'] = 5
+    response.forms[1]['code'] = 'test-code-update'
 
-    form_response = response.form.submit()
+    form_response = response.forms[1].submit()
     assert form_response.status_code == 302
 
     updated_shift = models.Shift.objects.get(pk=shift.pk)

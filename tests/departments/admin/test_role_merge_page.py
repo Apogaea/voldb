@@ -29,10 +29,10 @@ def test_role_merging(admin_webtest_client, factories, models):
     })
 
     response = admin_webtest_client.get(url)
-    response.form['role'] = role_b.pk
-    response.form['verify'] = role_a.name
+    response.forms[1]['role'] = role_b.pk
+    response.forms[1]['verify'] = role_a.name
 
-    form_response = response.form.submit()
+    form_response = response.forms[1].submit()
     assert form_response.status_code == 302
 
     assert not models.Role.objects.filter(pk=role_a.pk).exists()

@@ -18,6 +18,6 @@ class EventViewSet(viewsets.GenericViewSet):
         serializer.is_valid(raise_exception=True)
 
         active_event = serializer.validated_data['active_event']
-        self.request.session.set('event_id', active_event.pk)
+        self.request.session['event_id'] = active_event
 
         return Response(status=status.HTTP_204_NO_CONTENT)

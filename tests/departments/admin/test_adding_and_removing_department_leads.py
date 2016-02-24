@@ -16,9 +16,9 @@ def test_adding_lead_to_department(admin_webtest_client, factories):
     assert not department.leads.exists()
 
     response = admin_webtest_client.get(url)
-    response.form['user'] = user.pk
+    response.forms[1]['user'] = user.pk
 
-    form_response = response.form.submit()
+    form_response = response.forms[1].submit()
     assert form_response.status_code == 302
 
     assert department.leads.filter(pk=user.pk).exists()
@@ -49,7 +49,7 @@ def test_removing_lead_from_department(admin_webtest_client, factories):
     })
 
     response = admin_webtest_client.get(url)
-    form_response = response.form.submit()
+    form_response = response.forms[1].submit()
 
     assert form_response.status_code == 302
     assert not department.leads.exists()

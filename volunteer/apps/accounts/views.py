@@ -22,6 +22,8 @@ from volunteer.decorators import (
     AnonymousRequiredMixin,
 )
 
+from volunteer.apps.events.utils import get_active_event
+
 from volunteer.apps.accounts.forms import (
     UserRegistrationForm,
     UserRegistrationConfirmForm,
@@ -105,6 +107,14 @@ class DashboardView(LoginRequiredMixin, DetailView):
     def get_object(self, *args, **kwargs):
         return self.request.user
 
+    def get_context_data(self, **kwargs):
+        context = super(DashboardView, self).get_context_data(**kwargs)
+
+        active_event = get_active_event(self.request.session)
+        context['user_shifts'] = self.request.user.get_shifts(active_event)
+
+        return context
+
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'accounts/profile_edit.html'
@@ -119,3 +129,11 @@ class PublicProfileView(LoginRequiredMixin, DetailView):
     model = User
     template_name = 'accounts/public_profile.html'
     context_object_name = 'voldb_user'
+
+    def get_context_data(self, **kwargs):
+        context = super(PublicProfileView, self).get_context_data(**kwargs)
+
+        active_event = get_active_event(self.request.session)
+        context['user_shifts'] = self.object.get_shifts(active_event)
+
+        return context

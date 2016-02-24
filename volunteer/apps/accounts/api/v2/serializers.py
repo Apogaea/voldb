@@ -9,6 +9,10 @@ class UserSerializer(serializers.ModelSerializer):
     display_name = serializers.SerializerMethodField()
     shifts = serializers.SerializerMethodField()
 
+    def __init__(self, *args, **kwargs):
+        self.active_event = kwargs.pop('active_event')
+        super(UserSerializer, self).__init__(*args, **kwargs)
+
     class Meta:
         model = User
         fields = (
@@ -27,4 +31,4 @@ class UserSerializer(serializers.ModelSerializer):
     def get_shifts(self, user):
         if user.is_anonymous():
             return []
-        return [s.pk for s in user.shifts]
+        return [s.pk for s in user.get_shifts(self.active_event)]

@@ -24,8 +24,8 @@ def test_assigning_a_user(admin_webtest_client, factories, models):
 
     assert not models.ShiftSlot.objects.filter(volunteer=user).exists()
 
-    response.form['volunteer'] = user.pk
-    form_response = response.form.submit()
+    response.forms[1]['volunteer'] = user.pk
+    form_response = response.forms[1].submit()
     assert form_response.status_code == 302
 
     assert models.ShiftSlot.objects.filter(volunteer=user).exists()
@@ -47,8 +47,8 @@ def test_assigning_a_user_who_is_already_volunteered(admin_webtest_client,
 
     assert models.ShiftSlot.objects.filter(volunteer=user).count() == 1
 
-    response.form['volunteer'] = user.pk
-    form_response = response.form.submit()
+    response.forms[1]['volunteer'] = user.pk
+    form_response = response.forms[1].submit()
     assert form_response.status_code == 200
 
     assert models.ShiftSlot.objects.filter(volunteer=user).count() == 1

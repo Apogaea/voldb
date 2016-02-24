@@ -13,12 +13,12 @@ def test_change_password(user_webtest_client, User, user):
     url = reverse('password-change')
     response = user_webtest_client.get(url)
 
-    response.form['old_password'] = 'password'
-    response.form['new_password1'] = 'new-password'
-    response.form['new_password2'] = 'new-password'
+    response.forms[1]['old_password'] = 'password'
+    response.forms[1]['new_password1'] = 'new-password'
+    response.forms[1]['new_password2'] = 'new-password'
 
     expected_location = reverse('dashboard')
-    form_response = response.form.submit()
+    form_response = response.forms[1].submit()
     assert form_response.status_code == status.HTTP_302_FOUND
     assert form_response.location.endswith(expected_location)
 

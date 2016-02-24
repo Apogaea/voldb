@@ -18,7 +18,7 @@
 $(document).ready(function() {
     var application = new app.ShiftGridApplication({
         el: $('#profile-shifts-grid'),
-        rows: {{ voldb_user.shifts|as_grid|json }}
+        rows: {{ user_shifts|as_grid|json }}
     });
     window.application = application;
 });
