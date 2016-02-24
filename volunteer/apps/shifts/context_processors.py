@@ -47,5 +47,5 @@ def shift_stats(request):
                 'total_filled_shift_slot_count': total_filled_shift_slot_count,
             }
         }
-        cache.set(SHIFT_STATS_CACHE_KEY, shift_slot_stats)
+        cache.set(cache_key, shift_slot_stats)
     return shift_slot_stats
