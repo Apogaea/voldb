@@ -14,7 +14,7 @@ from django.views.generic import (
 
 from volunteer.decorators import AdminRequiredMixin
 
-from volunteer.apps.events.models import Event
+from volunteer.apps.events.utils import get_active_event
 
 from volunteer.apps.departments.models import (
     Role,
@@ -49,7 +49,7 @@ class AdminShiftCreateView(AdminRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.role_id = self.kwargs['role_pk']
-        form.instance.event = Event.objects.get_current()
+        form.instance.event = get_active_event(self.request.session)
         return super(AdminShiftCreateView, self).form_valid(form)
 
     def get_success_url(self):
@@ -69,10 +69,11 @@ class AdminShiftDetailView(AdminRequiredMixin, UpdateView):
     context_object_name = 'shift'
 
     def get_queryset(self):
+        active_event = get_active_event(self.request.session)
         return Shift.objects.filter(
             role__department_id=self.kwargs['department_pk'],
             role_id=self.kwargs['role_pk'],
-        ).filter_to_current_event()
+        ).filter_to_active_event(active_event)
 
     def get_success_url(self):
         return reverse(
@@ -87,10 +88,11 @@ class AdminShiftDeleteView(AdminRequiredMixin, DeleteView):
     context_object_name = 'shift'
 
     def get_queryset(self):
+        active_event = get_active_event(self.request.session)
         return Shift.objects.filter(
             role__department_id=self.kwargs['department_pk'],
             role_id=self.kwargs['role_pk'],
-        ).filter_to_current_event()
+        ).filter_to_active_event(active_event)
 
     def delete(self, *args, **kwargs):
         if self.get_object().claimed_slots.exists():
@@ -117,8 +119,9 @@ class AdminShiftSlotCancelView(AdminRequiredMixin, UpdateView):
     context_object_name = 'shift_slot'
 
     def get_queryset(self):
+        active_event = get_active_event(self.request.session)
         shift = get_object_or_404(
-            Shift.objects.filter_to_current_event(),
+            Shift.objects.filter_to_active_event(active_event),
             role__department_id=self.kwargs['department_pk'],
             role_id=self.kwargs['role_pk'],
             pk=self.kwargs['shift_pk'],
@@ -147,8 +150,9 @@ class AdminShiftSlotCreateView(AdminRequiredMixin, CreateView):
         return context
 
     def get_shift(self):
+        active_event = get_active_event(self.request.session)
         return get_object_or_404(
-            Shift.objects.filter_to_current_event(),
+            Shift.objects.filter_to_active_event(active_event),
             role__department_id=self.kwargs['department_pk'],
             role_id=self.kwargs['role_pk'],
             pk=self.kwargs['pk'],

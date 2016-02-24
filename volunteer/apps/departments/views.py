@@ -4,6 +4,8 @@ from django.shortcuts import get_object_or_404
 
 from authtools.views import LoginRequiredMixin
 
+from volunteer.apps.events.utils import get_active_event
+
 from volunteer.apps.shifts.export import (
     ShiftSlotReportView,
 )
@@ -16,7 +18,22 @@ class DepartmentListView(LoginRequiredMixin, ListView):
     context_object_name = 'departments'
 
     def get_queryset(self):
-        return Department.objects.filter_to_current_event()
+        active_event = get_active_event(self.request.session)
+        return Department.objects.filter_to_active_event(active_event)
+
+    def get_context_data(self, **kwargs):
+        context = super(DepartmentListView, self).get_context_data(**kwargs)
+        active_event = get_active_event(self.request.session)
+        context['department_data'] = tuple((
+            (
+                department,
+                {
+                    'total_filled_shift_slots': department.total_filled_shift_slots(active_event),  # NOQA
+                    'total_shift_slots': department.total_shift_slots(active_event),
+                },
+            ) for department in self.object_list
+        ))
+        return context
 
 
 class DepartmentDetailView(LoginRequiredMixin, DetailView):
@@ -24,7 +41,31 @@ class DepartmentDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'department'
 
     def get_queryset(self):
-        return Department.objects.filter_to_current_event().prefetch_related('roles')
+        active_event = get_active_event(self.request.session)
+        return Department.objects.filter_to_active_event(
+            active_event,
+        ).prefetch_related('roles')
+
+    def get_context_data(self, **kwargs):
+        context = super(DepartmentDetailView, self).get_context_data(**kwargs)
+
+        active_event = get_active_event(self.request.session)
+        roles = self.object.roles.filter_to_active_event(active_event)
+        context['roles'] = roles
+        context['role_data'] = tuple((
+            (
+                role,
+                {
+                    'total_filled_shift_slots': role.total_filled_shift_slots(active_event),  # NOQA
+                    'total_shift_slots': role.total_shift_slots(active_event),
+                },
+            ) for role in roles
+        ))
+        context['roles_with_shifts'] = tuple(
+            (role, role.shifts.filter_to_active_event(active_event))
+            for role in roles
+        )
+        return context
 
 
 class DepartmentShiftSlotReportView(LoginRequiredMixin, ShiftSlotReportView):
@@ -44,8 +85,9 @@ class DepartmentShiftSlotReportView(LoginRequiredMixin, ShiftSlotReportView):
         return context
 
     def get_department(self):
+        active_event = get_active_event(self.request.session)
         return get_object_or_404(
-            Department.objects.filter_to_current_event(),
+            Department.objects.filter_to_active_event(active_event),
             pk=self.kwargs['pk'],
         )
 

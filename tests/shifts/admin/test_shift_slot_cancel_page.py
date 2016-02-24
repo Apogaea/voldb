@@ -23,7 +23,7 @@ def test_shift_slot_cancelling(admin_webtest_client, factories, models):
     })
 
     response = admin_webtest_client.get(url)
-    form_response = response.form.submit()
+    form_response = response.forms[1].submit()
     assert form_response.status_code == 302
 
     updated_shift_slot = models.ShiftSlot.objects.get(pk=shift_slot.pk)

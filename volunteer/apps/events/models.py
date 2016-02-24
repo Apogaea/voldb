@@ -40,3 +40,14 @@ class Event(Timestamped):
         ordering = (
             '-registration_open_at', '-registration_close_at', 'name',
         )
+
+    @classmethod
+    def get_event_choices(cls):
+        current_event = cls.objects.get_current()
+        return tuple((
+            (
+                None if pk == current_event.pk else str(pk),
+                name,
+            )
+            for name, pk in cls.objects.order_by('name').values_list('name', 'pk')
+        ))

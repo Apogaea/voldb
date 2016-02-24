@@ -13,6 +13,8 @@ from django_tables2 import (
     SingleTableMixin,
 )
 
+from volunteer.apps.events.utils import get_active_event
+
 from volunteer.apps.shifts.utils import DENVER_TIMEZONE
 from volunteer.apps.shifts.admin.tables import (
     ShiftSlotReportTable,
@@ -106,10 +108,12 @@ class ShiftSlotReportView(SingleTableMixin, ListView):
         raise NotImplementedError("Must be implemented by subclass")
 
     def get_queryset(self):
+        active_event = get_active_event(self.request.session)
         return ShiftSlot.objects.filter(
             cancelled_at__isnull=True,
             **self.get_extra_filters()
-        ).filter_to_current_event(
+        ).filter_to_active_event(
+            active_event,
         ).order_by(
             'shift__role__department',
             'shift__role',

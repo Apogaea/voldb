@@ -17,11 +17,11 @@ def test_event_list_page(admin_webtest_client, models):
         timezone.now().replace(microsecond=0) + timezone.timedelta(20)
     )
 
-    response.form['name'] = 'Test Event'
-    response.form['registration_open_at'] = open_at.strftime('%Y-%m-%d %H:%M:%S')
-    response.form['registration_close_at'] = close_at.strftime('%Y-%m-%d %H:%M:%S')
+    response.forms[1]['name'] = 'Test Event'
+    response.forms[1]['registration_open_at'] = open_at.strftime('%Y-%m-%d %H:%M:%S')
+    response.forms[1]['registration_close_at'] = close_at.strftime('%Y-%m-%d %H:%M:%S')
 
-    form_response = response.form.submit()
+    form_response = response.forms[1].submit()
     assert form_response.status_code == 302
 
     created_event = models.Event.objects.get(name='Test Event')

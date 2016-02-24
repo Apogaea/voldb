@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static pipeline user_utils argonauts %}
+{% load static pipeline argonauts %}
 <html>
     <head>
         <meta charset="UTF-8">
@@ -24,10 +24,23 @@
                 <a class="navbar-brand" href="{% url 'site-index' %}">Volunteer Database</a>
                 <ul class="nav navbar-nav">
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'department-list' %}">Departments</a></li>
-                        <li><a href="{% url 'dashboard' %}">My Stuff</a></li>
-                        <li><p class="navbar-text">|</p></li>
+                      <li><a href="{% url 'department-list' %}">Departments</a></li>
+                      <li><a href="{% url 'dashboard' %}">My Stuff</a></li>
+                      <li><p class="navbar-text">|</p></li>
+                      <li>
+                        <form class="navbar-form navbar-left navbar-text" method="post" action="{% url 'v2:event-select-active' %}">
+                          <div class="form-group">
+                            <label for="active_event">Event:</label>
+                            <select id="header-event-selector" name="active_event">
+                              {% for choice_value, choice_name, choice_selected in EVENT_DATA.event_choices %}
+                                <option value="{{ choice_value }}" selected="{{ choice_selected|yesno:"selected," }}">{{ choice_name }}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                        </form>
+                      </li>
                     {% endif %}
+                    <li><p class="navbar-text">|</p></li>
                     <li><p class="navbar-text">Claimed Shifts: <span class="badge">{{ SHIFT_STATS.total_filled_shift_slot_count }}</span></p></li>
                     <li><p class="navbar-text">Total Shifts: <span class="badge">{{ SHIFT_STATS.total_shift_slot_count }}</span></p></li>
                 </ul>
@@ -56,7 +69,8 @@
         {% javascript 'shift-grid' %}
 <script type="text/javascript">
 $(document).ready(function() {
-    window.django_user = new Backbone.Model({{ user|serialized_user|json }});
+    window.django_user = new Backbone.Model({{ USER_DATA|json }});
+    window.headerActiveEventSelect = new HeaderActiveEventSelector($('#header-event-selector'));
 })
 </script>
 

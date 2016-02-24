@@ -25,18 +25,18 @@ class User(AbstractEmailUser):
             from volunteer.apps.profiles.models import Profile
             return Profile.objects.get_or_create(user=self)[0]
 
-    @property
-    def shifts(self):
-        from volunteer.apps.events.models import Event
-        current_event = Event.objects.get_current()
-        slots = self.shift_slots.filter(
+    def get_shifts(self, active_event=None):
+        from volunteer.apps.shifts.models import Shift
+        if active_event is None:
+            from volunteer.apps.events.models import Event
+            active_event = Event.objects.get_current()
+        shifts = self.shift_slots.filter_to_active_event(
+            active_event,
+        ).filter(
             cancelled_at__isnull=True,
-        ).select_related('shift')
-        if current_event is not None:
-            slots = slots.filter(shift__event=current_event)
-        return tuple(set((
-            shift_slot.shift for shift_slot in slots
-        )))
+        ).values_list('shift', flat=True)
+
+        return Shift.objects.filter(pk__in=shifts)
 
     def __str__(self):
         if self.pk is None:

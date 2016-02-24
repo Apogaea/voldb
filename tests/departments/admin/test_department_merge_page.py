@@ -23,10 +23,10 @@ def test_department_merging(admin_webtest_client, factories, models):
     url = reverse('admin:department-merge', kwargs={'pk': department_a.pk})
 
     response = admin_webtest_client.get(url)
-    response.form['department'] = department_b.pk
-    response.form['verify'] = department_a.name
+    response.forms[1]['department'] = department_b.pk
+    response.forms[1]['verify'] = department_a.name
 
-    form_response = response.form.submit()
+    form_response = response.forms[1].submit()
     assert form_response.status_code == 302
 
     assert not models.Department.objects.filter(pk=department_a.pk).exists()

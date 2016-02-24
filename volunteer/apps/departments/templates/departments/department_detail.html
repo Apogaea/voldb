@@ -17,18 +17,18 @@
         <div class="col-md-4">
             <h3>Roles</h3>
             <ul>
-                {% for role in department.roles.filter_to_current_event %}
+                {% for role in roles %}
                     <li><a href="#role-{{ role.pk }}">{{ role }}</a></li>
                 {% endfor %}
             </ul>
         </div>
     </div>
     </section>
-    {% for role in department.roles.filter_to_current_event %}
+    {% for role, role_stats in role_data %}
         <div class="role" id="role-{{ role.pk }}">
             <h4>
                 Role: {{ role }}
-                <span class="badge">{{ role.total_filled_shift_slots }} / {{ role.total_shift_slots }} shifts filled</span>
+                <span class="badge">{{ role_stats.total_filled_shift_slots }} / {{ role_stats.total_shift_slots }} shifts filled</span>
                 <a href="#role-{{ role.pk }}" class="text-muted quicklink">
                     <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
                 </a>
@@ -48,9 +48,9 @@
 <script>
 $(document).ready(function() {
     var applications = {};
-    {% for role in department.roles.filter_to_current_event %}applications.role_{{ role.pk }} = new app.ShiftGridApplication({
+    {% for role, role_shifts in roles_with_shifts %}applications.role_{{ role.pk }} = new app.ShiftGridApplication({
         el: $('#role-{{ role.id }}-shift-grid-container'),
-        rows: {{ role.shifts.filter_to_current_event|as_grid|json }}
+        rows: {{ role_shifts|as_grid|json }}
     });
     applications.role_{{ role.pk }}.start();
     {% endfor %}

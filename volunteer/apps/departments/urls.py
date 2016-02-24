@@ -1,10 +1,9 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from volunteer.apps.departments import views
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^$', views.DepartmentListView.as_view(), name='department-list'),
     url(
         r'^(?P<pk>\d+)/$', views.DepartmentDetailView.as_view(),
@@ -14,4 +13,4 @@ urlpatterns = patterns(
         r'^(?P<pk>\d+)/report/$', views.DepartmentShiftSlotReportView.as_view(),
         name='department-shift-report',
     ),
-)
+]

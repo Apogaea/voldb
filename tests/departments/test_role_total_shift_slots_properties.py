@@ -20,5 +20,5 @@ def test_total_shift_slots(factories):
     factories.ShiftSlotFactory(shift=shift_c)
     factories.ShiftSlotFactory(shift=shift_c)
 
-    assert role.total_shift_slots == 30
-    assert role.total_filled_shift_slots == 5
+    assert role.total_shift_slots(None) == 30
+    assert role.total_filled_shift_slots(None) == 5

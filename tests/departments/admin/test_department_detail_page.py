@@ -13,10 +13,10 @@ def test_department_editing(admin_webtest_client, factories, models):
     url = reverse('admin:department-detail', kwargs={'pk': department.pk})
 
     response = admin_webtest_client.get(url)
-    response.form['name'] = 'New Name'
-    response.form['description'] = 'New Description'
+    response.forms[1]['name'] = 'New Name'
+    response.forms[1]['description'] = 'New Description'
 
-    form_response = response.form.submit()
+    form_response = response.forms[1].submit()
     assert form_response.status_code == 302
 
     updated_department = models.Department.objects.get(pk=department.pk)

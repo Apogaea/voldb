@@ -161,3 +161,10 @@ def api_client(user, db):
     client = APIClient()
     client.force_authenticate(user=user)
     return client
+
+
+@pytest.fixture()
+def request_factory(db):
+    from django.test import RequestFactory
+    rf = RequestFactory()
+    return rf

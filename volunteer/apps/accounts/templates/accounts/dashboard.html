@@ -37,7 +37,7 @@
 $(document).ready(function() {
     var application = new app.ShiftGridApplication({
         el: $('my-shifts-grid'),
-        rows: {{ user.shifts|as_grid|json }}
+        rows: {{ user_shifts|as_grid|json }}
     });
     window.application = application;
 });
