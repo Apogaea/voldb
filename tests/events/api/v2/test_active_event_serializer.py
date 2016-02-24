@@ -13,7 +13,7 @@ def test_allows_null():
 
 
 def test_selecting_event(factories):
-    event_a = factories.FutureEventFactory(name='A')
+    factories.FutureEventFactory(name='A')
     event_b = factories.PastEventFactory(name='B')
 
     data = {'active_event': str(event_b.pk)}
