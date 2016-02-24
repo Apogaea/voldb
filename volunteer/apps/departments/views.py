@@ -21,6 +21,20 @@ class DepartmentListView(LoginRequiredMixin, ListView):
         active_event = get_active_event(self.request.session)
         return Department.objects.filter_to_active_event(active_event)
 
+    def get_context_data(self, **kwargs):
+        context = super(DepartmentListView, self).get_context_data(**kwargs)
+        active_event = get_active_event(self.request.session)
+        context['department_data'] = tuple((
+            (
+                department,
+                {
+                    'total_filled_shift_slots': department.total_filled_shift_slots(active_event),  # NOQA
+                    'total_shift_slots': department.total_shift_slots(active_event),
+                },
+            ) for department in self.object_list
+        ))
+        return context
+
 
 class DepartmentDetailView(LoginRequiredMixin, DetailView):
     model = Department
@@ -38,6 +52,15 @@ class DepartmentDetailView(LoginRequiredMixin, DetailView):
         active_event = get_active_event(self.request.session)
         roles = self.object.roles.filter_to_active_event(active_event)
         context['roles'] = roles
+        context['role_data'] = tuple((
+            (
+                role,
+                {
+                    'total_filled_shift_slots': role.total_filled_shift_slots(active_event),  # NOQA
+                    'total_shift_slots': role.total_shift_slots(active_event),
+                },
+            ) for role in roles
+        ))
         context['roles_with_shifts'] = tuple(
             (role, role.shifts.filter_to_active_event(active_event))
             for role in roles

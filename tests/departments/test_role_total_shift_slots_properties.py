@@ -4,6 +4,8 @@ from django.utils import timezone
 def test_total_shift_slots(factories):
     role = factories.RoleFactory()
 
+    event = factories.FutureEventFactory()
+
     # 30 total slots
     shift_a = factories.ShiftFactory(num_slots=10, role=role)
     shift_b = factories.ShiftFactory(num_slots=10, role=role)
@@ -20,5 +22,5 @@ def test_total_shift_slots(factories):
     factories.ShiftSlotFactory(shift=shift_c)
     factories.ShiftSlotFactory(shift=shift_c)
 
-    assert role.total_shift_slots == 30
-    assert role.total_filled_shift_slots == 5
+    assert role.total_shift_slots(event) == 30
+    assert role.total_filled_shift_slots(event) == 5

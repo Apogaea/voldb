@@ -45,19 +45,17 @@ class Department(models.Model):
             return True
         return False
 
-    @property
-    def total_shift_slots(self):
+    def total_shift_slots(self, active_event):
         from volunteer.apps.shifts.models import Shift
-        return Shift.objects.filter_to_active_event().filter(
+        return Shift.objects.filter_to_active_event(active_event).filter(
             role__department=self,
         ).aggregate(
             Sum('num_slots'),
         )['num_slots__sum']
 
-    @property
-    def total_filled_shift_slots(self):
+    def total_filled_shift_slots(self, active_event):
         from volunteer.apps.shifts.models import ShiftSlot
-        return ShiftSlot.objects.filter_to_active_event().filter(
+        return ShiftSlot.objects.filter_to_active_event(active_event).filter(
             shift__role__department=self,
             cancelled_at__isnull=True,
         ).count()
@@ -90,19 +88,17 @@ class Role(Timestamped):
     def __str__(self):
         return self.name
 
-    @property
-    def total_shift_slots(self):
+    def total_shift_slots(self, active_event):
         from volunteer.apps.shifts.models import Shift
-        return Shift.objects.filter_to_active_event().filter(
+        return Shift.objects.filter_to_active_event(active_event).filter(
             role=self,
         ).aggregate(
             Sum('num_slots'),
         )['num_slots__sum']
 
-    @property
-    def total_filled_shift_slots(self):
+    def total_filled_shift_slots(self, active_event):
         from volunteer.apps.shifts.models import ShiftSlot
-        return ShiftSlot.objects.filter_to_active_event().filter(
+        return ShiftSlot.objects.filter_to_active_event(active_event).filter(
             shift__role=self,
             cancelled_at__isnull=True,
         ).count()

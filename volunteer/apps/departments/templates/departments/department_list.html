@@ -2,11 +2,11 @@
 
 {% block content %}
     <h1>Departments</h1>
-    {% for department in departments %}
+    {% for department, dept_stats in department_data %}
         <section class="departments well" id="department-{{ department.pk }}">
             <h3>
                 {{ department }}
-                <span class="badge">{{ department.total_filled_shift_slots }} / {{ department.total_shift_slots }} shifts filled</span>
+                <span class="badge">{{ dept_stats.total_filled_shift_slots }} / {{ dept_stats.total_shift_slots }} shifts filled</span>
                 <a href="#department-{{ department.pk }}" class="text-muted quicklink">
                     <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
                 </a>
