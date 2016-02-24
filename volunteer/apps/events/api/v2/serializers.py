@@ -9,7 +9,7 @@ from volunteer.apps.events.models import Event
 
 class EventChoiceField(serializers.ChoiceField):
     def __init__(self, *args, **kwargs):
-        super(EventChoiceField, self).__init__(self.choices, *args, **kwargs)
+        super(EventChoiceField, self).__init__([], *args, **kwargs)
 
     @property
     def grouped_choices(self):
