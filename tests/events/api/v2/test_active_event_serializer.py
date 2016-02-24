@@ -1,10 +1,20 @@
 import pytest
 
-from volunteer.apps.events.api.v2.serializers import ActiveEventSerializer
+
+@pytest.fixture()
+def ActiveEventSerializer(db):
+    """
+    Importing this class triggers a db query so lets be sure the database is
+    setup before hand.
+    """
+    from volunteer.apps.events.api.v2.serializers import (
+        ActiveEventSerializer as _ActiveEventSerializer,
+    )
+    return _ActiveEventSerializer
 
 
 @pytest.mark.django_db
-def test_allows_null():
+def test_allows_null(ActiveEventSerializer):
     data = {'active_event': None}
 
     serializer = ActiveEventSerializer(data=data)
@@ -12,7 +22,7 @@ def test_allows_null():
     assert serializer.validated_data['active_event'] is None
 
 
-def test_selecting_event(factories):
+def test_selecting_event(factories, ActiveEventSerializer):
     factories.FutureEventFactory(name='A')
     event_b = factories.PastEventFactory(name='B')
 
@@ -23,7 +33,7 @@ def test_selecting_event(factories):
     assert serializer.validated_data['active_event'] == str(event_b.pk)
 
 
-def test_validates_selection(factories):
+def test_validates_selection(factories, ActiveEventSerializer):
     data = {'active_event': 1234567890}
 
     serializer = ActiveEventSerializer(data=data)
