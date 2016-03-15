@@ -12,7 +12,7 @@ django-ogmios==0.9.3
 django-pipeline==1.6.4
 django-pylibmc==0.6.1
 django-s3-folder-storage==0.3
-django-tables2==1.1.1
+django-tables2==1.1.2
 djangorestframework==3.3.2
 drf-ujson==1.2
 env-excavator==1.3.0
