@@ -46,6 +46,8 @@ class AdminShiftSlotCreateForm(BetterModelForm):
     def __init__(self, *args, **kwargs):
         self.shift = kwargs.pop('shift')
         super(AdminShiftSlotCreateForm, self).__init__(*args, **kwargs)
+        volunteers = self.fields['volunteer']
+        volunteers.queryset = volunteers.queryset.select_related('_profile')
 
     class Meta:
         model = ShiftSlot
