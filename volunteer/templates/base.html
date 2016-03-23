@@ -26,7 +26,7 @@
                     {% if user.is_authenticated %}
                       <li><a href="{% url 'department-list' %}">Departments</a></li>
                       <li><a href="{% url 'dashboard' %}">My Stuff</a></li>
-                      <li><p class="navbar-text">|</p></li>
+                      <li><p class="navbar-spacer">|</p></li>
                       <li>
                         <form class="navbar-form navbar-left navbar-text" method="post" action="{% url 'v2:event-select-active' %}">
                           <div class="form-group">
@@ -40,16 +40,16 @@
                         </form>
                       </li>
                     {% endif %}
-                    <li><p class="navbar-text">|</p></li>
-                    <li><p class="navbar-text">Claimed Shifts: <span class="badge">{{ SHIFT_STATS.total_filled_shift_slot_count }}</span></p></li>
-                    <li><p class="navbar-text">Total Shifts: <span class="badge">{{ SHIFT_STATS.total_shift_slot_count }}</span></p></li>
+                    <li><p class="navbar-text">Shifts:</p></li>
+                    <li><p class="navbar-text"><span class="badge">Claimed: {{ SHIFT_STATS.total_filled_shift_slot_count }}</span></p></li>
+                    <li><p class="navbar-text"><span class="badge">Total: {{ SHIFT_STATS.total_shift_slot_count }}</span></p></li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     {% if user.is_authenticated %}
                         <li><p class="navbar-text">Wecome back <em>{{ user }}</em></p></li>
                         <li><a href="{% url 'logout' %}">Logout</a></li>
                     {% if user.is_admin %}
-                        <li><p class="navbar-text">|</p></li>
+                        <li><p class="navbar-spacer">|</p></li>
                         <li><a href="{% url 'admin:index' %}">Admin</a></li>
                     {% endif %}
                     {% else %}
@@ -59,6 +59,8 @@
                 </ul>
             </div>
         </nav>
+        {% block extra_nav %}
+        {% endblock extra_nav %}
         <div class="main-content">
             {% block content_wrapper %}
             {% endblock content_wrapper %}
