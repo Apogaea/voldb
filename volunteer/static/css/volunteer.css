@@ -49,7 +49,25 @@ body {
 }
 
 .main-content {
-    margin-top: 220px; 
+    margin-top: 224px; 
     background-color: rgba(0,0,0,0.9);     
     border-radius: 15px;
+}
+
+#admin-navbar {
+    position: absolute;
+    top: 58px;
+    width: 100%;
+}
+
+.navbar-spacer {
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.breadcrumb-admin {
+    margin-top: 10px;
 }

@@ -1,25 +1,28 @@
 {% extends "base.html" %}
 
 
+{% block extra_nav %}
+    <nav id="admin-navbar" class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'admin:index' %}">Admin</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="{% url 'admin:user-list' %}">Users</a></li>
+        </ul>
+        <ul class="nav navbar-nav">
+            <li><a href="{% url 'admin:event-list' %}">Events</a></li>
+        </ul>
+        <ul class="nav navbar-nav">
+            <li><a href="{% url 'admin:department-list' %}">Departments</a></li>
+        </ul>
+    </nav>
+{% endblock extra_nav %}
+
 {% block content_wrapper %}
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <nav class="navbar navbar-default">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="{% url 'admin:index' %}">Admin</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'admin:user-list' %}">Users</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'admin:event-list' %}">Events</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'admin:department-list' %}">Departments</a></li>
-                </ul>
-            </nav>
-            <ol class="breadcrumb">
+            <ol class="breadcrumb breadcrumb-admin">
                 {% block bread %}
                     <li><a href="{% url 'admin:index' %}">Admin Home</a></li>
                 {% endblock %}
