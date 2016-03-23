@@ -20,12 +20,23 @@ class ShiftTable(BootstrapTable):
             'pk': A('pk'),
         },
     )
+    start_time = tables.DateTimeColumn(
+        format="D F j, Y, P",
+    )
     end_time = tables.DateTimeColumn(
         verbose_name='shift ends',
         orderable=False,
+        format="D F j, Y, P",
     )
     duration = tables.Column(
         orderable=False,
+    )
+    has_open_slots = tables.BooleanColumn(
+        verbose_name='has open slots',
+        orderable=False,
+    )
+    actions = tables.TemplateColumn(
+        template_name="admin/shifts/_shift_actions.html",
     )
 
     class Meta(BootstrapTable.Meta):
@@ -37,6 +48,7 @@ class ShiftTable(BootstrapTable):
             'duration',
             'num_slots',
             'code',
+            'is_closed',
         )
 
 
