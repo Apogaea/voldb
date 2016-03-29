@@ -40,7 +40,7 @@ def check_if_midnight_spanning(shift):
     start_hour = shift['start_time'].astimezone(DENVER_TIMEZONE).hour
     end_time = shift['start_time'] + datetime.timedelta(minutes=shift['shift_minutes'])
     end_hour = end_time.astimezone(DENVER_TIMEZONE).hour
-    return bool(end_hour) and start_hour > end_hour
+    return bool(end_hour) and start_hour >= end_hour
 
 
 def build_empty_column(start_time, minutes=1):
